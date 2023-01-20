@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest --watch",
     "test-overview": "jest ./client/src/components/Overview --watch --coverage",
+    "test-rp": "jest ./client/src/components/RelatedProducts --watch",
     "client-dev": "npx webpack --watch",
     "server-dev": "npx nodemon server/index.js"
   },
