@@ -1,13 +1,10 @@
 import React from 'react';
-import Thumbnail from './Thumbnail.jsx';
 
-// Will have to map over images and render x # of thumbnails for each style.
 function ThumbnailCarousel() {
 	return (
-		<>
+		<div>
 			<h3>Carousel Component</h3>
-			<Thumbnail />
-		</>
+		</div>
 	);
 };
 
