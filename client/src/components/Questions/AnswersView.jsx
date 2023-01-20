@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Answers from "./Answers.jsx";
 
-function AnswersList(props) {
+function AnswersView(props) {
+  const [answersList, setAnswersList] = useState([]);
   /*Implementation Tasks
   1. Sort Answers by helpfulness/Sellar
   2. Display 2 answers default
@@ -11,4 +12,4 @@ function AnswersList(props) {
   */
 }
 
-export default AnswersList;
+export default AnswersView;

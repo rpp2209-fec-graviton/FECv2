@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Question from "./Question.jsx";
+import AnswersView from "./AnswersView.jsx";
+import SearchBar from "./SearchBar";
+import QuestionModal from "./QuestionModal";
+import AnswerModal from "./AnswerModal"
 
-function QuestionsList (props) {
+function QuestionsView(props) {
+  const [questionsList, setQuestionsList] = useState([]);
   /*Implementation tasks
     1. Houses Individual Questions Component (2 by deafult)
     2. Houses Search Bar Component
@@ -13,4 +18,4 @@ function QuestionsList (props) {
   */
 }
 
-export QuestionsList;
+export default QuestionsView;
