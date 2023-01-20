@@ -19,11 +19,20 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
+        test: /\.s[ac]ss$/i,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true
+            }
+          },
+          'sass-loader',
+        ],
       },
       {
-        test: /\.js$|jsx/,
+        test:  /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -37,18 +46,4 @@ module.exports = {
 
 
 };
-
-
-/*
-
-
-  What should go here?  Great question!
-
-  Before you go to documentation, verify which version of webpack
-  you are using.
-
-  Use this config to copy production versions of your
-  index.html and styles.css to dist folder upon build
-*/
-
 
