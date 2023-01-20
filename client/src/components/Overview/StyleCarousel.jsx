@@ -1,9 +1,9 @@
 import React from 'react';
 
-function StyleSelector() {
+function StyleCarousel() {
 	return (
-		<h1>StyleSelector Component</h1>
+		<h3>StyleSelector Component</h3>
 	);
 };
 
-export default StyleSelector;
+export default StyleCarousel;
