@@ -2,7 +2,7 @@ import React from 'react';
 
 function StyleCarousel() {
 	return (
-		<h3>StyleSelector Component</h3>
+		<h3>StyleCarousel Component</h3>
 	);
 };
 

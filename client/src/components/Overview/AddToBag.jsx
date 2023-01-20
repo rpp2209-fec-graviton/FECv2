@@ -2,7 +2,7 @@ import React from 'react';
 
 function AddToBag () {
 	return (
-		<h1>Add To Bag Component</h1>
+		<h3>Add To Bag Component</h3>
 	)
 };
 
