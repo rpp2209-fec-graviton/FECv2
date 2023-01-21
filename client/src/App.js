@@ -1,12 +1,14 @@
 import React from 'react';
 import Overview from './components/Overview/Overview.jsx';
+import Reviews from './components/Reviews/index.js';
 
 function App() {
   return (
-    <div>
-     Hi
-     <Overview />
-    </div>);
+    <>
+      <Overview />
+      <Reviews />
+    </>
+  );
 }
 
 export default App;
