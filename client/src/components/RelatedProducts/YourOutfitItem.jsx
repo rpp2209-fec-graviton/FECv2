@@ -20,4 +20,4 @@ function YourOutfitItem (props) {
   )
 }
 
-export default Card;
+export default YourOutfitItem;

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --watch",
-    "test-rp": "jest ./client/src/components/RelatedProducts --watch",
+    "test-rp": "jest ./client/src/components/RelatedProducts --watch --coverage",
     "client-dev": "npx webpack --watch",
     "server-dev": "npx nodemon server/index.js"
   },

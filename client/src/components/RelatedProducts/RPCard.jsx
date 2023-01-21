@@ -1,7 +1,7 @@
 import React from "react";
 import comparison from './RPComparison.jsx';
 
-function Card (props) {
+function RPCard (props) {
   function starProduct (e) {
     var currentProduct;
     var relatedProduct = props.productInfo;
@@ -25,4 +25,4 @@ function Card (props) {
   )
 }
 
-export default Card;
+export default RPCard;
