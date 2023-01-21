@@ -8,7 +8,7 @@ import styles from '../overview.module.css';
 
 function Overview() {
 	return (
-		<div className={styles.thinBorder}>
+		<div className={styles.greyBorder}>
 			<h1>Product Overview Widget</h1>
 			<Images />
 			<ProductInfo />

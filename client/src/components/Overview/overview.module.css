@@ -1,0 +1,37 @@
+.greyBorder {
+  border: 2px solid silver;
+}
+
+/* =========================================
+			BEM NAMING CONVENTION REFERENCE
+========================================= */
+/* =========================================
+						Block Component
+ top-level abstraction of a new component
+========================================= */
+/* .btn {} */
+
+/* =========================================
+		Element that depends upon the block
+========================================= */
+/* .btn__price {} */
+
+/* =========================================
+  Modifier that changes style of the block
+========================================= */
+/* .btn--orange {}  */
+/* .btn--big {} */
+
+
+/* =========================================
+			CSS WIDGET NAMING FIRST DRAFT
+========================================= */
+/* component container
+  - overview
+    - styles
+  - style picker
+    - styles
+  - size + qty buttons
+    - styles
+  - add to bag button
+    - styles */
