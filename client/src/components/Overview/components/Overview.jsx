@@ -4,9 +4,11 @@ import Images from './Images.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import AddtoBag from './AddtoBag.jsx';
 
+import styles from '../overview.module.css';
+
 function Overview() {
 	return (
-		<div style={{border: "1px solid purple"}}>
+		<div className={styles.thinBorder}>
 			<h1>Product Overview Widget</h1>
 			<Images />
 			<ProductInfo />
