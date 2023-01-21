@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --watch",
-    "test-rp": "jest ./client/src/components/RelatedProducts --watch --coverage",
+    "QA-test": "jest ./client/src/components/Questions/QA.test.js --watch --coverage",
+    "test-overview": "jest ./client/src/components/Overview --watch --coverage",
+    "test-rp": "jest ./client/src/components/RelatedProducts --watch",
     "client-dev": "npx webpack --watch",
     "server-dev": "npx nodemon server/index.js"
   },
@@ -25,7 +27,13 @@
     "jest": "^29.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "sass": "^1.57.1",
+    "sass-loader": "^13.2.0",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1"
+  },
+  "devDependencies": {
+    "css-loader": "^6.7.3",
+    "style-loader": "^3.3.1"
   }
 }
