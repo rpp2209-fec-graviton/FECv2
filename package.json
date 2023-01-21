@@ -7,6 +7,7 @@
     "test": "jest --watch",
     "QA-test": "jest ./client/src/components/Questions/QA.test.js --watch --coverage",
     "test-overview": "jest ./client/src/components/Overview --watch --coverage",
+    "test-reviews": "jest ./client/src/components/Reviews --watch --coverage",
     "test-rp": "jest ./client/src/components/RelatedProducts --watch",
     "client-dev": "npx webpack --watch",
     "server-dev": "npx nodemon server/index.js"
