@@ -1,5 +1,5 @@
 import React from 'react';
-import Overview from './components/Overview/Overview.jsx';
+import Overview from './components/Overview/components/Overview.jsx';
 import Reviews from './components/Reviews/index.js';
 
 function App() {

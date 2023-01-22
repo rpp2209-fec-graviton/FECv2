@@ -2,7 +2,6 @@ require("dotenv").config();
 const path = require("path");
 const webpack = require("webpack");
 
-
 module.exports = {
   entry: './client/src/index.js',
   output: {
@@ -10,16 +9,12 @@ module.exports = {
     filename: 'bundle.js',
   },
 
-
   mode : 'development',
-
-
-
 
   module: {
     rules: [
       {
-        test: /\.s[ac]ss$/i,
+        test: /\.(s[ac]|c)ss$/i,
         use: [
           'style-loader',
           {
@@ -43,7 +38,6 @@ module.exports = {
       },
     ],
   },
-
 
 };
 
