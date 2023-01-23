@@ -39,5 +39,16 @@ module.exports = {
     ],
   },
 
+  plugins: [
+    // This will allow you to refer to process.env variables
+    // within client-side files at build-time:
+    new webpack.DefinePlugin({
+      "process.env": {
+        API_URL: JSON.stringify(process.env.API_URL),
+        API_KEY: JSON.stringify(process.env.API_KEY)
+      },
+    }),
+  ]
+
 };
 
