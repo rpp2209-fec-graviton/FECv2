@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 
-function QuestionModal {
+function QuestionModal(props) {
   /*
   Worry about later, not priority
   */
-}
+};
+
+export default QuestionModal;
