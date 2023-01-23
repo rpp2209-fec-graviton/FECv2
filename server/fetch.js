@@ -29,7 +29,7 @@ let fetch = async (endpoint, cb) => {
 		url: process.env.API_URL,
 		headers: {
 			'User-Agent': 'request',
-			'Authorization': `${process.env.API_TOKEN}`
+			'Authorization': `${process.env.API_KEY}`
 		}
 	}
 
