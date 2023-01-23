@@ -1,14 +1,15 @@
-import React from 'react';
-import Overview from './components/Overview/Overview.jsx';
+import Overview from './components/Overview/components/Overview.jsx';
+import Reviews from './components/Reviews/index.js';
 import QuestionsView from './components/Questions/QuestionsView.jsx';
 
 function App() {
   return (
-    <div>
-     Hi
-     <Overview />
-     <QuestionsView/>
-    </div>);
+    <>
+      <Overview />
+      <Reviews />
+      <QuestionsView/>
+    </>
+  );
 }
 
 export default App;
