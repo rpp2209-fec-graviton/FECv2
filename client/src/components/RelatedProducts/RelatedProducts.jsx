@@ -7,7 +7,6 @@ function RelatedProducts (props) {
   useEffect(() => {
 
   },[]);
-  console.log('dirname', __dirname);
 
   return (
     <div>
