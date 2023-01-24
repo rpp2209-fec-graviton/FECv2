@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
 import ProductInfo from './ProductInfo.jsx';
 import Images from './Images.jsx';
 import StyleSelector from './StyleSelector.jsx';
@@ -15,12 +17,24 @@ function Overview() {
 	const [zoom, setZoom] = useState(0);
 
 	// Shared State (TODO: Move to global state)
+	const [products, setProducts] = useState([]);
 	const [starRating, setStarRating] = useState(0);
+
+	useEffect(() => {
+		fetchProducts();
+	}, []);
+
+	const fetchProducts = async () => {
+		const fetchedProducts = await axios.get('products');
+		// console.log('GOT Products:', fetchedProducts);
+		setProducts(fetchedProducts.data);
+	};
 
 	return (
 		<div className={styles.greyBorder}>
 			<h1>Product Overview Widget</h1>
-			<div className={styles.greyBorder}>
+
+			{/* <div className={styles.greyBorder}>
 			<h3>Initial State</h3>
 				<p>Quantity: {quantity}</p>
 				<p>Size: {size}</p>
@@ -28,8 +42,9 @@ function Overview() {
 				<p>Currently Selected: {selected}</p>
 				<hr />
 				<p>Average Rating: {starRating}</p>
-			</div>
-			<Images />
+			</div> */}
+
+			<Images products={products} />
 			<ProductInfo />
 			<StyleSelector />
 			<AddToBag />

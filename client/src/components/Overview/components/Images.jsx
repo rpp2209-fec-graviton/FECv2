@@ -1,13 +1,16 @@
 import React from 'react';
 import ThumbnailCarousel from './ThumbnailCarousel.jsx';
 
-function Images () {
+function Images ({ products }) {
+	console.log('products?', products);
+
 	return (
 		<div>
 			<h3>Images Component</h3>
-			<ThumbnailCarousel />
+			<ThumbnailCarousel products={products}/>
 		</div>
 	)
+
 };
 
 export default Images;

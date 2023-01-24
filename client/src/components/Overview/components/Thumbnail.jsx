@@ -1,10 +1,13 @@
 import React from 'react';
+import styles from '../overview.module.css';
 
-function Thumbnail() {
+function Thumbnail({ product }) {
+	console.log('product from TN', product);
+
 	return (
 		<>
-			{/* <h3>Thumbnail Component</h3> */}
-			<p>Thumbnail x # of Styles</p>
+			{/* <h3>{!product ? null : product.name}</h3> */}
+			<img className={styles.overview__image} src="assets/mockup.png" alt="tee-mockup" />
 		</>
 	);
 };
