@@ -23,7 +23,7 @@ function QuestionsView(props) {
       {questionsList.slice(0, count).map((q, index) => {
         return (
           <div key={index}>
-            <Question props={q} />
+            <Question q={q} />
             <AnswersView props={q.question_id} />
           </div>
         )
