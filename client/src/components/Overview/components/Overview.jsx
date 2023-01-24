@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ProductInfo from './ProductInfo.jsx';
 import Images from './Images.jsx';
 import StyleSelector from './StyleSelector.jsx';
-import AddtoBag from './AddtoBag.jsx';
+import AddToBag from './AddToBag.jsx';
 
 import styles from '../overview.module.css';
 
@@ -32,7 +32,7 @@ function Overview() {
 			<Images />
 			<ProductInfo />
 			<StyleSelector />
-			<AddtoBag />
+			<AddToBag />
 		</div>
 	);
 };
