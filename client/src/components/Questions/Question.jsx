@@ -7,7 +7,6 @@ function Question ({q}) {
   */
   return (
     <div>
-    {console.log(q)}
     <b>Q: {q.question_body} </b>
     <sub> Helpful?
       <a> Yes ({q.question_helpfulness}) </a>
