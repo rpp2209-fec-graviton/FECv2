@@ -4,7 +4,7 @@ import AnswersView from "./Answers/AnswersView.jsx";
 import SearchBar from "./SearchBar.jsx";
 import QuestionModal from "./Modals/QuestionModal.jsx";
 import AnswerModal from "./Modals/AnswerModal.jsx";
-import SampleData from "/home/benny/hackreactor/front-end-capstone/FECv2/ExampleData/index.js"
+import SampleData from "../../../../ExampleData/index.js"
 
 function QuestionsView(props) {
   const [questionsList, setQuestionsList] = useState(SampleData['/qa/questions'].results);
