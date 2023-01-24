@@ -1,15 +1,29 @@
 import React, { useState, useEffect } from "react";
-import Answers from "./Answers.jsx";
+import Answer from "./Answer.jsx";
+import SampleData from "/home/benny/hackreactor/front-end-capstone/FECv2/ExampleData/index.js"
 
-function AnswersView(props) {
-  const [answersList, setAnswersList] = useState([]);
+function AnswersView({ question_id }) {
   /*Implementation Tasks
   1. Sort Answers by helpfulness/Sellar
-  2. Display 2 answers default
-  3. Display "See More Answers"/"Collapse Answers" Button below list
+  3. Implement "See More Answers"/"Collapse Answers"
   4. Confined to half the screen
-  5. Houses Answer Component
   */
+  const [answersList, setAnswersList] = useState(SampleData['/qa/questions/:question_id/answers'].results);
+  const [count, setCount] = useState(2);
+  const [page, setPage] = useState(1);
+  const [more, setMore] = useState(true);
+
+  return (
+    <div>
+      {answersList.slice(0, count).map((ans, index) => {
+        return <Answer key={ans.answer_id} ans={ans} />
+      })}
+      <sub onClick={() => {setMore(!more)}}>
+        {more ? 'See More Answers' : 'Collapse Answers'}
+      </sub>
+    </div>
+  )
+
 }
 
 export default AnswersView;
