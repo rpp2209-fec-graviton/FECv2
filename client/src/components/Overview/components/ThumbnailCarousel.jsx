@@ -1,16 +1,22 @@
 import React from 'react';
 import Thumbnail from './Thumbnail.jsx';
 
-function ThumbnailCarousel({ products }) {
-	if (products.length) {
+function ThumbnailCarousel({ selected, styles }) {
+	console.log("TNC Styles", styles);
+
+	if (styles[selected.id]) {
 		return (
 			<div>
-				{products.map(item => (<Thumbnail
-					key={item.id}
-					product={item}
+				{styles[selected.id].map(style => (<Thumbnail
+					key={style.style_id}
+					style={style}
 				/>))}
 			</div>
-		);
+		)
+	} else {
+		return (
+			<h3>No Styles to Pass to TN</h3>
+		)
 	}
 
 };

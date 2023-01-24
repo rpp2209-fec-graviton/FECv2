@@ -1,13 +1,15 @@
 import React from 'react';
 import ThumbnailCarousel from './ThumbnailCarousel.jsx';
 
-function Images ({ products }) {
-	console.log('products?', products);
+function Images ({ selected, styles }) {
 
 	return (
 		<div>
 			<h3>Images Component</h3>
-			<ThumbnailCarousel products={products}/>
+			<ThumbnailCarousel
+				selected={selected}
+				styles={styles}
+			/>
 		</div>
 	)
 
