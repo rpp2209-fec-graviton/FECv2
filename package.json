@@ -7,6 +7,7 @@
     "test": "jest --watch",
     "QA-test": "jest ./client/src/components/Questions/QA.test.js --watch --coverage",
     "test-overview": "jest ./client/src/components/Overview --watch --coverage",
+    "test-modal": "jest ./client/src/components/Overview/overview-utils --watch",
     "test-reviews": "jest ./client/src/components/Reviews --watch --coverage",
     "test-rp": "jest ./client/src/components/RelatedProducts --watch",
     "client-dev": "npx webpack --watch",
@@ -37,8 +38,10 @@
     "webpack-cli": "^5.0.1"
   },
   "devDependencies": {
+    "babel-jest": "^29.4.0",
     "chalk": "^4.1.2",
     "css-loader": "^6.7.3",
+    "identity-obj-proxy": "^3.0.0",
     "style-loader": "^3.3.1"
   }
 }
