@@ -3,9 +3,8 @@
 }
 
 .overview__image {
-  border: 2px solid silver;
+  border: 1px solid white;
   border-radius: 50%;
-  padding: 8px;
   width: 80px;
   height: 80px;
 }
