@@ -1,17 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ThumbnailCarousel from './ThumbnailCarousel.jsx';
 import Modal from './Modal.jsx';
 
 function Images () {
+	const [show, setShow] = useState(false);
 
-	const showModal = () => {
-		console.log('showing modal msg');
+	useEffect(() => {
+		console.log('modal state changed to:', show);
+	}, [show]);
+
+	const toggleModal = () => {
+		console.log('modal before', show);
+		setShow(show => !show);
 	};
 
 	return (
 		<div>
 			<h3>Images Component</h3>
-			<Modal show={showModal} />
+			<Modal toggleModal={toggleModal} show={show} />
 			<ThumbnailCarousel />
 		</div>
 	)
