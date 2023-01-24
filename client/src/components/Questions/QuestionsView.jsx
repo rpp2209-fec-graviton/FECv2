@@ -1,21 +1,37 @@
 import React, { useState, useEffect } from "react";
 import Question from "./Question.jsx";
-import AnswersView from "./AnswersView.jsx";
-import SearchBar from "./SearchBar";
-import QuestionModal from "./QuestionModal";
-import AnswerModal from "./AnswerModal"
+import AnswersView from "./Answers/AnswersView.jsx";
+import SearchBar from "./SearchBar.jsx";
+import QuestionModal from "./Modals/QuestionModal.jsx";
+import AnswerModal from "./Modals/AnswerModal.jsx";
+import SampleData from "/home/benny/hackreactor/front-end-capstone/FECv2/ExampleData/index.js"
 
 function QuestionsView(props) {
-  const [questionsList, setQuestionsList] = useState([]);
+  const [questionsList, setQuestionsList] = useState(SampleData['/qa/questions'].results);
+  const [count, setCount] = useState(2);
+  const [page, setPage] = useState(1);
   /*Implementation tasks
-    1. Houses Individual Questions Component (2 by deafult)
-    2. Houses Search Bar Component
-    3. Expands 2 Questions at a time and Scrollable
-    4. Sorts questions By helpfulness
-    5. Create a "More Answered Questions" button
-    6. Create a "Add Quest +" button
-    7. Confined to a single page, any longer should be scrollable
+    [] Expands 2 Questions at a time and Scrollable
+    [] Sorts questions By helpfulness
+    [] Confined to a single page, any longer should be scrollable
   */
+
+  return (
+    <div>
+      <h2> Questions and Answers </h2>
+      <SearchBar />
+      {questionsList.slice(0, count).map((q, index) => {
+        return (
+          <div key={index}>
+            <Question props={q} />
+            <AnswersView props={q.question_id} />
+          </div>
+        )
+      })}
+      <button> MORE ANSWERED QUESTIONS </button>
+      <button> ADD A QUESTION + </button>
+    </div>
+  )
 }
 
 export default QuestionsView;
