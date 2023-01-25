@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ThumbnailCarousel from './ThumbnailCarousel.jsx';
 import Modal from './Modal.jsx';
+
 import toggleModal from '../overview-utils/modal.js';
 import imageStyles from '../overview.module.css';
 
@@ -20,6 +21,7 @@ function Images ({ selected, styles }) {
 						${imageStyles['overview-border']}
 					`}
 					src={selectedUrl}
+					onClick={() => toggleModal(setShow)}
 				/>
 			<Modal
 				toggleModal={()=> toggleModal(setShow)}
