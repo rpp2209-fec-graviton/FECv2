@@ -4,8 +4,21 @@
   --silver: #c0c0c0;
 }
 
+.error {
+  border: 5px solid red;
+}
+
+.overview-border {
+  border: 2px solid var(--white);
+}
+
+.overview__image {
+  object-fit: cover;
+  width: 700px;
+  height: 700px;
+}
+
 .thumbnail {
-  border: 1px solid white;
   border-radius: 50%;
   width: 80px;
   height: 80px;
@@ -20,22 +33,31 @@
   border: 2px solid magenta;
 }
 
-.error {
-  border: 5px solid red;
+.stars__outer {
+  display: inline-block;
+  position: relative;
 }
 
-.overview-border {
-  border: 2px solid var(--white);
+.stars__outer::before {
+  content: "☆☆☆☆☆"
 }
 
-.thumbnail {
-  border-radius: 50%;
-  width: 80px;
-  height: 80px;
+.stars__inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
 }
 
-.overview__image {
-  object-fit: cover;
-  width: 700px;
-  height: 700px;
+.stars__inner::before {
+  content: "★★★★★"
+}
+
+.stars__a {
+  color: var(--white);
+  font-size: 12px;
+  padding-left: 4px;
+  vertical-align: text-top;
 }

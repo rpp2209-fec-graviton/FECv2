@@ -1,15 +1,21 @@
 import React from 'react';
+import StarRating from './StarRating.jsx';
+import styles from '../overview.module.css';
 
-function ProductInfo() {
+function ProductInfo({ selected }) {
+	const handleClick = () => {
+		console.log('Clicked! Adding to Outfit (TODO)...');
+	};
+
 	return (
-		<div style={{border: "1px solid grey"}}>
+		<div className={styles['overview-border']}>
 			<h3>ProductInfo Component</h3>
-			<p>Star Rating (# Reviews) here</p>
-			<p>Product Category</p>
-			<p>Product Title</p>
+			<StarRating />
+			<p>{selected.category}</p>
+			<p>{selected.name}</p>
 			<p>$$$ Price with Potential Sales Styling</p>
-			<p>Product Overview (freeform text description)</p>
-			<p>⭐ (Outfit Toggle)</p>
+			<p>{selected.description}</p>
+			<button onClick={handleClick}>⭐ (Outfit Toggle)</button>
 		</div>
 	);
 };
