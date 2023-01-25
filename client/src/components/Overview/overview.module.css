@@ -4,6 +4,13 @@
   --silver: #c0c0c0;
 }
 
+.thumbnail {
+  border: 1px solid white;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+}
+
 .modal {
   width: 1500px;
   height: 800px;
@@ -11,7 +18,6 @@
 
 .modal-hidden {
   border: 2px solid magenta;
-  /* visibility: hidden; */
 }
 
 .error {
