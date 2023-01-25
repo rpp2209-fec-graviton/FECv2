@@ -4,7 +4,6 @@ import axios from 'axios';
 import ProductInfo from './ProductInfo.jsx';
 import Images from './Images.jsx';
 import StyleSelector from './StyleSelector.jsx';
-import Button from './Button.jsx';
 
 import { fetch } from '../../../../../server/fetch.js';
 import styles from '../overview.module.css';
@@ -63,7 +62,6 @@ function Overview() {
 			<Images selected={selected} productStyles={productStyles} />
 			<ProductInfo selected={selected} />
 			<StyleSelector />
-			<Button>+ Add to Bag</Button>
 		</div>
 	);
 };

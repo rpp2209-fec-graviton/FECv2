@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from './Button.jsx';
 import Thumbnail from './Thumbnail.jsx';
 import styles from '../overview.module.css';
 
@@ -31,6 +32,7 @@ function StyleSelector () {
 				<option value="9">9</option>
 				<option value="10">10</option>
 			</select>
+			<Button>+ Add to Bag</Button>
 		</div>
 	)
 };
