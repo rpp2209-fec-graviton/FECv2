@@ -6,41 +6,30 @@ import toggleModal from '../overview-utils/modal.js';
 import styles from '../overview.module.css';
 
 function Images ({ selected, productStyles }) {
-
 	if (productStyles[selected.id]) {
-		const selectedProductStyles = productStyles[selected.id];
-		const selectedUrl = selectedProductStyles[0].photos[0].url;
-		const selectedThumbnailUrl = selectedProductStyles[0].photos[0].thumbnail_url;
-
-	const [show, setShow] = useState(false);
+		const [show, setShow] = useState(false);
+		const selectedStyles = productStyles[selected.id];
+		const selectedUrl = selectedStyles[0].photos[0].url;
+		const selectedThumbnailUrl = selectedStyles[0].photos[0].thumbnail_url;
 
 		return (
-			<div>
-				<Modal
-					toggleModal={()=> toggleModal(setShow)}
-					show={show}
-					setShow={setShow}
-				>
-					<img src={selectedThumbnailUrl} />
+			<>
+				<Modal toggleModal={()=> toggleModal(show, setShow)} show={show} setShow={setShow}>
+					<img className={styles.modal__content} src={selectedThumbnailUrl} />
 				</Modal>
+
 				<img
-					className={`
-						${styles.overview__image}
-						${styles['overview-border']}
-					`}
+					id="image-lg"
+					className={`${styles.overview__image} ${styles['overview-border']}`}
 					src={selectedUrl}
-					onClick={() => toggleModal(setShow)}
+					onClick={() => toggleModal(show, setShow)}
 				/>
-				<ThumbnailCarousel
-					selected={selected}
-					productStyles={productStyles}
-				/>
-			</div>
+				<ThumbnailCarousel selected={selected} productStyles={productStyles} />
+			</>
 		)
 	} else {
 		return (<h2>No Images to Display</h2>)
 	}
-
 };
 
 export default Images;
