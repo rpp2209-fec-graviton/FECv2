@@ -1,10 +1,11 @@
 import React from 'react';
+import styles from '../overview.module.css';
 
 function StarRating() {
 	return (
-		<>
-			<p>⭐ Star Rating (# Reviews) here</p>
-		</>
+		<div className={styles.stars__outer}>
+			<div className={styles.stars__inner}></div>
+		</div>
 	)
 }
 
