@@ -58,11 +58,10 @@ function Overview() {
 	}, [products]);
 
 	return (
-		<div className={styles.greyBorder}>
+		<div className={styles['overview-border']}>
 			<h1>Product Overview Widget</h1>
-
 			<Images selected={selected} styles={styles} />
-			<ProductInfo />
+			<ProductInfo selected={selected} />
 			<StyleSelector />
 			<AddToBag />
 		</div>

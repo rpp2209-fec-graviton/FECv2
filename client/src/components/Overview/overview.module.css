@@ -1,8 +1,10 @@
-.greyBorder {
-  border: 2px solid silver;
+:root {
+  --blue: #1e90ff;
+  --white: #ffffff;
+  --silver: #c0c0c0;
 }
 
-.overview__image {
+.thumbnail {
   border: 1px solid white;
   border-radius: 50%;
   width: 80px;
@@ -16,39 +18,24 @@
 
 .modal-hidden {
   border: 2px solid magenta;
-  /* visibility: hidden; */
 }
 
-/* =========================================
-			BEM NAMING CONVENTION REFERENCE
-========================================= */
-/* =========================================
-						Block Component
- top-level abstraction of a new component
-========================================= */
-/* .btn {} */
+.error {
+  border: 5px solid red;
+}
 
-/* =========================================
-		Element that depends upon the block
-========================================= */
-/* .btn__price {} */
+.overview-border {
+  border: 2px solid var(--white);
+}
 
-/* =========================================
-  Modifier that changes style of the block
-========================================= */
-/* .btn--orange {}  */
-/* .btn--big {} */
+.thumbnail {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+}
 
-
-/* =========================================
-			CSS WIDGET NAMING FIRST DRAFT
-========================================= */
-/* component container
-  - overview
-    - styles
-  - style picker
-    - styles
-  - size + qty buttons
-    - styles
-  - add to bag button
-    - styles */
+.overview__image {
+  object-fit: cover;
+  width: 700px;
+  height: 700px;
+}
