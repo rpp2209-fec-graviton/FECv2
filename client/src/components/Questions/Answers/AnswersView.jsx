@@ -14,11 +14,13 @@ function AnswersView({ question_id }) {
   const [more, setMore] = useState(true);
 
   return (
-    <div>
+    <div className="answersList">
       {answersList.slice(0, count).map((ans, index) => {
-        return <Answer key={ans.answer_id} ans={ans} />
+        return <div className="answer">
+          <Answer key={ans.answer_id} ans={ans} />
+        </div>
       })}
-      <sub onClick={() => {setMore(!more)}}>
+      <sub onClick={() => { setMore(!more) }}>
         {more ? 'See More Answers' : 'Collapse Answers'}
       </sub>
     </div>

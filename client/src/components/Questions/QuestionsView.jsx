@@ -22,7 +22,7 @@ function QuestionsView(props) {
       <SearchBar />
       {questionsList.slice(0, count).map((q, index) => {
         return (
-          <div key={index}>
+          <div className="Question" key={index}>
             <Question q={q} />
             <AnswersView props={q.question_id} />
           </div>

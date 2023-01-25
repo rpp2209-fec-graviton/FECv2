@@ -10,6 +10,7 @@ function SearchBar(props) {
   var handleChange = (e) => {
     setSearchInput(e.target.value);
   };
+
   return (
     <input
       type='text'
