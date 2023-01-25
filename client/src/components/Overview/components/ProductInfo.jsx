@@ -1,14 +1,14 @@
 import React from 'react';
 import StarRating from './StarRating.jsx';
+import styles from '../overview.module.css';
 
 function ProductInfo({ selected }) {
-	console.log('Selected', selected);
-
 	const handleClick = () => {
 		console.log('Clicked! Adding to Outfit (TODO)...');
 	};
+
 	return (
-		<div style={{border: "1px solid grey"}}>
+		<div className={styles['overview-border']}>
 			<h3>ProductInfo Component</h3>
 			<StarRating />
 			<p>{selected.category}</p>
