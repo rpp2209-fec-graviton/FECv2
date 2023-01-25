@@ -1,84 +1,120 @@
 /**
  * @jest-environment jsdom
  */
-
+require('dotenv').config()
 import React from 'react';
 
-import { render, fireEvent, waitFor, screen } from '@testing-library/react'
-import '@testing-library/jest-dom'
+import { render, fireEvent, waitFor, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
-import { rest } from 'msw'
-import { setupServer } from 'msw/node'
+import { rest } from 'msw';
+import { setupServer } from 'msw/node';
 
-// import Overview from './Overview.jsx';
-// import Images from './Images.jsx';
-// import StyleCarousel from './StyleCarousel.jsx';
-// import StyleSelector from './StyleSelector.jsx';
-// import AddToCart from './AddToCart.jsx';
-
-// ==================================
-//     ⬇ ⭐ TESTING SETUP ⭐ ⬇
-// ==================================
-// https://testing-library.com/docs/react-testing-library/example-intro
-
-const server = setupServer(
-  rest.get('/', (req, res, ctx) => { // look up what ctx represents here
-    return res(ctx.json({ greeting: 'hello there' }))
-  }),
-)
-
-beforeAll(() => server.listen())
-afterEach(() => server.resetHandlers())
-afterAll(() => server.close())
-
+import Overview from './components/Overview.jsx';
+// import Images from './components/Images.jsx';
+// import ProductInfo from './components/ProductInfo.jsx';
+// import Modal from './components/Modal.jsx';
+// import ThumbnailCarousel from './components/ThumbnailCarousel.jsx';
+// import StyleSelector from './components/StyleSelector.jsx';
+// import AddToBag from './components/AddToBag.jsx';
 
 // ==================================
 //    ⬇ ⭐ TESTING THE TESTS ⭐ ⬇
 // ==================================
+describe('Testing Environment', () => {
+  test('use jsdom in this test file', () => {
+    const element = document.createElement('div');
+    expect(element).not.toBeNull();
+  });
+});
 
-test('test runs even when doing nothing', () => {
-	expect(true).toBe(true)
-})
+// Make sure environment vars are loading
+describe('Environment Variables', () => {
+  test('Receives process.env variables', () => {
+    expect(process.env.API_URL).toBe('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp');
+  });
+});
 
-test('use jsdom in this test file', () => {
-  const element = document.createElement('div');
-  expect(element).not.toBeNull();
+// ==================================
+//     ⬇ ⭐ TESTING SERVER ⭐ ⬇
+// ==================================
+// https://testing-library.com/docs/react-testing-library/example-intro
+describe('Server Test', () => {
+  const server = setupServer(
+    rest.get('http://localhost:3000', (req, res, ctx) => {
+      return res(
+        ctx.json({ message: 'Loaded' }),
+        ctx.status(200)
+      )
+    }),
+  )
+
+  beforeAll(() => server.listen({ onUnhandledRequest: "bypass" })) // remove this to see unhandled requests
+  afterEach(() => server.resetHandlers())
+  afterAll(() => server.close())
+
+  test('handles server error', async () => {
+    server.use(
+      // override the initial "GET /" request handler
+      // to return a 500 Server Error
+      rest.get('http://localhost:3000', (req, res, ctx) => {
+        return res(ctx.status(500))
+      }),
+    )
+    // Assert something TODO
+  });
 });
 
 // ==================================
 //      ⬇ ⭐ UNIT TESTS ⭐ ⬇
 // ==================================
-test('loads and displays <Overview />', async () => {
-  // ARRANGE
-	render(<Overview />)
+describe('Widget / Layout / Rendering', () => {
+  test('loads and displays <Overview />', async () => {
+    // Arrange
+    render(<Overview />)
 
-  // ACT
-	await waitFor(() => screen.getByRole('heading'))
+    // Act
+    await waitFor(() => screen.getByRole('heading'))
 
-  // ASSERT
-  expect(screen.getByRole('heading')).toHaveTextContent('Product Overview Widget')
-})
+    // Assert
+    expect(screen.getByRole('heading')).toHaveTextContent('Product Overview Widget')
+  })
 
-test('loads and displays <Images />', async () => {
-	render(<Images />)
-	await waitFor(() => screen.getByRole('heading'))
-  expect(screen.getByRole('heading')).toHaveTextContent('Images Component')
-})
+  // test('loads and displays <Images />', async () => {
+  // 	render(<Images />)
+  // 	await waitFor(() => screen.getByRole('heading'))
+  //   expect(screen.getByRole('heading')).toHaveTextContent('Images Component')
+  // })
 
-test('<StyleCarousel />', async () => {
-	render(<StyleCarousel />)
-	await waitFor(() => screen.getByRole('heading'))
-  expect(screen.getByRole('heading')).toHaveTextContent('StyleCarousel Component')
-})
+  // test('<ProductInfo />', async () => {
+  // 	render(<ProductInfo />)
+  // 	await waitFor(() => screen.getByRole('heading'))
+  //   expect(screen.getByRole('heading')).toHaveTextContent('ProductInfo Component')
+  // })
 
-test('<StyleSelector />', async () => {
-  render(<StyleSelector />)
-	await waitFor(() => screen.getByRole('heading'))
-  expect(screen.getByRole('heading')).toHaveTextContent('StyleSelector Component')
-})
+  // test('<Modal />', async () => {
+  // 	render(<Modal />)
+  // 	await waitFor(() => screen.getByRole('heading'))
+  //   expect(screen.getByRole('heading')).toHaveTextContent('Modal Component')
+  // })
 
-test('<AddToCart />', async () => {
-  render(<AddToCart />)
-	await waitFor(() => screen.getByRole('heading'))
-  expect(screen.getByRole('heading')).toHaveTextContent('AddToCart Component')
-})
+  // test('<ThumbnailCarousel />', async () => {
+  // 	render(<ThumbnailCarousel />)
+  // 	await waitFor(() => screen.getByRole('heading'))
+  //   expect(screen.getByRole('heading')).toHaveTextContent('ThumbnailCarousel Component')
+  // })
+
+  // test('<StyleSelector />', async () => {
+  //   render(<StyleSelector />)
+  // 	await waitFor(() => screen.getByRole('heading'))
+  //   expect(screen.getByRole('heading')).toHaveTextContent('StyleSelector Component')
+  // })
+
+  // test('<AddToBag />', async () => {
+  //   render(<AddToBag />)
+  // 	await waitFor(() => screen.getByRole('heading'))
+  //   expect(screen.getByRole('heading')).toHaveTextContent('AddToBag Component')
+  // })
+});
+
+
