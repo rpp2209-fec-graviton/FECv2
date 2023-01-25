@@ -2,6 +2,16 @@
   border: 2px solid silver;
 }
 
+.modal {
+  width: 1500px;
+  height: 800px;
+}
+
+.modal-hidden {
+  border: 2px solid magenta;
+  /* visibility: hidden; */
+}
+
 /* =========================================
 			BEM NAMING CONVENTION REFERENCE
 ========================================= */
