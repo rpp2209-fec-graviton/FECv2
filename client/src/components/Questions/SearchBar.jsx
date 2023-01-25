@@ -1,11 +1,22 @@
 import React, { useState } from "react";
 
-function SearchBar (props) {
+function SearchBar(props) {
   /*Implementation Tasks
     1. automatically filters Questions with 3 or more characters
-    2. Default Display “Have a question? Search for answers…”
-    3. Located Above Question list
   */
+
+  const [searchInput, setSearchInput] = useState('');
+
+  var handleChange = (e) => {
+    setSearchInput(e.target.value);
+  };
+  return (
+    <input
+      type='text'
+      placeholder='Have a question? Search for more answers...'
+      onChange={handleChange}
+      value={searchInput} />
+  )
 };
 
 export default SearchBar;

@@ -4,6 +4,16 @@
   --silver: #c0c0c0;
 }
 
+.modal {
+  width: 1500px;
+  height: 800px;
+}
+
+.modal-hidden {
+  border: 2px solid magenta;
+  /* visibility: hidden; */
+}
+
 .error {
   border: 5px solid red;
 }
