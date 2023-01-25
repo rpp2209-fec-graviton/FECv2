@@ -2,8 +2,6 @@ import React from 'react';
 import Thumbnail from './Thumbnail.jsx';
 
 function ThumbnailCarousel({ selected, styles }) {
-	console.log("TNC Styles", styles);
-
 	if (styles[selected.id]) {
 		return (
 			<div>
