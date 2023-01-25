@@ -8,7 +8,7 @@ function ProductInfo({ selected }) {
 	};
 
 	return (
-		<div className={styles['overview-border']}>
+		<div className={styles.border}>
 			<h3>ProductInfo Component</h3>
 			<StarRating />
 			<p>{selected.category}</p>
