@@ -15,7 +15,7 @@ function ProductInfo({ selected }) {
 			<p>{selected.name}</p>
 			<p>$$$ Price with Potential Sales Styling</p>
 			<p>{selected.description}</p>
-			<button onClick={handleClick}>⭐ (Outfit Toggle)</button>
+			<button onClick={handleClick}>⭐</button>
 		</div>
 	);
 };

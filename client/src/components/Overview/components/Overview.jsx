@@ -19,7 +19,7 @@ function Overview() {
 
 	// Shared State (TODO: Move to global state)
 	const [products, setProducts] = useState([]);
-	const [styles, setStyles] = useState({});
+	const [productStyles, setStyles] = useState({});
 	const [starRating, setStarRating] = useState(0);
 
 	// Fetch and Set Product State
@@ -58,9 +58,9 @@ function Overview() {
 	}, [products]);
 
 	return (
-		<div className={styles['overview-border']}>
+		<div className={styles.overview}>
 			<h1>Product Overview Widget</h1>
-			<Images selected={selected} styles={styles} />
+			<Images selected={selected} productStyles={productStyles} />
 			<ProductInfo selected={selected} />
 			<StyleSelector />
 			<AddToBag />
