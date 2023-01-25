@@ -7,18 +7,6 @@
   --silver: #c0c0c0;
 }
 
-/*
-  Remove this before pushing
-  and make separate PR to center
-  entire Product Detail container
-*/
-
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .error {
   border: 5px solid red;
 }
