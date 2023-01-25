@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from './Button.jsx';
 import StarRating from './StarRating.jsx';
 import styles from '../overview.module.css';
 
@@ -15,7 +16,7 @@ function ProductInfo({ selected }) {
 			<p>{selected.name}</p>
 			<p>$$$ Price with Potential Sales Styling</p>
 			<p>{selected.description}</p>
-			<button onClick={handleClick}>⭐</button>
+			<Button handleClick={handleClick}>⭐</Button>
 		</div>
 	);
 };
