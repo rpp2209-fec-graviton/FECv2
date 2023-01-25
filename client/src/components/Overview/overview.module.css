@@ -7,6 +7,18 @@
   --silver: #c0c0c0;
 }
 
+/*
+  Remove this before pushing
+  and make separate PR to center
+  entire Product Detail container
+*/
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .error {
   border: 5px solid red;
 }
@@ -25,8 +37,8 @@
 
 .overview__image {
   object-fit: cover;
-  width: 700px;
-  height: 700px;
+  width: 400px;
+  height: 400px;
 }
 
 /* =======================
@@ -42,8 +54,8 @@
       Modal Styles
 ========================*/
 .modal {
+  height: 1200px;
   background: white;
-  border: 1px solid #ccc;
   box-shadow: -2rem 2rem 2rem rgba(black, 0.2);
   filter: blur(0);
   transition: 1.1s ease-out;
@@ -61,6 +73,7 @@
 
 .modal__content {
   border: 1px solid lime;
+  height: 100%;
 }
 
 /* =======================

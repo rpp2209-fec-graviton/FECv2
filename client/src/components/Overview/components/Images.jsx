@@ -15,7 +15,7 @@ function Images ({ selected, productStyles }) {
 		return (
 			<>
 				<Modal toggleModal={()=> toggleModal(show, setShow)} show={show} setShow={setShow}>
-					<img className={styles.modal__content} src={selectedThumbnailUrl} />
+					<img className={styles.modal__content} src={selectedUrl} />
 				</Modal>
 
 				<img
