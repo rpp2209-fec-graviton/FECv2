@@ -1,12 +1,15 @@
 import React from 'react';
+import styles from '../overview.module.css';
 
-function Thumbnail() {
+function Thumbnail({ style }) {
+	var photos = style.photos;
+
 	return (
 		<>
-			{/* <h3>Thumbnail Component</h3> */}
-			<p>Thumbnail x # of Styles</p>
+			<img className={styles.overview__image} src={photos[0].thumbnail_url} alt="mockup" />
 		</>
-	);
+	)
+
 };
 
 export default Thumbnail;

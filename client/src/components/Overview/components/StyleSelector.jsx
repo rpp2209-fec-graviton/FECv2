@@ -10,7 +10,6 @@ function StyleSelector () {
 	return (
 		<div style={{border: "1px solid grey"}}>
 			<h3>Style Selector Component</h3>
-			<Thumbnail />
 		</div>
 	)
 };

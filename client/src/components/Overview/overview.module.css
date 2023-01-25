@@ -2,6 +2,13 @@
   border: 2px solid silver;
 }
 
+.overview__image {
+  border: 1px solid white;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+}
+
 .modal {
   width: 1500px;
   height: 800px;

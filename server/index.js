@@ -10,6 +10,18 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '../dist')));
 app.use(logger)
 
+// Get Products from Atelier API
+app.get('/products', (req, res) => {
+  fetch('products', (err, products) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(products.data);
+    }
+  });
+});
+
 //generic route for url with any product id, ex: localhost:3000/71699
 app.get('/:productId', (req, res) => {
   if (req.params.productId !== 'favicon.ico') {
