@@ -24,6 +24,16 @@
   height: 80px;
 }
 
+.modal {
+  width: 1500px;
+  height: 800px;
+}
+
+.modal-hidden {
+  border: 2px solid magenta;
+  /* visibility: hidden; */
+}
+
 .stars__outer {
   display: inline-block;
   position: relative;
