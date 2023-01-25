@@ -4,7 +4,7 @@ import AnswersView from "./Answers/AnswersView.jsx";
 import SearchBar from "./SearchBar.jsx";
 import QuestionModal from "./Modals/QuestionModal.jsx";
 import AnswerModal from "./Modals/AnswerModal.jsx";
-import SampleData from "../../../../ExampleData/index.js"
+import SampleData from "../../../../ExampleData/index.js";
 
 function QuestionsView(props) {
   const [questionsList, setQuestionsList] = useState(SampleData['/qa/questions'].results);
@@ -23,7 +23,7 @@ function QuestionsView(props) {
       {questionsList.slice(0, count).map((q, index) => {
         return (
           <div key={index}>
-            <Question props={q} />
+            <Question q={q} />
             <AnswersView props={q.question_id} />
           </div>
         )
