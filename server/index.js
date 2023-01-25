@@ -6,9 +6,10 @@ const exampleRoutes = require('../ExampleData/index.js'); //e.g. exampleRoutes['
 const { fetch } = require('./fetch.js');
 const logger = require('./middleware/logger.js');
 
+
+app.use(logger)
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../dist')));
-app.use(logger)
 
 //generic route for url with any product id, ex: localhost:3000/71699
 app.get('/:productId', (req, res) => {
