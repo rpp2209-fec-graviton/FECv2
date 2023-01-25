@@ -45,3 +45,10 @@
 .stars__inner::before {
   content: "★★★★★"
 }
+
+.stars__a {
+  color: var(--white);
+  font-size: 12px;
+  padding-left: 4px;
+  vertical-align: text-top;
+}
