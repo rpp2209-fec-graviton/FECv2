@@ -3,36 +3,37 @@ import ThumbnailCarousel from './ThumbnailCarousel.jsx';
 import Modal from './Modal.jsx';
 
 import toggleModal from '../overview-utils/modal.js';
-import imageStyles from '../overview.module.css';
+import styles from '../overview.module.css';
 
-function Images ({ selected, styles }) {
+function Images ({ selected, productStyles }) {
 
-	if (styles[selected.id]) {
-		const selectedProductStyles = styles[selected.id];
+	if (productStyles[selected.id]) {
+		const selectedProductStyles = productStyles[selected.id];
 		const selectedUrl = selectedProductStyles[0].photos[0].url;
+		const selectedThumbnailUrl = selectedProductStyles[0].photos[0].thumbnail_url;
 
 	const [show, setShow] = useState(false);
 
 		return (
 			<div>
+				<Modal
+					toggleModal={()=> toggleModal(setShow)}
+					show={show}
+					setShow={setShow}
+				>
+					<img src={selectedThumbnailUrl} />
+				</Modal>
 				<img
 					className={`
-						${imageStyles.overview__image}
-						${imageStyles['overview-border']}
+						${styles.overview__image}
+						${styles['overview-border']}
 					`}
 					src={selectedUrl}
 					onClick={() => toggleModal(setShow)}
 				/>
-			<Modal
-				toggleModal={()=> toggleModal(setShow)}
-				show={show}
-				setShow={setShow}
-			>
-				<h3>This is a modal child</h3>
-			</Modal>
 				<ThumbnailCarousel
 					selected={selected}
-					styles={styles}
+					productStyles={productStyles}
 				/>
 			</div>
 		)

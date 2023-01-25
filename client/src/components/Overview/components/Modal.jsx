@@ -6,9 +6,13 @@ function Modal ({ show, setShow, toggleModal, children }) {
 		return (<></>);
 	} else {
 		return (
-			<div className={`${styles.modal} ${styles["modal-hidden"]} `}>
+			<div
+				className={`${styles.modal}
+				${styles["modal-hidden"]} `}
+				onClick={() => toggleModal(setShow)}
+			>
 				{children}
-				<button onClick={() => toggleModal(setShow)}>X Close</button>
+				<button>X</button>
 			</div>
 		)
 	}
