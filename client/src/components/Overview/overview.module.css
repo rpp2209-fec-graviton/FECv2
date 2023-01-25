@@ -3,42 +3,8 @@
 }
 
 .overview__image {
-  border: 1px solid white;
+  border: 10px solid red;
   border-radius: 50%;
   width: 80px;
   height: 80px;
 }
-
-/* =========================================
-			BEM NAMING CONVENTION REFERENCE
-========================================= */
-/* =========================================
-						Block Component
- top-level abstraction of a new component
-========================================= */
-/* .btn {} */
-
-/* =========================================
-		Element that depends upon the block
-========================================= */
-/* .btn__price {} */
-
-/* =========================================
-  Modifier that changes style of the block
-========================================= */
-/* .btn--orange {}  */
-/* .btn--big {} */
-
-
-/* =========================================
-			CSS WIDGET NAMING FIRST DRAFT
-========================================= */
-/* component container
-  - overview
-    - styles
-  - style picker
-    - styles
-  - size + qty buttons
-    - styles
-  - add to bag button
-    - styles */
