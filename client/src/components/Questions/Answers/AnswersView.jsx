@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Answer from "./Answer.jsx";
-import SampleData from "../../../../ExampleData/index.js";
+import SampleData from "../../../../../ExampleData/index.js";
 
 function AnswersView({ question_id }) {
   /*Implementation Tasks

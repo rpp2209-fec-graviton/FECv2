@@ -8,7 +8,6 @@ function Answer({ans}) {
 
   return (
     <div>
-      {console.log(ans)}
       <p><b>A: </b>{ans.body}</p>
       <sub>
         by {ans.answerer_name}, {createDate(ans.date)} |
