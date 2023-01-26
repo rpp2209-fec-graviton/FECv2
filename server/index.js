@@ -13,8 +13,8 @@ app.use(express.static(path.join(__dirname, '../dist')));
 
 //generic route for url with any product id, ex: localhost:3000/71699
 app.get('/:productId', (req, res) => {
-  fetch(`products/${req.params.productId}`, function(err, productData) {
-    if(err) {
+  fetch(`products/${req.params.productId}`, function (err, productData) {
+    if (err) {
       console.log('fetching error:', err);
     } else {
       //TODO: store product info in shared state (?)
@@ -23,6 +23,13 @@ app.get('/:productId', (req, res) => {
   })
   //add actions for other components here
 });
+
+
+app.use('/reviews', require('./routes/review-route'))
+
+
+
+
 
 process.on("SIGINT", () => {
   console.log("Server shutting down...");
