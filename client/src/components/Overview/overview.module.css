@@ -62,6 +62,8 @@ body {
   transform: scale(1);
   opacity: 1;
   visibility: visible;
+  position: fixed;
+  z-index: 1;
 }
 
 .modal-hidden {
@@ -72,7 +74,6 @@ body {
 }
 
 .modal__content {
-  border: 1px solid lime;
   height: 100%;
 }
 
