@@ -1,47 +1,110 @@
-.greyBorder {
-  border: 2px solid silver;
+/* =======================
+      General Styles
+========================*/
+:root {
+  --blue: #1e90ff;
+  --white: #ffffff;
+  --silver: #c0c0c0;
 }
 
+/*
+  Remove this before pushing
+  and make separate PR to center
+  entire Product Detail container
+*/
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error {
+  border: 5px solid red;
+}
+
+.hidden {
+  visibility: hidden;
+  transform: scale(0.33);
+}
+
+/* =======================
+  Parent/Overview Styles
+========================*/
+.overview-border {
+  border: 2px solid var(--white);
+}
+
+.overview__image {
+  object-fit: cover;
+  width: 400px;
+  height: 400px;
+}
+
+/* =======================
+    Thumbnail Styles
+========================*/
+.thumbnail {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+}
+
+/* =======================
+      Modal Styles
+========================*/
 .modal {
-  width: 1500px;
-  height: 800px;
+  height: 1200px;
+  background: white;
+  box-shadow: -2rem 2rem 2rem rgba(black, 0.2);
+  filter: blur(0);
+  transition: 1.1s ease-out;
+  transform: scale(1);
+  opacity: 1;
+  visibility: visible;
+  position: fixed;
+  z-index: 1;
 }
 
 .modal-hidden {
-  border: 2px solid magenta;
-  /* visibility: hidden; */
+  height: 0;
+  opacity: 0;
+  filter: blur(8px);
+  box-shadow: 1rem 0 0 rgba(black, 0.2);
 }
 
-/* =========================================
-			BEM NAMING CONVENTION REFERENCE
-========================================= */
-/* =========================================
-						Block Component
- top-level abstraction of a new component
-========================================= */
-/* .btn {} */
+.modal__content {
+  height: 100%;
+}
 
-/* =========================================
-		Element that depends upon the block
-========================================= */
-/* .btn__price {} */
+/* =======================
+    Star Rating Styles
+========================*/
+.stars__outer {
+  display: inline-block;
+  position: relative;
+}
 
-/* =========================================
-  Modifier that changes style of the block
-========================================= */
-/* .btn--orange {}  */
-/* .btn--big {} */
+.stars__outer::before {
+  content: "☆☆☆☆☆"
+}
 
+.stars__inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+}
 
-/* =========================================
-			CSS WIDGET NAMING FIRST DRAFT
-========================================= */
-/* component container
-  - overview
-    - styles
-  - style picker
-    - styles
-  - size + qty buttons
-    - styles
-  - add to bag button
-    - styles */
+.stars__inner::before {
+  content: "★★★★★"
+}
+
+.stars__a {
+  color: var(--white);
+  font-size: 12px;
+  padding-left: 4px;
+  vertical-align: text-top;
+}

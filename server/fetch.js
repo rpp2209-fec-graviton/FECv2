@@ -1,4 +1,3 @@
-require("dotenv").config();
 const axios = require('axios');
 
 // ===========================================================================
@@ -28,13 +27,12 @@ let fetch = async (endpoint, cb) => {
 	let options = {
 		url: process.env.API_URL,
 		headers: {
-			'User-Agent': 'request',
 			'Authorization': `${process.env.API_KEY}`
 		}
 	}
 
 	try {
-		console.log('Fetching: ', process.env.API_URL);
+		// console.log('Fetching: ', options.url + `/${endpoint}`);
 		const data = await axios.get(options.url + `/${endpoint}`, options);
 		cb(null, data);
 	} catch (err) {
