@@ -14,11 +14,19 @@ export default function ReviewList({ children }) {
   });
 
 
+
   return (
     <div>
       <h1>Review List</h1>
       {response}
       {console.log(response, 'sd')}
+
+export default function ReviewList({ children }) {
+
+  return (
+    <div>
+      <h1>Review List</h1>
+
       <ListContainer>
         {children}
       </ListContainer>
