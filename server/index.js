@@ -38,6 +38,13 @@ app.get('/:productId', (req, res) => {
   }
 });
 
+
+app.use('/reviews', require('./routes/review-route'))
+
+
+
+
+
 process.on("SIGINT", () => {
   console.log("Server shutting down...");
   process.exit();
