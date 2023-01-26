@@ -5,6 +5,7 @@ require('dotenv').config()
 import React from 'react';
 
 import { render, fireEvent, waitFor, screen } from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 
 import { rest } from 'msw';
@@ -80,45 +81,38 @@ describe('Server', () => {
 //      ⬇ ⭐ UNIT TESTS ⭐ ⬇
 //      Arrange, Assert, Act
 // ==================================
-describe('Overview Widget', () => {
-  it('Overview should render to browser', async () => {
-    render(<Overview />);
+beforeEach(() => render(<Overview />));
+
+describe.only('Overview Widget', () => {
+  it('Overview should render', async () => {
     const overview = await screen.findByRole('heading', { name: /overview/i });
     expect(overview).toBeInTheDocument();
     expect(overview).toHaveTextContent('Product Overview Widget');
   })
 
-  // describe('Images Component', () => {
-  //   it('Images ', async () => {
-  //     render(<Images />);
-  //     const images = await screen.findByRole('img');
-  //     expect(images).toBeInTheDocument();
-  //   })
-  // })
+  // TODO: figure out why full size image only renders sometimes
+  it('Full size product image should render', async () => {
+    const largeImage = await screen.findByRole('img', { name: /full size image/i });
+    expect(largeImage).toBeInTheDocument();
+  })
 
-  // describe('ProductInfo Component', () => {
-  //   it('ProductInfo should render', async () => {
-  //     render(<ProductInfo />)
-  //     await waitFor(() => screen.getByRole('heading'))
-  //     expect(screen.getByRole('heading')).toHaveTextContent('ProductInfo Component')
-  //   })
-  // })
+  it('Product Details should render', async () => {
+    const productInfo = await screen.findByRole('heading', { name: /ProductInfo Component/i });
+    expect(productInfo).toBeInTheDocument();
+    expect(productInfo).toHaveTextContent('ProductInfo Component');
+  })
 
-  // describe('Modal Component', () => {
-  //   it('Modal should render', async () => {
-  //     render(<Modal />)
-  //     await waitFor(() => screen.getByRole('heading'))
-  //     expect(screen.getByRole('heading')).toHaveTextContent('Modal Component')
-  //   })
-  // })
+  it('Modal should exist', async () => {
+    const modal = await screen.findByRole('heading', { name: /modal/i });
+    expect(modal).toBeInTheDocument();
+    // expect(modal).toHaveTextContent('Modal Component');
+  })
 
-  // describe('ThumbnailCarousel Component', () => {
-  //   it('ThumbnailCarousel should render', async () => {
-  //     render(<ThumbnailCarousel />)
-  //     await waitFor(() => screen.getByRole('heading'))
-  //     expect(screen.getByRole('heading')).toHaveTextContent('ThumbnailCarousel Component')
-  //   })
-  // })
+  it('Carousel should render', async () => {
+    const carousel = await screen.findByRole('heading', { name: /carousel/i })
+    expect(carousel).toBeInTheDocument();
+    // expect(carousel).toHaveTextContent('ThumbnailCarousel Component')
+  })
 
   // describe('StyleSelector Component', () => {
   //   it('StyleSelector should render', async () => {
@@ -137,4 +131,3 @@ describe('Overview Widget', () => {
   //   })
   // })
 });
-
