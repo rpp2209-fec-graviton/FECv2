@@ -9,6 +9,7 @@
     "test-overview": "jest ./client/src/components/Overview --watch --coverage",
     "test-reviews": "jest ./client/src/components/Reviews --watch --coverage",
     "test-rp": "jest ./client/src/components/RelatedProducts --watch",
+    "test-questions": "jest ./client/src/components/Questions --watch --coverage",
     "client-dev": "npx webpack --watch",
     "server-dev": "npx nodemon server/index.js"
   },
