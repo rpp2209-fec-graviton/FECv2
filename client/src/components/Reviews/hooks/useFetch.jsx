@@ -3,6 +3,8 @@ import axios from 'axios';
 
 function useFetch() {
 
+  const [sortOrder, setSortOrder] = useState();
+
   const handleSortOrder = async () => {
     try {
       const sortedReviews = await axios({
