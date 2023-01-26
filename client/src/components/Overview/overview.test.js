@@ -11,14 +11,14 @@ import '@testing-library/jest-dom';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 
-// Components
+// Import Components
 import Overview from './components/Overview.jsx';
 import Images from './components/Images.jsx';
 import ProductInfo from './components/ProductInfo.jsx';
 import Modal from './components/Modal.jsx';
 import ThumbnailCarousel from './components/ThumbnailCarousel.jsx';
 import StyleSelector from './components/StyleSelector.jsx';
-import AddToBag from './components/AddToBag.jsx';
+import Button from './components/Button.jsx';
 
 // ==================================
 //    ⬇ ⭐ TESTING THE TESTS ⭐ ⬇
@@ -81,6 +81,8 @@ describe('Server', () => {
 //      ⬇ ⭐ UNIT TESTS ⭐ ⬇
 //      Arrange, Assert, Act
 // ==================================
+
+// Testing Setup
 beforeEach(() => render(<Overview />));
 
 describe.only('Overview Widget', () => {
@@ -114,20 +116,15 @@ describe.only('Overview Widget', () => {
     // expect(carousel).toHaveTextContent('ThumbnailCarousel Component')
   })
 
-  // describe('StyleSelector Component', () => {
-  //   it('StyleSelector should render', async () => {
-  //     render(<StyleSelector />)
-  //     await waitFor(() => screen.getByRole('heading'))
-  //     expect(screen.getByRole('heading')).toHaveTextContent('StyleSelector Component')
-  //   })
+  it('Style Selector should render', async () => {
+    const styleSelector = await screen.findByRole('heading', { name: /Style Selector/i })
+    expect(styleSelector).toBeInTheDocument();
+    expect(styleSelector).toHaveTextContent('StyleSelector Component')
+  })
 
-  // })
-
-  // describe('AddToBag Component', () => {
-  //   it('AddToBag should render', async () => {
-  //     render(<AddToBag />)
-  //     await waitFor(() => screen.getByRole('heading'))
-  //     expect(screen.getByRole('heading')).toHaveTextContent('AddToBag Component')
-  //   })
-  // })
+  it('Add to Bag Button should render', async () => {
+    const addToBag = await screen.findByRole('button', { name: /+ Add to Bag/i })
+    expect(addToBag).toBeInTheDocument();
+    expect(addToBag).toHaveTextContent('+ Add to Bag');
+  })
 });
