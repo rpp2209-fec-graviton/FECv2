@@ -4,7 +4,6 @@ import axios from 'axios';
 import ProductInfo from './ProductInfo.jsx';
 import Images from './Images.jsx';
 import StyleSelector from './StyleSelector.jsx';
-import AddToBag from './AddToBag.jsx';
 
 import { fetch } from '../../../../../server/fetch.js';
 import styles from '../overview.module.css';
@@ -58,12 +57,11 @@ function Overview() {
 	}, [products]);
 
 	return (
-		<div className={styles.overview}>
+		<div className={`${styles.overview} ${styles.border}`}>
 			<h1>Product Overview Widget</h1>
 			<Images selected={selected} productStyles={productStyles} />
 			<ProductInfo selected={selected} />
 			<StyleSelector />
-			<AddToBag />
 		</div>
 	);
 };

@@ -28,13 +28,13 @@ body {
   transform: scale(0.33);
 }
 
-/* =======================
-  Parent/Overview Styles
-========================*/
-.overview-border {
+.border {
   border: 2px solid var(--white);
 }
 
+/* =======================
+  Parent/Overview Styles
+========================*/
 .overview__image {
   object-fit: cover;
   width: 400px;

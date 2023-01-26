@@ -25,7 +25,7 @@ function Images ({ selected, productStyles }) {
 				<img
 					id="image-lg"
 					alt="full size image"
-					className={`${styles.overview__image} ${styles['overview-border']}`}
+					className={`${styles.overview__image} ${styles.border}`}
 					src={selectedUrl}
 					onClick={() => toggleModal(show, setShow)}
 				/>
