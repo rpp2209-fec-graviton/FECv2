@@ -6,7 +6,14 @@ function Thumbnail({ style }) {
 
 	return (
 		<>
-			<img className={styles.overview__image} src={photos[0].thumbnail_url} alt="mockup" />
+			<img
+				className={`
+					${styles.thumbnail}
+					${styles['overview-border']}
+				`}
+				src={photos[0].thumbnail_url}
+				alt="style-thumbnail-mockup"
+			/>
 		</>
 	)
 

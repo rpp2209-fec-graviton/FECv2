@@ -32,7 +32,7 @@ let fetch = async (endpoint, cb) => {
 	}
 
 	try {
-		console.log('Fetching: ', options.url + `/${endpoint}`);
+		// console.log('Fetching: ', options.url + `/${endpoint}`);
 		const data = await axios.get(options.url + `/${endpoint}`, options);
 		cb(null, data);
 	} catch (err) {
