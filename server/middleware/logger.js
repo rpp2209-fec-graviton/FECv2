@@ -9,8 +9,6 @@ module.exports = (req, res, next) => {
     console.log(
       chalk.green(`${end.toLocaleString()}`) +
         " | " +
-        chalk.cyan(`s_id: ${req.session_id}`) +
-        " | " +
         chalk.blue(`${req.method} ${req.url}`) +
         " | " +
         chalk.magenta(`Response sent in ${duration}ms`)
