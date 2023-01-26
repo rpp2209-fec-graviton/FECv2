@@ -94,7 +94,8 @@ describe.only('Overview Widget', () => {
 
   // TODO: figure out why full size image only renders sometimes
   it('Full size product image should render', async () => {
-    const largeImage = await screen.findByRole('img', { name: /full size image/i });
+    // const largeImage = await screen.findByRole('img', { name: /full size image/i });
+    const largeImage = await screen.findByAltText(/full size image/i);
     expect(largeImage).toBeInTheDocument();
   })
 
@@ -105,25 +106,23 @@ describe.only('Overview Widget', () => {
   })
 
   it('Modal should exist', async () => {
-    const modal = await screen.findByRole('heading', { name: /modal/i });
+    const modal = await screen.findByRole('img', { name: /modal/i });
     expect(modal).toBeInTheDocument();
-    // expect(modal).toHaveTextContent('Modal Component');
   })
 
   it('Carousel should render', async () => {
-    const carousel = await screen.findByRole('heading', { name: /carousel/i })
+    const carousel = await screen.findByRole('img', { name: /carousel/i })
     expect(carousel).toBeInTheDocument();
-    // expect(carousel).toHaveTextContent('ThumbnailCarousel Component')
   })
 
   it('Style Selector should render', async () => {
     const styleSelector = await screen.findByRole('heading', { name: /Style Selector/i })
     expect(styleSelector).toBeInTheDocument();
-    expect(styleSelector).toHaveTextContent('StyleSelector Component')
+    expect(styleSelector).toHaveTextContent('Style Selector')
   })
 
   it('Add to Bag Button should render', async () => {
-    const addToBag = await screen.findByRole('button', { name: /+ Add to Bag/i })
+    const addToBag = await screen.findByRole('button', { name: /\+ Add to Bag/i })
     expect(addToBag).toBeInTheDocument();
     expect(addToBag).toHaveTextContent('+ Add to Bag');
   })
