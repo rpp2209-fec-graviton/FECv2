@@ -21,8 +21,6 @@ export default function Reviews({ reviewData }) {
 
   console.log(data);
 
-
-
   return (
     <ReviewProvider>
       <div className={styles.reviews}>
