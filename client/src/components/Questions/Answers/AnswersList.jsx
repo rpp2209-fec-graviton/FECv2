@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Answer from "./Answer.jsx";
 import SampleData from "../../../../../ExampleData/index.js";
 
-function AnswersView({ question_id }) {
+function AnswersList({ question_id }) {
   /*Implementation Tasks
   1. Sort Answers by helpfulness/Sellar
   3. Implement "See More Answers"/"Collapse Answers"
@@ -14,10 +14,10 @@ function AnswersView({ question_id }) {
   const [more, setMore] = useState(true);
 
   return (
-    <div className="answersList">
+    <div className="AnswersList">
       {answersList.slice(0, count).map((ans, index) => {
-        return <div className="answer">
-          <Answer key={ans.answer_id} ans={ans} />
+        return <div key={ans.answer_id} className="Answer">
+          <Answer ans={ans} />
         </div>
       })}
       <sub onClick={() => { setMore(!more) }}>
@@ -28,4 +28,4 @@ function AnswersView({ question_id }) {
 
 }
 
-export default AnswersView;
+export default AnswersList;

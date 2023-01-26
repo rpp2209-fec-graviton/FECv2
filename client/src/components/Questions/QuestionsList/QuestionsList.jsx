@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Question from "./Question.jsx";
-import AnswersView from "./Answers/AnswersView.jsx";
-import SearchBar from "./SearchBar.jsx";
-import QuestionModal from "./Modals/QuestionModal.jsx";
-import AnswerModal from "./Modals/AnswerModal.jsx";
-import SampleData from "../../../../ExampleData/index.js";
+import AnswersList from ".././Answers/AnswersList.jsx";
+import SampleData from "../../../../../ExampleData/index.js";
 
-function QuestionsView(props) {
+function QuestionsList(props) {
   const [questionsList, setQuestionsList] = useState(SampleData['/qa/questions'].results);
   const [count, setCount] = useState(2);
   const [page, setPage] = useState(1);
@@ -18,13 +15,11 @@ function QuestionsView(props) {
 
   return (
     <div>
-      <h2> Questions and Answers </h2>
-      <SearchBar />
       {questionsList.slice(0, count).map((q, index) => {
         return (
           <div className="Question" key={index}>
             <Question q={q} />
-            <AnswersView props={q.question_id} />
+            <AnswersList question_id={q.question_id} />
           </div>
         )
       })}
@@ -34,4 +29,4 @@ function QuestionsView(props) {
   )
 }
 
-export default QuestionsView;
+export default QuestionsList;
