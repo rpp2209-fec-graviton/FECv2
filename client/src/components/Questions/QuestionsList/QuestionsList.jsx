@@ -23,8 +23,6 @@ function QuestionsList(props) {
           </div>
         )
       })}
-      <button> MORE ANSWERED QUESTIONS </button>
-      <button> ADD A QUESTION + </button>
     </div>
   )
 }
