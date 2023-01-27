@@ -39,7 +39,9 @@ app.get('/:productId', (req, res) => {
 });
 
 
-app.use('/reviews', require('./routes/review-route'))
+
+app.use('/reviews', require('./routes/review-route'));
+app.use('/qa/questions', require('./routes/questions-route'));
 
 
 
