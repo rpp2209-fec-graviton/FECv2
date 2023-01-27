@@ -17,7 +17,7 @@ const useFetchProduct = (productId) => {
         }
       });
 
-      setResponse(res);
+      setResponse(res.data);
       setError(null);
     } catch (err) {
       setError(err);

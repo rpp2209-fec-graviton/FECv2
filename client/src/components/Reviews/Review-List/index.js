@@ -1,6 +1,6 @@
 import ListContainer from "./components/Review-List-Container/ListContainer.jsx";
 import React from "react";
-import useFetchProduct from "../../Hooks/useFetchProduct.js";
+import useFetchProduct from "../../Hooks/useFetchProduct.jsx";
 
 
 
@@ -17,7 +17,6 @@ export default function ReviewList({ children }) {
     <div>
       <h1>Review List</h1>
 
-      {console.log(response, 'console from useFetchProductHook')}
 
       <ListContainer>
         {children}
