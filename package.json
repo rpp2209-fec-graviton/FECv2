@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --watch",
-    "test-overview": "jest ./client/src/components/Overview --watch --coverage",
-    "test-modal": "jest ./client/src/components/Overview/overview-utils --watch",
+    "test-overview": "jest ./client/src/components/Overview/overview.test.js --watch --coverage",
+    "test-modal": "jest ./client/src/components/Overview/overview-utils/modal.test.js --watch",
     "test-reviews": "jest ./client/src/components/Reviews --watch --coverage",
     "test-rp": "jest ./client/src/components/RelatedProducts --watch",
     "test-questions": "jest ./client/src/components/Questions --watch --coverage",
