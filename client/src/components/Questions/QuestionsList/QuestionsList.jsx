@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Question from "./Question.jsx";
 import AnswersList from ".././Answers/AnswersList.jsx";
 import useQuestionsList from "./hooks/useQuestionsList.jsx";
-import useCount from "./hooks/useCount.jsx";
+import useCount from ".././hooks/useCount.jsx";
 
 function QuestionsList(props) {
   const [page, setPage] = useState(1);
