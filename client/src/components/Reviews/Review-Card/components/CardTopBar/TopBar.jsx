@@ -18,7 +18,7 @@ export default function TopBar() {
   return (
     <div className={styles.cardTopBar}>
 
-      <h1 className={styles.text}>Testc</h1>
+      <h1 className={styles.text}>ReviewCard</h1>
       {ratingsMapped}
     </div>
   );

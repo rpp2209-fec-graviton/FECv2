@@ -11,9 +11,9 @@ function App() {
   return (
     <>
       <ContextProvider>
-      <Overview />
-      <Reviews />
-      <QuestionsView/>
+        <Overview />
+        <Reviews />
+        <QuestionsView />
       </ContextProvider>
     </>
   );
