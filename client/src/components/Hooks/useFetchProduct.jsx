@@ -28,7 +28,8 @@ const useFetchProduct = (productId) => {
 
   useEffect(() => {
     fetchData(productId);
-  }, []);
+  }, [productId]);
+
   return { response, error, loading };
 };
 

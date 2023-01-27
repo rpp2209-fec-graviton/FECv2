@@ -5,17 +5,19 @@ const ProductContext = createContext(null);
 
 export default function ContextProvider({ children }) {
 
-  const [currentProductId, setCurrentProductId] = useState(71697)
+  const [currentProductId, setCurrentProductId] = useState(71798)
 
   const { response, loading, error } = useFetchProduct(currentProductId)
 
-  const handleCurrentId = (productId) => {
+  const handleCurrentId = (e, productId) => {
+    e.preventDefault();
     setCurrentProductId(productId)
   }
 
   return (
-    <ProductContext.Provider value={{loading, error, response, handleCurrentId}}>
+    <ProductContext.Provider value={{ loading, error, response, handleCurrentId }}>
       {children}
+      {console.log(response)}
     </ProductContext.Provider>
   )
 }
