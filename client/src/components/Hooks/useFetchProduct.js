@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com';
-
 const useFetchProduct = (params) => {
   const [response, setResponse] = useState(null);
   const [error, setError] = useState(null);
@@ -12,7 +10,7 @@ const useFetchProduct = (params) => {
     setLoading(true);
     try {
       const res = await axios.request(params);
-      setResponse(res.data);
+      setResponse(res);
       setError(null);
     } catch (err) {
       setError(err);

@@ -7,19 +7,18 @@ export default function TopBar() {
 
   const { ratings } = useProductContext();
 
-  const ratingsMapped = ratings.map((item) => {
-    return (
-      <div>
-        {item}
-      </div>
-    )
-  })
+  // const ratingsMapped = ratings.map((item) => {
+  //   return (
+  //     <div>
+  //       {item}
+  //     </div>
+  //   )
+  // })
 
   return (
     <div className={styles.cardTopBar}>
 
       <h1 className={styles.text}>ReviewCard</h1>
-      {ratingsMapped}
     </div>
   );
 }
