@@ -7,8 +7,7 @@ import useFetchProduct from "../../Hooks/useFetchProduct.js";
 
 export default function ReviewList({ children }) {
 
-  const { response, loading, error } = useFetchProduct(
-    { method: 'get', url: '/reviews/page', });
+  const { response, loading, error } = useFetchProduct(71697)
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
