@@ -4,11 +4,11 @@ import { useState, useEffect } from "react";
 export default function useQuestionsList() {
   const [questionsList, setQuestionsList] = useState([]);
 
-  var updateQList = async (product_id, page) => {
+  var getQList = async (product_id, page) => {
     try {
       setQuestionsList((await axios({
         method: 'GET',
-        url: `${window.location.href}qa/questions?product_id=${product_id}&count=14&page=${page}`
+        url: `${window.location.href}qa/questions?product_id=${product_id}&count=16&page=${page}`
       })).data)
     } catch (error) {
       console.log('error from useQuestionsList');
@@ -16,7 +16,7 @@ export default function useQuestionsList() {
     }
   }
 
-  return [questionsList, updateQList];
+  return [questionsList, getQList];
 }
 
 /*
