@@ -18,7 +18,6 @@ function QuestionsList(props) {
 
   return (
     <div>
-      {console.log('qList', questionsList)}
       {questionsList.slice(0, count).map((q, index) => {
         return (
           <div className="Question" key={index}>
