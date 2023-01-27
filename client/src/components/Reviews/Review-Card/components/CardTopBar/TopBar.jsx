@@ -1,24 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './TopBar.scss'
 import { useProductContext } from '../../../../Context/ContextProvider.jsx';
+import useConvertDate from '../../../hooks/useConvertDate.jsx';
 
 
-export default function TopBar() {
+export default function TopBar({ rating, reviewer_name, date }) {
 
-  const { ratings } = useProductContext();
+  const convertedDate = useConvertDate(date)
 
-  // const ratingsMapped = ratings.map((item) => {
-  //   return (
-  //     <div>
-  //       {item}
-  //     </div>
-  //   )
-  // })
 
   return (
     <div className={styles.cardTopBar}>
-
-      <h1 className={styles.text}>ReviewCard</h1>
+      <div className={styles.text}>{reviewer_name}</div>
+      <div className={styles.text}>{rating}</div>
+      <div className={styles.text}>{convertedDate}</div>
     </div>
   );
 }

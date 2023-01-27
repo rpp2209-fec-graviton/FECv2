@@ -9,18 +9,13 @@ import { useReviewContext } from "../Context/ReviewProvider.jsx";
 
 export default function ReviewCard({ reviewData }) {
 
-
-
-
-
-
+  const { body, date, photos, rating, recommend, response, reviewer_name, summary, helpfulness } = reviewData
 
   return (
     <div className={styles.reviewCard}>
-      <TopBar />
-      <Body />
-      <BottomBar />
-
+      <TopBar rating={rating} reviewer_name={reviewer_name} date={date} />
+      <Body body={body} response={response} recommend={recommend} photos={photos} />
+      <BottomBar helpfulness={helpfulness} />
     </div>
   );
 }
