@@ -3,6 +3,13 @@ const router = express.Router()
 const axios = require('axios');
 const { fetch } = require('.././fetch.js');
 
+var sortList = (array, key) => {
+  return (
+    array.sort((a, b) => {
+      return b[key]- a[key]
+    })
+  )
+}
 
 
 router.get('/', (req, res) => {
@@ -10,7 +17,7 @@ router.get('/', (req, res) => {
     if (err) {
       throw err;
     } else {
-      res.send(payload.data.results);
+      res.send(sortList(payload.data.results, 'question_helpfulness'));
     }
   })
 })
