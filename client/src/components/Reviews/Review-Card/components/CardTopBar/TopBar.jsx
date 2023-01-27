@@ -11,9 +11,11 @@ export default function TopBar({ rating, reviewer_name, date }) {
 
   return (
     <div className={styles.cardTopBar}>
-      <div className={styles.text}>{reviewer_name}</div>
-      <div className={styles.text}>{rating}</div>
-      <div className={styles.text}>{convertedDate}</div>
+      <div className={styles.cardTopBar__container}>
+        <div className={styles.cardTopBar__name}>{reviewer_name}</div>
+        <div className={styles.cardTopBar__rating}>{rating}</div>
+        <div className={styles.cardTopBar__date}>{convertedDate}</div>
+      </div>
     </div>
   );
 }
