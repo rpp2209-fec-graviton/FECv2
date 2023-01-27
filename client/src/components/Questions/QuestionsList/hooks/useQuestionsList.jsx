@@ -1,9 +1,8 @@
-import SampleData from "../../../../../../ExampleData/index.js";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
 export default function useQuestionsList() {
-  const [questionsList, setQuestionsList] = useState(SampleData['/qa/questions'].results);
+  const [questionsList, setQuestionsList] = useState([]);
 
   var updateQList = async (product_id, page) => {
     try {
