@@ -7,17 +7,19 @@ require("dotenv").config();
 
 router.get('/page', async (req, res) => {
 
+
+  console.log(process.env.API_KEY);
+
   const data = await axios({
     method: 'get',
-    url: process.env.API_URL,
-    headers: {
-      'Authorization': `Bearer ${process.env.API_KEY}`
-    }
+    url: process.env.API_URL + '/products',
+    headers: { "Authorization": `${process.env.API_KEY}` }
 
   }).then((data) => {
-    console.log(data, 'data here');
+    console.log(data.data, 'data');
+    res.status(200).json(data.data)
   })
-  console.log(data, 'data');
+  // console.log(data, 'data');
 
 
 })
@@ -25,7 +27,7 @@ router.get('/page', async (req, res) => {
 router.get('/product', (req, res) => {
 
   res.status(200).json('sd')
-  console.log('sd');
+  // console.log('sd');
 
 })
 
