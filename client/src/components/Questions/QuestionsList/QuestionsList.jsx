@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import Question from "./Question.jsx";
 import AnswersList from ".././Answers/AnswersList.jsx";
 import useQuestionsList from "./hooks/useQuestionsList.jsx";
+import useCount from ".././hooks/useCount.jsx";
+import usePage from ".././hooks/usePage.jsx";
 
 function QuestionsList(props) {
-  const [page, setPage] = useState(1);
+  const [page, incrementPage] = useState(1);
   const [questionsList, updateQList] = useQuestionsList();
-  const [count, setCount] = useState(2);
+  const [count, incrementCount, resetCount] = useCount(2);
   /*Implementation tasks
     [] Expands 2 Questions at a time and Scrollable
     [] Sorts questions By helpfulness
