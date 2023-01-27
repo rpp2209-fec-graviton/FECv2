@@ -12,13 +12,15 @@ import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 
 // Import Components
-import Overview from './components/Overview.jsx';
-import Images from './components/Images.jsx';
-import ProductInfo from './components/ProductInfo.jsx';
-import Modal from './components/Modal.jsx';
-import ThumbnailCarousel from './components/ThumbnailCarousel.jsx';
-import StyleSelector from './components/StyleSelector.jsx';
 import Button from './components/Button.jsx';
+import Images from './components/Images.jsx';
+import Modal from './components/Modal.jsx';
+import Overview from './components/Overview.jsx';
+import ProductInfo from './components/ProductInfo.jsx';
+import StarRating from './components/StarRating.jsx';
+import StyleSelector from './components/StyleSelector.jsx';
+import ThumbnailCarousel from './components/ThumbnailCarousel.jsx';
+import Thumbnail from './components/Thumbnail.jsx';
 
 // ==================================
 //    ⬇ ⭐ TESTING THE TESTS ⭐ ⬇
@@ -85,24 +87,43 @@ describe('Server', () => {
 // Testing Setup
 beforeEach(() => render(<Overview />));
 
-describe.only('Overview Widget', () => {
+describe('Overview Headings', () => {
   it('Overview should render', async () => {
     const overview = await screen.findByRole('heading', { name: /overview/i });
     expect(overview).toBeInTheDocument();
     expect(overview).toHaveTextContent('Product Overview Widget');
   })
 
-  // TODO: figure out why full size image only renders sometimes
-  it('Full size product image should render', async () => {
-    // const largeImage = await screen.findByRole('img', { name: /full size image/i });
-    const largeImage = await screen.findByAltText(/full size image/i);
-    expect(largeImage).toBeInTheDocument();
-  })
-
   it('Product Details should render', async () => {
     const productInfo = await screen.findByRole('heading', { name: /ProductInfo Component/i });
     expect(productInfo).toBeInTheDocument();
     expect(productInfo).toHaveTextContent('ProductInfo Component');
+  })
+});
+
+describe('Overview Style Selector (Form)', function() {
+  beforeEach(async () => {
+    const styleSelector = await screen.findByRole('heading', { name: /Style Selector/i });
+  });
+
+  it('Style Selector should render', async () => {
+    expect(styleSelector).toBeInTheDocument();
+    expect(styleSelector).toHaveTextContent('Style Selector')
+  })
+
+  // it('should', function() {
+
+  // });
+});
+
+// TODO: Figure out why images only render sometimes
+describe('Overview Images', function() {
+  it('Large Image should render', async () => {
+    // const largeImage = await screen.findByRole('img', { name: /images/i });
+    // expect(largeImage).toBeInTheDocument();
+
+    const largeImageByAlt = await screen.findByAltText(/images/i);
+    expect(largeImageByAlt).toBeInTheDocument();
   })
 
   it('Modal should exist', async () => {
@@ -114,16 +135,18 @@ describe.only('Overview Widget', () => {
     const carousel = await screen.findByRole('img', { name: /carousel/i })
     expect(carousel).toBeInTheDocument();
   })
+});
 
-  it('Style Selector should render', async () => {
-    const styleSelector = await screen.findByRole('heading', { name: /Style Selector/i })
-    expect(styleSelector).toBeInTheDocument();
-    expect(styleSelector).toHaveTextContent('Style Selector')
-  })
-
-  it('Add to Bag Button should render', async () => {
-    const addToBag = await screen.findByRole('button', { name: /\+ Add to Bag/i })
+describe('Overview Buttons', function() {
+  it('Add To Bag button should render', async () => {
+    const addToBag = await screen.findByRole('button', { name: /\+ Add to Bag/i });
     expect(addToBag).toBeInTheDocument();
     expect(addToBag).toHaveTextContent('+ Add to Bag');
+  })
+
+  it('Star Toggle should render', async () => {
+    const starToggle = await screen.findByRole('button', { name: /⭐/i });
+    expect(starToggle).toBeInTheDocument();
+    expect(starToggle).toHaveTextContent('⭐');
   })
 });
