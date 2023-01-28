@@ -38,7 +38,6 @@ function QuestionsList(props) {
 
   return (
     <div>
-      {console.log(questionsList, count, page)}
       <div>
         {questionsList.slice(0, count).map((q, index) => {
           return (
