@@ -20,8 +20,8 @@ function App() {
           </ReviewProvider>
           <QuestionsView />
 
-        <RelatedProducts />
-        <QuestionsView/>
+          <RelatedProducts />
+
 
         </ContextProvider>
       </div>
