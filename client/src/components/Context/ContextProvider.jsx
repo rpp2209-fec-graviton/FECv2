@@ -5,7 +5,7 @@ const ProductContext = createContext(null);
 
 export default function ContextProvider({ children }) {
 
-  const [currentProductId, setCurrentProductId] = useState(71798)
+  const [currentProductId, setCurrentProductId] = useState(71698)
 
   const { response, loading, error } = useFetchProduct(currentProductId)
 

@@ -5,6 +5,7 @@ import ReviewList from './Review-List/index';
 import ReviewRatings from './Review-Ratings/index';
 import ReviewCard from './Review-Card/index.js'
 import { useReviewContext } from './Context/ReviewProvider.jsx';
+import ReviewWrapper from './Review-Wrapper';
 
 export default function Reviews({ reviewData }) {
 
@@ -28,12 +29,15 @@ export default function Reviews({ reviewData }) {
   return (
     <div className={styles.reviews}>
       <ReviewForm />
-      <ReviewRatings />
-      <ReviewList>
-        {data && data.results.map((review) => {
-          return <ReviewCard key={review.review_id} reviewData={review} />
-        })}
-      </ReviewList>
+      <ReviewWrapper>
+        <ReviewRatings />
+        <ReviewList>
+          {data && data.results.map((review) => {
+            return <ReviewCard key={review.review_id} reviewData={review} />
+          })}
+        </ReviewList>
+      </ReviewWrapper>
+
     </div>
   );
 }

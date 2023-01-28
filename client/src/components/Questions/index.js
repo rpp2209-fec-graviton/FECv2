@@ -7,7 +7,6 @@ export default function QuestionsView () {
     <div>
       <h2> Questions and Answers </h2>
       <QuestionsList/>
-      <button> MORE ANSWERED QUESTIONS </button>
       <button> ADD A QUESTION + </button>
     </div>
   )
