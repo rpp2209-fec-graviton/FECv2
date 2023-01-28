@@ -61,12 +61,21 @@ function StyleSelector ({ selected, productStyles }) {
 		}
 	};
 
+	const handleStarClick = () => {
+		console.log('Clicked! Adding to Outfit (TODO)...');
+	};
+
+
 	return (
 		<div className={styles['overview__style-selector']}>
-			<h3>Style Selector</h3>
+			<h3>Style &gt; Selected Style</h3>
 			<ThumbnailCarousel type="styles__carousel" selected={selected} productStyles={productStyles} />
 
-			<select ref={sizeRef} id="size" value={size} onChange={handleDropdownChange}>
+			<select
+				className={styles['drop-down']}
+				ref={sizeRef}
+				id="size" value={size}
+				onChange={handleDropdownChange}>
 				<option value="Select Size">Select Size</option>
 				<option value="S">S</option>
 				<option value="M">M</option>
@@ -75,7 +84,11 @@ function StyleSelector ({ selected, productStyles }) {
 				<option value="2XL">2XL</option>
 			</select>
 
-			<select ref={qtyRef} id="qty" value={qty} onChange={handleDropdownChange}>
+			<select
+				className={styles['drop-down']}
+				ref={qtyRef}
+				id="qty" value={qty}
+				onChange={handleDropdownChange}>
 				<option value="Quantity">Quantity</option>
 				<option value="1">1</option>
 				<option value="2">2</option>
@@ -88,7 +101,11 @@ function StyleSelector ({ selected, productStyles }) {
 				<option value="9">9</option>
 				<option value="10">10</option>
 			</select>
-			<Button handleClick={handleAddToBag}>+ Add to Bag</Button>
+
+			<div>
+				<Button handleClick={handleAddToBag}>+ Add to Bag</Button>
+				<Button handleClick={handleStarClick}>⭐</Button>
+			</div>
 		</div>
 	)
 };
