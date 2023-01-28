@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
+import RPCard from "./RPCard.jsx"
 
-function RPList (props) {
-  const [relatedProducts, setRelatedProducts] = useState([]);
-
+function RPList ({ rps }) {
   return (
     <div>
-    {props.products.map((product) => {
-      return <Card productInfo={product} relatedProducts={relatedProducts} setRelatedProducts={setRelatedProducts}/>
-    })}
+      <h2>
+      Related Products
+      </h2>
+      {rps.map((rp) => (
+        <RPCard key={rp.id} rp={rp}/>
+      ))}
     </div>
   );
 };

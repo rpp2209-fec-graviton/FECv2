@@ -36,7 +36,7 @@ let fetch = async (endpoint, cb) => {
 		const data = await axios.get(options.url + `/${endpoint}`, options);
 		cb(null, data);
 	} catch (err) {
-		console.log("Caught Fetch Error: ", err);
+		// console.log("Caught Fetch Error: ", err);
 		cb(err);
 	}
 };
