@@ -5,7 +5,7 @@ import ProductInfo from './ProductInfo.jsx';
 import Images from './Images.jsx';
 import StyleSelector from './StyleSelector.jsx';
 
-import { fetch } from '../../../../../server/fetch.js';
+import { fetch } from '../../../../../server/utils/fetch.js';
 import styles from '../overview.module.css';
 
 function Overview() {

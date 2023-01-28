@@ -3,7 +3,7 @@ const path = require("path");
 const express = require('express')
 const app = express();
 const exampleRoutes = require('../ExampleData/index.js'); //e.g. exampleRoutes['/cart'];
-const { fetch } = require('./fetch.js');
+const { fetch } = require('./utils/fetch.js');
 const logger = require('./middleware/logger.js');
 
 
@@ -40,8 +40,11 @@ app.get('/:productId', (req, res) => {
 
 
 
+
 app.use('/products', require('./routes/product-route'))
 app.use('/reviews', require('./routes/review-route'))
+
+app.use('/qa/questions', require('./routes/questions-route'));
 
 
 

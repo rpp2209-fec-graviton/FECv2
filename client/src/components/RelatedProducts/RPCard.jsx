@@ -1,25 +1,25 @@
 import React from "react";
 import comparison from './RPComparison.jsx';
 
-function RPCard (props) {
+function RPCard ({ rp }) {
   function starProduct (e) {
-    var currentProduct;
-    var relatedProduct = props.productInfo;
-    return comparison(currentProduct, relatedProduct);
+    // var currentProduct;
+    // var relatedProduct = props.productInfo;
+    // return comparison(currentProduct, relatedProduct);
   }
 
   return (
     <div>
-      {props.productInfo.image}
+      {/* {props.productInfo.image}
+      <br/> */}
+      <button onClick={starProduct}>Star</button>
+      {rp.category}
       <br/>
-      <button onClick={starProduct}></button>
-      {props.productInfo.category}
+      {rp.name}
       <br/>
-      {props.productInfo.name}
+      {rp.default_price}
       <br/>
-      {props.productInfo.price}
-      <br/>
-      {props.productInfo.starRating}
+      {/* {props.productInfo.starRating} */}
       <br/>
     </div>
   )
