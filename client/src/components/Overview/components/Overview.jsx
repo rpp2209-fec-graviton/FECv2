@@ -4,11 +4,15 @@ import axios from 'axios';
 import ProductInfo from './ProductInfo.jsx';
 import Images from './Images.jsx';
 import StyleSelector from './StyleSelector.jsx';
+import { useProductContext } from "../../Context/ContextProvider.jsx";
 
 import { fetch } from '../../../../../server/utils/fetch.js';
 import styles from '../overview.module.css';
 
 function Overview() {
+	const { currentProductId } = useProductContext();
+	console.log('CURRENT PRODUCT FROM CONTEXT', currentProductId);
+
 	// Private State
 	const [quantity, setQuantity] = useState(0);
 	const [size, setSize] = useState("S");
