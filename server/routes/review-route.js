@@ -6,12 +6,27 @@ require("dotenv").config();
 
 
 
-router.get('/product', (req, res) => {
 
-  res.status(200).json('sd')
-  // console.log('sd');
+router.post('/results', async (req, res) => {
+
+  const product_id = 71798
+  console.log(product_id, 'sd');
+  try {
+    const data = await axios({
+      method: 'get',
+      url: process.env.API_URL + `/reviews?product_id=${product_id}`,
+      headers: { "Authorization": `${process.env.API_KEY}` }
+    })
+    res.status(200).json(data.data)
+
+  } catch (error) {
+    console.log(error);
+    res.status(400).json('error');
+  }
 
 })
+
+
 
 // router.get('/count')
 
