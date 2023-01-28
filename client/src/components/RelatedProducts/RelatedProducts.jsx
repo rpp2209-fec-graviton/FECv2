@@ -1,6 +1,6 @@
 const axios = require('axios');
 import React, { useState, useEffect } from "react";
-import { fetch } from "../../../../server/fetch.js"
+import { fetch } from "../../../../server/utils/fetch.js"
 import RPList from "./RPList.jsx";
 import YourOutfitList from "./YourOutfitList.jsx"
 
