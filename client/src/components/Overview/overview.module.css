@@ -19,11 +19,12 @@
 /* =======================
       Global Styles
 ========================*/
-/* .flex {
+.flex {
   display: flex;
   justify-content: center;
   align-items: center;
-} */
+  flex-direction: column;
+}
 
 .error {
   border: 5px solid red;
@@ -35,7 +36,7 @@
 }
 
 .border {
-  border: 2px solid var(--blue);
+  border: 2px solid var(--silver);
 }
 
 .grey-border {
@@ -46,7 +47,7 @@
     Overview Styles
 ========================*/
 .overview {
-  padding: 0 40px;
+  padding: 40px;
 }
 
 /* =======================
@@ -80,12 +81,15 @@
 }
 
 .carousel {
-  border: 1px solid magenta;
   position: fixed;
+  left: 200px;
+  top: 64px;
+  grid-row-start: 2;
+  z-index: 2;
 }
 
 .thumbnail {
-  /* border-radius: 50%; */
+  /* border-radius: 50%;  */
   width: 80px;
   height: 80px;
 }

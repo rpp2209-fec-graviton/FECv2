@@ -5,7 +5,7 @@ import styles from '../overview.module.css';
 function ThumbnailCarousel({ selected, productStyles }) {
 	if (productStyles[selected.id]) {
 		return (
-			<div className={styles.carousel}>
+			<div className={`${styles.carousel} ${styles.flex}`}>
 				{productStyles[selected.id].map(style => (<Thumbnail
 					key={style.style_id}
 					style={style}
