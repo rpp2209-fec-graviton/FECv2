@@ -1,0 +1,58 @@
+.cardBody {
+  &__content {
+    font-size: 20px;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__body {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    font-size: 16px;
+  }
+
+  &__imageContainer {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__summary {
+    font-size: 24px;
+    font-weight: 500;
+  }
+
+  &__response {
+  }
+
+  &__recommend {
+  }
+
+  &__title {
+    font-weight: 500;
+    font-size: 24px;
+  }
+
+  &__description {
+  }
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: start;
+  justify-items: center;
+  align-content: space-between;
+  gap: 16px;
+  padding: 8px;
+}

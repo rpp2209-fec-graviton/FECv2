@@ -9,13 +9,16 @@ import ReviewProvider from './components/Reviews/Context/ReviewProvider.jsx';
 function App() {
   return (
     <>
-      <ContextProvider>
-        <Overview />
-        <ReviewProvider>
-          <Reviews />
-        </ReviewProvider>
-        <QuestionsView />
-      </ContextProvider>
+      <div className="body">
+        <ContextProvider>
+          <Overview />
+          <ReviewProvider>
+            <Reviews />
+          </ReviewProvider>
+          <QuestionsView />
+        </ContextProvider>
+      </div>
+
     </>
   );
 }

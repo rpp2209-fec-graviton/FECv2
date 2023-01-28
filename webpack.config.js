@@ -9,7 +9,7 @@ module.exports = {
     filename: 'bundle.js',
   },
 
-  mode : 'development',
+  mode: 'development',
 
   module: {
     rules: [
@@ -20,14 +20,16 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              modules: true
+              modules: {
+                localIdentName: '[local]__[hash:base64:5]'
+              }
             }
           },
           'sass-loader',
         ],
       },
       {
-        test:  /\.(js|jsx)$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
