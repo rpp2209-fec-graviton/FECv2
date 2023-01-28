@@ -49,7 +49,7 @@ function QuestionsList(props) {
           )
         })}
       </div>
-      <MoreAnsweredQ {...{count, moreQ, showMoreQ, makeCount, makePage, updateQList, checkQList }} />
+      {questionsList.length > 0 && <MoreAnsweredQ {...{count, moreQ, showMoreQ, makeCount, makePage, updateQList, checkQList }} />}
     </div>
   )
 }
