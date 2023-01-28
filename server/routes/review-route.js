@@ -1,14 +1,15 @@
 const express = require('express')
 const router = express.Router()
 const axios = require('axios');
+require("dotenv").config();
 
 
 
 
-router.get('/page', (req, res) => {
+router.get('/product', (req, res) => {
 
-  res.send(200);
-  console.log('sd');
+  res.status(200).json('sd')
+  // console.log('sd');
 
 })
 

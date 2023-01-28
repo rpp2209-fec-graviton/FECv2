@@ -1,7 +1,7 @@
 import { createContext, useContext } from 'react';
 import React, { useState } from 'react';
 const ReviewContext = createContext();
-
+import { useProductContext } from "../../Context/ContextProvider.jsx";
 
 export default function ReviewProvider({ children }) {
 
@@ -9,7 +9,12 @@ export default function ReviewProvider({ children }) {
   const [currentCard, setCurrentCard] = useState();
 
 
+  const { loading, yes,  error, response, handleCurrentId } = useProductContext()
+
+
+
   return (
+
     <ReviewContext.Provider value={{ sort, setSort, currentCard, }}>
       {children}
     </ReviewContext.Provider>
