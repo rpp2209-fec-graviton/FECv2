@@ -8,7 +8,7 @@
 }
 
 /* =======================
-      Grid Testing
+      Grid & Flexbox
 ========================*/
 .grid {
   display: grid;
@@ -16,9 +16,6 @@
   grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
 }
 
-/* =======================
-      Global Styles
-========================*/
 .flex {
   display: flex;
   justify-content: center;
@@ -29,6 +26,9 @@
   flex-direction: column;
 }
 
+/* =======================
+      Testing Styles
+========================*/
 .error {
   border: 5px solid red;
 }
@@ -53,27 +53,18 @@
   padding: 40px;
 }
 
-/* =======================
-   Product Info Styles
-========================*/
 .overview__product-info {
   grid-column: 6 / span 4;
 }
 
-/* =======================
-  Style Selector Styles
-========================*/
 .overview__style-selector {
   grid-column: 6 / span 6;
-  grid-row-start: 4;
-  /* border-radius: 50%; */
+  grid-row-start: 7;
   height: 80px;
 }
 
-/* =======================
-    Image Styles
-========================*/
 .overview__images {
+  position: relative;
   grid-column-start: 2;
 }
 
@@ -83,23 +74,27 @@
   height: 400px;
 }
 
-.carousel {
-  border: 1px solid magenta;
-  /* position: fixed; */
+/* =======================
+      Image Styles
+========================*/
+/*        TO-DO:
+  Convert scrollbar to arrows
+  that can be clicked to scroll
+*/
+.images__carousel {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  width: 90px;
+  height: 360px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  z-index: 2;
 }
 
-.test {
-  border: 1px solid red;
-  /* position: fixed;
-  left: 200px;
-  top: 64px; */
-  grid-row-start: 2;
-  /* z-index: 9; */
-}
-
-.styles__carousel {
+/* .styles__carousel {
   border: 1px solid var(--white);
-}
+} */
 
 .thumbnail-square {
   border: 1px solid var(--silver);
