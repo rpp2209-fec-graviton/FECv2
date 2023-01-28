@@ -8,7 +8,7 @@ function Answer({ans}) {
 
   return (
     <div>
-      <p><b>A: </b>{ans.body}</p>
+      <p data-testid="test-answer"><b>A: </b>{ans.body}</p>
       <sub>
         by {ans.answerer_name}, {createDate(ans.date)} |
          Helpful?

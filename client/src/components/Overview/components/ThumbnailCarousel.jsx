@@ -1,11 +1,11 @@
 import React from 'react';
 import Thumbnail from './Thumbnail.jsx';
 
-function ThumbnailCarousel({ selected, styles }) {
-	if (styles[selected.id]) {
+function ThumbnailCarousel({ selected, productStyles }) {
+	if (productStyles[selected.id]) {
 		return (
 			<div>
-				{styles[selected.id].map(style => (<Thumbnail
+				{productStyles[selected.id].map(style => (<Thumbnail
 					key={style.style_id}
 					style={style}
 				/>))}

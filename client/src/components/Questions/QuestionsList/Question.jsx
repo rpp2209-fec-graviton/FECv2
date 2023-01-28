@@ -7,7 +7,7 @@ function Question ({q}) {
   */
   return (
     <div>
-    <b>Q: {q.question_body} </b>
+    <b data-testid="test-question">Q: {q.question_body}</b>
     <sub> Helpful?
       <a> Yes ({q.question_helpfulness}) </a>
       | <a> Add Answer </a>

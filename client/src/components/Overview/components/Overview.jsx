@@ -4,7 +4,6 @@ import axios from 'axios';
 import ProductInfo from './ProductInfo.jsx';
 import Images from './Images.jsx';
 import StyleSelector from './StyleSelector.jsx';
-import AddToBag from './AddToBag.jsx';
 
 import { fetch } from '../../../../../server/fetch.js';
 import styles from '../overview.module.css';
@@ -19,7 +18,7 @@ function Overview() {
 
 	// Shared State (TODO: Move to global state)
 	const [products, setProducts] = useState([]);
-	const [styles, setStyles] = useState({});
+	const [productStyles, setStyles] = useState({});
 	const [starRating, setStarRating] = useState(0);
 
 	// Fetch and Set Product State
@@ -58,13 +57,11 @@ function Overview() {
 	}, [products]);
 
 	return (
-		<div className={styles.greyBorder}>
+		<div className={`${styles.overview} ${styles.border}`}>
 			<h1>Product Overview Widget</h1>
-
-			<Images selected={selected} styles={styles} />
-			<ProductInfo />
+			<Images selected={selected} productStyles={productStyles} />
+			<ProductInfo selected={selected} />
 			<StyleSelector />
-			<AddToBag />
 		</div>
 	);
 };

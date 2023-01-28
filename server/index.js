@@ -6,9 +6,10 @@ const exampleRoutes = require('../ExampleData/index.js'); //e.g. exampleRoutes['
 const { fetch } = require('./fetch.js');
 const logger = require('./middleware/logger.js');
 
+
+app.use(logger)
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../dist')));
-app.use(logger)
 
 // Get Products from Atelier API
 app.get('/products', (req, res) => {
@@ -36,6 +37,15 @@ app.get('/:productId', (req, res) => {
     //add actions for other components here
   }
 });
+
+
+
+app.use('/reviews', require('./routes/review-route'));
+app.use('/qa/questions', require('./routes/questions-route'));
+
+
+
+
 
 process.on("SIGINT", () => {
   console.log("Server shutting down...");

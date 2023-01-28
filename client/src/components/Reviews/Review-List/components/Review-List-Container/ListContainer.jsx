@@ -1,10 +1,11 @@
 import React from "react";
 import styles from './ReviewList.module.scss'
 
-function ListContainer() {
+function ListContainer({children}) {
   return (
     <div>
-      <h1 className="text">Test</h1>
+      <h1 className="text">ListContainer</h1>
+      {children}
     </div>
   );
 }
