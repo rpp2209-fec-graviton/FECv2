@@ -4,8 +4,6 @@ import useFetchProduct from "../../Hooks/useFetchProduct.jsx";
 import { useProductContext } from "../../Context/ContextProvider.jsx";
 
 
-
-
 export default function ReviewList({ children }) {
 
   const { loading, error, response, handleCurrentId } = useProductContext();

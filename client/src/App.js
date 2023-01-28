@@ -11,19 +11,22 @@ import QuestionsView from './components/Questions/index.js';
 function App() {
   return (
     <>
-      <ContextProvider>
-        <Overview />
+      <div className="body">
+        <ContextProvider>
+          <Overview />
 
-        <ReviewProvider>
-          <Reviews />
-        </ReviewProvider>
-        <QuestionsView />
+          <ReviewProvider>
+            <Reviews />
+          </ReviewProvider>
+          <QuestionsView />
 
         <RelatedProducts />
         <Reviews />
         <QuestionsView/>
 
-      </ContextProvider>
+        </ContextProvider>
+      </div>
+
     </>
   );
 }
