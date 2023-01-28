@@ -1,16 +1,18 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
 
 export default function useCount (initial) {
+  var start = initial;
   const [count, setCount] = useState(initial);
 
-  var incrementCount = () => {
-    setCount(count +2);
+  var increment = () => {
+    setCount(count + 2);
   }
 
-  var resetCount = () => {
-    setCount(intial);
+  var reset = () => {
+    setCount(start);
   }
 
-  return [count, incrementCount, resetCount];
+  var makeCount = {reset, increment}
+
+  return [count, makeCount];
 }

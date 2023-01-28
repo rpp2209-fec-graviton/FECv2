@@ -1,12 +1,18 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
 
 export default function usePage (initial) {
-  const [page, usePage] = useState(initial);
+  var start = initial;
+  const [page, setPage] = useState(initial);
 
-  var incrementPage = () => {
+  var increment = () => {
     setPage(page + 1);
   }
 
-  return [page, incrementPage];
+  var reset = () => {
+    setPage(start);
+  }
+
+  var makePage = {reset, increment};
+
+  return [page, makePage];
 }
