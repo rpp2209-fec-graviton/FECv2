@@ -17,6 +17,7 @@ router.post('/results', async (req, res) => {
       url: process.env.API_URL + `/reviews?product_id=${product_id}`,
       headers: { "Authorization": `${process.env.API_KEY}` }
     })
+    console.log(data.data);
     res.status(200).json(data.data)
 
   } catch (error) {

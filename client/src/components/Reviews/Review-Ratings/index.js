@@ -8,7 +8,7 @@ import RatingTopBar from "./components/Ratings-TopBar";
 function ReviewRatings() {
   return (
     <>
-      <div className = {styles.ratings_wrapper}>
+      <div className={styles.ratings_wrapper}>
         <RatingTopBar />
         <RatingBars />
         <RatingGauge />

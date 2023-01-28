@@ -14,7 +14,7 @@ export default function TopBar({ rating, reviewer_name, date }) {
       <div className={styles.cardTopBar__container}>
 
         <div className={styles.cardTopBar__left}>
-          <rating className={styles.cardTopBar__rating}>{rating}</rating>
+          <div className={styles.cardTopBar__rating}>{rating}</div>
         </div>
         <div className={styles.cardTopBar__right}>
           <h2 className={styles.cardTopBar__name}>{reviewer_name}</h2>
