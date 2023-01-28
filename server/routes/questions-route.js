@@ -22,6 +22,16 @@ router.get('/', (req, res) => {
   })
 })
 
+router.get('/:question_id/answers', (req, res) => {
+  fetch(`qa/questions${req.url}`, (err, payload) => {
+    if (err) {
+      throw err;
+    } else {
+      res.send(sortList(payload.data.results, 'helpfulness'));
+    }
+  })
+})
+
 // router.get('/count')
 
 
