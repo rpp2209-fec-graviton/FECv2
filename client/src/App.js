@@ -21,7 +21,6 @@ function App() {
           <QuestionsView />
 
         <RelatedProducts />
-        <Reviews />
         <QuestionsView/>
 
         </ContextProvider>
