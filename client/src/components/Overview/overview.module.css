@@ -49,6 +49,26 @@
   padding: 0 40px;
 }
 
+/* =======================
+   Product Info Styles
+========================*/
+.overview__product-info {
+  grid-column: 6 / span 4;
+}
+
+/* =======================
+  Style Selector Styles
+========================*/
+.overview__style-selector {
+  grid-column: 6 / span 4;
+  grid-row-start: 7;
+  /* border-radius: 50%; */
+  height: 80px;
+}
+
+/* =======================
+    Image Styles
+========================*/
 .overview__images {
   grid-column-start: 2;
 }
@@ -59,14 +79,6 @@
   height: 400px;
 }
 
-.overview__product-info {
-  grid-column-start: 6;
-  grid-column-end: span 4;
-}
-
-/* =======================
-    Image Styles
-========================*/
 .carousel {
   border: 1px solid magenta;
   position: fixed;
@@ -136,11 +148,3 @@
   vertical-align: text-top;
 }
 
-/* =======================
-  Style Selector Styles
-========================*/
-.styles {
-  border-radius: 50%;
-  width: 80px;
-  height: 80px;
-}

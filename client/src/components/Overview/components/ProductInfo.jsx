@@ -9,11 +9,11 @@ function ProductInfo({ selected }) {
 	};
 
 	return (
-		<div className={`${styles['grey-border']} ${styles['overview__product-info'] }`}>
+		<div className={styles['overview__product-info']}>
 			<h3>ProductInfo Component</h3>
+			<h4>{selected.name}</h4>
 			<StarRating />
 			<p>{selected.category}</p>
-			<p>{selected.name}</p>
 			<p>$$$ Price with Potential Sales Styling</p>
 			<p>{selected.description}</p>
 			<Button handleClick={handleClick}>⭐</Button>

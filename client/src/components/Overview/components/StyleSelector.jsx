@@ -16,16 +16,6 @@ function StyleSelector () {
 	const sizeRef = useRef('');
 	const qtyRef = useRef(0);
 
-	// State Loggers for Testing
-	// useEffect(() => {
-	// 	console.log('Size', size);
-	// 	console.log('Qty', qty);
-	// }, [size, qty]);
-
-	// useEffect(() => {
-	// 	console.log('Your Cart has been updated!', cart);
-	// }, [cart]);
-
 	// =============================================
 	//            FUNCTIONALITY TO-DOs
 	// =============================================
@@ -72,7 +62,7 @@ function StyleSelector () {
 	};
 
 	return (
-		<div className={styles.border}>
+		<div className={styles['overview__style-selector']}>
 			<h3>Style Selector</h3>
 			<select ref={sizeRef} id="size" value={size} onChange={handleDropdownChange}>
 				<option value="Select Size">Select Size</option>

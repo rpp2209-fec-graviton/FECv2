@@ -20,7 +20,7 @@ function Images ({ selected, productStyles }) {
 
 				<img
 					id="image-lg"
-					className={`${styles.overview__image} ${styles.border}`}
+					className={styles.overview__image}
 					src={selectedUrl}
 					onClick={() => toggleModal(show, setShow)}
 				/>
