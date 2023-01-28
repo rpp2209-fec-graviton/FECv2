@@ -102,25 +102,40 @@ describe('Overview Headings', () => {
 });
 
 describe('Overview Style Selector (Form)', function() {
-  beforeEach(async () => {
-    const styleSelector = await screen.findByRole('heading', { name: /Style Selector/i });
-  });
-
   it('Style Selector should render', async () => {
+    const styleSelector = await screen.findByRole('heading', { name: /Style Selector/i });
     expect(styleSelector).toBeInTheDocument();
     expect(styleSelector).toHaveTextContent('Style Selector')
   })
 
-  // it('should', function() {
+  // Style Selector To-Dos:
+  // Check values in drop-downs (Size, Quantity)
+  it('should have a list of sizes S-2XL to choose from', async () => {
+    const sizes = await screen.findAllByRole('option', { name: /size-option/i });
+    // const elem = await screen.findAllByRole('listbox', { name: "sizes" });
 
-  // });
+    // TODO: Figure out why map over sizes doesn't work here
+    const values = [];
+    sizes.forEach(size => {
+      values.push(size.value)
+      expect(size).toBeInTheDocument();
+    });
+    expect(sizes.length).toBe(5);
+    expect(values.length).toBe(5);
+    expect(values).toEqual(['S', 'M', 'L', 'XL', '2XL']);
+  });
+
+  it('should have a list of quantities to choose from', async () => {
+    const quantities = await screen.findAllByRole('option', { name: /qty-option/i });
+    expect(quantities.length).toBe(10);
+  });
 });
 
-// TODO: Figure out why images only render sometimes
+// DEBUG TODO: Figure out why images only render sometimes
 describe('Overview Images', function() {
   it('Large Image should render', async () => {
-    // const largeImage = await screen.findByRole('img', { name: /images/i });
-    // expect(largeImage).toBeInTheDocument();
+    const largeImage = await screen.findByRole('img', { name: /images/i });
+    expect(largeImage).toBeInTheDocument();
 
     const largeImageByAlt = await screen.findByAltText(/images/i);
     expect(largeImageByAlt).toBeInTheDocument();
