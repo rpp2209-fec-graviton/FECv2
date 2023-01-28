@@ -9,7 +9,7 @@ function ProductInfo({ selected }) {
 	};
 
 	return (
-		<div className={styles.border}>
+		<div className={`${styles['grey-border']} ${styles['overview__product-info'] }`}>
 			<h3>ProductInfo Component</h3>
 			<StarRating />
 			<p>{selected.category}</p>

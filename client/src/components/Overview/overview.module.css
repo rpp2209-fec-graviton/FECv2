@@ -7,17 +7,23 @@
   --silver: #c0c0c0;
 }
 
-/*
-  Remove this before pushing
-  and make separate PR to center
-  entire Product Detail container
-*/
+/* =======================
+      Grid Testing
+========================*/
+.grid {
+  display: grid;
+  grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+  grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+}
 
-body {
+/* =======================
+      Global Styles
+========================*/
+/* .flex {
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 
 .error {
   border: 5px solid red;
@@ -29,23 +35,45 @@ body {
 }
 
 .border {
-  border: 2px solid var(--white);
+  border: 2px solid var(--blue);
+}
+
+.grey-border {
+  border: 2px solid var(--silver);
 }
 
 /* =======================
-  Parent/Overview Styles
+    Overview Styles
 ========================*/
+.overview {
+  padding: 0 40px;
+}
+
+.overview__images {
+  grid-column-start: 2;
+}
+
 .overview__image {
   object-fit: cover;
   width: 400px;
   height: 400px;
 }
 
+.overview__product-info {
+  grid-column-start: 6;
+  grid-column-end: span 4;
+}
+
 /* =======================
-    Thumbnail Styles
+    Image Styles
 ========================*/
+.carousel {
+  border: 1px solid magenta;
+  position: fixed;
+}
+
 .thumbnail {
-  border-radius: 50%;
+  /* border-radius: 50%; */
   width: 80px;
   height: 80px;
 }
@@ -53,7 +81,7 @@ body {
 /* =======================
       Modal Styles
 ========================*/
-.modal {
+.images__modal {
   height: 1200px;
   background: white;
   box-shadow: -2rem 2rem 2rem rgba(black, 0.2);
@@ -103,8 +131,16 @@ body {
 }
 
 .stars__a {
-  color: var(--white);
   font-size: 12px;
   padding-left: 4px;
   vertical-align: text-top;
+}
+
+/* =======================
+  Style Selector Styles
+========================*/
+.styles {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
 }
