@@ -4,7 +4,7 @@ import Thumbnail from './Thumbnail.jsx';
 function ThumbnailCarousel({ selected, productStyles }) {
 	if (productStyles[selected.id]) {
 		return (
-			<div>
+			<div role="img" aria-label="carousel">
 				{productStyles[selected.id].map(style => (<Thumbnail
 					key={style.style_id}
 					style={style}

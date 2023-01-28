@@ -12,7 +12,7 @@ function Thumbnail({ style }) {
 					${styles['overview-border']}
 				`}
 				src={photos[0].thumbnail_url}
-				alt="style-thumbnail-mockup"
+				alt="thumbnail image"
 			/>
 		</>
 	)
