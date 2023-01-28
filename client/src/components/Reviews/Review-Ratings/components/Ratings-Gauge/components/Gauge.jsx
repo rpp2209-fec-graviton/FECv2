@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './Gauge.module.scss';
+import styles from './gauge.module.scss';
 function Gauge() {
   return (
       <div className={styles.gauge__Container}>
