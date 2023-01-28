@@ -1,37 +1,43 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './reviews.module.scss';
-import ReviewCard from './Review-Card/index';
 import ReviewForm from './Review-Form/index';
 import ReviewList from './Review-List/index';
 import ReviewRatings from './Review-Ratings/index';
-import testData from '../../../../ExampleData/APIs/reviews'
-import ReviewProvider from './Context/ReviewProvider.jsx';
-
-
+import ReviewCard from './Review-Card/index.js'
+import { useReviewContext } from './Context/ReviewProvider.jsx';
+import ReviewWrapper from './Review-Wrapper';
 
 export default function Reviews({ reviewData }) {
-  const { count, page, product } = testData['/reviews/'];
-  console.log(testData['/reviews/']);
 
-  const data = testData['/reviews/'].results
-  const { body, date, helpfulness, photos } = data[0]
-  const { ratings, recommend, response, } = data[0]
-  const { review_id, reviewer_name, summary } = data[0];
+  const { reviewLoading, reviewResponse, reviewError } = useReviewContext();
+  const [data, setData] = useState(null);
 
+  useEffect(() => {
+    if (reviewResponse) {
+      setData(reviewResponse);
+    }
+  }, [reviewResponse]);
 
-  console.log(data);
+  if (reviewLoading) {
+    return <div>Loading...</div>;
+  }
 
-
+  if (reviewError) {
+    return <div> Error</div>;
+  }
 
   return (
-    <ReviewProvider>
-      <div className={styles.reviews}>
-        <ReviewForm />
+    <div className={styles.reviews}>
+      <ReviewForm />
+      <ReviewWrapper>
         <ReviewRatings />
         <ReviewList>
-          <ReviewCard reviewData={data[0]} />
+          {data && data.results.map((review) => {
+            return <ReviewCard key={review.review_id} reviewData={review} />
+          })}
         </ReviewList>
-      </div>
-    </ReviewProvider>
+      </ReviewWrapper>
+
+    </div>
   );
 }

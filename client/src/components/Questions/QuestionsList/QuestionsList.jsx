@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Question from "./Question.jsx";
 import AnswersList from ".././Answers/AnswersList.jsx";
 import useQuestionsList from "./hooks/useQuestionsList.jsx";
+import SearchBar from './SearchBar.jsx';
 import MoreAnsweredQ from "./MoreAnsweredQ.jsx";
 
 //HOOKS
@@ -26,7 +27,7 @@ function QuestionsList(props) {
   }
 
   var checkQList = () => {
-    if (count >= questionsList.length-2 && questionsList.length !== 0 ) {
+    if (count >= questionsList.length - 2 && questionsList.length !== 0) {
       toggleMoreQ();
     }
   }
@@ -38,8 +39,12 @@ function QuestionsList(props) {
 
   return (
     <div>
+      <SearchBar {...{ filterQList }} />
       <div>
-        {questionsList.slice(0, count).map((q, index) => {
+        {questionsList.map((q, index) => {
+          if (index >= count) {
+            return;
+          }
           return (
             <div className="Question" key={index}>
               <Question q={q} />
@@ -48,7 +53,7 @@ function QuestionsList(props) {
           )
         })}
       </div>
-      {questionsList.length > 0 && <MoreAnsweredQ {...{count, moreQ, showMoreQ, makeCount, makePage, updateQList, checkQList }} />}
+      {questionsList.length > 0 && <MoreAnsweredQ {...{ count, moreQ, showMoreQ, makeCount, makePage, updateQList, checkQList }} />}
     </div>
   )
 }

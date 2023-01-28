@@ -4,7 +4,18 @@ import { useState, useEffect } from "react";
 export default function useQuestionsList() {
   const [questionsList, setQuestionsList] = useState([]);
 
+<<<<<<< HEAD
   var getQList = async (product_id, page) => {
+=======
+  var filterQList = (text) => {
+    setQuestionsList([...questionsList.sort((a, b) => {
+      console.log(a.question_body.toLowerCase().indexOf(text), b.question_body.toLowerCase().indexOf(text));
+      return b.question_body.toLowerCase().indexOf(text) - a.question_body.toLowerCase().indexOf(text);
+    })])
+  };
+
+  var updateQList = async (product_id, page) => {
+>>>>>>> main
     try {
       setQuestionsList((await axios({
         method: 'GET',
@@ -16,7 +27,11 @@ export default function useQuestionsList() {
     }
   }
 
+<<<<<<< HEAD
   return [questionsList, getQList];
+=======
+  return [questionsList, updateQList, filterQList];
+>>>>>>> main
 }
 
 /*

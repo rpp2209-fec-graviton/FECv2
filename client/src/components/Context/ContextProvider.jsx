@@ -1,17 +1,23 @@
 import React, { createContext, useContext, useState } from "react";
-
+import useFetchProduct from '../../components/Hooks/useFetchProduct.jsx'
 
 const ProductContext = createContext(null);
 
 export default function ContextProvider({ children }) {
 
-  const ratingTestData = ['test1', 'test2', 'test3']
+  const [currentProductId, setCurrentProductId] = useState(71698)
 
-  const [ratings, setRatings] = useState(ratingTestData);
+  const { response, loading, error } = useFetchProduct(currentProductId)
+
+  const handleCurrentId = (e, productId) => {
+    e.preventDefault();
+    setCurrentProductId(productId)
+  }
 
   return (
-    <ProductContext.Provider value={{ratings}}>
+    <ProductContext.Provider value={{ loading, error, response, handleCurrentId, currentProductId }}>
       {children}
+      {console.log(response)}
     </ProductContext.Provider>
   )
 }
