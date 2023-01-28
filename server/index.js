@@ -3,7 +3,7 @@ const path = require("path");
 const express = require('express')
 const app = express();
 const exampleRoutes = require('../ExampleData/index.js'); //e.g. exampleRoutes['/cart'];
-const { fetch } = require('./fetch.js');
+const { fetch } = require('./utils/fetch.js');
 const logger = require('./middleware/logger.js');
 
 
@@ -18,7 +18,7 @@ app.get('/products', (req, res) => {
       console.log(err);
       res.status(500).send(err);
     } else {
-      res.status(200).send(products.data);
+      res.status(200).send(products);
     }
   });
 });
@@ -26,8 +26,8 @@ app.get('/products', (req, res) => {
 //generic route for url with any product id, ex: localhost:3000/71699
 app.get('/:productId', (req, res) => {
   if (req.params.productId !== 'favicon.ico') {
-    fetch(`products/${req.params.productId}`, function(err, productData) {
-      if(err) {
+    fetch(`products/${req.params.productId}`, function (err, productData) {
+      if (err) {
         console.log('fetching error:', err);
       } else {
         //TODO: store product info in shared state (?)
@@ -40,7 +40,10 @@ app.get('/:productId', (req, res) => {
 
 
 
-app.use('/reviews', require('./routes/review-route'));
+
+app.use('/products', require('./routes/product-route'))
+app.use('/reviews', require('./routes/review-route'))
+
 app.use('/qa/questions', require('./routes/questions-route'));
 
 

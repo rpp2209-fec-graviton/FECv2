@@ -1,26 +1,23 @@
 import ListContainer from "./components/Review-List-Container/ListContainer.jsx";
 import React from "react";
-import useFetchProduct from "../../Hooks/useFetchProduct.js";
+import useFetchProduct from "../../Hooks/useFetchProduct.jsx";
+import { useProductContext } from "../../Context/ContextProvider.jsx";
 
 
 
 
 export default function ReviewList({ children }) {
 
+  const { loading, error, response, handleCurrentId } = useProductContext();
 
-  const { response, loading, error } = useFetchProduct({
-    method: 'get',
-    url: '/products'
-  });
-
-
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
 
   return (
     <div>
       <h1>Review List</h1>
-      {response}
-      {console.log(response, 'sd')}
-
+      {/* {console.log(response)} */}
+      <button onClick={(event) => { handleCurrentId(event, 71698) }}>switch</button>
       <ListContainer>
         {children}
       </ListContainer>

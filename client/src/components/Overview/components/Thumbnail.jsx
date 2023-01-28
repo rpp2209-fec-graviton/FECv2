@@ -14,7 +14,7 @@ function Thumbnail({ type, style }) {
 				onClick={handleClick}
 				className={`${styles[type]} ${styles.thumbnail}`}
 				src={photos[0].thumbnail_url}
-				alt="style-thumbnail-mockup"
+				alt="thumbnail image"
 			/>
 		</>
 	)
