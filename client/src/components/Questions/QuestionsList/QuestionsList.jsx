@@ -16,7 +16,7 @@ import useMoreQ from "./hooks/useMoreQ.jsx";
 function QuestionsList(props) {
   const [page, makePage] = usePage(1);
   const [count, makeCount] = useCount(2);
-  const [questionsList, getQList] = useQuestionsList();
+  const [questionsList, getQList, filterQList] = useQuestionsList();
   const [moreQ, showMoreQ, toggleMoreQ] = useMoreQ();
   /*Implementation tasks
     [] Expands 2 Questions at a time and Scrollable
