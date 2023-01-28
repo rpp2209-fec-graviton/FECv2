@@ -12,10 +12,10 @@ function App() {
   return (
     <>
       <ContextProvider>
-      <Overview />
-      <RelatedProducts />
-      <Reviews />
-      <QuestionsView/>
+        <Overview />
+        <RelatedProducts />
+        <Reviews />
+        <QuestionsView/>
       </ContextProvider>
     </>
   );
