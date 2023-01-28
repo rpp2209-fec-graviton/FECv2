@@ -15,11 +15,16 @@ function Images ({ selected, productStyles }) {
 		return (
 			<>
 				<Modal toggleModal={()=> toggleModal(show, setShow)} show={show} setShow={setShow}>
-					<img className={styles.modal__content} src={selectedUrl} />
+					<img
+						className={styles.modal__content}
+						src={selectedUrl}
+						alt="modal"
+					/>
 				</Modal>
 
 				<img
 					id="image-lg"
+					alt="images"
 					className={`${styles.overview__image} ${styles.border}`}
 					src={selectedUrl}
 					onClick={() => toggleModal(show, setShow)}
