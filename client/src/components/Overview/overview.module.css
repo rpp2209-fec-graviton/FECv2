@@ -23,6 +23,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.flex-column {
   flex-direction: column;
 }
 
@@ -61,8 +64,8 @@
   Style Selector Styles
 ========================*/
 .overview__style-selector {
-  grid-column: 6 / span 4;
-  grid-row-start: 7;
+  grid-column: 6 / span 6;
+  grid-row-start: 4;
   /* border-radius: 50%; */
   height: 80px;
 }
@@ -81,15 +84,32 @@
 }
 
 .carousel {
-  position: fixed;
-  left: 200px;
-  top: 64px;
-  grid-row-start: 2;
-  z-index: 2;
+  border: 1px solid magenta;
+  /* position: fixed; */
 }
 
-.thumbnail {
-  /* border-radius: 50%;  */
+.test {
+  border: 1px solid red;
+  /* position: fixed;
+  left: 200px;
+  top: 64px; */
+  grid-row-start: 2;
+  /* z-index: 9; */
+}
+
+.styles__carousel {
+  border: 1px solid var(--white);
+}
+
+.thumbnail-square {
+  border: 1px solid var(--silver);
+  width: 80px;
+  height: 80px;
+}
+
+.thumbnail-rounded {
+  border-radius: 50%;
+  border: 1px solid var(--silver);
   width: 80px;
   height: 80px;
 }

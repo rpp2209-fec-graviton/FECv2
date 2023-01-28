@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Button from './Button.jsx';
-import Thumbnail from './Thumbnail.jsx';
+import ThumbnailCarousel from './ThumbnailCarousel.jsx';
 import styles from '../overview.module.css';
 
-function StyleSelector () {
+function StyleSelector ({ selected, productStyles }) {
 	// Controlled Drop-Down Component Values
 	const [size, setSize] = useState('');
 	const [qty, setQty] = useState(0);
@@ -64,6 +64,8 @@ function StyleSelector () {
 	return (
 		<div className={styles['overview__style-selector']}>
 			<h3>Style Selector</h3>
+			<ThumbnailCarousel type="styles__carousel" selected={selected} productStyles={productStyles} />
+
 			<select ref={sizeRef} id="size" value={size} onChange={handleDropdownChange}>
 				<option value="Select Size">Select Size</option>
 				<option value="S">S</option>

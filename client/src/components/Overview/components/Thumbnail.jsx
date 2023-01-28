@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../overview.module.css';
 
-function Thumbnail({ style }) {
+function Thumbnail({ type, style }) {
 	var photos = style.photos;
 
 	const handleClick = (e) => {
@@ -12,10 +12,7 @@ function Thumbnail({ style }) {
 		<>
 			<img
 				onClick={handleClick}
-				className={`
-					${styles.thumbnail}
-					${styles['overview-border']}
-				`}
+				className={`${styles[type]} ${styles.thumbnail}`}
 				src={photos[0].thumbnail_url}
 				alt="style-thumbnail-mockup"
 			/>

@@ -24,7 +24,7 @@ function Images ({ selected, productStyles }) {
 					src={selectedUrl}
 					onClick={() => toggleModal(show, setShow)}
 				/>
-				<ThumbnailCarousel selected={selected} productStyles={productStyles} />
+				<ThumbnailCarousel type="images__carousel" selected={selected} productStyles={productStyles} />
 			</div>
 		)
 	} else {
