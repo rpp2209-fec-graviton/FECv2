@@ -8,10 +8,9 @@ import SearchBar from './SearchBar.jsx';
 import MoreAnsweredQ from "./MoreAnsweredQ.jsx";
 
 //HOOKS
-import useCount from ".././hooks/useCount.jsx";
-import usePage from ".././hooks/usePage.jsx";
+import useCount from "../hooks/useCount.jsx";
+import usePage from "../hooks/usePage.jsx";
 import useMoreQ from "./hooks/useMoreQ.jsx";
-
 
 function QuestionsList(props) {
   const [page, makePage] = usePage(1);

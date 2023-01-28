@@ -57,11 +57,11 @@ function Overview() {
 	}, [products]);
 
 	return (
-		<div className={`${styles.overview} ${styles.border}`}>
-			<h1>Product Overview Widget</h1>
+		<div className={`${styles.overview} ${styles.grid} ${styles.border}`}>
+			{/* <h1>Product Overview Widget</h1> */}
 			<Images selected={selected} productStyles={productStyles} />
+			<StyleSelector selected={selected} productStyles={productStyles} />
 			<ProductInfo selected={selected} />
-			<StyleSelector />
 		</div>
 	);
 };

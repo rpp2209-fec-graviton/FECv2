@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Button from './Button.jsx';
-import Thumbnail from './Thumbnail.jsx';
+import ThumbnailCarousel from './ThumbnailCarousel.jsx';
 import styles from '../overview.module.css';
 
-function StyleSelector () {
+function StyleSelector ({ selected, productStyles }) {
 	const sizes = ['S', 'M', 'L', 'XL', '2XL'];
-
 	// Controlled Drop-Down Component Values
 	const [size, setSize] = useState('');
 	const [qty, setQty] = useState(0);
@@ -17,16 +16,6 @@ function StyleSelector () {
 	// DOM Element Ref Values
 	const sizeRef = useRef('');
 	const qtyRef = useRef(0);
-
-	// State Loggers for Testing
-	// useEffect(() => {
-	// 	console.log('Size', size);
-	// 	console.log('Qty', qty);
-	// }, [size, qty]);
-
-	// useEffect(() => {
-	// 	console.log('Your Cart has been updated!', cart);
-	// }, [cart]);
 
 	// =============================================
 	//            FUNCTIONALITY TO-DOs
@@ -73,19 +62,38 @@ function StyleSelector () {
 		}
 	};
 
+	const handleStarClick = () => {
+		console.log('Clicked! Adding to Outfit (TODO)...');
+	};
+
+
 	return (
-		<div className={styles.border}>
-			<h3>Style Selector</h3>
-			<select role="listbox" aria-label="sizes" ref={sizeRef} id="size" value={size} onChange={handleDropdownChange}>
+		<div className={styles['overview__style-selector']}>
+			<h3>Style &gt; Selected Style</h3>
+			<ThumbnailCarousel type="styles__carousel" selected={selected} productStyles={productStyles} />
+
+			<select
+				className={styles['drop-down']}
+				ref={sizeRef}
+				id="size" value={size}
+				onChange={handleDropdownChange}>
 				<option value="Select Size">Select Size</option>
 				{sizes.map((size, index) => (<option aria-label="size-option" key={index} value={`${size}`}>{size}</option>))}
 			</select>
 
-			<select ref={qtyRef} id="qty" value={qty} onChange={handleDropdownChange}>
+			<select
+				className={styles['drop-down']}
+				ref={qtyRef}
+				id="qty" value={qty}
+				onChange={handleDropdownChange}>
 				<option value="Quantity">Quantity</option>
 				{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (<option aria-label="qty-option" key={num} value={num}>{num}</option>))}
 			</select>
-			<Button handleClick={handleAddToBag}>+ Add to Bag</Button>
+
+			<div>
+				<Button handleClick={handleAddToBag}>+ Add to Bag</Button>
+				<Button handleClick={handleStarClick}>⭐</Button>
+			</div>
 		</div>
 	)
 };
