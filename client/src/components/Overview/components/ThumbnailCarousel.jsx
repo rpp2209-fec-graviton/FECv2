@@ -5,7 +5,7 @@ import Thumbnail from './Thumbnail.jsx';
 import { useProductContext } from "../../Context/ContextProvider.jsx";
 import { useOverviewContext } from "../Context/OverviewProvider.jsx";
 
-function ThumbnailCarousel({ type, selected, setSelected }) {
+function ThumbnailCarousel({ type }) {
 	const { products, currentProductId, setCurrentProductId } = useProductContext();
 	const { pStyles, setStyles } = useOverviewContext();
 
@@ -17,7 +17,6 @@ function ThumbnailCarousel({ type, selected, setSelected }) {
 				key={style.style_id}
 				photos={style.photos}
 				style={style}
-				setSelected={setSelected}
 			/>));
 
 		return (
@@ -27,7 +26,7 @@ function ThumbnailCarousel({ type, selected, setSelected }) {
 		)
 	} else {
 		return (
-			<h3>No Styles to Pass to TN</h3>
+			<h3>No Styles Render in Thumbnail</h3>
 		)
 	}
 

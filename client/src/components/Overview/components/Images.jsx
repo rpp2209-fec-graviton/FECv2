@@ -8,19 +8,21 @@ import styles from '../overview.module.css';
 import { useProductContext } from "../../Context/ContextProvider.jsx";
 import { useOverviewContext } from "../Context/OverviewProvider.jsx";
 
-function Images ({ selected, setSelected, pStyles, productStyles }) {
+function Images () {
+	// Modal State
+	const [show, setShow] = useState(false);
 
-	if (productStyles[selected.id]) {
-		const { currentProductId } = useProductContext();
-		const { selectedStyle, setSelectedStyle } = useOverviewContext();
+	// Global Context
+	const { currentProductId } = useProductContext();
 
-		// Modal State
-		const [show, setShow] = useState(false);
+	// Overview Context
+	const { pStyles, selectedStyle, setSelectedStyle } = useOverviewContext();
 
+	if (pStyles[currentProductId]) {
 		// Get First Style's Url
 		let url = pStyles[currentProductId][0].photos[0].url;
 
-		// Get new style url based on currently selected style (set in Thumbnail.jsx)
+		// Update URL based on currently selected style (set in Thumbnail.jsx)
 		pStyles[currentProductId].forEach(style => {
 			if (style.style_id === selectedStyle.style_id) {
 				url = selectedStyle['photos'][0].url;
@@ -34,7 +36,7 @@ function Images ({ selected, setSelected, pStyles, productStyles }) {
 				</Modal>
 
 				<img id="image-lg" className={styles.overview__image} src={url} onClick={() => toggleModal(show, setShow)}/>
-				<ThumbnailCarousel type="styles__carousel" setSelected={setSelected} selected={selected} productStyles={productStyles} />
+				<ThumbnailCarousel type="styles__carousel" />
 			</div>
 		)
 	} else {

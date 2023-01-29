@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import styles from '../overview.module.css';
 import { useOverviewContext } from "../Context/OverviewProvider.jsx";
+import styles from '../overview.module.css';
 
 function Thumbnail({ carouselType, type, photos, style }) {
 	const { selectedStyle, setSelectedStyle } = useOverviewContext();
@@ -9,9 +9,10 @@ function Thumbnail({ carouselType, type, photos, style }) {
 		setSelectedStyle(style);
 	};
 
-	useEffect(() => {
-		// console.log('Selected Changed: ', selectedStyle);
-	}, [selectedStyle]);
+	// Style Logger
+	// useEffect(() => {
+	// 	console.log('Style Changed: ', selectedStyle.style_id);
+	// }, [selectedStyle]);
 
 	return (
 		<>

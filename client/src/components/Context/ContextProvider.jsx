@@ -4,49 +4,27 @@ import useFetchProduct from '../../components/Hooks/useFetchProduct.jsx'
 const ProductContext = createContext(null);
 
 export default function ContextProvider({ children }) {
-  // ==================================
-  // Ari's Initial Set up
-  const [currentProductId, setCurrentProductId] = useState(71698)
+
+  // Gabby Comment: Changing the default product ID because the old one
+  // (71697) has no image urls to test with (not sure why)
+  const [currentProductId, setCurrentProductId] = useState(71697)
+
   const { response, loading, error } = useFetchProduct(currentProductId)
 
   const handleCurrentId = (e, productId) => {
     e.preventDefault();
     setCurrentProductId(productId)
   }
-  // End Ari's Initial Set up
-  // ==================================
 
-  // ==================================
-  //     Gabby's Proposed Changes
-  // Based on Overview Component Needs
-  // ==================================
-  const [products, setProducts] = useState([]);
-
-  // Moved Context Data to its own variable
-  // instead of passing directly into Provider
-  const ctx = {
-    loading,
-    error,
-    response,
-    handleCurrentId,
-    currentProductId,
-    setCurrentProductId, // Overview Component Needs this, handleCurrentId not working for my purposes
-    products,
-    setProducts
-  };
-  // End Gabby's Propose Changes
-  // ==================================
-
-  // Context Provider With Inserted Global State Values
   return (
-    <ProductContext.Provider value={ctx}>
-      { children }
-      {/* {console.log(response)} */}
+    <ProductContext.Provider value={{ loading, error, response, handleCurrentId, currentProductId }}>
+      {children}
+      {console.log(response)}
     </ProductContext.Provider>
   )
 }
 
+
 export function useProductContext() {
   return useContext(ProductContext);
 }
-

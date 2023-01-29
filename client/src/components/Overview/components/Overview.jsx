@@ -11,23 +11,16 @@ import { fetch } from '../../../../../server/utils/fetch.js';
 import styles from '../overview.module.css';
 
 function Overview() {
-	// Global State From Context Provider
-	const { currentProductId, setCurrentProductId, products, setProducts } = useProductContext();
-
-	// From Overview Context
-	const { pStyles, setStyles, selectedStyle, setSelectedStyle } = useOverviewContext();
-
-	// Private Overview State
-	const [productStyles, setProductStyles] = useState({});
-	// const [quantity, setQuantity] = useState(0);
-	// const [size, setSize] = useState("S");
-	// const [starred, setStarred] = useState(false);
+	// Global Context
+	const { currentProductId } = useProductContext();
+	// Overview Context
+	const { products, setProducts, product, setProduct, pStyles, setStyles, selectedStyle, setSelectedStyle } = useOverviewContext();
 
 	// Shared State (TODO: Move to global state)
-	const [selected, setSelected] = useState({});
+	// const [starred, setStarred] = useState(false);
 	// const [starRating, setStarRating] = useState(0);
 
-	// Fetch and Set Product State
+	// Fetch and Set All Products
 	useEffect(() => {
 		fetch('products', (err, payload) => {
 			if (err) {
@@ -38,20 +31,17 @@ function Overview() {
 		})
 	}, []);
 
-	// Fetch and Set Styles for Selected Product
+	// Fetch and Set Selected Product
 	useEffect(() => {
-		// For Testing Purposes, Set Selected Product to the First In List
-		// To-Do: Implement Routing for different product IDs?
-		let selected = products[0];
-		setSelected({...selected});
+		for (var current of products) {
+			if (current.id === currentProductId) {
+				setProduct(current);
+			}
+		}
 
-		// console.log('PRODUCTS FROM CONTEXT', products);
-
+		// Get/Set All Styles for Each Product
 		Object.values(products).forEach(item => {
-
-			// Get/Set all Styles for each Product
 			fetch(`products/${item.id}/styles`, (err, payload) => {
-
 				if (err) {
 					console.log('Styles Fetch Err', err);
 				} else {
@@ -62,36 +52,18 @@ function Overview() {
 						...prevState,
 						[item.id]: newStyles
 					}));
-
-					setProductStyles((prevState) => ({
-						...prevState,
-						[item.id]: newStyles
-					}));
 				}
 			});
-
 		});
 
 	}, [products]);
 
-	// Change To Selected Product Updates Global State Variable
-	useEffect(() => {
-		const id = selected['id'];
-		setCurrentProductId(id);
-		console.log('Selected', selected);
-	}, [selected]);
-
-	// currentProductId Logger (from Global Context)
-	// useEffect(() => {
-	// 	console.log('Current Product FROM CONTEXT', currentProductId);
-	// }, [currentProductId]);
-
 	return (
 		<div className={`${styles.overview} ${styles.grid}`}>
 			{/* <h1>Product Overview Widget</h1> */}
-			<Images selected={selected} setSelected={setSelected} productStyles={productStyles} pStyles={pStyles}/>
-			<StyleSelector selected={selected} productStyles={productStyles} pStyles={pStyles}/>
-			<ProductInfo selected={selected} />
+			<Images />
+			<StyleSelector />
+			<ProductInfo />
 		</div>
 	);
 };
