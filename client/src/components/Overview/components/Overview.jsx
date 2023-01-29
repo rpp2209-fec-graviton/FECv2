@@ -61,23 +61,22 @@ function Overview() {
 		});
 	}, [products]);
 
-	// Updated Styles Logger
-	// useEffect(() => {
-	// 	console.log('Updated Styles', productStyles);
-	// }, [productStyles]);
-
 	// Change To Selected Product Updates Global State Variable
 	useEffect(() => {
 		const id = selected['id'];
 		setCurrentProductId(id);
-		console.log('Selected', currentProductId);
-
+		console.log('Selected', selected);
 	}, [selected]);
+
+	// currentProductId Logger (from Global Context)
+	useEffect(() => {
+		// console.log('Current Product FROM CONTEXT', currentProductId);
+	}, [currentProductId]);
 
 	return (
 		<div className={`${styles.overview} ${styles.grid}`}>
 			{/* <h1>Product Overview Widget</h1> */}
-			<Images selected={selected} productStyles={productStyles} />
+			<Images selected={selected} setSelected={setSelected} productStyles={productStyles} />
 			<StyleSelector selected={selected} productStyles={productStyles} />
 			<ProductInfo selected={selected} />
 		</div>

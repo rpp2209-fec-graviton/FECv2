@@ -70,7 +70,7 @@ function StyleSelector ({ selected, productStyles }) {
 	return (
 		<div className={styles['overview__style-selector']}>
 			<h3>Style &gt; Selected Style</h3>
-			<ThumbnailCarousel type="styles__carousel" selected={selected} productStyles={productStyles} />
+			<ThumbnailCarousel type="images__carousel" selected={selected} productStyles={productStyles} />
 
 			<select
 				className={styles['drop-down']}

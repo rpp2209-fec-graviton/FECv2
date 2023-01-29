@@ -5,11 +5,13 @@ import Modal from './Modal.jsx';
 import toggleModal from '../overview-utils/modal.js';
 import styles from '../overview.module.css';
 
-function Images ({ selected, productStyles }) {
+function Images ({ selected, setSelected, productStyles }) {
 	if (productStyles[selected.id]) {
 		const [show, setShow] = useState(false);
 		const selectedStyles = productStyles[selected.id];
 		const selectedUrl = selectedStyles[0].photos[0].url;
+		// const test = selected.photos[0].url;
+		// console.log('url', test);
 		const selectedThumbnailUrl = selectedStyles[0].photos[0].thumbnail_url;
 
 		return (
@@ -28,7 +30,7 @@ function Images ({ selected, productStyles }) {
 					src={selectedUrl}
 					onClick={() => toggleModal(show, setShow)}
 				/>
-				<ThumbnailCarousel type="images__carousel" selected={selected} productStyles={productStyles} />
+				<ThumbnailCarousel type="styles__carousel" setSelected={setSelected} selected={selected} productStyles={productStyles} />
 			</div>
 		)
 	} else {

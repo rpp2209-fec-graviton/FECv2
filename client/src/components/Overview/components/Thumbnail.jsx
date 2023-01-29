@@ -1,11 +1,12 @@
 import React from 'react';
 import styles from '../overview.module.css';
 
-function Thumbnail({ type, style }) {
-	var photos = style.photos;
+function Thumbnail({ carouselType, type, photos, style }) {
+	// console.log('Style', style);
 
 	const handleClick = (e) => {
 		console.log('Clicked', style.style_id, style.name, style.original_price, style.sale_price);
+		// setSelected(style)
 	};
 
 	return (
