@@ -5,31 +5,35 @@ import Modal from './Modal.jsx';
 import toggleModal from '../overview-utils/modal.js';
 import styles from '../overview.module.css';
 
-function Images ({ selected, setSelected, productStyles }) {
+import { useProductContext } from "../../Context/ContextProvider.jsx";
+import { useOverviewContext } from "../Context/OverviewProvider.jsx";
+
+function Images ({ selected, setSelected, pStyles, productStyles }) {
+
 	if (productStyles[selected.id]) {
+		const { currentProductId } = useProductContext();
+		const { selectedStyle, setSelectedStyle } = useOverviewContext();
+
+		// Modal State
 		const [show, setShow] = useState(false);
-		const selectedStyles = productStyles[selected.id];
-		const selectedUrl = selectedStyles[0].photos[0].url;
-		// const test = selected.photos[0].url;
-		// console.log('url', test);
-		const selectedThumbnailUrl = selectedStyles[0].photos[0].thumbnail_url;
+
+		// Get First Style's Url
+		let url = pStyles[currentProductId][0].photos[0].url;
+
+		// Get new style url based on currently selected style (set in Thumbnail.jsx)
+		pStyles[currentProductId].forEach(style => {
+			if (style.style_id === selectedStyle.style_id) {
+				url = selectedStyle['photos'][0].url;
+			}
+		})
 
 		return (
 			<div className={styles.overview__images}>
 				<Modal toggleModal={()=> toggleModal(show, setShow)} show={show} setShow={setShow}>
-					<img
-						className={styles.modal__content}
-						src={selectedUrl}
-						alt="modal"
-					/>
+					<img className={styles.modal__content} src={url} alt="modal" />
 				</Modal>
 
-				<img
-					id="image-lg"
-					className={styles.overview__image}
-					src={selectedUrl}
-					onClick={() => toggleModal(show, setShow)}
-				/>
+				<img id="image-lg" className={styles.overview__image} src={url} onClick={() => toggleModal(show, setShow)}/>
 				<ThumbnailCarousel type="styles__carousel" setSelected={setSelected} selected={selected} productStyles={productStyles} />
 			</div>
 		)

@@ -5,25 +5,27 @@ import ProductInfo from './ProductInfo.jsx';
 import Images from './Images.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import { useProductContext } from "../../Context/ContextProvider.jsx";
+import { useOverviewContext } from "../Context/OverviewProvider.jsx";
 
 import { fetch } from '../../../../../server/utils/fetch.js';
 import styles from '../overview.module.css';
 
 function Overview() {
-	// This Now Comes From Global State/Global Context Provider
+	// Global State From Context Provider
 	const { currentProductId, setCurrentProductId, products, setProducts } = useProductContext();
-	// console.log('CURRENT PRODUCT FROM CONTEXT', currentProductId);
-	// console.log('PRODUCTS FROM CONTEXT', products[0]);
 
-	// Private State
-	const [quantity, setQuantity] = useState(0);
-	const [size, setSize] = useState("S");
-	const [starred, setStarred] = useState(false);
-	const [productStyles, setStyles] = useState({});
+	// From Overview Context
+	const { pStyles, setStyles, selectedStyle, setSelectedStyle } = useOverviewContext();
+
+	// Private Overview State
+	const [productStyles, setProductStyles] = useState({});
+	// const [quantity, setQuantity] = useState(0);
+	// const [size, setSize] = useState("S");
+	// const [starred, setStarred] = useState(false);
 
 	// Shared State (TODO: Move to global state)
 	const [selected, setSelected] = useState({});
-	const [starRating, setStarRating] = useState(0);
+	// const [starRating, setStarRating] = useState(0);
 
 	// Fetch and Set Product State
 	useEffect(() => {
@@ -31,7 +33,6 @@ function Overview() {
 			if (err) {
 				console.log("Caught Error", err);
 			} else {
-				// console.log('Data', payload.data);
 				setProducts(payload.data);
 			}
 		})
@@ -45,20 +46,32 @@ function Overview() {
 		setSelected({...selected});
 
 		// console.log('PRODUCTS FROM CONTEXT', products);
+
 		Object.values(products).forEach(item => {
+
+			// Get/Set all Styles for each Product
 			fetch(`products/${item.id}/styles`, (err, payload) => {
+
 				if (err) {
 					console.log('Styles Fetch Err', err);
 				} else {
 					let newStyles = payload.data.results;
+					setSelectedStyle(newStyles[0]);
 
 					setStyles((prevState) => ({
 						...prevState,
 						[item.id]: newStyles
 					}));
+
+					setProductStyles((prevState) => ({
+						...prevState,
+						[item.id]: newStyles
+					}));
 				}
 			});
+
 		});
+
 	}, [products]);
 
 	// Change To Selected Product Updates Global State Variable
@@ -69,15 +82,15 @@ function Overview() {
 	}, [selected]);
 
 	// currentProductId Logger (from Global Context)
-	useEffect(() => {
-		// console.log('Current Product FROM CONTEXT', currentProductId);
-	}, [currentProductId]);
+	// useEffect(() => {
+	// 	console.log('Current Product FROM CONTEXT', currentProductId);
+	// }, [currentProductId]);
 
 	return (
 		<div className={`${styles.overview} ${styles.grid}`}>
 			{/* <h1>Product Overview Widget</h1> */}
-			<Images selected={selected} setSelected={setSelected} productStyles={productStyles} />
-			<StyleSelector selected={selected} productStyles={productStyles} />
+			<Images selected={selected} setSelected={setSelected} productStyles={productStyles} pStyles={pStyles}/>
+			<StyleSelector selected={selected} productStyles={productStyles} pStyles={pStyles}/>
 			<ProductInfo selected={selected} />
 		</div>
 	);

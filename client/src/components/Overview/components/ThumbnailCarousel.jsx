@@ -1,13 +1,16 @@
 import React from 'react';
-import Thumbnail from './Thumbnail.jsx';
-import { useProductContext } from "../../Context/ContextProvider.jsx";
 import styles from '../overview.module.css';
 
-function ThumbnailCarousel({ type, selected, setSelected, productStyles }) {
-	const { products, currentProductId, setCurrentProductId } = useProductContext();
+import Thumbnail from './Thumbnail.jsx';
+import { useProductContext } from "../../Context/ContextProvider.jsx";
+import { useOverviewContext } from "../Context/OverviewProvider.jsx";
 
-	if (productStyles[currentProductId]) {
-		const carousel = productStyles[currentProductId].map(style => (
+function ThumbnailCarousel({ type, selected, setSelected }) {
+	const { products, currentProductId, setCurrentProductId } = useProductContext();
+	const { pStyles, setStyles } = useOverviewContext();
+
+	if (pStyles[currentProductId]) {
+		const carousel = pStyles[currentProductId].map(style => (
 			<Thumbnail
 				carouselType={type}
 				type={type === 'styles__carousel' ? 'thumbnail-square' : 'thumbnail-rounded'}
@@ -20,8 +23,6 @@ function ThumbnailCarousel({ type, selected, setSelected, productStyles }) {
 		return (
 			<div className={`${styles[type]} ${styles.carousel}`}>
 				{carousel}
-				{/* {stylesCarousel} */}
-				{/* {type === 'styles__carousel' ? stylesCarousel : productCarousel} */}
 			</div>
 		)
 	} else {
