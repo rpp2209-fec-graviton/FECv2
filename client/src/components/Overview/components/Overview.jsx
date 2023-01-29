@@ -10,19 +10,19 @@ import { fetch } from '../../../../../server/utils/fetch.js';
 import styles from '../overview.module.css';
 
 function Overview() {
-	const { currentProductId } = useProductContext();
-	console.log('CURRENT PRODUCT FROM CONTEXT', currentProductId);
+	// This Now Comes From Global State/Global Context Provider
+	const { currentProductId, setCurrentProductId, products, setProducts } = useProductContext();
+	// console.log('CURRENT PRODUCT FROM CONTEXT', currentProductId);
+	// console.log('PRODUCTS FROM CONTEXT', products[0]);
 
 	// Private State
 	const [quantity, setQuantity] = useState(0);
 	const [size, setSize] = useState("S");
 	const [starred, setStarred] = useState(false);
-
-	const [selected, setSelected] = useState({});
+	const [productStyles, setStyles] = useState({});
 
 	// Shared State (TODO: Move to global state)
-	const [products, setProducts] = useState([]);
-	const [productStyles, setStyles] = useState({});
+	const [selected, setSelected] = useState({});
 	const [starRating, setStarRating] = useState(0);
 
 	// Fetch and Set Product State
@@ -44,7 +44,8 @@ function Overview() {
 		let selected = products[0];
 		setSelected({...selected});
 
-		products.forEach(item => {
+		// console.log('PRODUCTS FROM CONTEXT', products);
+		Object.values(products).forEach(item => {
 			fetch(`products/${item.id}/styles`, (err, payload) => {
 				if (err) {
 					console.log('Styles Fetch Err', err);
@@ -60,8 +61,21 @@ function Overview() {
 		});
 	}, [products]);
 
+	// Updated Styles Logger
+	// useEffect(() => {
+	// 	console.log('Updated Styles', productStyles);
+	// }, [productStyles]);
+
+	// Change To Selected Product Updates Global State Variable
+	useEffect(() => {
+		const id = selected['id'];
+		setCurrentProductId(id);
+		console.log('Selected', currentProductId);
+
+	}, [selected]);
+
 	return (
-		<div className={`${styles.overview} ${styles.grid} ${styles.border}`}>
+		<div className={`${styles.overview} ${styles.grid}`}>
 			{/* <h1>Product Overview Widget</h1> */}
 			<Images selected={selected} productStyles={productStyles} />
 			<StyleSelector selected={selected} productStyles={productStyles} />
