@@ -20,14 +20,13 @@ function App() {
             <Overview />
           </OverviewProvider>
 
+          <RelatedProducts />
+
           <ReviewProvider>
             <Reviews />
           </ReviewProvider>
+
           <QuestionsView />
-
-          <RelatedProducts />
-
-
         </ContextProvider>
       </div>
 
