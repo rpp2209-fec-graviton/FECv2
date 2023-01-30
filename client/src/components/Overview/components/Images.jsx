@@ -32,10 +32,19 @@ function Images () {
 		return (
 			<div className={styles.overview__images}>
 				<Modal toggleModal={()=> toggleModal(show, setShow)} show={show} setShow={setShow}>
-					<img className={styles.modal__content} src={url} alt="modal" />
+					<img
+						className={styles.modal__content}
+						src={url}
+						alt="modal"
+					/>
 				</Modal>
 
-				<img id="image-lg" className={styles.overview__image} src={url} onClick={() => toggleModal(show, setShow)}/>
+				<img
+					alt="image-lg"
+					className={styles.overview__image}
+					src={url}
+					onClick={() => toggleModal(show, setShow)}
+				/>
 				<ThumbnailCarousel type="styles__carousel" />
 			</div>
 		)

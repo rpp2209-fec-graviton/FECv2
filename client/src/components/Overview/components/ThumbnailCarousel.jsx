@@ -20,7 +20,11 @@ function ThumbnailCarousel({ type }) {
 			/>));
 
 		return (
-			<div className={`${styles[type]} ${styles.carousel}`}>
+			<div
+				aria-role="img"
+				aria-label="carousel"
+				className={`${styles[type]} ${styles.carousel}`}
+			>
 				{carousel}
 			</div>
 		)

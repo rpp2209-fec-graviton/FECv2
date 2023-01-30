@@ -13,7 +13,6 @@ function ProductInfo() {
 
 	return (
 		<div className={styles['overview__product-info']}>
-			{/* <h3>ProductInfo Component</h3> */}
 			<StarRating />
 			<p>{product.category}</p>
 			<h2>{product.name}</h2>
