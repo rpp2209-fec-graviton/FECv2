@@ -1,13 +1,23 @@
 import React, { useState } from "react";
+import YourOutfitItem from "./YourOutfitItem.jsx";
 
-function YourOutfitList (props) {
+function YourOutfitList ({ cp }) {
   const [outfitItems, setOutfitItems] = useState([]);
+  console.log('cp', cp)
+
+  function addToOutfit() {
+    setOutfitItems([...outfitItems, cp])
+  };
 
   return (
     <div>
-    {props.outfit.map((product) => {
-      return <YourOutfitItem productInfo={product} outfitItems={outfitItems} setOutfitItems={setOutfitItems}/>
-    })}
+      Your Outfit
+      <div>
+        <button onClick={addToOutfit}> Add to Outfit (+) </button>
+      </div>
+      {outfitItems && outfitItems.map((item) => {
+        return <YourOutfitItem item={item}/>
+      })}
     </div>
   );
 };

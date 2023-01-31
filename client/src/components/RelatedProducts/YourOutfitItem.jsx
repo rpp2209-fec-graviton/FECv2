@@ -1,20 +1,17 @@
-function YourOutfitItem (props) {
-  function addToOutfit (e) {
-    props.setOutfitItems(...outfitItems, e.target);
-  }
+import React from "react";
 
+function YourOutfitItem ({ item }) {
+  console.log('item', item);
   return (
     <div>
-      {props.productInfo.image}
       <br/>
-      <button onClick={addToOutfit}></button>
-      {props.productInfo.category}
+      {item.category}
       <br/>
-      {props.productInfo.name}
+      {item.name}
       <br/>
-      {props.productInfo.price}
+      {item.default_price}
       <br/>
-      {props.productInfo.starRating}
+      {/* {props.productInfo.starRating} */}
       <br/>
     </div>
   )

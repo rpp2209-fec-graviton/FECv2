@@ -8,7 +8,6 @@ function RPCard ({ rp, rpStyle }) {
     // var relatedProduct = props.productInfo;
     // return comparison(currentProduct, relatedProduct);
   }
-  console.log('rpStyle', rpStyle)
 
   return (
     <div className={styles.card} data-testid='rpcard'>

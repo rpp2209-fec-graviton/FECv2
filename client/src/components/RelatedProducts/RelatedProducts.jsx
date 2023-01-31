@@ -8,6 +8,7 @@ import YourOutfitList from "./YourOutfitList.jsx"
 function RelatedProducts () {
   const [rpData, setRpData] = useState(null);
   const [rpStyles, setRpStyles] = useState(null);
+  const [currentProductData, setCurrentProductData] = useState(null);
   const [loaded, setLoaded] = useState(false);
   const { productId } = useParams();
 
@@ -28,27 +29,31 @@ function RelatedProducts () {
     let idList;
     fetchData(`products/${productId}/related`)
     .then((ids) => {
-      console.log('ids', ids)
       idList = ids;
       return Promise.all(ids.map((id) => {
         return fetchData(`products/${id}`)
       }))
-    }).then((data) => {
+    })
+    .then((data) => {
       setRpData(data);
       return Promise.all(idList.map((id) => {
         return fetchData(`products/${id}/styles`)
       }))
-    }).then((styles) => {
-      console.log('styles', styles)
+    })
+    .then((styles) => {
       setRpStyles(styles);
+      return fetchData(`products/${productId}`)
+    })
+    .then((currentProductData) => {
+      console.log('cpdata', currentProductData)
+      setCurrentProductData(currentProductData);
       setLoaded(true);
-    });
+    })
   },[]);
 
   return (
     <div data-testid='rp'>
-      {loaded? <RPList rps={rpData} rpStyles={rpStyles}/> : null}
-      {/* <YourOutfitList /> */}
+      {loaded? <><RPList rps={rpData} rpStyles={rpStyles}/><br/><YourOutfitList cp={currentProductData}/></>: null}
     </div>
   )
 }
