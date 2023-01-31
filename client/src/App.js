@@ -21,12 +21,11 @@ function App() {
           </OverviewProvider>
 
           <RelatedProducts />
+          <QuestionsView />
 
           <ReviewProvider>
             <Reviews />
           </ReviewProvider>
-
-          <QuestionsView />
         </ContextProvider>
       </div>
 
