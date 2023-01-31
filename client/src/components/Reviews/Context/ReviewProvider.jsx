@@ -32,7 +32,7 @@ export default function ReviewProvider({ children }) {
       {children}
 
 
-     { console.log(response, 'resposne ')}
+     {/* { console.log(response, 'resposne ')} */}
 
     </ReviewContext.Provider>
   )
