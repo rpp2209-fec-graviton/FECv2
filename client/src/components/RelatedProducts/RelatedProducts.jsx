@@ -1,4 +1,5 @@
 const axios = require('axios');
+import { useParams } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { fetch } from "../../../../server/utils/fetch.js"
 import RPList from "./RPList.jsx";
@@ -6,6 +7,7 @@ import YourOutfitList from "./YourOutfitList.jsx"
 
 function RelatedProducts () {
   const [rpData, setRpData] = useState(null);
+  const { productId } = useParams();
 
   async function fetchData(ep) {
     return new Promise((resolve, reject) => {
@@ -20,10 +22,8 @@ function RelatedProducts () {
     })
   }
 
-  //fetch related products for product 71699 for testing
-  //TODO: make fetch dynamic for selected product
   useEffect(() => {
-    fetchData('products/71699/related')
+    fetchData(`products/${productId}/related`)
     .then((ids) => {
       return Promise.all(ids.map((id) => {
         return fetchData(`products/${id}`)
