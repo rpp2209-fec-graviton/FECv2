@@ -27,8 +27,6 @@ export default function Reviews({ reviewData }) {
   }
 
   return (
-    {/* Gabby Note: Added an id attribute so Overview can scroll
-    to this when 'Read all reviews' text clicked */}
     <div id="reviews" className={styles.reviews}>
       <ReviewForm />
       <ReviewWrapper>

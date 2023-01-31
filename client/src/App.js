@@ -1,4 +1,5 @@
 import React from 'react';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary.jsx';
 
 // Context Imports
 import ContextProvider from './components/Context/ContextProvider.jsx';
@@ -16,16 +17,24 @@ function App() {
     <>
       <div className="body">
         <ContextProvider>
+        <ErrorBoundary>
           <OverviewProvider>
             <Overview />
           </OverviewProvider>
+        </ErrorBoundary>
 
+        <ErrorBoundary>
           <RelatedProducts />
+        </ErrorBoundary>
+        <ErrorBoundary>
           <QuestionsView />
+        </ErrorBoundary>
 
+        <ErrorBoundary>
           <ReviewProvider>
             <Reviews />
           </ReviewProvider>
+        </ErrorBoundary>
         </ContextProvider>
       </div>
 
