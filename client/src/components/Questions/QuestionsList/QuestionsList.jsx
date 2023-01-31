@@ -3,24 +3,14 @@ import React, { useState, useEffect } from "react";
 //COMPONENTS
 import Question from "./Question.jsx";
 import AnswersList from ".././Answers/AnswersList.jsx";
-<<<<<<< HEAD
-import useQuestionsList from ".././hooks/useQuestionsList.jsx";
-import MoreAnsweredQ from "./MoreAnsweredQ.jsx";
-
-//HOOKS
-import useCount from ".././hooks/useCount.jsx";
-import usePage from ".././hooks/usePage.jsx";
-import useMoreQ from ".././hooks/useMoreQ.jsx";
-=======
-import useQuestionsList from "./hooks/useQuestionsList.jsx";
+import useQuestionsList from "../hooks/useQuestionsList.jsx";
 import SearchBar from './SearchBar.jsx';
 import MoreAnsweredQ from "./MoreAnsweredQ.jsx";
 
 //HOOKS
 import useCount from "../hooks/useCount.jsx";
 import usePage from "../hooks/usePage.jsx";
-import useMoreQ from "./hooks/useMoreQ.jsx";
->>>>>>> 0ba4cf6a5ff6810ee34661051eb3cb9c6ba008fe
+import useMoreQ from "../hooks/useMoreQ.jsx";
 
 function QuestionsList(props) {
   const [page, makePage] = usePage(1);
@@ -48,10 +38,7 @@ function QuestionsList(props) {
 
   return (
     <div>
-<<<<<<< HEAD
-=======
       <SearchBar {...{ filterQList }} />
->>>>>>> 0ba4cf6a5ff6810ee34661051eb3cb9c6ba008fe
       <div>
         {questionsList.map((q, index) => {
           if (index >= count) {

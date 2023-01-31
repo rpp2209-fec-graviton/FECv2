@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Answer from "./Answer.jsx";
 import SampleData from "../../../../../ExampleData/index.js";
-import useAnswersList from "./hooks/useAnswersList.jsx";
+import useAnswersList from "../hooks/useAnswersList.jsx";
 import useCount from "../hooks/useCount.jsx";
-import useMoreA from "./hooks/useMoreA.jsx";
+import useMoreA from "../hooks/useMoreA.jsx";
 
 function AnswersList({ question_id }) {
   /*Implementation Tasks
