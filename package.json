@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watch",
+    "test": "jest --watchAll --coverage",
     "test-overview": "jest ./client/src/components/Overview --watch --coverage",
     "test-modal": "jest ./client/src/components/Overview/overview-utils --watch",
     "test-reviews": "jest ./client/src/components/Reviews --watch --coverage",
