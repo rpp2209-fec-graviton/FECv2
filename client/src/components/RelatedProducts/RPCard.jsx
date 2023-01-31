@@ -9,7 +9,7 @@ function RPCard ({ rp }) {
   }
 
   return (
-    <div>
+    <div data-testid='rpcard'>
       {/* {props.productInfo.image}
       <br/> */}
       <button onClick={starProduct}>Star</button>

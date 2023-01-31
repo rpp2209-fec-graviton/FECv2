@@ -4,7 +4,7 @@ import { fetch } from "../../../../server/utils/fetch.js"
 import RPList from "./RPList.jsx";
 import YourOutfitList from "./YourOutfitList.jsx"
 
-function RelatedProducts (props) {
+function RelatedProducts () {
   const [rpData, setRpData] = useState(null);
 
   async function fetchData(ep) {
@@ -34,7 +34,7 @@ function RelatedProducts (props) {
   },[]);
 
   return (
-    <div>
+    <div data-testid='rp'>
       {rpData && <RPList rps={rpData}/>}
       {/* <YourOutfitList /> */}
     </div>
