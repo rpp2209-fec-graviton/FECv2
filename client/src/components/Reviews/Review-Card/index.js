@@ -9,7 +9,7 @@ import { useReviewContext } from "../Context/ReviewProvider.jsx";
 
 export default function ReviewCard({ reviewData }) {
 
-  console.log(reviewData);
+  console.log(reviewData, 'reviewData');
   const { body, date, photos, rating, recommend, response, reviewer_name, summary, helpfulness } = reviewData
 
   return (
