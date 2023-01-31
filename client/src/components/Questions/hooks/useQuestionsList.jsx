@@ -6,7 +6,6 @@ export default function useQuestionsList() {
 
   var filterQList = (text) => {
     setQuestionsList([...questionsList.sort((a, b) => {
-      console.log(a.question_body.toLowerCase().indexOf(text), b.question_body.toLowerCase().indexOf(text));
       return b.question_body.toLowerCase().indexOf(text) - a.question_body.toLowerCase().indexOf(text);
     })])
   };
