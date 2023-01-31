@@ -7,18 +7,26 @@ import StyleSelector from './StyleSelector.jsx';
 import { useProductContext } from "../../Context/ContextProvider.jsx";
 import { useOverviewContext } from "../Context/OverviewProvider.jsx";
 
+import getRatingsAvg from '../overview-utils/star-ratings-avg.js';
 import { fetch } from '../../../../../server/utils/fetch.js';
 import styles from '../overview.module.css';
 
 function Overview() {
 	// Global Context
-	const { currentProductId } = useProductContext();
+	const { currentProductId, ratingsAverage, setRatingsAverage } = useProductContext();
 	// Overview Context
 	const { products, setProducts, product, setProduct, pStyles, setStyles, selectedStyle, setSelectedStyle } = useOverviewContext();
 
 	// Shared State (TODO: Move to global state)
 	// const [starred, setStarred] = useState(false);
 	// const [starRating, setStarRating] = useState(0);
+
+	// =============================================
+	//   TO-DO: Figure out why avg calculation
+	// 			wont run inside useEffect call
+	// =============================================
+	getRatingsAvg(currentProductId);
+	// console.log('Star Reviews', ratingsAverage);
 
 	// Fetch and Set All Products
 	useEffect(() => {
@@ -55,7 +63,6 @@ function Overview() {
 				}
 			});
 		});
-
 	}, [products]);
 
 	return (

@@ -5,9 +5,8 @@ const ProductContext = createContext(null);
 
 export default function ContextProvider({ children }) {
 
-  // Gabby Comment: Changing the default product ID because the old one
-  // (71697) has no image urls to test with (not sure why)
   const [currentProductId, setCurrentProductId] = useState(71697)
+  const [ratingsAverage, setRatingsAverage] = useState(null)
 
   const { response, loading, error } = useFetchProduct(currentProductId)
 
@@ -16,8 +15,18 @@ export default function ContextProvider({ children }) {
     setCurrentProductId(productId)
   }
 
+  const ctx = {
+    loading,
+    error,
+    response,
+    handleCurrentId,
+    currentProductId,
+    ratingsAverage,
+    setRatingsAverage
+  };
+
   return (
-    <ProductContext.Provider value={{ loading, error, response, handleCurrentId, currentProductId }}>
+    <ProductContext.Provider value={ctx}>
       {children}
     </ProductContext.Provider>
   )
