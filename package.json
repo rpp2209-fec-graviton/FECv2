@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "client-dev": "npx webpack --watch",
+    "server-dev": "npx nodemon server/index.js",
+
     "test": "jest --watchAll coverage",
     "test-overview": "jest ./client/src/components/Overview --watch --coverage",
     "test-modal": "jest ./client/src/components/Overview/overview-utils --watch",
