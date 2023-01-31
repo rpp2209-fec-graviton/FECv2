@@ -7,6 +7,8 @@ import YourOutfitList from "./YourOutfitList.jsx"
 
 function RelatedProducts () {
   const [rpData, setRpData] = useState(null);
+  const [rpStyles, setRpStyles] = useState(null);
+  const [loaded, setLoaded] = useState(false);
   const { productId } = useParams();
 
   async function fetchData(ep) {
@@ -23,19 +25,29 @@ function RelatedProducts () {
   }
 
   useEffect(() => {
+    let idList;
     fetchData(`products/${productId}/related`)
     .then((ids) => {
+      console.log('ids', ids)
+      idList = ids;
       return Promise.all(ids.map((id) => {
         return fetchData(`products/${id}`)
       }))
     }).then((data) => {
       setRpData(data);
-    })
+      return Promise.all(idList.map((id) => {
+        return fetchData(`products/${id}/styles`)
+      }))
+    }).then((styles) => {
+      console.log('styles', styles)
+      setRpStyles(styles);
+      setLoaded(true);
+    });
   },[]);
 
   return (
     <div data-testid='rp'>
-      {rpData && <RPList rps={rpData}/>}
+      {loaded? <RPList rps={rpData} rpStyles={rpStyles}/> : null}
       {/* <YourOutfitList /> */}
     </div>
   )
