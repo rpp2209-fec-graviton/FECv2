@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 //COMPONENTS
 import Question from "./Question.jsx";
 import AnswersList from ".././Answers/AnswersList.jsx";
+<<<<<<< HEAD
 import useQuestionsList from ".././hooks/useQuestionsList.jsx";
 import MoreAnsweredQ from "./MoreAnsweredQ.jsx";
 
@@ -10,12 +11,21 @@ import MoreAnsweredQ from "./MoreAnsweredQ.jsx";
 import useCount from ".././hooks/useCount.jsx";
 import usePage from ".././hooks/usePage.jsx";
 import useMoreQ from ".././hooks/useMoreQ.jsx";
+=======
+import useQuestionsList from "./hooks/useQuestionsList.jsx";
+import SearchBar from './SearchBar.jsx';
+import MoreAnsweredQ from "./MoreAnsweredQ.jsx";
 
+//HOOKS
+import useCount from "../hooks/useCount.jsx";
+import usePage from "../hooks/usePage.jsx";
+import useMoreQ from "./hooks/useMoreQ.jsx";
+>>>>>>> 0ba4cf6a5ff6810ee34661051eb3cb9c6ba008fe
 
 function QuestionsList(props) {
   const [page, makePage] = usePage(1);
   const [count, makeCount] = useCount(2);
-  const [questionsList, getQList] = useQuestionsList();
+  const [questionsList, getQList, filterQList] = useQuestionsList();
   const [moreQ, showMoreQ, toggleMoreQ] = useMoreQ();
   /*Implementation tasks
     [] Expands 2 Questions at a time and Scrollable
@@ -26,7 +36,7 @@ function QuestionsList(props) {
   }
 
   var checkQList = () => {
-    if (count >= questionsList.length-2 && questionsList.length !== 0 ) {
+    if (count >= questionsList.length - 2 && questionsList.length !== 0) {
       toggleMoreQ();
     }
   }
@@ -38,8 +48,15 @@ function QuestionsList(props) {
 
   return (
     <div>
+<<<<<<< HEAD
+=======
+      <SearchBar {...{ filterQList }} />
+>>>>>>> 0ba4cf6a5ff6810ee34661051eb3cb9c6ba008fe
       <div>
-        {questionsList.slice(0, count).map((q, index) => {
+        {questionsList.map((q, index) => {
+          if (index >= count) {
+            return;
+          }
           return (
             <div className="Question" key={index}>
               <Question q={q} />
@@ -48,7 +65,7 @@ function QuestionsList(props) {
           )
         })}
       </div>
-      {questionsList.length > 0 && <MoreAnsweredQ {...{count, moreQ, showMoreQ, makeCount, makePage, updateQList, checkQList }} />}
+      {questionsList.length > 0 && <MoreAnsweredQ {...{ count, moreQ, showMoreQ, makeCount, makePage, updateQList, checkQList }} />}
     </div>
   )
 }

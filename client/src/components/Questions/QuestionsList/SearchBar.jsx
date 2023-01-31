@@ -1,15 +1,13 @@
 import React, { useState } from "react";
+import useSearchInput from './hooks/useSearchInput.jsx';
 
-function SearchBar(props) {
-  /*Implementation Tasks
-    1. automatically filters Questions with 3 or more characters
-  */
-
-  const [searchInput, setSearchInput] = useState('');
+function SearchBar({filterQList}) {
+  const [searchInput, handleSearch] = useSearchInput();
 
   var handleChange = (e) => {
-    setSearchInput(e.target.value);
-  };
+    handleSearch(e.target.value, filterQList);
+    console.log('searchinput', searchInput);
+  }
 
   return (
     <input

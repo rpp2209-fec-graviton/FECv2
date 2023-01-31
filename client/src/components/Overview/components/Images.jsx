@@ -13,19 +13,23 @@ function Images ({ selected, productStyles }) {
 		const selectedThumbnailUrl = selectedStyles[0].photos[0].thumbnail_url;
 
 		return (
-			<>
+			<div className={styles.overview__images}>
 				<Modal toggleModal={()=> toggleModal(show, setShow)} show={show} setShow={setShow}>
-					<img className={styles.modal__content} src={selectedUrl} />
+					<img
+						className={styles.modal__content}
+						src={selectedUrl}
+						alt="modal"
+					/>
 				</Modal>
 
 				<img
 					id="image-lg"
-					className={`${styles.overview__image} ${styles.border}`}
+					className={styles.overview__image}
 					src={selectedUrl}
 					onClick={() => toggleModal(show, setShow)}
 				/>
-				<ThumbnailCarousel selected={selected} productStyles={productStyles} />
-			</>
+				<ThumbnailCarousel type="images__carousel" selected={selected} productStyles={productStyles} />
+			</div>
 		)
 	} else {
 		return (<h2>No Images to Display</h2>)

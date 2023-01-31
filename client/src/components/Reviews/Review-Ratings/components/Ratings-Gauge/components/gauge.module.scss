@@ -1,0 +1,37 @@
+.gauge__Container {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: left;
+  // justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+}
+
+.gauge__Text {
+  width: 20%;
+}
+
+.gauge__BarContainer {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 80%;
+}
+
+.gauge__Bar {
+  height: 10px;
+  position: absolute;
+  width: 40%;
+  background-color: black;
+  z-index: 1;
+}
+
+.gauge_GhostBar {
+  height: 10px;
+  width: 100%;
+  position: absolute;
+  z-index: 0;
+  background-color: rgb(199, 199, 199);
+  display: flex;
+}

@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const axios = require('axios');
-const { fetch } = require('.././fetch.js');
+const { fetch } = require('.././utils/fetch.js');
 
 var sortList = (array, key) => {
   return (

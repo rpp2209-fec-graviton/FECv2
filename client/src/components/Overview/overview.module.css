@@ -7,18 +7,28 @@
   --silver: #c0c0c0;
 }
 
-/*
-  Remove this before pushing
-  and make separate PR to center
-  entire Product Detail container
-*/
+/* =======================
+      Grid & Flexbox
+========================*/
+.grid {
+  display: grid;
+  grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+  grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+}
 
-body {
+.flex {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.flex-column {
+  flex-direction: column;
+}
+
+/* =======================
+      Testing Styles
+========================*/
 .error {
   border: 5px solid red;
 }
@@ -29,23 +39,72 @@ body {
 }
 
 .border {
-  border: 2px solid var(--white);
+  border: 2px solid var(--silver);
+}
+
+.grey-border {
+  border: 2px solid var(--silver);
 }
 
 /* =======================
-  Parent/Overview Styles
+    Overview Styles
 ========================*/
+.overview {
+  padding: 40px;
+}
+
+.overview__product-info {
+  grid-column: 6 / span 4;
+}
+
+.overview__style-selector {
+  grid-column: 6 / span 6;
+  grid-row-start: 4;
+  height: 80px;
+}
+
+.overview__images {
+  position: relative;
+  grid-column-start: 2;
+}
+
 .overview__image {
   object-fit: cover;
   width: 400px;
-  height: 400px;
+  height: auto;
 }
 
 /* =======================
-    Thumbnail Styles
+      Image Styles
 ========================*/
-.thumbnail {
+/*        TO-DO:
+  Convert scrollbar to arrows
+  that can be clicked to scroll
+*/
+.images__carousel {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  width: 90px;
+  height: 360px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  z-index: 2;
+}
+
+/* .styles__carousel {
+  border: 1px solid var(--white);
+} */
+
+.thumbnail-square {
+  border: 1px solid var(--silver);
+  width: 80px;
+  height: 80px;
+}
+
+.thumbnail-rounded {
   border-radius: 50%;
+  border: 1px solid var(--silver);
   width: 80px;
   height: 80px;
 }
@@ -53,7 +112,7 @@ body {
 /* =======================
       Modal Styles
 ========================*/
-.modal {
+.images__modal {
   height: 1200px;
   background: white;
   box-shadow: -2rem 2rem 2rem rgba(black, 0.2);
@@ -103,8 +162,25 @@ body {
 }
 
 .stars__a {
-  color: var(--white);
   font-size: 12px;
   padding-left: 4px;
   vertical-align: text-top;
+}
+
+/* =======================
+      Button Styles
+========================*/
+.button,
+.drop-down {
+  margin: 32px 8px 0 0;
+  height: 40px;
+  width: 240px;
+  border: 1px solid rgba(47, 79, 79, 0.8);
+  justify-content: center;
+  display: inline-flex;
+  align-items: center;
+}
+
+.button:active {
+  box-shadow: inset 3px 3px 5px 6px #ccc;;
 }
