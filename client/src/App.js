@@ -17,27 +17,33 @@ function App() {
     <>
       <div className="body">
         <ContextProvider>
-        <ErrorBoundary>
-          <OverviewProvider>
-            <Overview />
-          </OverviewProvider>
-        </ErrorBoundary>
 
-        <ErrorBoundary>
-          <RelatedProducts />
-        </ErrorBoundary>
-        <ErrorBoundary>
-          <QuestionsView />
-        </ErrorBoundary>
+          {/* Overview  */}
+          <ErrorBoundary component="Overview">
+            <OverviewProvider>
+              <Overview />
+            </OverviewProvider>
+          </ErrorBoundary>
 
-        <ErrorBoundary>
-          <ReviewProvider>
-            <Reviews />
-          </ReviewProvider>
-        </ErrorBoundary>
+          {/* Related Products  */}
+          <ErrorBoundary component="Related">
+            <RelatedProducts />
+          </ErrorBoundary>
+
+          {/* Product Questions  */}
+          <ErrorBoundary component="Questions">
+            <QuestionsView />
+          </ErrorBoundary>
+
+          {/* Product Reviews  */}
+          <ErrorBoundary component="Reviews">
+            <ReviewProvider>
+              <Reviews />
+            </ReviewProvider>
+          </ErrorBoundary>
+
         </ContextProvider>
       </div>
-
     </>
   );
 }
