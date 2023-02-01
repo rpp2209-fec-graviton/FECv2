@@ -5,17 +5,21 @@ const ProductContext = createContext(null);
 
 export default function ContextProvider({ children }) {
 
-  const [currentProductId, setCurrentProductId] = useState(71698)
+  const [currentProductId, setProductID] = useState(71698)
 
   const { response, loading, error } = useFetchProduct(currentProductId)
 
+  // This was throwing an error when I tried to use it in Home.jsx
+  // Using setProductID to update the currentProductId instead
   const handleCurrentId = (e, productId) => {
     e.preventDefault();
     setCurrentProductId(productId)
   }
 
+  const ctx = { loading, error, response, handleCurrentId, currentProductId, setProductID };
+
   return (
-    <ProductContext.Provider value={{ loading, error, response, handleCurrentId, currentProductId }}>
+    <ProductContext.Provider value={ctx}>
       {children}
     </ProductContext.Provider>
   )

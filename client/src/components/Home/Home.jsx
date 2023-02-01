@@ -7,39 +7,41 @@ import Reviews from '../Reviews/index.js';
 import RelatedProducts from '../RelatedProducts/RelatedProducts.jsx';
 import QuestionsView from '../Questions/index.js';
 
-import ContextProvider from '../Context/ContextProvider.jsx';
+
+import { useProductContext } from '../Context/ContextProvider.jsx';
 import ReviewProvider from '../Reviews/Context/ReviewProvider.jsx';
 
 function Home () {
 	// Get id from query string
 	const productId = useParams();
+	const { currentProductId, setProductID } = useProductContext();
 
-	// String trailing slacsh '/' and set to state
-	let newId = productId['*'].toString().split('/');
-	const [id, setId] = useState(newId[0]);
 
-	// ID logger
+	// ID Context logger
 	useEffect(() => {
-		if (id) {
-			console.log('Product ID From State', id);
+		if (currentProductId) {
+			// Remove trailing slash '/' and set to
+			// Global `selected product id` Context
+			const id = productId['*'].split('/')[0];
+			setProductID(id);
 		}
-	}, [id]);
+	}, [productId, currentProductId]);
 
 	return (
 		<Routes>
 			<Route path='/:id' element={
-				<ContextProvider>
-					{/* Dev Logger: Uncomment to view selected product on page load */}
-					{/* <h3>Selected Product Is: {id && id}!</h3> */}
-					<Overview />
+					<div className="body">
+						{/* Dev Logger: Uncomment to view selected product on page load */}
+						{/* <h3>Selected Product Is: {currentProductId && currentProductId}!</h3> */}
+						<Overview />
 
-					<RelatedProducts />
-					<QuestionsView />
+						<RelatedProducts />
+						<QuestionsView />
 
-					<ReviewProvider>
-						<Reviews />
-					</ReviewProvider>
-				</ContextProvider>
+						<ReviewProvider>
+							<Reviews />
+						</ReviewProvider>
+					</div>
 			}>
 			</Route>
 		</Routes>

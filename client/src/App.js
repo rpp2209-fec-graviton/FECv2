@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -16,13 +16,13 @@ import QuestionsView from './components/Questions/index.js';
 function App() {
   return (
     <>
-      <div className="body">
-      <Router>
-        <Routes>
-          <Route path="/*" element={<Home />} />
-        </Routes>
-      </Router>
-      </div>
+      <ContextProvider>
+        <Router>
+          <Routes>
+            <Route path="/*" element={<Home />} />
+          </Routes>
+        </Router>
+      </ContextProvider>
 
     </>
   );
