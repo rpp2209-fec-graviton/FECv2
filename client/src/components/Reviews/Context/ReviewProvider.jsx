@@ -13,6 +13,8 @@ export default function ReviewProvider({ children }) {
 
   const { loading, error, response, handleCurrentId, currentProductId } = useProductContext()
 
+
+
   const yes = 2;
   const { reviewResponse, reviewError, reviewLoading } = useFetchProductInfo({
     method: 'post',
@@ -26,8 +28,12 @@ export default function ReviewProvider({ children }) {
 
   return (
 
-    <ReviewContext.Provider value={{ sort, yes,  setSort, currentCard, reviewResponse, reviewLoading}}>
+    <ReviewContext.Provider value={{ sort, yes, setSort, currentCard, reviewResponse, reviewLoading }}>
       {children}
+
+
+     {/* { console.log(response, 'resposne ')} */}
+
     </ReviewContext.Provider>
   )
 }

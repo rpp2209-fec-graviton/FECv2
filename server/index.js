@@ -9,6 +9,7 @@ const morganBody = require('morgan-body');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 
+app.use(require('express-status-monitor')());
 
 morganBody(app,
   {
