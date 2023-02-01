@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import YourOutfitItem from "./YourOutfitItem.jsx";
 
-function YourOutfitList ({ cp }) {
+function YourOutfitList ({ cp, fetchData }) {
   const [outfitItems, setOutfitItems] = useState([]);
-  console.log('cp', cp)
 
   function addToOutfit() {
     setOutfitItems([...outfitItems, cp])
@@ -16,7 +15,7 @@ function YourOutfitList ({ cp }) {
         <button onClick={addToOutfit}> Add to Outfit (+) </button>
       </div>
       {outfitItems && outfitItems.map((item) => {
-        return <YourOutfitItem item={item}/>
+        return <YourOutfitItem key={item.id} item={item} fetchData={fetchData}/>
       })}
     </div>
   );

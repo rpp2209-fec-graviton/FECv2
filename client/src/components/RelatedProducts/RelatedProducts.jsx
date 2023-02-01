@@ -45,7 +45,6 @@ function RelatedProducts () {
       return fetchData(`products/${productId}`)
     })
     .then((currentProductData) => {
-      console.log('cpdata', currentProductData)
       setCurrentProductData(currentProductData);
       setLoaded(true);
     })
@@ -53,7 +52,7 @@ function RelatedProducts () {
 
   return (
     <div data-testid='rp'>
-      {loaded? <><RPList rps={rpData} rpStyles={rpStyles}/><br/><YourOutfitList cp={currentProductData}/></>: null}
+      {loaded? <><RPList rps={rpData} rpStyles={rpStyles}/><br/><YourOutfitList cp={currentProductData} fetchData={fetchData}/></>: null}
     </div>
   )
 }
