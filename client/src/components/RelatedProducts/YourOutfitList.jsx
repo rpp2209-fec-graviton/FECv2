@@ -5,7 +5,9 @@ function YourOutfitList ({ cp, fetchData }) {
   const [outfitItems, setOutfitItems] = useState([]);
 
   function addToOutfit() {
-    setOutfitItems([...outfitItems, cp])
+    outfitItems.push(cp);
+    var newOutfitState = [...new Set(outfitItems)];
+    setOutfitItems(newOutfitState)
   };
 
   return (
