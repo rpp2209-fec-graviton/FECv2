@@ -1,4 +1,5 @@
 import React from 'react';
+
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary.jsx';
 
 // Context Imports
@@ -17,7 +18,6 @@ function App() {
     <>
       <div className="body">
         <ContextProvider>
-
           {/* Overview  */}
           <ErrorBoundary component="Overview">
             <OverviewProvider>
@@ -41,7 +41,6 @@ function App() {
               <Reviews />
             </ReviewProvider>
           </ErrorBoundary>
-
         </ContextProvider>
       </div>
     </>
