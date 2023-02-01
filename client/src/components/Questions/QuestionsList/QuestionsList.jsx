@@ -10,13 +10,13 @@ import MoreAnsweredQ from "./MoreAnsweredQ.jsx";
 //HOOKS
 import useCount from "../hooks/useCount.jsx";
 import usePage from "../hooks/usePage.jsx";
-import useMoreQ from "../hooks/useMoreQ.jsx";
+import useMore from "../hooks/useMoreQA.jsx";
 
 function QuestionsList(props) {
   const [page, makePage] = usePage(1);
   const [count, makeCount] = useCount(2);
   const [questionsList, getQList, filterQList] = useQuestionsList();
-  const [moreQ, showMoreQ, toggleMoreQ] = useMoreQ();
+  const [more, showMore, toggleMore] = useMore();
   /*Implementation tasks
     [] Expands 2 Questions at a time and Scrollable
     [] Confined to a single page, any longer should be scrollable
@@ -27,7 +27,7 @@ function QuestionsList(props) {
 
   var checkQList = () => {
     if (count >= questionsList.length - 2 && questionsList.length !== 0) {
-      toggleMoreQ();
+      toggleMore();
     }
   }
 
@@ -52,7 +52,7 @@ function QuestionsList(props) {
           )
         })}
       </div>
-      {questionsList.length > 0 && <MoreAnsweredQ {...{ count, moreQ, showMoreQ, makeCount, makePage, updateQList, checkQList }} />}
+      {questionsList.length > 0 && <MoreAnsweredQ {...{ count, more, showMore, makeCount, makePage, updateQList, checkQList }} />}
     </div>
   )
 }
