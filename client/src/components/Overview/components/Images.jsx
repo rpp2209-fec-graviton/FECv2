@@ -17,10 +17,11 @@ function Images () {
 
 	// Overview Context
 	const { pStyles, selectedStyle, setSelectedStyle } = useOverviewContext();
+	var url;
 
 	if (pStyles[currentProductId]) {
 		// Get First Style's Url
-		let url = pStyles[currentProductId][0].photos[0].url;
+		url = pStyles[currentProductId][0].photos[0].url;
 
 		// Update URL based on currently selected style (set in Thumbnail.jsx)
 		pStyles[currentProductId].forEach(style => {
@@ -28,29 +29,29 @@ function Images () {
 				url = selectedStyle['photos'][0].url;
 			}
 		})
-
-		return (
-			<div className={styles.overview__images}>
-				<Modal toggleModal={()=> toggleModal(show, setShow)} show={show} setShow={setShow}>
-					<img
-						className={styles.modal__content}
-						src={url}
-						alt="modal"
-					/>
-				</Modal>
-
-				<img
-					alt="image-lg"
-					className={styles.overview__image}
-					src={url}
-					onClick={() => toggleModal(show, setShow)}
-				/>
-				<ThumbnailCarousel type="styles__carousel" />
-			</div>
-		)
-	} else {
-		return (<h2>No Images to Display</h2>)
 	}
+
+	return (
+		<div className={styles.overview__images}>
+			<Modal toggleModal={()=> toggleModal(show, setShow)} show={show} setShow={setShow}>
+				<img
+					className={styles.modal__content}
+					src={url && url}
+					alt="modal"
+					id="modal"
+				/>
+			</Modal>
+
+			<img
+				alt="image-lg"
+				id="image-lg"
+				className={styles.overview__image}
+				src={url && url}
+				onClick={() => toggleModal(show, setShow)}
+			/>
+			<ThumbnailCarousel type="styles__carousel" />
+		</div>
+	)
 };
 
 export default Images;
