@@ -10,6 +10,15 @@ function YourOutfitList ({ cp, fetchData }) {
     setOutfitItems(newOutfitState)
   };
 
+  useEffect(() => {
+    const data = window.localStorage.getItem('OUTFIT_STATE');
+    if ( data !== null ) setOutfitItems(JSON.parse(data));
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem('OUTFIT_STATE', JSON.stringify(outfitItems));
+  }, [outfitItems]);
+
   return (
     <div>
       Your Outfit

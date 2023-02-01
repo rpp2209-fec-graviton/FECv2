@@ -26,6 +26,7 @@ function RelatedProducts () {
   }
 
   useEffect(() => {
+    setLoaded(false);
     let idList;
     fetchData(`products/${productId}/related`)
     .then((ids) => {
@@ -48,7 +49,7 @@ function RelatedProducts () {
       setCurrentProductData(currentProductData);
       setLoaded(true);
     })
-  },[]);
+  },[productId]);
 
   return (
     <div data-testid='rp'>
