@@ -1,5 +1,6 @@
 const axios = require('axios');
 import { useParams } from "react-router-dom";
+import { useNavigate } from  'react-router-dom';
 import React, { useState, useEffect } from "react";
 import { fetch } from "../../../../server/utils/fetch.js"
 import RPList from "./RPList.jsx";
@@ -11,6 +12,7 @@ function RelatedProducts () {
   const [currentProductData, setCurrentProductData] = useState(null);
   const [loaded, setLoaded] = useState(false);
   const { productId } = useParams();
+  const navigate = useNavigate();
 
   async function fetchData(ep) {
     return new Promise((resolve, reject) => {
@@ -24,6 +26,10 @@ function RelatedProducts () {
       fetch(ep, callback)
     })
   }
+
+  function changeProduct (id) {
+    navigate(`/${id}`)
+  };
 
   useEffect(() => {
     setLoaded(false);
@@ -53,7 +59,7 @@ function RelatedProducts () {
 
   return (
     <div data-testid='rp'>
-      {loaded? <><RPList rps={rpData} rpStyles={rpStyles}/><br/><YourOutfitList cp={currentProductData} fetchData={fetchData}/></>: null}
+      {loaded? <><RPList rps={rpData} rpStyles={rpStyles} changeProduct={changeProduct}/><br/><YourOutfitList cp={currentProductData} fetchData={fetchData} changeProduct={changeProduct}/></>: null}
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from './YourOutfitItem.module.css';
 
-function YourOutfitItem ({ item, fetchData }) {
+function YourOutfitItem ({ item, fetchData, changeProduct }) {
   const [photoUrl, setPhotoUrl] = useState(null);
 
   fetchData(`products/${item.id}/styles`)
@@ -11,7 +11,7 @@ function YourOutfitItem ({ item, fetchData }) {
 
   if (photoUrl) {
     return (
-      <div className={styles.outfitCard}>
+      <div onClick={() => changeProduct(item.id)} className={styles.outfitCard}>
         <img src={photoUrl}/>
         <br/>
         {item.category}
