@@ -32,7 +32,7 @@ export default function Reviews({ reviewData }) {
       <ReviewWrapper>
         <ReviewRatings />
         <ReviewList>
-          {data && data.results.map((review) => {
+          {data && data.results.slice(0, 2).map((review) => {
             return <ReviewCard key={review.review_id} reviewData={review} />
           })}
         </ReviewList>

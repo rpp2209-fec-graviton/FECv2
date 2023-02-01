@@ -30,8 +30,6 @@ export default function ReviewProvider({ children }) {
 
     <ReviewContext.Provider value={{ sort, yes, setSort, currentCard, reviewResponse, reviewLoading }}>
       {children}
-
-
      {/* { console.log(response, 'resposne ')} */}
 
     </ReviewContext.Provider>
