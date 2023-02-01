@@ -29,7 +29,8 @@ function Home () {
 		<Routes>
 			<Route path='/:id' element={
 				<ContextProvider>
-					<h1>Selected Product Is: {id && id}!</h1>
+					{/* Dev Logger: Uncomment to view selected product on page load */}
+					{/* <h3>Selected Product Is: {id && id}!</h3> */}
 					<Overview />
 
 					<RelatedProducts />
