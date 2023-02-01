@@ -7,6 +7,10 @@ export default function useClickLogger(widget) {
 
   const withClickLogger = (Component) => {
     var handleClick = async () => {
+      if (Component.props.onClick !== undefined) {
+        Component.props.onClick();
+      }
+
       try {
         await axios({
           method: 'post',
@@ -23,9 +27,14 @@ export default function useClickLogger(widget) {
     }
 
     return (
-      <div onClick={handleClick}>
-        {Component}
-      </div>
+      <>
+        {/* {React.cloneElement(Component, {
+          onClick: handleClick
+        })} */}
+        <span onClick={handleClick}>
+          {Component}
+        </span>
+      </>
     )
   }
 
