@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
-import useFetchProduct from '../../components/Hooks/useFetchProduct.jsx'
+import useFetchProduct from '../../components/Hooks/useFetchProduct.jsx';
+import useClickLogger from '../../components/Hooks/useClickLogger.jsx';
 
 const ProductContext = createContext(null);
 
@@ -15,7 +16,7 @@ export default function ContextProvider({ children }) {
   }
 
   return (
-    <ProductContext.Provider value={{ loading, error, response, handleCurrentId, currentProductId }}>
+    <ProductContext.Provider value={{ loading, error, response, handleCurrentId, currentProductId, useClickLogger }}>
       {children}
     </ProductContext.Provider>
   )
