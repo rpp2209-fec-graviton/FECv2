@@ -2,8 +2,13 @@ require("dotenv").config();
 const path = require("path");
 const express = require('express')
 const app = express();
+
 const exampleRoutes = require('../ExampleData/index.js'); //e.g. exampleRoutes['/cart'];
 const { fetch } = require('./utils/fetch.js');
+
+// =============================================
+//                Middleware
+// =============================================
 const logger = require('./middleware/logger.js');
 const morganBody = require('morgan-body');
 const bodyParser = require('body-parser');
@@ -40,21 +45,13 @@ app.use(morgan(':cutoff-remaining :method :url :status :response-time ms - :res[
 app.use(logger)
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../dist')));
-app.use('/:productId', express.static(path.join(__dirname, '../dist')));
+app.use('/:id', express.static(path.join(__dirname, '../dist')));
+
 app.use(bodyParser.json());
 
-// Get Products from Atelier API
-app.get('/products', (req, res) => {
-  fetch('products', (err, products) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send(err);
-    } else {
-      res.status(200).send(products);
-    }
-  });
-});
-
+// =============================================
+//                  Routes
+// =============================================
 app.use('/products', require('./routes/product-route'))
 app.use('/reviews', require('./routes/review-route'))
 app.use('/qa/questions', require('./routes/questions-route'));
