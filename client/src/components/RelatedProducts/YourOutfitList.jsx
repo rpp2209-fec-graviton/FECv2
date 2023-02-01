@@ -5,9 +5,9 @@ function YourOutfitList ({ cp, fetchData, changeProduct }) {
   const [outfitItems, setOutfitItems] = useState([]);
 
   function addToOutfit() {
-    outfitItems.push(cp);
-    var newOutfitState = [...new Set(outfitItems)];
-    setOutfitItems(newOutfitState)
+    if(!outfitItems.includes(cp)) {
+      setOutfitItems([...outfitItems, cp]);
+    }
   };
 
   useEffect(() => {
