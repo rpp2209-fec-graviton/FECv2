@@ -45,6 +45,7 @@ app.use(logger)
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../dist')));
 app.use(bodyParser.json());
+
 // Get Products from Atelier API
 app.get('/products', (req, res) => {
   fetch('products', (err, products) => {
@@ -72,8 +73,7 @@ app.get('/:productId', (req, res) => {
   }
 });
 
-
-
+app.use('/interactions', require('./routes/interactions-route'));
 
 app.use('/products', require('./routes/product-route'))
 app.use('/reviews', require('./routes/review-route'))
