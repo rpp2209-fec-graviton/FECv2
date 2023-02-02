@@ -34,11 +34,11 @@ export default function ReviewProvider({ children }) {
   // i need a rating filter that will change the review ratings that it outputs based on ther starts input
 
   // wait untill the reviews are loaded before continuing the processing of information
-  const { filteredReviews } = useRatingFilter(reviewLoading, reviewError, reviewResponse, reviewRating, handleCurrentReviewRating)
+  const { filteredReviews } = useRatingFilter(reviewLoading, reviewError, reviewResponse, reviewRating,)
 
   return (
 
-    <ReviewContext.Provider value={{ sort, setSort, currentCard, reviewResponse, reviewLoading, reviewError, filteredReviews }}>
+    <ReviewContext.Provider value={{ sort, setSort, currentCard, reviewResponse, reviewLoading, reviewError, filteredReviews, handleCurrentReviewRating }}>
       {children}
       {/* { console.log(response, 'resposne ')} */}
 

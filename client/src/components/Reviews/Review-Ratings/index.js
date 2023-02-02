@@ -8,7 +8,7 @@ import useRatingFilter from '../hooks/useRatingFilter.jsx'
 
 function ReviewRatings() {
 
-  const { reviewResponse, reviewError, reviewLoading } = useReviewContext()
+  const { reviewResponse, reviewError, reviewLoading, filteredReviews } = useReviewContext()
 
   // useRatingFilter({ reviewResponse, reviewError, reviewLoading });
 
