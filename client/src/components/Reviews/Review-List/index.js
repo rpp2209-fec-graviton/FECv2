@@ -1,22 +1,30 @@
 import ListContainer from "./components/Review-List-Container/ListContainer.jsx";
 import React from "react";
 import useFetchProduct from "../../Hooks/useFetchProduct.jsx";
-import { useProductContext } from "../../Context/ContextProvider.jsx";
+import { useReviewContext } from '../Context/ReviewProvider.jsx'
 
 
 export default function ReviewList({ children }) {
 
-  const { loading, error, response, handleCurrentId } = useProductContext();
+  const sortOptions = ['Relevance', 'Newest', 'Helpfulness'];
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  const { sortOrder, setSortOrder } = useReviewContext();
+
+  const handleChange = event => {
+    setSortOrder(event.target.value);
+  };
 
 
   return (
     <div>
-      <h1>Review List</h1>
-      {/* {console.log(response)} */}
-      <button onClick={(event) => { handleCurrentId(event, 71698) }}>switch</button>
+      <h3>Sort by {sortOrder} </h3>
+      <select onChange={handleChange}>
+        {sortOptions.map(option => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
       <ListContainer>
         {children}
       </ListContainer>

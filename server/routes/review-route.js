@@ -9,15 +9,17 @@ require("dotenv").config();
 
 router.post('/results', async (req, res) => {
 
-  const product_id = 71798
-  console.log(product_id, 'sd');
+  const product_id = req.body.product_id
+  const sortOrder = req.body.sortOrder;
+
+
+
   try {
     const data = await axios({
       method: 'get',
-      url: process.env.API_URL + `/reviews?product_id=${product_id}`,
+      url: process.env.API_URL + `/reviews?product_id=${product_id}&sort=${sortOrder}`,
       headers: { "Authorization": `${process.env.API_KEY}` }
     })
-    console.log(data.data);
     res.status(200).json(data.data)
 
   } catch (error) {

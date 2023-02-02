@@ -81,7 +81,11 @@
   Convert scrollbar to arrows
   that can be clicked to scroll
 */
-.images__carousel {
+.carousel {
+  /* border: 1px solid var(--white); */
+}
+
+.styles__carousel {
   position: absolute;
   left: 16px;
   top: 16px;
@@ -92,9 +96,9 @@
   z-index: 2;
 }
 
-/* .styles__carousel {
-  border: 1px solid var(--white);
-} */
+.images__carousel {
+  /* border: 1px solid var(--white); */
+}
 
 .thumbnail-square {
   border: 1px solid var(--silver);
@@ -134,6 +138,7 @@
 
 .modal__content {
   height: 100%;
+  width: 100%;
 }
 
 /* =======================
