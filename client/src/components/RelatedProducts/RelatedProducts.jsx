@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from  'react-router-dom';
 import React, { useState, useEffect } from "react";
 import { fetch } from "../../../../server/utils/fetch.js"
+import { useProductContext } from "../Context/ContextProvider.jsx";
 import RPList from "./RPList.jsx";
 import YourOutfitList from "./YourOutfitList.jsx"
 
@@ -11,7 +12,7 @@ function RelatedProducts () {
   const [rpStyles, setRpStyles] = useState(null);
   const [currentProductData, setCurrentProductData] = useState(null);
   const [loaded, setLoaded] = useState(false);
-  const { productId } = useParams();
+  const { currentProductId } = useProductContext();
   const navigate = useNavigate();
 
   async function fetchData(ep) {
@@ -34,7 +35,7 @@ function RelatedProducts () {
   useEffect(() => {
     setLoaded(false);
     let idList;
-    fetchData(`products/${productId}/related`)
+    fetchData(`products/${currentProductId}/related`)
     .then((ids) => {
       idList = ids;
       return Promise.all(ids.map((id) => {
@@ -49,13 +50,13 @@ function RelatedProducts () {
     })
     .then((styles) => {
       setRpStyles(styles);
-      return fetchData(`products/${productId}`)
+      return fetchData(`products/${currentProductId}`)
     })
     .then((currentProductData) => {
       setCurrentProductData(currentProductData);
       setLoaded(true);
     })
-  },[productId]);
+  },[currentProductId]);
 
   return (
     <div data-testid='rp'>

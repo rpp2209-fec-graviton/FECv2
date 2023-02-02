@@ -9,12 +9,13 @@ function RPCard ({ rp, rpStyles, changeProduct }) {
     // return comparison(currentProduct, relatedProduct);
   };
   var imgUrl = null;
+  var defaultStyle = [];
   if (rpStyles) {
     imgUrl = rpStyles[0].photos[0].thumbnail_url;
-    var defaultStyle = rpStyles.filter((style) => {
+    defaultStyle = rpStyles.filter((style) => {
       return style['default?'];
     });
-  };
+  }
 
   var originalPrice = null;
   var salePrice = null;

@@ -18,7 +18,7 @@ function RPList ({ rps, rpStyles, changeProduct }) {
       Related Products
       </h2>
       {uniqueRps ? uniqueRps.map((rp, index) => {
-        return <RPCard key={rp.id} rp={rp} rpStyles={rpStyles[index].results} changeProduct={changeProduct}/>
+        return <RPCard key={rp.id} rp={rp} rpStyles={rpStyles[index]?.results} changeProduct={changeProduct}/>
       }) : null}
     </div>
   );
