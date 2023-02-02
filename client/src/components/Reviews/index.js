@@ -9,7 +9,7 @@ import ReviewWrapper from './Review-Wrapper';
 
 export default function Reviews({ reviewData }) {
 
-  const { reviewLoading, reviewResponse, reviewError, filteredReviews } = useReviewContext();
+  const { reviewLoading, reviewResponse, reviewError, filteredReviews, showMore, handleShowMoreReviews } = useReviewContext();
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export default function Reviews({ reviewData }) {
       <ReviewWrapper>
         <ReviewRatings />
         <ReviewList>
-          {data && data.results.slice(0, 2).map((review) => {
+          {filteredReviews.slice(0, showMore).map((review) => {
             return <ReviewCard key={review.review_id} reviewData={review} />
           })}
         </ReviewList>
