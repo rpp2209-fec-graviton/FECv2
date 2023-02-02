@@ -16,14 +16,7 @@ export default function ReviewProvider({ children }) {
 
   const { loading, error, response, handleCurrentId, currentProductId } = useProductContext()
 
-  const { reviewResponse, reviewError, reviewLoading } = useFetchProductInfo({
-    method: 'post',
-    url: '/reviews/results',
-    data: {
-      product_id: currentProductId,
-      sortOrder: sortOrder
-    }
-  })
+  const { reviewResponse, reviewError, reviewLoading } = useFetchProductInfo(currentProductId, sortOrder)
 
   const handleShowMoreReviews = (e, length) => {
     e.preventDefault()
@@ -56,6 +49,7 @@ export default function ReviewProvider({ children }) {
   return (
 
     <ReviewContext.Provider value={ctx}>
+      {console.log('review-response', reviewResponse, sortOrder)}
       {children}
     </ReviewContext.Provider>
   )

@@ -11,13 +11,14 @@ router.post('/results', async (req, res) => {
 
   const product_id = req.body.product_id
   const sortOrder = req.body.sortOrder;
+  const count = req.body.count;
 
 
 
   try {
     const data = await axios({
       method: 'get',
-      url: process.env.API_URL + `/reviews?product_id=${product_id}&sort=${sortOrder}`,
+      url: process.env.API_URL + `/reviews?product_id=${product_id}&sort=${sortOrder}&count=${count}`,
       headers: { "Authorization": `${process.env.API_KEY}` }
     })
     res.status(200).json(data.data)
