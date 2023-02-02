@@ -1,23 +1,30 @@
-function YourOutfitItem (props) {
-  function addToOutfit (e) {
-    props.setOutfitItems(...outfitItems, e.target);
-  }
+import React, { useState } from "react";
+import styles from './YourOutfitItem.module.css';
 
-  return (
-    <div>
-      {props.productInfo.image}
-      <br/>
-      <button onClick={addToOutfit}></button>
-      {props.productInfo.category}
-      <br/>
-      {props.productInfo.name}
-      <br/>
-      {props.productInfo.price}
-      <br/>
-      {props.productInfo.starRating}
-      <br/>
-    </div>
-  )
+function YourOutfitItem ({ item, fetchData, changeProduct }) {
+  const [photoUrl, setPhotoUrl] = useState(null);
+
+  fetchData(`products/${item.id}/styles`)
+  .then((styles) => {
+    setPhotoUrl(styles.results[0].photos[0].thumbnail_url);
+  });
+
+  if (photoUrl) {
+    return (
+      <div onClick={() => changeProduct(item.id)} className={styles.outfitCard}>
+        <img src={photoUrl}/>
+        <br/>
+        {item.category}
+        <br/>
+        {item.name}
+        <br/>
+        {item.default_price}
+        <br/>
+        {/* {props.productInfo.starRating} */}
+        <br/>
+      </div>
+    )
+  }
 }
 
 export default YourOutfitItem;

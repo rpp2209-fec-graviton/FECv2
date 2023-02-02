@@ -9,7 +9,7 @@ import ReviewWrapper from './Review-Wrapper';
 
 export default function Reviews({ reviewData }) {
 
-  const { reviewLoading, reviewResponse, reviewError } = useReviewContext();
+  const { reviewLoading, reviewResponse, reviewError, filteredReviews } = useReviewContext();
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -27,12 +27,12 @@ export default function Reviews({ reviewData }) {
   }
 
   return (
-    <div className={styles.reviews}>
+    <div id="reviews" className={styles.reviews}>
       <ReviewForm />
       <ReviewWrapper>
         <ReviewRatings />
         <ReviewList>
-          {data && data.results.map((review) => {
+          {filteredReviews.map((review) => {
             return <ReviewCard key={review.review_id} reviewData={review} />
           })}
         </ReviewList>
