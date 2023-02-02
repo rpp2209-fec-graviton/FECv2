@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from './YourOutfitItem.module.css';
 
-function YourOutfitItem ({ item, fetchData, changeProduct, removeProduct }) {
+function YourOutfitItem ({ item, fetchData, changeProduct, removeFromOutfit }) {
   const [photoUrl, setPhotoUrl] = useState(null);
 
   fetchData(`products/${item.id}/styles`)
@@ -20,7 +20,7 @@ function YourOutfitItem ({ item, fetchData, changeProduct, removeProduct }) {
         <br/>
         {item.default_price}
         <br/>
-        <button onClick={() => removeProduct(item.id)}></>
+        <button onClick={() => removeFromOutfit(item.id)}> Remove </button>
         <br/>
       </div>
     )

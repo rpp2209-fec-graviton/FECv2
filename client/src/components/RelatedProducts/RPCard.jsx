@@ -18,7 +18,7 @@ function RPCard ({ rp, rpStyles, changeProduct }) {
 
   var originalPrice = null;
   var salePrice = null;
-  if (defaultStyle) {
+  if (defaultStyle.length > 0) {
     originalPrice = defaultStyle[0].original_price;
     if (defaultStyle[0].sale_price !== null) {
       salePrice = defaultStyle[0].sale_price;

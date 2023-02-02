@@ -6,16 +6,16 @@ function YourOutfitList ({ cp, fetchData, changeProduct }) {
 
   function addToOutfit() {
     if(!outfitItems.includes(cp)) {
-      console.log('outfitItems', outfitItems)
-      console.log('cp', cp)
-      setOutfitItems([outfitItems, cp]);
+      setOutfitItems([...outfitItems, cp]);
     }
   };
 
   function removeFromOutfit(id) {
-    // setOutfitItems(outfitItems => {
-      // return outfitItems.filter(fruit => fruit !== value)
-    // })
+    setOutfitItems(outfitItems => {
+      return outfitItems.filter((item) => {
+        item.id !== id;
+      });
+    })
   }
 
   useEffect(() => {
