@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
-import useFetchProduct from '../../components/Hooks/useFetchProduct.jsx'
+import useFetchProduct from '../../components/Hooks/useFetchProduct.jsx';
+import useClickLogger from '../../components/Hooks/useClickLogger.jsx';
 
 const ProductContext = createContext(null);
 

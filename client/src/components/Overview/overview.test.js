@@ -2,8 +2,9 @@
 require('dotenv').config()
 import React from 'react';
 
+// libs
 import { render, fireEvent, waitFor, screen } from '@testing-library/react';
-import { userEvent } from '@testing-library/user-event';
+import userEvent from '@testing-library/user-event';
 import { logRoles } from '@testing-library/dom';
 import '@testing-library/jest-dom';
 
@@ -116,7 +117,6 @@ describe('Server', () => {
 //      ⬇ ⭐ UNIT TESTS ⭐ ⬇
 //      Arrange, Assert, Act
 // ==================================
-
 describe('Overview Widget', () => {
   // ==================================
   //          Testing Setup
@@ -184,23 +184,36 @@ describe('Overview Widget', () => {
   });
 
   // DEBUG TODO: Figure out why images only render sometimes
-  // describe('Overview Images', () => {
-  //   it('Large Image should render', async () => {
-  //     // const largeImage = await screen.findByRole('img', { name: /images/i });
-  //     // expect(largeImage).toBeInTheDocument();
+  describe('Overview Images', () => {
+    // =============================================
+    //                 Large Image
+    // =============================================
+    it('Large Image should render', async () => {
+      const largeImageByAlt = await waitFor(() => screen.getByRole("img", { name: /^image-lg$/i }));
+      expect(largeImageByAlt).toBeInTheDocument();
+    })
 
-  //     const largeImageByAlt = await screen.findByAltText(/^image/i);
-  //     expect(largeImageByAlt).toBeInTheDocument();
-  //   })
+    // =============================================
+    //                 Image Modal
+    // =============================================
+    it('Modal should exist', async () => {
+      const img = await waitFor(() => screen.getByRole("img", { name: /^image-lg$/i }));
+      expect(img).toBeInTheDocument();
 
-  //   it('Modal should exist', async () => {
-  //     const modal = await screen.findByRole('img', { name: /modal/i });
-  //     expect(modal).toBeInTheDocument();
-  //   })
+      await userEvent.click(img);
 
-  //   it('Carousel should render', async () => {
-  //     const carousel = await screen.findByRole('img', { name: /^carousel/i })
-  //     expect(carousel).toBeInTheDocument();
-  //   })
-  // });
+      // const modal = await waitFor(() => screen.getByRole("img", { name: /modal/i }));
+		  // expect(modal).toHaveClass('modal-hidden');
+      // expect(modal).toBeInTheDocument();
+		  // expect(modal).toHaveClass('modal__content');
+    })
+
+    // =============================================
+    //           Carousel Debug TO-DO
+    // =============================================
+    // it('Carousel should render', async () => {
+    //   const carousel = await waitFor(() => screen.getByRole("img", { name: /^carousel/i }));
+    //   expect(carousel).toBeInTheDocument();
+    // })
+  });
 });

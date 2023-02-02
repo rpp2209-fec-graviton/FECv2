@@ -37,14 +37,12 @@ morgan.token('cutoff-remaining', function (req, res) {
 });
 
 app.use(morgan(':cutoff-remaining :method :url :status :response-time ms - :res[content-length]'));
-
-
-
-
 app.use(logger)
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../dist')));
+app.use('/:productId', express.static(path.join(__dirname, '../dist')));
 app.use(bodyParser.json());
+
 // Get Products from Atelier API
 app.get('/products', (req, res) => {
   fetch('products', (err, products) => {
@@ -72,17 +70,10 @@ app.get('/:productId', (req, res) => {
   }
 });
 
-
-
-
+app.use('/interactions', require('./routes/interactions-route'));
 app.use('/products', require('./routes/product-route'))
 app.use('/reviews', require('./routes/review-route'))
-
 app.use('/qa/questions', require('./routes/questions-route'));
-
-
-
-
 
 process.on("SIGINT", () => {
   console.log("Server shutting down...");
