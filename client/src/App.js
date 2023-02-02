@@ -1,4 +1,9 @@
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+} from "react-router-dom";
 import Overview from './components/Overview/components/Overview.jsx';
 import Reviews from './components/Reviews/index.js';
 import ContextProvider from './components/Context/ContextProvider.jsx';
@@ -12,18 +17,29 @@ function App() {
   return (
     <>
       <div className="body">
-        <ContextProvider>
-          <Overview />
+      <Router>
+        <Routes>
+          <Route
+            // path="/"
+            // element={<Home />}
+          />
+          <Route
+            path="/:productId"
+            element={
+              <ContextProvider>
+              <Overview />
 
-          <ReviewProvider>
-            <Reviews />
-          </ReviewProvider>
-          <QuestionsView />
+              <RelatedProducts />
 
-          <RelatedProducts />
-
-
-        </ContextProvider>
+              <ReviewProvider>
+              <Reviews />
+              </ReviewProvider>
+              <QuestionsView />
+              </ContextProvider>
+            }
+          />
+        </Routes>
+      </Router>
       </div>
 
     </>

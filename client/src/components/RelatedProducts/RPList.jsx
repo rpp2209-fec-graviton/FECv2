@@ -1,15 +1,15 @@
 import React from "react";
 import RPCard from "./RPCard.jsx"
 
-function RPList ({ rps }) {
+function RPList ({ rps, rpStyles, changeProduct }) {
   return (
-    <div>
+    <div data-testid='rplist'>
       <h2>
       Related Products
       </h2>
-      {rps.map((rp) => (
-        <RPCard key={rp.id} rp={rp}/>
-      ))}
+      {rps ? rps.map((rp, index) => {
+        return <RPCard key={rp.id} rp={rp} rpStyles={rpStyles[index].results} changeProduct={changeProduct}/>
+      }) : null}
     </div>
   );
 };

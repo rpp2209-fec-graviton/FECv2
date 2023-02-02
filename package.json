@@ -8,7 +8,7 @@
     "test-overview": "jest ./client/src/components/Overview --watch --coverage",
     "test-modal": "jest ./client/src/components/Overview/overview-utils --watch",
     "test-reviews": "jest ./client/src/components/Reviews --watch --coverage",
-    "test-rp": "jest ./client/src/components/RelatedProducts --watch",
+    "test-rp": "jest ./client/src/components/RelatedProducts --watch --coverage",
     "test-questions": "jest ./client/src/components/Questions --watch --coverage",
     "client-dev": "npx webpack --watch",
     "server-dev": "npx nodemon server/index.js"
@@ -32,6 +32,7 @@
     "msw": "^0.49.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.0",
     "sass": "^1.57.1",
     "sass-loader": "^13.2.0",
     "webpack": "^5.75.0",
