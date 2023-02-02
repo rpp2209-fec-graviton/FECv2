@@ -7,8 +7,8 @@ import Reviews from '../Reviews/index.js';
 import RelatedProducts from '../RelatedProducts/RelatedProducts.jsx';
 import QuestionsView from '../Questions/index.js';
 
-import ContextProvider from '../Context/ContextProvider.jsx';
 import ReviewProvider from '../Reviews/Context/ReviewProvider.jsx';
+import QuestionsProvider from '../Questions/Context/QuestionsProvider.jsx';
 
 function Home () {
 	// Get id from query string
@@ -27,19 +27,36 @@ function Home () {
 
 	return (
 		<Routes>
-			<Route path='/:id' element={
-				<ContextProvider>
-					<h1>Selected Product Is: {id && id}!</h1>
-					<Overview />
+			<Route path='/:productId' element={
+					<div className="body">
+						<h1>Selected Product Is: {id && id}!</h1>
 
-					<RelatedProducts />
-					<QuestionsView />
+						{/* Overview  */}
+						<ErrorBoundary component="Overview">
+							<OverviewProvider>
+								<Overview />
+							</OverviewProvider>
+						</ErrorBoundary>
 
-					<ReviewProvider>
-						<Reviews />
-					</ReviewProvider>
-				</ContextProvider>
-			}>
+						{/* Related Products  */}
+						<ErrorBoundary component="Related">
+							<RelatedProducts />
+						</ErrorBoundary>
+
+						{/* Product Questions  */}
+						<ErrorBoundary component="Questions">
+							<QuestionsProvider>
+								<QuestionsView />
+							</QuestionsProvider>
+						</ErrorBoundary>
+
+						{/* Product Reviews  */}
+						<ErrorBoundary component="Reviews">
+							<ReviewProvider>
+								<Reviews />
+							</ReviewProvider>
+						</ErrorBoundary>
+					</div>}>
 			</Route>
 		</Routes>
 	)

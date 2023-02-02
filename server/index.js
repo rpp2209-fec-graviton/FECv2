@@ -14,8 +14,6 @@ const morganBody = require('morgan-body');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 
-app.use(require('express-status-monitor')());
-
 morganBody(app,
   {
     logReqUserAgent: true,
@@ -37,10 +35,11 @@ morganBody(app,
     // skip: function (req, res) { return res.statusCode < 400 }
   });
 
-morgan.token('cutoff-remaining', function (req, res) {
-  return process.memoryUsage().heapUsed;
-});
+  morgan.token('cutoff-remaining', function (req, res) {
+    return process.memoryUsage().heapUsed;
+  });
 
+app.use(require('express-status-monitor')());
 app.use(morgan(':cutoff-remaining :method :url :status :response-time ms - :res[content-length]'));
 app.use(logger)
 app.use(express.json());
@@ -50,8 +49,9 @@ app.use('/:id', express.static(path.join(__dirname, '../dist')));
 app.use(bodyParser.json());
 
 // =============================================
-//                  Routes
+//               Route Imports
 // =============================================
+app.use('/interactions', require('./routes/interactions-route'));
 app.use('/products', require('./routes/product-route'))
 app.use('/reviews', require('./routes/review-route'))
 app.use('/qa/questions', require('./routes/questions-route'));
