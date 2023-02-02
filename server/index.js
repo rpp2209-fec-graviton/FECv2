@@ -2,14 +2,17 @@ require("dotenv").config();
 const path = require("path");
 const express = require('express')
 const app = express();
+const port = process.env.PORT || 3000;
 const exampleRoutes = require('../ExampleData/index.js'); //e.g. exampleRoutes['/cart'];
 const { fetch } = require('./utils/fetch.js');
+
+// =============================================
+//                Middleware
+// =============================================
 const logger = require('./middleware/logger.js');
 const morganBody = require('morgan-body');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-
-app.use(require('express-status-monitor')());
 
 morganBody(app,
   {
@@ -32,44 +35,25 @@ morganBody(app,
     // skip: function (req, res) { return res.statusCode < 400 }
   });
 
-morgan.token('cutoff-remaining', function (req, res) {
-  return process.memoryUsage().heapUsed;
-});
+  morgan.token('cutoff-remaining', function (req, res) {
+    return process.memoryUsage().heapUsed;
+  });
 
+app.use(require('express-status-monitor')());
 app.use(morgan(':cutoff-remaining :method :url :status :response-time ms - :res[content-length]'));
 app.use(logger)
+
+// Do we need both of these?
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '../dist')));
-app.use('/:productId', express.static(path.join(__dirname, '../dist')));
 app.use(bodyParser.json());
 
-// Get Products from Atelier API
-app.get('/products', (req, res) => {
-  fetch('products', (err, products) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send(err);
-    } else {
-      res.status(200).send(products);
-    }
-  });
-});
+// Serve Static Files
+app.use(express.static(path.join(__dirname, '../dist')));
+app.use('/:productId', express.static(path.join(__dirname, '../dist')));
 
-//generic route for url with any product id, ex: localhost:3000/71699
-app.get('/:productId', (req, res) => {
-  if (req.params.productId !== 'favicon.ico') {
-    fetch(`products/${req.params.productId}`, function (err, productData) {
-      if (err) {
-        console.log('fetching error:', err);
-      } else {
-        //TODO: store product info in shared state (?)
-        res.send(productData.data);
-      }
-    })
-    //add actions for other components here
-  }
-});
-
+// =============================================
+//               Route Imports
+// =============================================
 app.use('/interactions', require('./routes/interactions-route'));
 app.use('/products', require('./routes/product-route'))
 app.use('/reviews', require('./routes/review-route'))
@@ -80,6 +64,6 @@ process.on("SIGINT", () => {
   process.exit();
 });
 
-app.listen(process.env.PORT || 3000, () => {
-  console.log(`Server running on port ${process.env.PORT || 3000}`);
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });

@@ -23,7 +23,7 @@ function QuestionsList(props) {
   const [questionsList, getQList, filterQList] = useQuestionsList();
   const [more, showMore, toggleMore] = useMore();
   const { isShowing, toggle } = useModal();
-  
+
   const {currentProductId, useClickLogger} = useProductContext();
   const [withClickLogger] = useClickLogger('Questions');
 
@@ -62,7 +62,7 @@ function QuestionsList(props) {
           )
         })}
       </div>
-      {questionsList.length > 0 && withClickLogger(<MoreAnsweredQ {...{ count, moreQ, showMoreQ, makeCount, makePage, updateQList, checkQList }} />)}
+      {questionsList.length > 0 && withClickLogger(<MoreAnsweredQ {...{ count, more, showMore, makeCount, makePage, updateQList, checkQList }} />)}
       <button onClick={toggle}> Submit a Question + </button>
       <QuestionModal
         isShowing={isShowing}

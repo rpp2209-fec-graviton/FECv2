@@ -1,10 +1,23 @@
+require("dotenv").config();
 const express = require('express')
 const router = express.Router()
 const axios = require('axios');
-require("dotenv").config();
+const { fetch } = require('../utils/fetch.js');
 
+// GET One Product's Info
+router.get('/:productId', (req, res) => {
+  fetch(`products/${req.params.productId}`, (err, product) => {
+    if (err) {
+      console.log('Error from /products/:productId Route', err);
+      res.status(500).json(err);
+    } else {
+      console.log('product', product.data);
+      res.status(200).json(product.data);
+    }
+  });
+});
 
-
+// POST & Get One Product Back
 router.post('/', async (req, res) => {
 
   const product_id = req.body.product_id
@@ -19,7 +32,6 @@ router.post('/', async (req, res) => {
   } catch (error) {
     res.status(400).json('error');
   }
-
 
 })
 
