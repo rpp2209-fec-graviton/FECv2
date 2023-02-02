@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 //COMPONENTS
 import Answer from "./Answer.jsx";
 import SeeMoreAnswers from "./SeeMoreAnswersBtn.jsx";
+import AnswerModal from "../Modals/AnswerModal.jsx";
 
 //HOOKS
 import useAnswersList from "../hooks/useAnswersList.jsx";
 import useCount from "../hooks/useCount.jsx";
 import usePage from "../hooks/usePage.jsx";
 import useMoreA from "../hooks/useMoreQA.jsx";
+import useModal from "../hooks/useModal.jsx";
 
 function AnswersList({ question_id }) {
   /*Implementation Tasks
@@ -19,6 +21,7 @@ function AnswersList({ question_id }) {
   const [count, makeCount] = useCount(2);
   const [page, makePage] = usePage(1);
   const [more, showMore, toggleMore] = useMoreA();
+  const { isShowing, toggle } = useModal();
 
   useEffect(() => {
     getAList(question_id, page)
@@ -41,10 +44,13 @@ function AnswersList({ question_id }) {
           <Answer ans={ans} />
         </div>
       })}
-      {console.log(answersList, page, count)}
       {answersList.length > 2 ?
-       <SeeMoreAnswers {...{ count, more, showMore, makeCount, makePage, updateAList, checkAList }} />
-      : <sub> Submit an Answer </sub>}
+        <SeeMoreAnswers {...{ count, more, showMore, makeCount, makePage, updateAList, checkAList }} />
+        : <sub onClick={toggle}> Submit an Answer </sub>}
+      <AnswerModal
+        isShowing={isShowing}
+        hide={toggle}
+      />
     </div>
   )
 

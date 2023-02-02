@@ -17,13 +17,12 @@ import Overview from './components/Overview/components/Overview.jsx';
 import Reviews from './components/Reviews/index.js';
 import RelatedProducts from './components/RelatedProducts/RelatedProducts.jsx';
 import QuestionsView from './components/Questions/index.js';
+import QuestionsProvider from './components/Questions/Context/QuestionsProvider.jsx';
 
 function App() {
   return (
     <>
       <div className="body">
-
-
       <Router>
         <Routes>
           <Route
