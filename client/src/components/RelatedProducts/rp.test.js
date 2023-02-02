@@ -4,6 +4,7 @@
 
 import React from 'react';
 // import { render, cleanup } from '@testing-library/react';
+import { BrowserRouter } from "react-router-dom";
 import { screen, render, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import RelatedProducts from './RelatedProducts'
@@ -32,7 +33,11 @@ var testRpList = [
 ];
 
 test('should render RelatedProducts component', () => {
-  render(<RelatedProducts/>);
+  render(
+    <BrowserRouter>
+      <RelatedProducts/>
+    </BrowserRouter>
+  );
   const element = screen.getByTestId('rp');
   expect(element).toBeInTheDocument();
 });

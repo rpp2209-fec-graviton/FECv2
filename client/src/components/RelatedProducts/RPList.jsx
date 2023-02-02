@@ -2,6 +2,8 @@ import React from "react";
 import RPCard from "./RPCard.jsx"
 
 function RPList ({ rps, rpStyles, changeProduct }) {
+  //eliminate duplicate items
+  rps = [...new Set(rps)];
   return (
     <div data-testid='rplist'>
       <h2>

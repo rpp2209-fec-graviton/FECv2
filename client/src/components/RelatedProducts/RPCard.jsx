@@ -8,15 +8,17 @@ function RPCard ({ rp, rpStyles, changeProduct }) {
     // var relatedProduct = props.productInfo;
     // return comparison(currentProduct, relatedProduct);
   };
-  var imgUrl = rpStyles[0].photos[0].thumbnail_url;
-
-  var defaultStyle = rpStyles.filter((style) => {
-    return style['default?'];
-  });
+  var imgUrl = null;
+  if (rpStyles) {
+    imgUrl = rpStyles[0].photos[0].thumbnail_url;
+    var defaultStyle = rpStyles.filter((style) => {
+      return style['default?'];
+    });
+  };
 
   var originalPrice = null;
   var salePrice = null;
-  if (defaultStyle[0]) {
+  if (defaultStyle) {
     originalPrice = defaultStyle[0].original_price;
     if (defaultStyle[0].sale_price !== null) {
       salePrice = defaultStyle[0].sale_price;

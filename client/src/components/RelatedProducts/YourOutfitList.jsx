@@ -6,9 +6,17 @@ function YourOutfitList ({ cp, fetchData, changeProduct }) {
 
   function addToOutfit() {
     if(!outfitItems.includes(cp)) {
-      setOutfitItems([...outfitItems, cp]);
+      console.log('outfitItems', outfitItems)
+      console.log('cp', cp)
+      setOutfitItems([outfitItems, cp]);
     }
   };
+
+  function removeFromOutfit(id) {
+    // setOutfitItems(outfitItems => {
+      // return outfitItems.filter(fruit => fruit !== value)
+    // })
+  }
 
   useEffect(() => {
     const data = window.localStorage.getItem('OUTFIT_STATE');
@@ -26,7 +34,7 @@ function YourOutfitList ({ cp, fetchData, changeProduct }) {
         <button onClick={addToOutfit}> Add to Outfit (+) </button>
       </div>
       {outfitItems && outfitItems.map((item) => {
-        return <YourOutfitItem key={item.id} item={item} fetchData={fetchData} changeProduct={changeProduct}/>
+        return <YourOutfitItem key={item.id} item={item} fetchData={fetchData} changeProduct={changeProduct} removeFromOutfit={removeFromOutfit}/>
       })}
     </div>
   );
