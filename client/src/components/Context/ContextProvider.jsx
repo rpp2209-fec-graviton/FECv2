@@ -12,13 +12,17 @@ export default function ContextProvider({ children }) {
 
   const { response, loading, error } = useFetchProduct(currentProductId)
 
+  // This was throwing an error when I tried to use it in Home.jsx
+  // Using setProductID to update the currentProductId instead
   const handleCurrentId = (e, productId) => {
     e.preventDefault();
     setCurrentProductId(productId)
   }
 
+  const ctx = { loading, error, response, handleCurrentId, currentProductId, setCurrentProductId, useClickLogger };
+
   return (
-    <ProductContext.Provider value={{ loading, error, response, handleCurrentId, currentProductId, useClickLogger }}>
+    <ProductContext.Provider value={ctx}>
       {children}
     </ProductContext.Provider>
   )
