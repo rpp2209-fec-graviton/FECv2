@@ -58,9 +58,13 @@ function Overview() {
 
 	}, [products]);
 
+	const handleClick = (e) => {
+		e.target.classList = 'test';
+	};
+
 	return (
-		<div className={`${styles.overview} ${styles.grid}`}>
-			{/* <h1>Product Overview Widget</h1> */}
+		products &&
+		<div data-testid="overview" className={`${styles.overview} ${styles.grid}`}>
 			<Images />
 			<StyleSelector />
 			<ProductInfo />

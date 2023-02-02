@@ -4,14 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watchAll coverage",
-    "test-overview": "jest ./client/src/components/Overview --watch --coverage",
-    "test-modal": "jest ./client/src/components/Overview/overview-utils --watch",
+    "client-dev": "npx webpack --watch",
+    "server-dev": "npx nodemon server/index.js",
+    "test": "jest . --watch --coverage",
+    "test-overview": "jest ./client/src/components/Overview/overview.test.js --watch --coverage --detectOpenHandles",
+    "test-modal": "jest ./client/src/components/Overview/overview-utils/modal.test.js --watch --detectOpenHandles",
+    "test-fetch": "jest ./server/utils/fetch.test.js --watch --detectOpenHandles",
     "test-reviews": "jest ./client/src/components/Reviews --watch --coverage",
     "test-rp": "jest ./client/src/components/RelatedProducts --watch --coverage",
-    "test-questions": "jest ./client/src/components/Questions --watch --coverage",
-    "client-dev": "npx webpack --watch",
-    "server-dev": "npx nodemon server/index.js"
+    "test-questions": "jest ./client/src/components/Questions --watch --coverage"
   },
   "keywords": [],
   "author": "",
@@ -39,6 +40,7 @@
     "webpack-cli": "^5.0.1"
   },
   "devDependencies": {
+    "@testing-library/user-event": "^14.4.3",
     "babel-jest": "^29.4.0",
     "chalk": "^4.1.2",
     "css-loader": "^6.7.3",
