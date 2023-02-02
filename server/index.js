@@ -2,13 +2,8 @@ require("dotenv").config();
 const path = require("path");
 const express = require('express')
 const app = express();
-
 const exampleRoutes = require('../ExampleData/index.js'); //e.g. exampleRoutes['/cart'];
 const { fetch } = require('./utils/fetch.js');
-
-// =============================================
-//                Middleware
-// =============================================
 const logger = require('./middleware/logger.js');
 const morganBody = require('morgan-body');
 const bodyParser = require('body-parser');
@@ -44,8 +39,7 @@ app.use(morgan(':cutoff-remaining :method :url :status :response-time ms - :res[
 app.use(logger)
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../dist')));
-app.use('/:id', express.static(path.join(__dirname, '../dist')));
-
+app.use('/:productId', express.static(path.join(__dirname, '../dist')));
 app.use(bodyParser.json());
 
 // =============================================

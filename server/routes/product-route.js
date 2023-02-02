@@ -6,13 +6,15 @@ const { fetch } = require('../utils/fetch.js');
 
 //generic route for url with any product id, ex: localhost:3000/71699
 router.get('/:productId', (req, res) => {
-  fetch(`products/${req.params.productId}`, (err, payload) => {
+  fetch(`products/${req.params.productId}`, (err, product) => {
     if (err) {
-      console.log('GET Product Error', err);
+      console.log('Error from /products/:productId Route', err);
+      res.status(500).json(err);
     } else {
-      res.status(200).json(payload.data);
+      console.log('product', product.data);
+      res.status(200).json(product.data);
     }
-  })
+  });
 });
 
 
