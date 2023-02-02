@@ -1,11 +1,18 @@
 const axios = require('axios');
+import { useParams } from "react-router-dom";
+import { useNavigate } from  'react-router-dom';
 import React, { useState, useEffect } from "react";
 import { fetch } from "../../../../server/utils/fetch.js"
 import RPList from "./RPList.jsx";
 import YourOutfitList from "./YourOutfitList.jsx"
 
-function RelatedProducts (props) {
+function RelatedProducts () {
   const [rpData, setRpData] = useState(null);
+  const [rpStyles, setRpStyles] = useState(null);
+  const [currentProductData, setCurrentProductData] = useState(null);
+  const [loaded, setLoaded] = useState(false);
+  const { productId } = useParams();
+  const navigate = useNavigate();
 
   async function fetchData(ep) {
     return new Promise((resolve, reject) => {
@@ -20,23 +27,39 @@ function RelatedProducts (props) {
     })
   }
 
-  //fetch related products for product 71699 for testing
-  //TODO: make fetch dynamic for selected product
+  function changeProduct (id) {
+    navigate(`/${id}`)
+  };
+
   useEffect(() => {
-    fetchData('products/71699/related')
+    setLoaded(false);
+    let idList;
+    fetchData(`products/${productId}/related`)
     .then((ids) => {
+      idList = ids;
       return Promise.all(ids.map((id) => {
         return fetchData(`products/${id}`)
       }))
-    }).then((data) => {
-      setRpData(data);
     })
-  },[]);
+    .then((data) => {
+      setRpData(data);
+      return Promise.all(idList.map((id) => {
+        return fetchData(`products/${id}/styles`)
+      }))
+    })
+    .then((styles) => {
+      setRpStyles(styles);
+      return fetchData(`products/${productId}`)
+    })
+    .then((currentProductData) => {
+      setCurrentProductData(currentProductData);
+      setLoaded(true);
+    })
+  },[productId]);
 
   return (
-    <div>
-      {rpData && <RPList rps={rpData}/>}
-      {/* <YourOutfitList /> */}
+    <div data-testid='rp'>
+      {loaded? <><RPList rps={rpData} rpStyles={rpStyles} changeProduct={changeProduct}/><br/><YourOutfitList cp={currentProductData} fetchData={fetchData} changeProduct={changeProduct}/></>: null}
     </div>
   )
 }

@@ -81,7 +81,7 @@
   Convert scrollbar to arrows
   that can be clicked to scroll
 */
-.images__carousel {
+.styles__carousel {
   position: absolute;
   left: 16px;
   top: 16px;

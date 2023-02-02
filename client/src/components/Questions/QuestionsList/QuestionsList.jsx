@@ -3,14 +3,14 @@ import React, { useState, useEffect } from "react";
 //COMPONENTS
 import Question from "./Question.jsx";
 import AnswersList from ".././Answers/AnswersList.jsx";
-import useQuestionsList from "./hooks/useQuestionsList.jsx";
+import useQuestionsList from "../hooks/useQuestionsList.jsx";
 import SearchBar from './SearchBar.jsx';
 import MoreAnsweredQ from "./MoreAnsweredQ.jsx";
 
 //HOOKS
 import useCount from "../hooks/useCount.jsx";
 import usePage from "../hooks/usePage.jsx";
-import useMoreQ from "./hooks/useMoreQ.jsx";
+import useMoreQ from "../hooks/useMoreQ.jsx";
 
 //CONTEXT
 import { useProductContext } from "../../Context/ContextProvider.jsx";
@@ -39,7 +39,7 @@ function QuestionsList(props) {
 
 
   useEffect(() => {
-    getQList('71698', page);
+    getQList('71699', page);
   }, [])
 
   return (
