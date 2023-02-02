@@ -1,6 +1,9 @@
 import React from 'react';
-
-// Context Imports
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+} from "react-router-dom";
 import ContextProvider from './components/Context/ContextProvider.jsx';
 import ReviewProvider from './components/Reviews/Context/ReviewProvider.jsx';
 import OverviewProvider from "./components/Overview/Context/OverviewProvider.jsx";
@@ -15,18 +18,33 @@ function App() {
   return (
     <>
       <div className="body">
-        <ContextProvider>
-          <OverviewProvider>
-            <Overview />
-          </OverviewProvider>
+      <Router>
+        <Routes>
+          <Route
+            // path="/"
+            // element={<Home />}
+          />
+          <Route
+            path="/:productId"
+            element={
+              <ContextProvider>
 
-          <RelatedProducts />
-          <QuestionsView />
-          
-          <ReviewProvider>
-            <Reviews />
-          </ReviewProvider>
-        </ContextProvider>
+              <OverviewProvider>
+                <Overview />
+              </OverviewProvider>
+
+              <RelatedProducts />
+
+              <QuestionsView />
+
+              <ReviewProvider>
+                <Reviews />
+              </ReviewProvider>
+              </ContextProvider>
+            }
+          />
+        </Routes>
+      </Router>
       </div>
 
     </>
