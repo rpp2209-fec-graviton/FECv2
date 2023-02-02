@@ -5,7 +5,7 @@ function YourOutfitList ({ cp, fetchData, changeProduct }) {
   const [outfitItems, setOutfitItems] = useState([]);
 
   function addToOutfit() {
-    if(!outfitItems.includes(cp)) {
+    if (!outfitItems.some(item => item.id === cp.id)) {
       setOutfitItems([...outfitItems, cp]);
     }
   };
