@@ -88,7 +88,7 @@ describe('useFetchProduct', () => {
 
     const Example = () => {
       const { response, error, loading } = useFetchProduct(71698);
-
+// you can
       if (loading) return <div data-testid="loading">{loading}</div>;
       if (error) return <div data-testid="error">Error!</div>;
       if (response) return <div data-testid="response">{response.body}!</div>;
