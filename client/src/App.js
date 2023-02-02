@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -10,8 +10,15 @@ import Overview from './components/Overview/components/Overview.jsx';
 import Reviews from './components/Reviews/index.js';
 import ContextProvider from './components/Context/ContextProvider.jsx';
 import ReviewProvider from './components/Reviews/Context/ReviewProvider.jsx';
+import OverviewProvider from "./components/Overview/Context/OverviewProvider.jsx";
+
+// Component Imports
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary.jsx';
+import Overview from './components/Overview/components/Overview.jsx';
+import Reviews from './components/Reviews/index.js';
 import RelatedProducts from './components/RelatedProducts/RelatedProducts.jsx';
 import QuestionsView from './components/Questions/index.js';
+import QuestionsProvider from './components/Questions/Context/QuestionsProvider.jsx';
 
 function App() {
   return (

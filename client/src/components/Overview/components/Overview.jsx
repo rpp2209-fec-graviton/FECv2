@@ -4,48 +4,49 @@ import axios from 'axios';
 import ProductInfo from './ProductInfo.jsx';
 import Images from './Images.jsx';
 import StyleSelector from './StyleSelector.jsx';
+import { useProductContext } from "../../Context/ContextProvider.jsx";
+import { useOverviewContext } from "../Context/OverviewProvider.jsx";
 
 import { fetch } from '../../../../../server/utils/fetch.js';
 import styles from '../overview.module.css';
 
 function Overview() {
-	// Private State
-	const [quantity, setQuantity] = useState(0);
-	const [size, setSize] = useState("S");
-	const [starred, setStarred] = useState(false);
-
-	const [selected, setSelected] = useState({});
+	// Global Context
+	const { currentProductId } = useProductContext();
+	// Overview Context
+	const { products, setProducts, product, setProduct, pStyles, setStyles, selectedStyle, setSelectedStyle } = useOverviewContext();
 
 	// Shared State (TODO: Move to global state)
-	const [products, setProducts] = useState([]);
-	const [productStyles, setStyles] = useState({});
-	const [starRating, setStarRating] = useState(0);
+	// const [starred, setStarred] = useState(false);
+	// const [starRating, setStarRating] = useState(0);
 
-	// Fetch and Set Product State
+	// Fetch and Set All Products
 	useEffect(() => {
 		fetch('products', (err, payload) => {
 			if (err) {
 				console.log("Caught Error", err);
 			} else {
-				// console.log('Data', payload.data);
 				setProducts(payload.data);
 			}
 		})
 	}, []);
 
-	// Fetch and Set Styles for Selected Product
+	// Fetch and Set Selected Product
 	useEffect(() => {
-		// For Testing Purposes, Set Selected Product to the First In List
-		// To-Do: Implement Routing for different product IDs?
-		let selected = products[0];
-		setSelected({...selected});
+		for (var current of products) {
+			if (current.id === currentProductId) {
+				setProduct(current);
+			}
+		}
 
-		products.forEach(item => {
+		// Get/Set All Styles for Each Product
+		Object.values(products).forEach(item => {
 			fetch(`products/${item.id}/styles`, (err, payload) => {
 				if (err) {
 					console.log('Styles Fetch Err', err);
 				} else {
 					let newStyles = payload.data.results;
+					setSelectedStyle(newStyles[0]);
 
 					setStyles((prevState) => ({
 						...prevState,
@@ -54,13 +55,19 @@ function Overview() {
 				}
 			});
 		});
+
 	}, [products]);
 
+	const handleClick = (e) => {
+		e.target.classList = 'test';
+	};
+
 	return (
-		<div className={`${styles.overview} ${styles.grid}`}>
-			<Images selected={selected} productStyles={productStyles} />
-			<StyleSelector selected={selected} productStyles={productStyles} />
-			<ProductInfo selected={selected} />
+		products &&
+		<div data-testid="overview" className={`${styles.overview} ${styles.grid}`}>
+			<Images />
+			<StyleSelector />
+			<ProductInfo />
 		</div>
 	);
 };

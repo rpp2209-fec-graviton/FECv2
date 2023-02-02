@@ -1,21 +1,23 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Button from './Button.jsx';
 import ThumbnailCarousel from './ThumbnailCarousel.jsx';
+import { useOverviewContext } from "../Context/OverviewProvider.jsx";
 import styles from '../overview.module.css';
 
-function StyleSelector ({ selected, productStyles }) {
+function StyleSelector () {
 	const sizes = ['S', 'M', 'L', 'XL', '2XL'];
+
 	// Controlled Drop-Down Component Values
 	const [size, setSize] = useState('');
 	const [qty, setQty] = useState(0);
-	const [cart, setCart] = useState({
-		size: '',
-		qty: 0
-	});
+	const [cart, setCart] = useState({ size: '', qty: 0 });
 
-	// DOM Element Ref Values
+	// DOM Element Refs
 	const sizeRef = useRef('');
 	const qtyRef = useRef(0);
+
+	// Overview Context
+	const { pStyles, selectedStyle } = useOverviewContext();
 
 	// =============================================
 	//            FUNCTIONALITY TO-DOs
@@ -35,10 +37,7 @@ function StyleSelector ({ selected, productStyles }) {
 		const currentSize = sizeRef.current[sizeRef.current.selectedIndex].value;
 		const currentQty = qtyRef.current[qtyRef.current.selectedIndex].value;
 
-		setCart({
-			size: currentSize,
-			qty: currentQty
-		});
+		setCart({ size: currentSize, qty: currentQty });
 
 		// switch (status) {
 		// 	case ('no stock'): // get product styles to check stock (field is called 'quantity')
@@ -66,17 +65,17 @@ function StyleSelector ({ selected, productStyles }) {
 		console.log('Clicked! Adding to Outfit (TODO)...');
 	};
 
-
 	return (
 		<div className={styles['overview__style-selector']}>
-			<h3>Style &gt; Selected Style</h3>
-			<ThumbnailCarousel type="styles__carousel" selected={selected} productStyles={productStyles} />
+			<h3>Style &gt; {selectedStyle.name}</h3>
+			<ThumbnailCarousel type="images__carousel"  />
 
 			<select
 				className={styles['drop-down']}
 				ref={sizeRef}
 				id="size" value={size}
-				onChange={handleDropdownChange}>
+				onChange={handleDropdownChange}
+			>
 				<option value="Select Size">Select Size</option>
 				{sizes.map((size, index) => (<option aria-label="size-option" key={index} value={`${size}`}>{size}</option>))}
 			</select>
@@ -84,8 +83,10 @@ function StyleSelector ({ selected, productStyles }) {
 			<select
 				className={styles['drop-down']}
 				ref={qtyRef}
-				id="qty" value={qty}
-				onChange={handleDropdownChange}>
+				id="qty"
+				value={qty}
+				onChange={handleDropdownChange}
+			>
 				<option value="Quantity">Quantity</option>
 				{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (<option aria-label="qty-option" key={num} value={num}>{num}</option>))}
 			</select>
