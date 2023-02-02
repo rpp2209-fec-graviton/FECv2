@@ -1,17 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useOverviewContext } from "../Context/OverviewProvider.jsx";
 import styles from '../overview.module.css';
 
-function Thumbnail({ type, style }) {
-	var photos = style.photos;
+function Thumbnail({ carouselType, type, photos, style }) {
+	const { selectedStyle, setSelectedStyle } = useOverviewContext();
 
-	const handleClick = (e) => {
-		console.log('Clicked', style.style_id, style.name, style.original_price, style.sale_price);
+	const handleStyleChange = (e) => {
+		setSelectedStyle(style);
 	};
+
+	// Style Logger
+	// useEffect(() => {
+	// 	console.log('Style Changed: ', selectedStyle.style_id);
+	// }, [selectedStyle]);
 
 	return (
 		<>
 			<img
-				onClick={handleClick}
+				onClick={handleStyleChange}
 				className={`${styles[type]} ${styles.thumbnail}`}
 				src={photos[0].thumbnail_url}
 				alt="thumbnail image"
