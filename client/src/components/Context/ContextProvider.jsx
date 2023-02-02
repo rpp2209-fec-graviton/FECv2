@@ -18,7 +18,7 @@ export default function ContextProvider({ children }) {
   }
 
   return (
-    <ProductContext.Provider value={{ loading, error, response, handleCurrentId, currentProductId, useClickLogger }}>
+    <ProductContext.Provider value={{ loading, error, response, handleCurrentId, currentProductId, setCurrentProductId, useClickLogger }}>
       {children}
     </ProductContext.Provider>
   )

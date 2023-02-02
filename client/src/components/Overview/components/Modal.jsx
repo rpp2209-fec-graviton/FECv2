@@ -4,6 +4,7 @@ import styles from '../overview.module.css';
 function Modal ({ show, setShow, toggleModal, children }) {
 	return (
 		<div
+			id="modal"
 			className={`${styles.images__modal} ${styles['modal-hidden']}`}
 			onClick={() => toggleModal(show, setShow)}
 		>
