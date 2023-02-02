@@ -1,32 +1,26 @@
 require("dotenv").config();
-const path = require("path");
-const axios = require('axios');
-
 const express = require('express')
 const router = express.Router()
-
+const axios = require('axios');
 const { fetch } = require('../utils/fetch.js');
 
-// Get One Product
-router.get('/:id', (req, res) => {
-  console.log('got here');
-  console.log('ID from Params', req.params.id);
-  fetch(`products/${req.params.id}`, (err, product) => {
+// GET One Product's Info
+router.get('/:productId', (req, res) => {
+  fetch(`products/${req.params.productId}`, (err, product) => {
     if (err) {
-      console.log('Error from /products/:id Route', err);
+      console.log('Error from /products/:productId Route', err);
       res.status(500).json(err);
     } else {
       console.log('product', product.data);
       res.status(200).json(product.data);
     }
   });
-
 });
 
+// POST & Get One Product Back
 router.post('/', async (req, res) => {
 
   const product_id = req.body.product_id
-
   try {
     const data = await axios({
       method: 'get',
@@ -40,5 +34,6 @@ router.post('/', async (req, res) => {
   }
 
 })
+
 
 module.exports = router;
