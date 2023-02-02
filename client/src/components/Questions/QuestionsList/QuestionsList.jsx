@@ -10,7 +10,7 @@ import MoreAnsweredQ from "./MoreAnsweredQ.jsx";
 //HOOKS
 import useCount from "../hooks/useCount.jsx";
 import usePage from "../hooks/usePage.jsx";
-import useMoreQ from "../hooks/useMoreQ.jsx";
+import useMore from "../hooks/useMoreQA.jsx";
 
 //CONTEXT
 import { useProductContext } from "../../Context/ContextProvider.jsx";
@@ -19,7 +19,8 @@ function QuestionsList(props) {
   const [page, makePage] = usePage(1);
   const [count, makeCount] = useCount(2);
   const [questionsList, getQList, filterQList] = useQuestionsList();
-  const [moreQ, showMoreQ, toggleMoreQ] = useMoreQ();
+  const [more, showMore, toggleMore] = useMore();
+  
   const {currentProductId, useClickLogger} = useProductContext();
   const [withClickLogger] = useClickLogger('Questions');
 
@@ -33,7 +34,7 @@ function QuestionsList(props) {
 
   var checkQList = () => {
     if (count >= questionsList.length - 2 && questionsList.length !== 0) {
-      toggleMoreQ();
+      toggleMore();
     }
   }
 
