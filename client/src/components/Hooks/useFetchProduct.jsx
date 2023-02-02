@@ -20,6 +20,7 @@ const useFetchProduct = (productId) => {
       setResponse(res.data);
       setError(null);
     } catch (err) {
+      console.log(err, 'error son');
       setError(err);
     } finally {
       setLoading(false);
