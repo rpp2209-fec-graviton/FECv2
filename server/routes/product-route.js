@@ -4,7 +4,7 @@ const router = express.Router()
 const axios = require('axios');
 const { fetch } = require('../utils/fetch.js');
 
-//generic route for url with any product id, ex: localhost:3000/71699
+// GET One Product's Info
 router.get('/:productId', (req, res) => {
   fetch(`products/${req.params.productId}`, (err, product) => {
     if (err) {
@@ -17,7 +17,7 @@ router.get('/:productId', (req, res) => {
   });
 });
 
-
+// POST & Get One Product Back
 router.post('/', async (req, res) => {
 
   const product_id = req.body.product_id

@@ -34,36 +34,36 @@ function Home () {
 	return (
 		<Routes>
 			<Route path='/:productId' element={
-					<div className="body">
-						{/* Dev Logger: Uncomment to view selected product on page load */}
-						<h3>Selected Product Is: {currentProductId && currentProductId}!</h3>
+				<div className="body">
+					{/* Dev Logger: Uncomment to view selected product on page load */}
+					<h3>Selected Product Is: {currentProductId && currentProductId}!</h3>
 
-						{/* Overview  */}
-						<ErrorBoundary component="Overview">
-							<OverviewProvider>
-								<Overview />
-							</OverviewProvider>
-						</ErrorBoundary>
+					{/* Overview  */}
+					<ErrorBoundary component="Overview">
+						<OverviewProvider>
+							<Overview />
+						</OverviewProvider>
+					</ErrorBoundary>
 
-						{/* Related Products  */}
-						<ErrorBoundary component="Related">
-							<RelatedProducts />
-						</ErrorBoundary>
+					{/* Related Products  */}
+					<ErrorBoundary component="Related">
+						<RelatedProducts />
+					</ErrorBoundary>
 
-						{/* Product Questions  */}
-						<ErrorBoundary component="Questions">
-							<QuestionsProvider>
-								<QuestionsView />
-							</QuestionsProvider>
-						</ErrorBoundary>
+					{/* Product Questions  */}
+					<ErrorBoundary component="Questions">
+						<QuestionsProvider>
+							<QuestionsView />
+						</QuestionsProvider>
+					</ErrorBoundary>
 
-						{/* Product Reviews  */}
-						<ErrorBoundary component="Reviews">
-							<ReviewProvider>
-								<Reviews />
-							</ReviewProvider>
-						</ErrorBoundary>
-					</div>}>
+					{/* Product Reviews  */}
+					<ErrorBoundary component="Reviews">
+						<ReviewProvider>
+							<Reviews />
+						</ReviewProvider>
+					</ErrorBoundary>
+				</div>}>
 			</Route>
 		</Routes>
 	)
