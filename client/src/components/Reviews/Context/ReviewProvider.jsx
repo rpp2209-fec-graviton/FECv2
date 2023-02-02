@@ -9,7 +9,7 @@ const ReviewContext = createContext();
 
 export default function ReviewProvider({ children }) {
 
-  const [sort, setSort] = useState();
+  const [sortOrder, setSortOrder] = useState('relevant');
   const [currentCard, setCurrentCard] = useState();
   const [reviewRating, setReviewRating] = useState(5);
 
@@ -19,9 +19,12 @@ export default function ReviewProvider({ children }) {
     method: 'post',
     url: '/reviews/results',
     data: {
-      product_id: currentProductId
+      product_id: currentProductId,
+      sortOrder: sortOrder
     }
   })
+
+
 
   const handleCurrentReviewRating = (e, rating) => {
     e.preventDefault();
@@ -38,10 +41,8 @@ export default function ReviewProvider({ children }) {
 
   return (
 
-    <ReviewContext.Provider value={{ sort, setSort, currentCard, reviewResponse, reviewLoading, reviewError, filteredReviews, handleCurrentReviewRating }}>
+    <ReviewContext.Provider value={{ sortOrder, setSortOrder, currentCard, reviewResponse, reviewLoading, reviewError, filteredReviews, handleCurrentReviewRating }}>
       {children}
-      {/* { console.log(response, 'resposne ')} */}
-
     </ReviewContext.Provider>
   )
 }

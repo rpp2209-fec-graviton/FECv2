@@ -10,14 +10,6 @@ function ReviewRatings() {
 
   const { reviewResponse, reviewError, reviewLoading, filteredReviews } = useReviewContext()
 
-  // useRatingFilter({ reviewResponse, reviewError, reviewLoading });
-
-
-
-
-
-
-
   return (
     <>
       <div className={styles.ratings_wrapper}>

@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-
-
 export function useRatingFilter(reviewLoading, reviewError, reviewResponse, reviewRating) {
   const [filteredReviews, setFilteredReviews] = useState([]);
 
