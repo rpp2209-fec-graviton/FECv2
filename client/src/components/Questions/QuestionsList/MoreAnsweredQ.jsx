@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 
-export default function MoreAnsweredQ({ count, moreQ, showMoreQ, makeCount, makePage, updateQList, checkQList}) {
+export default function MoreAnsweredQ({ count, more, showMore, makeCount, makePage, updateQList, checkQList}) {
 
   return (
     <div>
-      <button onClick={() => { showMoreQ(count, makeCount, makePage, updateQList, checkQList) }}>
-        {moreQ ? 'More Answered Questions' : 'Collapse Answers'}
+      <button onClick={() => { showMore(count, makeCount, makePage, updateQList, checkQList) }}>
+        {more ? 'More Answered Questions' : 'Collapse Answers'}
       </button>
     </div>
   )

@@ -5,7 +5,6 @@ import React from 'react';
 // libs
 import { render, fireEvent, waitFor, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-
 import { logRoles } from '@testing-library/dom';
 import '@testing-library/jest-dom';
 
@@ -89,6 +88,32 @@ describe('Server', () => {
 });
 
 // ==================================
+//  ⬇ ⭐ TESTING REACT CONTEXT ⭐ ⬇
+// ==================================
+// https://testing-library.com/docs/example-react-context/
+
+/**
+ * Test default values by rendering a context consumer without a
+ * matching provider
+ */
+// describe('Context API', () => {
+//   it('Overview Consumer has access to Overview Context', async () => {
+//     render(
+//     <ContextProvider>
+//       <OverviewProvider>
+//         <Overview />
+//       </OverviewProvider>
+//     </ContextProvider>);
+
+//     // TO-DO: Test context variables are available instead of
+//     // checking for this text content ⬇ ⬇ ⬇
+//     const overview = await screen.findByText(/^Read all reviews/);
+//     expect(overview).toHaveTextContent('Read all reviews');
+//   });
+// });
+
+
+// ==================================
 //      ⬇ ⭐ UNIT TESTS ⭐ ⬇
 //      Arrange, Assert, Act
 // ==================================
@@ -103,7 +128,6 @@ describe('Overview Widget', () => {
       </OverviewProvider>
     </ContextProvider>
   ));
-
 
   it('Product Details should render', async () => {
     const reviewsText = await screen.findByText(/^Read all reviews/)
