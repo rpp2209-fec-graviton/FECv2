@@ -3,6 +3,12 @@ import React from 'react';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary.jsx';
 
 // Context Imports
+=======
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+} from "react-router-dom";
 import ContextProvider from './components/Context/ContextProvider.jsx';
 import ReviewProvider from './components/Reviews/Context/ReviewProvider.jsx';
 import OverviewProvider from "./components/Overview/Context/OverviewProvider.jsx";
@@ -17,31 +23,48 @@ function App() {
   return (
     <>
       <div className="body">
-        <ContextProvider>
-          {/* Overview  */}
-          <ErrorBoundary component="Overview">
-            <OverviewProvider>
-              <Overview />
-            </OverviewProvider>
-          </ErrorBoundary>
 
-          {/* Related Products  */}
-          <ErrorBoundary component="Related">
-            <RelatedProducts />
-          </ErrorBoundary>
 
-          {/* Product Questions  */}
-          <ErrorBoundary component="Questions">
-            <QuestionsView />
-          </ErrorBoundary>
+      <Router>
+        <Routes>
+          <Route
+            // path="/"
+            // element={<Home />}
+          />
+          <Route
+            path="/:productId"
+            element={
+              <ContextProvider>
+              {/* Overview  */}
+              <ErrorBoundary component="Overview">
+                <OverviewProvider>
+                  <Overview />
+                </OverviewProvider>
+              </ErrorBoundary>
 
-          {/* Product Reviews  */}
-          <ErrorBoundary component="Reviews">
-            <ReviewProvider>
-              <Reviews />
-            </ReviewProvider>
-          </ErrorBoundary>
-        </ContextProvider>
+              {/* Related Products  */}
+              <ErrorBoundary component="Related">
+                <RelatedProducts />
+              </ErrorBoundary>
+
+              {/* Product Questions  */}
+              <ErrorBoundary component="Questions">
+                <QuestionsView />
+              </ErrorBoundary>
+
+              {/* Product Reviews  */}
+              <ErrorBoundary component="Reviews">
+                <ReviewProvider>
+                  <Reviews />
+                </ReviewProvider>
+              </ErrorBoundary>
+            </ContextProvider>}
+          />
+        </Routes>
+      </Router>
+
+       
+
       </div>
     </>
   );
