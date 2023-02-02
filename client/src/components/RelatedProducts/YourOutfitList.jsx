@@ -11,11 +11,10 @@ function YourOutfitList ({ cp, fetchData, changeProduct }) {
   };
 
   function removeFromOutfit(id) {
-    setOutfitItems(outfitItems => {
-      return outfitItems.filter((item) => {
-        item.id !== id;
-      });
-    })
+    var newState = outfitItems.filter((item) => {
+      return item.id !== id;
+    });
+    setOutfitItems(newState);
   }
 
   useEffect(() => {
