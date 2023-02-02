@@ -1,19 +1,18 @@
 import React from 'react';
 
-import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary.jsx';
-
-// Context Imports
-=======
 import {
   BrowserRouter as Router,
   Route,
   Routes,
 } from "react-router-dom";
+
+// Context Imports
 import ContextProvider from './components/Context/ContextProvider.jsx';
 import ReviewProvider from './components/Reviews/Context/ReviewProvider.jsx';
 import OverviewProvider from "./components/Overview/Context/OverviewProvider.jsx";
 
 // Component Imports
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary.jsx';
 import Overview from './components/Overview/components/Overview.jsx';
 import Reviews from './components/Reviews/index.js';
 import RelatedProducts from './components/RelatedProducts/RelatedProducts.jsx';
@@ -63,7 +62,7 @@ function App() {
         </Routes>
       </Router>
 
-       
+
 
       </div>
     </>
