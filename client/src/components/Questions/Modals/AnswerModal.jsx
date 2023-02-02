@@ -1,27 +1,54 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
 
 //HOOKS
 import { useQuestionsContext } from "../Context/QuestionsProvider.jsx";
 import useInput from "../hooks/useInput.jsx";
+import { useProductContext } from "../../Context/ContextProvider.jsx";
 
-function AnswerModal({ isShowing, hide, Question }) {
+/*
+  IMPLEMENT uploading photo if time allots
+  IMPLEMENT making sure email is valid
+*/
 
-  /*
-    IMPLEMENT SUBMITING FORM
-    IMPLEMENT UPLOADING PHOTO
-  */
-
+function AnswerModal({ isShowing, hide, q, question_id}) {
+  //HOOKS
   const [mount, setMount] = useState(false);
   const { modalAnchor } = useQuestionsContext();
+  const { currentProductId } = useProductContext();
+  const [productName, setProductName] = useState('');
   const yourAnswer = useInput('');
   const nickname = useInput('');
   const yourEmail = useInput('');
 
+
   const submitForm = (event) => {
     event.preventDefault();
-    console.log('Implement submit', yourEmail.value, yourAnswer.value, nickname.value);
-};
+    axios({
+      method: 'Post',
+      url: `http://localhost:3000/qa/questions/${question_id}/answers`,
+      data: {
+        body: yourAnswer.value,
+        name: nickname.value,
+        email: yourEmail.value,
+        photos: []
+      }
+    }).then((res) => {
+      console.log('Answer', res.data);
+    })
+  };
+
+  useEffect(() => {
+    axios({
+      method: 'POST',
+      url: `http://localhost:3000/products`,
+      data: { product_id: currentProductId }
+    })
+      .then((res) => {
+        setProductName(res.data.name)
+      })
+  }, [])
 
   return (
     isShowing ? ReactDOM.createPortal(
@@ -33,13 +60,20 @@ function AnswerModal({ isShowing, hide, Question }) {
             </button>
           </div>
           <form onSubmit={submitForm}>
-            <title>Submit An Answer!</title>
-            <textarea id="yourAnswer" placeholder="Answer..." {...yourAnswer} rows="4" cols="50" maxLength={1000} required={true} />
-            <input placeholder="Example: jack543!" {...nickname} required={true}/>
-            <input placeholder="Email" {...yourEmail} required={true}/>
+            <h2>Submit An Answer!</h2>
+            <h3>{productName}: {q.question_body}</h3>
+            <label>Answer:
+              <textarea id="yourAnswer" placeholder="Type Your Answer..." {...yourAnswer} rows="4" cols="50" maxLength={1000} required={true} />
+            </label>
+            <label>Nickname:
+              <input placeholder="Example: jack543!" {...nickname} required={true} />
+            </label>
+            <label>Email:
+              <input placeholder="Email" {...yourEmail} required={true} />
+            </label>
             <button type="button">Upload Photo</button>
             <button type="submit">Submit Answer</button>
-        </form>
+          </form>
         </div>
       </React.Fragment>, modalAnchor.current
     ) : null
