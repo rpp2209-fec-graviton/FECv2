@@ -9,7 +9,8 @@ const { fetch } = require('../utils/fetch.js');
 
 // Get One Product
 router.get('/:id', (req, res) => {
-
+  console.log('got here');
+  console.log('ID from Params', req.params.id);
   fetch(`products/${req.params.id}`, (err, product) => {
     if (err) {
       console.log('Error from /products/:id Route', err);

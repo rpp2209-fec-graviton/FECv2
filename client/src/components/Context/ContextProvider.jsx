@@ -19,7 +19,7 @@ export default function ContextProvider({ children }) {
     setCurrentProductId(productId)
   }
 
-  const ctx = { loading, error, response, handleCurrentId, currentProductId, setProductID };
+  const ctx = { loading, error, response, handleCurrentId, currentProductId, setCurrentProductId, useClickLogger };
 
   return (
     <ProductContext.Provider value={ctx}>

@@ -14,7 +14,16 @@ function Overview() {
 	// Global Context
 	const { currentProductId } = useProductContext();
 	// Overview Context
-	const { products, setProducts, product, setProduct, pStyles, setStyles, selectedStyle, setSelectedStyle } = useOverviewContext();
+	const {
+		products,
+		setProducts,
+		product,
+		setProduct,
+		pStyles,
+		setStyles,
+		selectedStyle,
+		setSelectedStyle
+	} = useOverviewContext();
 
 	// Shared State (TODO: Move to global state)
 	// const [starred, setStarred] = useState(false);
@@ -38,7 +47,6 @@ function Overview() {
 				setProduct(current);
 			}
 		}
-
 		// Get/Set All Styles for Each Product
 		Object.values(products).forEach(item => {
 			fetch(`products/${item.id}/styles`, (err, payload) => {
@@ -56,11 +64,7 @@ function Overview() {
 			});
 		});
 
-	}, [products]);
-
-	const handleClick = (e) => {
-		e.target.classList = 'test';
-	};
+	}, [products, currentProductId]);
 
 	return (
 		products &&
