@@ -26,7 +26,7 @@ function AnswerModal({ isShowing, hide, Question }) {
   return (
     isShowing ? ReactDOM.createPortal(
       <React.Fragment>
-        <div className="modal">
+        <div className="answer-modal">
           <div className="modal-header">
             <button type="button" className="modal-close-button" data-dismiss="modal" aria-label="Close" onClick={hide}>
               <span aria-hidden="true">&times;</span>

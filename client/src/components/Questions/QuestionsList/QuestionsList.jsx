@@ -6,11 +6,13 @@ import AnswersList from ".././Answers/AnswersList.jsx";
 import useQuestionsList from "../hooks/useQuestionsList.jsx";
 import SearchBar from './SearchBar.jsx';
 import MoreAnsweredQ from "./MoreAnsweredQ.jsx";
+import QuestionModal from "../Modals/QuestionModal.jsx";
 
 //HOOKS
 import useCount from "../hooks/useCount.jsx";
 import usePage from "../hooks/usePage.jsx";
 import useMore from "../hooks/useMoreQA.jsx";
+import useModal from "../hooks/useModal.jsx";
 
 //CONTEXT
 import { useProductContext } from "../../Context/ContextProvider.jsx";
@@ -20,6 +22,7 @@ function QuestionsList(props) {
   const [count, makeCount] = useCount(2);
   const [questionsList, getQList, filterQList] = useQuestionsList();
   const [more, showMore, toggleMore] = useMore();
+  const { isShowing, toggle } = useModal();
   
   const {currentProductId, useClickLogger} = useProductContext();
   const [withClickLogger] = useClickLogger('Questions');
@@ -60,6 +63,11 @@ function QuestionsList(props) {
         })}
       </div>
       {questionsList.length > 0 && withClickLogger(<MoreAnsweredQ {...{ count, moreQ, showMoreQ, makeCount, makePage, updateQList, checkQList }} />)}
+      <button onClick={toggle}> Submit a Question + </button>
+      <QuestionModal
+        isShowing={isShowing}
+        hide={toggle}
+      />
     </div>
   )
 }

@@ -8,10 +8,8 @@ export default function QuestionsView() {
 
   return (
     <div className="questions" ref={modalAnchor}>
-      {console.log(modalAnchor)}
       <h2> Questions and Answers </h2>
       <QuestionsList />
-      <button onClick={() => { console.log(modalAnchor) }}> ADD A QUESTION + </button>
     </div>
   )
 }
