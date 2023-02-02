@@ -1,4 +1,9 @@
 import React from 'react';
+
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary.jsx';
+
+// Context Imports
+=======
 import {
   BrowserRouter as Router,
   Route,
@@ -18,6 +23,8 @@ function App() {
   return (
     <>
       <div className="body">
+
+
       <Router>
         <Routes>
           <Route
@@ -28,26 +35,37 @@ function App() {
             path="/:productId"
             element={
               <ContextProvider>
+              {/* Overview  */}
+              <ErrorBoundary component="Overview">
+                <OverviewProvider>
+                  <Overview />
+                </OverviewProvider>
+              </ErrorBoundary>
 
-              <OverviewProvider>
-                <Overview />
-              </OverviewProvider>
+              {/* Related Products  */}
+              <ErrorBoundary component="Related">
+                <RelatedProducts />
+              </ErrorBoundary>
 
-              <RelatedProducts />
+              {/* Product Questions  */}
+              <ErrorBoundary component="Questions">
+                <QuestionsView />
+              </ErrorBoundary>
 
-              <QuestionsView />
-
-              <ReviewProvider>
-                <Reviews />
-              </ReviewProvider>
-
-              </ContextProvider>
-            }
+              {/* Product Reviews  */}
+              <ErrorBoundary component="Reviews">
+                <ReviewProvider>
+                  <Reviews />
+                </ReviewProvider>
+              </ErrorBoundary>
+            </ContextProvider>}
           />
         </Routes>
       </Router>
-      </div>
 
+       
+
+      </div>
     </>
   );
 }

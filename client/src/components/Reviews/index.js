@@ -27,7 +27,7 @@ export default function Reviews({ reviewData }) {
   }
 
   return (
-    <div className={styles.reviews}>
+    <div id="reviews" className={styles.reviews}>
       <ReviewForm />
       <ReviewWrapper>
         <ReviewRatings />
