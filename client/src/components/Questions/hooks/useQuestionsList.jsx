@@ -14,7 +14,7 @@ export default function useQuestionsList() {
     try {
       setQuestionsList((await axios({
         method: 'GET',
-        url: `${window.location.href}qa/questions?product_id=${product_id}&count=16&page=${page}`
+        url: `http://localhost:3000/qa/questions?product_id=${product_id}&count=16&page=${page}`
       })).data)
     } catch (error) {
       console.log('error from useQuestionsList');

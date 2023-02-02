@@ -47,7 +47,9 @@ function App() {
 
               {/* Product Questions  */}
               <ErrorBoundary component="Questions">
-                <QuestionsView />
+                <QuestionsProvider>
+                  <QuestionsView />
+                </QuestionsProvider>
               </ErrorBoundary>
 
               {/* Product Reviews  */}
