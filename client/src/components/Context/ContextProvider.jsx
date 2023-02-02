@@ -22,6 +22,7 @@ export default function ContextProvider({ children }) {
     response,
     handleCurrentId,
     currentProductId,
+    setCurrentProductId,
     ratingsAverage,
     setRatingsAverage
   };
