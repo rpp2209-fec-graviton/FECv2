@@ -6,8 +6,8 @@ const QuestionsContext = createContext(null);
 
 export default function QuestionsProvider({ children }) {
   const modalAnchor = useRef();
-  const { currentProductId } = useProductContext();
-  const container = { modalAnchor, product_id: currentProductId };
+  const { currentProductId, useClickLogger} = useProductContext();
+  const container = { useClickLogger, modalAnchor, product_id: currentProductId};
 
 
   return (
