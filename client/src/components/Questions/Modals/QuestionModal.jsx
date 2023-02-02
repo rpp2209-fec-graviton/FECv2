@@ -4,7 +4,6 @@ import axios from "axios";
 
 //HOOKS
 import { useQuestionsContext } from "../Context/QuestionsProvider.jsx";
-import { useProductContext } from "../../Context/ContextProvider.jsx";
 import useInput from "../hooks/useInput.jsx";
 
 function QuestionModal({ isShowing, hide, Question }) {
@@ -20,8 +19,7 @@ function QuestionModal({ isShowing, hide, Question }) {
 
   const [mount, setMount] = useState(false);
   const [productName, setProductName] = useState('');
-  const { modalAnchor } = useQuestionsContext();
-  const { currentProductId } = useProductContext();
+  const { modalAnchor, product_id } = useQuestionsContext();
   const yourQuestion = useInput('');
   const nickname = useInput('');
   const yourEmail = useInput('');
@@ -35,7 +33,7 @@ function QuestionModal({ isShowing, hide, Question }) {
         body: yourQuestion.value,
         name: nickname.value,
         email: yourEmail.value,
-        product_id: currentProductId
+        product_id
       }
     }).then((res) => {
       console.log('Question', res.data);
@@ -46,7 +44,7 @@ function QuestionModal({ isShowing, hide, Question }) {
     axios({
       method: 'POST',
       url: `http://localhost:3000/products`,
-      data: { product_id: currentProductId }
+      data: { product_id }
     })
       .then((res) => {
         setProductName(res.data.name)

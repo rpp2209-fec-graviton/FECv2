@@ -5,7 +5,6 @@ import axios from 'axios';
 //HOOKS
 import { useQuestionsContext } from "../Context/QuestionsProvider.jsx";
 import useInput from "../hooks/useInput.jsx";
-import { useProductContext } from "../../Context/ContextProvider.jsx";
 
 /*
   IMPLEMENT uploading photo if time allots
@@ -15,8 +14,7 @@ import { useProductContext } from "../../Context/ContextProvider.jsx";
 function AnswerModal({ isShowing, hide, q, question_id}) {
   //HOOKS
   const [mount, setMount] = useState(false);
-  const { modalAnchor } = useQuestionsContext();
-  const { currentProductId } = useProductContext();
+  const { modalAnchor, product_id } = useQuestionsContext();
   const [productName, setProductName] = useState('');
   const yourAnswer = useInput('');
   const nickname = useInput('');
@@ -43,7 +41,7 @@ function AnswerModal({ isShowing, hide, q, question_id}) {
     axios({
       method: 'POST',
       url: `http://localhost:3000/products`,
-      data: { product_id: currentProductId }
+      data: { product_id }
     })
       .then((res) => {
         setProductName(res.data.name)
