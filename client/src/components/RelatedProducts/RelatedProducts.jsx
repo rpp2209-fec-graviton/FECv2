@@ -8,11 +8,12 @@ import RPList from "./RPList.jsx";
 import YourOutfitList from "./YourOutfitList.jsx"
 
 function RelatedProducts () {
+  const [currentProductData, setCurrentProductData] = useState(null);
   const [rpData, setRpData] = useState(null);
   const [rpStyles, setRpStyles] = useState(null);
-  const [currentProductData, setCurrentProductData] = useState(null);
+  const [rpRatings, setRpRatings] = useState(null);
   const [loaded, setLoaded] = useState(false);
-  const { currentProductId } = useProductContext();
+  const { currentProductId, setCurrentProductId } = useProductContext();
   const navigate = useNavigate();
 
   async function fetchData(ep) {
@@ -24,7 +25,7 @@ function RelatedProducts () {
           resolve(data.data);
         }
       }
-      fetch(ep, callback)
+      fetch(ep, callback);
     })
   }
 
@@ -50,6 +51,25 @@ function RelatedProducts () {
     })
     .then((styles) => {
       setRpStyles(styles);
+      return Promise.all(idList.map((id) => {
+        return fetchData(`reviews/meta?product_id=${id}`)
+      }))
+    })
+    .then((reviews) => {
+      var ratingList = {};
+      var average;
+      reviews.forEach((review) => {
+        var totalCount = 0;
+        var total = 0;
+        for (var rating in review.ratings) {
+          var ratingCount = parseInt(review.ratings[rating]);
+          totalCount += ratingCount;
+          total += rating * ratingCount;
+        }
+        average = total / totalCount;
+        ratingList[review.product_id] = average.toFixed(1);
+      })
+      setRpRatings(ratingList);
       return fetchData(`products/${currentProductId}`)
     })
     .then((currentProductData) => {
@@ -60,7 +80,8 @@ function RelatedProducts () {
 
   return (
     <div data-testid='rp'>
-      {loaded? <><RPList rps={rpData} rpStyles={rpStyles} changeProduct={changeProduct}/><br/><YourOutfitList cp={currentProductData} fetchData={fetchData} changeProduct={changeProduct}/></>: null}
+      {loaded ? <><RPList rps={rpData} rpRatings={rpRatings} rpStyles={rpStyles} changeProduct={changeProduct}/><br/></> : null}
+      {loaded ? <><YourOutfitList cp={currentProductData} fetchData={fetchData} changeProduct={changeProduct}/></>: null}
     </div>
   )
 }

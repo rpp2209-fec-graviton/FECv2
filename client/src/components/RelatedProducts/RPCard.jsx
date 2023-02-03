@@ -2,7 +2,7 @@ import React from "react";
 import comparison from './RPComparison.jsx';
 import styles from './RPCard.module.css';
 
-function RPCard ({ rp, rpStyles, changeProduct }) {
+function RPCard ({ rp, rpStyles, rpRating, changeProduct }) {
   function starProduct (e) {
     // var currentProduct;
     // var relatedProduct = props.productInfo;
@@ -38,7 +38,7 @@ function RPCard ({ rp, rpStyles, changeProduct }) {
       <br/>
       {salePrice ? <span className={styles.red}>{salePrice} <strike>{originalPrice}</strike></span> : <span>{originalPrice}</span>}
       <br/>
-      {/* {props.productInfo.starRating} */}
+      {rpRating}
       <br/>
     </div>
   )
