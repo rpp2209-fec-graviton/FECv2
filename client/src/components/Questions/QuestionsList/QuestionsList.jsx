@@ -17,6 +17,9 @@ import useModal from "../hooks/useModal.jsx";
 //CONTEXT
 import { useQuestionsContext } from "../Context/QuestionsProvider.jsx";
 
+//CSS
+import styles from "../questions.module.css";
+
 function QuestionsList(props) {
   const [page, makePage] = usePage(1);
   const [count, makeCount] = useCount(2);
@@ -26,10 +29,6 @@ function QuestionsList(props) {
   const {product_id, useClickLogger} = useQuestionsContext();
   const [withClickLogger] = useClickLogger('Questions');
 
-  /*Implementation tasks
-    [] Expands 2 Questions at a time and Scrollable
-    [] Confined to a single page, any longer should be scrollable
-  */
   var updateQList = () => {
     getQList(product_id, page);
   }
@@ -46,18 +45,18 @@ function QuestionsList(props) {
   }, [product_id])
 
   return (
-    <div>
+    <div className={styles.questionsView}>
       <SearchBar {...{ filterQList }} />
-      <div>
+      <div className={styles.questionsList}>
         {questionsList.map((q, index) => {
           if (index >= count) {
             return;
           }
           return (
-            <div className="Question" key={index}>
+            < React.Fragment key={index}>
               <Question q={q} />
               <AnswersList question_id={q.question_id} q={q} />
-            </div>
+            </ React.Fragment >
           )
         })}
       </div>

@@ -6,6 +6,9 @@ import axios from 'axios';
 import { useQuestionsContext } from "../Context/QuestionsProvider.jsx";
 import useInput from "../hooks/useInput.jsx";
 
+//CSS
+import styles from "../questions.module.css";
+
 /*
   IMPLEMENT uploading photo if time allots
   IMPLEMENT making sure email is valid
@@ -51,13 +54,12 @@ function AnswerModal({ isShowing, hide, q, question_id}) {
   return (
     isShowing ? ReactDOM.createPortal(
       <React.Fragment>
-        <div className="answer-modal">
-          <div className="modal-header">
-            <button type="button" className="modal-close-button" data-dismiss="modal" aria-label="Close" onClick={hide}>
+        <div className={styles.modal}>
+          <div className={styles.modalWrapper}>
+            <button type="button" className={styles.closeButton} onClick={hide}>
               <span aria-hidden="true">&times;</span>
             </button>
-          </div>
-          <form onSubmit={submitForm}>
+          <form className={styles.modalForm} onSubmit={submitForm}>
             <h2>Submit An Answer!</h2>
             <h3>{productName}: {q.question_body}</h3>
             <label>Answer:&nbsp;
@@ -72,6 +74,7 @@ function AnswerModal({ isShowing, hide, q, question_id}) {
             <button type="button">Upload Photo</button>
             <button type="submit">Submit Answer</button>
           </form>
+          </div>
         </div>
       </React.Fragment>, modalAnchor.current
     ) : null

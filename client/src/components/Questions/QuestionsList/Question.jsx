@@ -1,18 +1,17 @@
 import React from "react";
 import AnswerModal from "../Modals/AnswerModal.jsx";
 import useModal from "../hooks/useModal.jsx";
+import styles from "../questions.module.css";
 
 function Question({ q }) {
-  /* Implementation Tasks
-  2. Display "Helpful?" Link and "Yes(#)" count
-  */
+
   const { isShowing, toggle } = useModal();
 
   return (
-    <>
+    <div className={styles.question}>
       <b data-testid="test-question">Q: {q.question_body}</b>
       <sub> Helpful?
-        <a> Yes ({q.question_helpfulness}) </a>
+        <a> Yes&nbsp;({q.question_helpfulness}) </a>
         | <a onClick={toggle}> Add Answer </a>
         <a></a>
       </sub>
@@ -22,7 +21,7 @@ function Question({ q }) {
         q={q}
         question_id={q.question_id}
       />
-    </>
+    </div >
   )
 }
 

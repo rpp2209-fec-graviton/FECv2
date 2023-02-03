@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import axios from "axios";
+import styles from "../questions.module.css";
 
 //HOOKS
 import { useQuestionsContext } from "../Context/QuestionsProvider.jsx";
@@ -54,30 +55,31 @@ function QuestionModal({ isShowing, hide, Question }) {
   return (
     isShowing ? ReactDOM.createPortal(
       <React.Fragment>
-        <div className="question-modal">
-          <div className="modal-header">
-            <button type="button" className="modal-close-button" data-dismiss="modal" aria-label="Close" onClick={hide}>
-              <span aria-hidden="true">&times;</span>
-            </button>
+        <div className={styles.modal}>
+          <div className={styles.modalWrapper}>
+            <>
+              <button type="button" className={styles.closeButton} onClick={hide}>
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h2>Ask Your Question...</h2>
+              <h3>about the {productName}</h3>
+            </>
+            <form className={styles.modalForm} onSubmit={submitForm}>
+              <label>
+                Question:&nbsp;
+                <textarea placeholder="Type Your Question..." {...yourQuestion} rows="2" cols="25" maxLength={1000} required={true} />
+              </label>
+              <label>
+                Nickname:&nbsp;
+                <input placeholder="Example: jack543!" {...nickname} required={true} />
+              </label>
+              <label>
+                Email:&nbsp;
+                <input placeholder="Email" {...yourEmail} required={true} />
+              </label>
+              <button type="submit">Submit Answer</button>
+            </form>
           </div>
-          <form onSubmit={submitForm}>
-            <h2>Ask Your Question</h2>
-            <h3>about the {productName}</h3>
-            <label>
-              Question:&nbsp;
-              <textarea placeholder="Type Your Question..." {...yourQuestion} rows="2" cols="25" maxLength={1000} required={true} />
-            </label>
-            <label>
-              Nickname:&nbsp;
-              <input placeholder="Example: jack543!" {...nickname} required={true} />
-            </label>
-            <label>
-              Email:&nbsp;
-               <input placeholder="Email" {...yourEmail} required={true} />
-            </label>
-            <button type="button">Upload Photo</button>
-            <button type="submit">Submit Answer</button>
-          </form>
         </div>
       </React.Fragment>, modalAnchor.current
     ) : null
