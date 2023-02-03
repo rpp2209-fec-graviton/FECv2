@@ -2,6 +2,9 @@
   display: inline-block;
   border:1px solid black;
 }
+.red {
+  color: red;
+}
 img {
   width: 150px;
   height: 150px;
