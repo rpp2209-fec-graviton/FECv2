@@ -35,7 +35,6 @@ function Overview() {
 	useEffect(() => {
 		for (var current of products) {
 			if (current.id.toString() === currentProductId) {
-				console.log('got here');
 				setProduct(current);
 			}
 		}
@@ -59,11 +58,12 @@ function Overview() {
 
 	}, [products]);
 
-	useEffect(() => {
-		if(product) {
-			console.log('product', product);
-		}
-	}, [product]);
+	// Current Product Logger
+	// useEffect(() => {
+	// 	if(product) {
+	// 		console.log('product', product);
+	// 	}
+	// }, [product]);
 
 	const handleClick = (e) => {
 		e.target.classList = 'test';

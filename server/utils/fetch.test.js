@@ -3,7 +3,65 @@
  */
 require('dotenv').config()
 import { fetch } from './fetch.js';
+
+// Mock Imports
 import mockAxios from 'axios';
+jest.mock('axios');
+
+describe('Fetch Import', function() {
+	it('should exist', function() {
+    expect(fetch).not.toBe(undefined);
+  });
+
+	it('should be a function', () => {
+    expect(typeof fetch).toBe('function');
+  });
+});
+
+describe('Fetch Functionality', () => {
+	afterEach(jest.clearAllMocks);
+
+	it('\'products\' endpoint should return a list of products', async () => {
+		mockAxios.get.mockResolvedValue(mockProducts);
+
+		await fetch('products', (err, products) => {
+			if (err) {
+				console.log('Fetch Test Error', err);
+			} else {
+				// console.log('fetch test data', products);
+				expect(products[0].name).toBe("Mock Onesie");
+				expect(products[0].id).toBe(1);
+
+				expect(products[1].name).toBe("Mock Sunglasses");
+				expect(products[1].id).toBe(2);
+
+				expect(products[2].name).toBe("Mock Joggers");
+				expect(products[2].id).toBe(3);
+			}
+		});
+  });
+
+	it('\'styles\' endpoint should return a list of product styles', async () => {
+		mockAxios.get.mockResolvedValue(mockStyles);
+
+		await fetch('products/71697/styles', (err, styles) => {
+			if (err) {
+				console.log('Fetch Test Error', err);
+			} else {
+				// console.log('Product Styles', styles.results[0]);
+
+				expect(styles.results[0].name).toBe("Mock Forest Green & Black");
+				expect(styles.results[0].style_id).toBe(1);
+				expect(styles.results[0].skus["mock-2580526"]).toEqual({ quantity: 8, size: 'XS' });
+
+				expect(styles.results[1].name).toBe("Mock Desert Brown & Tan");
+				expect(styles.results[1].style_id).toBe(2);
+				expect(styles.results[1].skus["mock-2580533"]).toEqual({ quantity: 16, size: 'S' });
+			}
+		})
+  });
+});
+
 
 const mockProducts = [
 	{
@@ -422,59 +480,3 @@ const mockStyles = {
 			}
 	]
 };
-
-jest.mock('axios');
-
-describe('Fetch Import', function() {
-	it('should exist', function() {
-    expect(fetch).not.toBe(undefined);
-  });
-
-	it('should be a function', () => {
-    expect(typeof fetch).toBe('function');
-  });
-});
-
-describe('Fetch Functionality', () => {
-	afterEach(jest.clearAllMocks);
-
-	it('\'products\' endpoint should return a list of products', async () => {
-		mockAxios.get.mockResolvedValue(mockProducts);
-
-		await fetch('products', (err, products) => {
-			if (err) {
-				console.log('Fetch Test Error', err);
-			} else {
-				// console.log('fetch test data', products);
-				expect(products[0].name).toBe("Mock Onesie");
-				expect(products[0].id).toBe(1);
-
-				expect(products[1].name).toBe("Mock Sunglasses");
-				expect(products[1].id).toBe(2);
-
-				expect(products[2].name).toBe("Mock Joggers");
-				expect(products[2].id).toBe(3);
-			}
-		});
-  });
-
-	it('\'styles\' endpoint should return a list of product styles', async () => {
-		mockAxios.get.mockResolvedValue(mockStyles);
-
-		await fetch('products/71697/styles', (err, styles) => {
-			if (err) {
-				console.log('Fetch Test Error', err);
-			} else {
-				// console.log('Product Styles', styles.results[0]);
-
-				expect(styles.results[0].name).toBe("Mock Forest Green & Black");
-				expect(styles.results[0].style_id).toBe(1);
-				expect(styles.results[0].skus["mock-2580526"]).toEqual({ quantity: 8, size: 'XS' });
-
-				expect(styles.results[1].name).toBe("Mock Desert Brown & Tan");
-				expect(styles.results[1].style_id).toBe(2);
-				expect(styles.results[1].skus["mock-2580533"]).toEqual({ quantity: 16, size: 'S' });
-			}
-		})
-  });
-});
