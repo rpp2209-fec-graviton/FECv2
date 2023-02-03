@@ -22,6 +22,26 @@ router.get('/', (req, res) => {
   })
 })
 
+router.post('/', (req, res) => {
+  try {
+    axios({
+      method: 'POST',
+      url: process.env.API_URL + `/qa/questions`,
+      headers: { "Authorization": `${process.env.API_KEY}` },
+      data: req.body
+    })
+    .then((response) => {
+      console.log(response)
+      res.status(201).json(response.data);
+    })
+  } catch (error) {
+    console.log(error);
+    res.status(400).json('error');
+  }
+})
+
+
+
 router.get('/:question_id/answers', (req, res) => {
   fetch(`qa/questions${req.url}`, (err, payload) => {
     if (err) {
@@ -32,7 +52,24 @@ router.get('/:question_id/answers', (req, res) => {
   })
 })
 
-// router.get('/count')
+router.post('/:question_id/answers', (req, res) => {
+  console.log(req.url, req.body)
+  try {
+    axios({
+      method: 'POST',
+      url: process.env.API_URL + `/qa/questions${req.url}`,
+      headers: { "Authorization": `${process.env.API_KEY}` },
+      data: req.body
+    })
+    .then((response) => {
+      console.log(response)
+      res.status(201).json(response.data);
+    })
+  } catch (error) {
+    console.log(error);
+    res.status(400).json('error');
+  }
+})
 
 
 // router.get('/product_id')
