@@ -3,10 +3,16 @@ import YourOutfitItem from "./YourOutfitItem.jsx";
 
 function YourOutfitList ({ cp, fetchData, changeProduct }) {
   const [outfitItems, setOutfitItems] = useState([]);
+  const [outfitPhotoUrls, setOutfitPhotoUrls] = useState({});
 
   function addToOutfit() {
     if (!outfitItems.some(item => item.id === cp.id)) {
-      setOutfitItems([...outfitItems, cp]);
+      fetchData(`products/${cp.id}/styles`)
+      .then((styles) => {
+        var itemPhotoUrl = styles.results[0].photos[0].thumbnail_url;
+        setOutfitPhotoUrls({...outfitPhotoUrls, [cp.id]: itemPhotoUrl});
+        setOutfitItems([...outfitItems, cp]);
+      });
     }
   };
 
@@ -16,15 +22,19 @@ function YourOutfitList ({ cp, fetchData, changeProduct }) {
     });
     setOutfitItems(newState);
   }
-
+  // get the items once on first load
   useEffect(() => {
-    const data = window.localStorage.getItem('OUTFIT_STATE');
-    if ( data !== null ) setOutfitItems(JSON.parse(data));
+    const storedItems = window.localStorage.getItem('OUTFIT_ITEMS');
+    if ( storedItems !== null ) setOutfitItems(JSON.parse(storedItems));
+
+    const storedPhotos = window.localStorage.getItem('OUTFIT_PHOTOS');
+    if ( storedPhotos !== null ) setOutfitPhotoUrls(JSON.parse(storedPhotos));
   }, []);
-
+  // set the outfit items in local storage, whenever they change
   useEffect(() => {
-    window.localStorage.setItem('OUTFIT_STATE', JSON.stringify(outfitItems));
-  }, [outfitItems]);
+    window.localStorage.setItem('OUTFIT_ITEMS', JSON.stringify(outfitItems));
+    window.localStorage.setItem('OUTFIT_PHOTOS', JSON.stringify(outfitPhotoUrls));
+  }, [outfitItems, outfitPhotoUrls]);
 
   return (
     <div>
@@ -33,7 +43,7 @@ function YourOutfitList ({ cp, fetchData, changeProduct }) {
         <button onClick={addToOutfit}> Add to Outfit (+) </button>
       </div>
       {outfitItems && outfitItems.map((item) => {
-        return <YourOutfitItem key={item.id} item={item} fetchData={fetchData} changeProduct={changeProduct} removeFromOutfit={removeFromOutfit}/>
+        return <YourOutfitItem key={item.id} photo={outfitPhotoUrls[item.id]}  item={item} changeProduct={changeProduct} removeFromOutfit={removeFromOutfit}/>
       })}
     </div>
   );

@@ -27,8 +27,8 @@ function RPCard ({ rp, rpStyles, changeProduct }) {
   }
 
   return (
-    <div className={styles.card} onClick={() => changeProduct(rp.id)} data-testid='rpcard'>
-      <img src={imgUrl}/>
+    <div className={styles.card} data-testid='rpcard'>
+      <img onClick={() => changeProduct(rp.id)} src={imgUrl}/>
       <br/>
       <button onClick={starProduct}>Star</button>
       <br/>
@@ -36,7 +36,7 @@ function RPCard ({ rp, rpStyles, changeProduct }) {
       <br/>
       {rp.name}
       <br/>
-        {salePrice ? <>{salePrice} {originalPrice}</> : <>{originalPrice}</>}
+      {salePrice ? <span className={styles.red}>{salePrice} <strike>{originalPrice}</strike></span> : <span>{originalPrice}</span>}
       <br/>
       {/* {props.productInfo.starRating} */}
       <br/>

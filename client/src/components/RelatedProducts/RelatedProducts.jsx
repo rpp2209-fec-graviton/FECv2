@@ -37,8 +37,8 @@ function RelatedProducts () {
     let idList;
     fetchData(`products/${currentProductId}/related`)
     .then((ids) => {
-      idList = ids;
-      return Promise.all(ids.map((id) => {
+      idList = [...new Set(ids)];
+      return Promise.all(idList.map((id) => {
         return fetchData(`products/${id}`)
       }))
     })
