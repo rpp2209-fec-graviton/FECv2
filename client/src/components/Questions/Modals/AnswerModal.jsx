@@ -62,13 +62,13 @@ function AnswerModal({ isShowing, hide, q, question_id}) {
           <form onSubmit={submitForm}>
             <h2>Submit An Answer!</h2>
             <h3>{productName}: {q.question_body}</h3>
-            <label>Answer:
+            <label>Answer:&nbsp;
               <textarea id="yourAnswer" placeholder="Type Your Answer..." {...yourAnswer} rows="4" cols="50" maxLength={1000} required={true} />
             </label>
-            <label>Nickname:
+            <label>Nickname:&nbsp;
               <input placeholder="Example: jack543!" {...nickname} required={true} />
             </label>
-            <label>Email:
+            <label>Email:&nbsp;
               <input placeholder="Email" {...yourEmail} required={true} />
             </label>
             <button type="button">Upload Photo</button>
