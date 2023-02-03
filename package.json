@@ -6,7 +6,7 @@
   "scripts": {
     "client-dev": "npx webpack --watch",
     "server-dev": "npx nodemon server/index.js",
-    "test": "jest . --watch --coverage",
+    "test": "jest . --watchAll --coverage",
     "test-overview": "jest ./client/src/components/Overview/overview.test.js --watch --coverage --detectOpenHandles",
     "test-modal": "jest ./client/src/components/Overview/overview-utils/modal.test.js --watch --detectOpenHandles",
     "test-fetch": "jest ./server/utils/fetch.test.js --watch --detectOpenHandles",

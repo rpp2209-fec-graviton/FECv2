@@ -8,7 +8,7 @@ export default function ContextProvider({ children }) {
 
   // Gabby Comment: Changing the default product ID because the old one
   // (71697) has no image urls to test with (not sure why)
-  const [currentProductId, setCurrentProductId] = useState(71697)
+  const [currentProductId, setCurrentProductId] = useState(71699)
 
   const { response, loading, error } = useFetchProduct(currentProductId)
 

@@ -15,7 +15,7 @@ import useMore from "../hooks/useMoreQA.jsx";
 import useModal from "../hooks/useModal.jsx";
 
 //CONTEXT
-import { useProductContext } from "../../Context/ContextProvider.jsx";
+import { useQuestionsContext } from "../Context/QuestionsProvider.jsx";
 
 function QuestionsList(props) {
   const [page, makePage] = usePage(1);
@@ -23,8 +23,7 @@ function QuestionsList(props) {
   const [questionsList, getQList, filterQList] = useQuestionsList();
   const [more, showMore, toggleMore] = useMore();
   const { isShowing, toggle } = useModal();
-
-  const {currentProductId, useClickLogger} = useProductContext();
+  const {product_id, useClickLogger} = useQuestionsContext();
   const [withClickLogger] = useClickLogger('Questions');
 
   /*Implementation tasks
@@ -32,7 +31,7 @@ function QuestionsList(props) {
     [] Confined to a single page, any longer should be scrollable
   */
   var updateQList = () => {
-    getQList('71698', page);
+    getQList(product_id, page);
   }
 
   var checkQList = () => {
@@ -43,8 +42,8 @@ function QuestionsList(props) {
 
 
   useEffect(() => {
-    getQList('71699', page);
-  }, [])
+    getQList(product_id, page);
+  }, [product_id])
 
   return (
     <div>

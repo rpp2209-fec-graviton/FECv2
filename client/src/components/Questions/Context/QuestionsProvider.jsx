@@ -1,10 +1,13 @@
 import React, { useState, createContext, useContext, useRef } from 'react';
+import { useProductContext } from "../../Context/ContextProvider.jsx";
+
 
 const QuestionsContext = createContext(null);
 
 export default function QuestionsProvider({ children }) {
   const modalAnchor = useRef();
-  const container = { modalAnchor };
+  const { currentProductId, useClickLogger} = useProductContext();
+  const container = { useClickLogger, modalAnchor, product_id: currentProductId};
 
 
   return (
