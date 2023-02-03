@@ -11,7 +11,7 @@ import usePage from "../hooks/usePage.jsx";
 import useMoreA from "../hooks/useMoreQA.jsx";
 import useModal from "../hooks/useModal.jsx";
 
-function AnswersList({ question_id }) {
+function AnswersList({ question_id, q }) {
   /*Implementation Tasks
   1. Sort Answers by helpfulness/Sellar
   3. Implement "See More Answers"/"Collapse Answers"
@@ -46,10 +46,13 @@ function AnswersList({ question_id }) {
       })}
       {answersList.length > 2 ?
         <SeeMoreAnswers {...{ count, more, showMore, makeCount, makePage, updateAList, checkAList }} />
-        : <sub onClick={toggle}> Submit an Answer </sub>}
+        : null}
+      <sub onClick={toggle}> Submit an Answer </sub>
       <AnswerModal
         isShowing={isShowing}
         hide={toggle}
+        q={q}
+        question_id={question_id}
       />
     </div>
   )

@@ -57,7 +57,7 @@ function QuestionsList(props) {
           return (
             <div className="Question" key={index}>
               <Question q={q} />
-              <AnswersList question_id={q.question_id} />
+              <AnswersList question_id={q.question_id} q={q} />
             </div>
           )
         })}
