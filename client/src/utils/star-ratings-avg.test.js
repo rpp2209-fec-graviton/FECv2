@@ -1,11 +1,12 @@
 /**
  * @jest-environment jsdom
  */
-import React from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
 import { render, fireEvent, waitFor, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
+import { useProductContext } from '../components/Context/ContextProvider.jsx';
 import StarRating from '../components/Overview/components/StarRating.jsx';
 import getRatingsAvg from './star-ratings-avg.js';
 
@@ -30,6 +31,17 @@ describe('Testing Environment', () => {
     expect(screen.queryByTestId('not-empty')).not.toBeEmptyDOMElement()
     expect(screen.getByText('Visible Example')).toBeVisible()
   });
+
+  it("Mock returns undefined by default", () => {
+    const mock = jest.fn();
+
+    let result = mock("foo");
+
+    expect(result).toBeUndefined();
+    expect(mock).toHaveBeenCalled();
+    expect(mock).toHaveBeenCalledTimes(1);
+    expect(mock).toHaveBeenCalledWith("foo");
+  });
 });
 
 // ==================================
@@ -47,21 +59,19 @@ describe.only('Star Ratings Calculation', () => {
     expect(typeof getRatingsAvg).toBe('function')
   });
 
-  // To-Do
-  // it('should use mocked data', async () => {
-  //   mockAxios.get.mockResolvedValue(mockData);
-  //   const useContext = jest.fn();
+  // To-Do: Cant get this test working
+  it('WRITE TEST TO-DO should use mocked data', async () => {
+    // const fetch = jest.mock('../../../server/utils/fetch.js');
+    // const useContext = jest.fn();
 
-  //   const result = await getRatingsAvg(1);
+    // await getRatingsAvg(1);
 
-  //   // console.log('result?', result);
-
-  //   // expect(result).toBe()
-  // });
+    // expect(fetch).toHaveBeenCalled();
+  });
 });
 
 const mockData = {
-  "product": "mock-71697",
+  "product": 1,
   "page": 0,
   "count": 5,
   "results": [
