@@ -10,16 +10,19 @@ export default function useQuestionsList() {
     })])
   };
 
-  var getQList = async (product_id, page) => {
-    try {
-      setQuestionsList((await axios({
-        method: 'GET',
-        url: `http://localhost:3000/qa/questions?product_id=${product_id}&count=16&page=${page}`
-      })).data)
-    } catch (error) {
-      console.log('error from useQuestionsList');
-      throw new Error(error);
-    }
+  var getQList = (product_id, page) => {
+    axios({
+      method: 'GET',
+      url: `http://localhost:3000/qa/questions?product_id=${product_id}&count=16&page=${page}`
+    })
+      .then((res) => {
+        setQuestionsList(res.data);
+      })
+      .catch((err) => {
+        console.log('error from useQuestionsList');
+        throw new Error(error);
+      })
+
   }
 
   return [questionsList, getQList, filterQList];

@@ -15,7 +15,6 @@ router.post('/', async (req, res) => {
     });
     console.log('Successfully logged interaction for, ', element);
     res.status(201);
-
   } catch (error) {
     console.log(error);
     res.status(422).json('error in logging interaction');

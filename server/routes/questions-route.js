@@ -53,7 +53,6 @@ router.get('/:question_id/answers', (req, res) => {
 })
 
 router.post('/:question_id/answers', (req, res) => {
-  console.log(req.url, req.body)
   try {
     axios({
       method: 'POST',
@@ -71,8 +70,21 @@ router.post('/:question_id/answers', (req, res) => {
   }
 })
 
-
-// router.get('/product_id')
-
+router.put('/:question_id/report', (req, res) => {
+  try {
+    axios({
+      method: 'PUT',
+      url: process.env.API_URL + `/qa/questions${req.url}`,
+      headers: { "Authorization": `${process.env.API_KEY}` },
+    })
+    .then((response) => {
+      console.log(response)
+      res.status(204).json(response.data);
+    })
+  } catch (error) {
+    console.log(error);
+    res.status(400).json('error');
+  }
+})
 
 module.exports = router;
