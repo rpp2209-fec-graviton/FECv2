@@ -47,7 +47,7 @@ function QuestionsList(props) {
   return (
     <div className={styles.questionsView}>
       <SearchBar {...{ filterQList }} />
-      <div className={styles.questionsList}>
+      <div className={styles.questionsView__list}>
         {questionsList.map((q, index) => {
           if (index >= count) {
             return;
@@ -61,7 +61,7 @@ function QuestionsList(props) {
         })}
       </div>
       {questionsList.length > 0 && withClickLogger(<MoreAnsweredQ {...{ count, more, showMore, makeCount, makePage, updateQList, checkQList }} />)}
-      <button onClick={toggle}> Submit a Question + </button>
+      <button className={styles.questionsView__btn} onClick={toggle}> Submit a Question + </button>
       <QuestionModal
         isShowing={isShowing}
         hide={toggle}

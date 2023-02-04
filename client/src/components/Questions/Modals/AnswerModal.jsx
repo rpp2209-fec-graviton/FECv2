@@ -55,11 +55,11 @@ function AnswerModal({ isShowing, hide, q, question_id}) {
     isShowing ? ReactDOM.createPortal(
       <React.Fragment>
         <div className={styles.modal}>
-          <div className={styles.modalWrapper}>
-            <button type="button" className={styles.closeButton} onClick={hide}>
+          <div className={styles.modal__wrapper}>
+            <button type="button" className={styles.modal__closeBtn} onClick={hide}>
               <span aria-hidden="true">&times;</span>
             </button>
-          <form className={styles.modalForm} onSubmit={submitForm}>
+          <form className={styles.modal__form} onSubmit={submitForm}>
             <h2>Submit An Answer!</h2>
             <h3>{productName}: {q.question_body}</h3>
             <label>Answer:&nbsp;

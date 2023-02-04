@@ -9,7 +9,7 @@ export default function QuestionsView() {
 
   return (
     <div className={styles.overview} ref={modalAnchor}>
-      <h2 className={styles.header}> Questions and Answers </h2>
+      <h2 className={styles.overview__header}> Questions and Answers </h2>
       <QuestionsList />
     </div>
   )
