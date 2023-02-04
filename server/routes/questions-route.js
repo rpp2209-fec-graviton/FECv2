@@ -71,7 +71,6 @@ router.post('/:question_id/answers', (req, res) => {
 })
 
 router.put('/:question_id/report', (req, res) => {
-  try {
     axios({
       method: 'PUT',
       url: process.env.API_URL + `/qa/questions${req.url}`,
@@ -81,10 +80,10 @@ router.put('/:question_id/report', (req, res) => {
       console.log(response)
       res.status(204).json(response.data);
     })
-  } catch (error) {
+    .catch((error) =>{
     console.log(error);
     res.status(400).json('error');
-  }
+    });
 })
 
 module.exports = router;
