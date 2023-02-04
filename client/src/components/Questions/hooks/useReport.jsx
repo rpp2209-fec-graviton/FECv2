@@ -13,7 +13,7 @@ export default function useReport(QAid, reportedCategory) {
   const localStorage = JSON.parse(window.localStorage.getItem(category));
 
   const [reportedList, setReportedList] = useState(localStorage);
-  const [isReported, setIsReported] = useState(localStorage[id] || false);
+  const [isReported, setIsReported] = useState(localStorage[id]);
 
   const reportQA = () => {
     if (!reportedList[id]) {
@@ -23,7 +23,6 @@ export default function useReport(QAid, reportedCategory) {
       })
         .then((res) => {
           setReportedList({ ...reportedList, [id]: true });
-          console.log('reportedList', reportedList);
           setIsReported(true);
           window.localStorage.setItem(category, JSON.stringify(reportedList));
         })

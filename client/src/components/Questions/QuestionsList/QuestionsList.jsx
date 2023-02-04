@@ -42,7 +42,7 @@ function QuestionsList(props) {
 
   useEffect(() => {
     getQList(product_id, page);
-  }, [page, product_id])
+  }, [page])
 
   return (
     <div className={styles.questionsView}>

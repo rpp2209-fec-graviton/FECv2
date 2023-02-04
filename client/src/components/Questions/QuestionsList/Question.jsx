@@ -7,7 +7,7 @@ import useReport from "../hooks/useReport.jsx";
 function Question({ q }) {
 
   const { isShowing, toggle } = useModal();
-  // const [isReported, reportQA] = useReport(q.question_id, 'reportedQ');
+  const [isReported, reportQA] = useReport(q.question_id, 'reportedQ');
 
   var reportedStyle = { fontWeight: 'bold', color: 'blue' };
 
@@ -17,9 +17,9 @@ function Question({ q }) {
       <sub> Helpful?&nbsp;
         <a>Yes({q.question_helpfulness})</a>&nbsp;
         | <a onClick={toggle}> Add Answer</a>&nbsp;
-        | {false ?
+        | {isReported ?
           <a style={reportedStyle}>Reported</a> :
-          <a >Report</a>
+          <a onClick={reportQA}>Report</a>
         }&nbsp;&nbsp;
       </sub>
       <AnswerModal
