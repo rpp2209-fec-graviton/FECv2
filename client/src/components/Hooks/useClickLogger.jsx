@@ -14,7 +14,7 @@ export default function useClickLogger(widget) {
       try {
         await axios({
           method: 'post',
-          url: `${window.location.href}interactions`,
+          url: `http://localhost:3000/interactions`,
           data: {
             time: new Date(),
             element: renderToString(Component),

@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
+import axios from "axios";
+import styles from "../questions.module.css";
 
 //HOOKS
 import { useQuestionsContext } from "../Context/QuestionsProvider.jsx";
@@ -17,34 +19,67 @@ function QuestionModal({ isShowing, hide, Question }) {
   */
 
   const [mount, setMount] = useState(false);
-  const { modalAnchor } = useQuestionsContext();
+  const [productName, setProductName] = useState('');
+  const { modalAnchor, product_id } = useQuestionsContext();
   const yourQuestion = useInput('');
   const nickname = useInput('');
   const yourEmail = useInput('');
 
   const submitForm = (event) => {
     event.preventDefault();
-    console.log('Implement submit', yourEmail.value, yourQuestion.value, nickname.value);
+    axios({
+      method: 'Post',
+      url: `http://localhost:3000/qa/questions`,
+      data: {
+        body: yourQuestion.value,
+        name: nickname.value,
+        email: yourEmail.value,
+        product_id
+      }
+    }).then((res) => {
+      console.log('Question', res.data);
+    })
   };
+
+  useEffect(() => {
+    axios({
+      method: 'POST',
+      url: `http://localhost:3000/products`,
+      data: { product_id }
+    })
+      .then((res) => {
+        setProductName(res.data.name)
+      })
+  }, [])
 
   return (
     isShowing ? ReactDOM.createPortal(
       <React.Fragment>
-        <div className="question-modal">
-          <div className="modal-header">
-            <button type="button" className="modal-close-button" data-dismiss="modal" aria-label="Close" onClick={hide}>
-              <span aria-hidden="true">&times;</span>
-            </button>
+        <div className={styles.modal}>
+          <div className={styles.modal__wrapper}>
+            <>
+              <button type="button" className={styles.modal__closeBtn} onClick={hide}>
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h2>Ask Your Question...</h2>
+              <h3>about the {productName}</h3>
+            </>
+            <form className={styles.modal__form} onSubmit={submitForm}>
+              <label>
+                Question:&nbsp;
+                <textarea placeholder="Type Your Question..." {...yourQuestion} rows="2" cols="25" maxLength={1000} required={true} />
+              </label>
+              <label>
+                Nickname:&nbsp;
+                <input placeholder="Example: jack543!" {...nickname} required={true} />
+              </label>
+              <label>
+                Email:&nbsp;
+                <input placeholder="Email" {...yourEmail} required={true} />
+              </label>
+              <button type="submit">Submit Answer</button>
+            </form>
           </div>
-          <form onSubmit={submitForm}>
-            <title>Ask Your Question</title>
-            <sub>About the [INSERT PRODUCT NAME HERE]</sub>
-            <textarea id="yourQuestion" placeholder="Question..." {...yourQuestion} rows="4" cols="50" maxLength={1000} required={true} />
-            <input placeholder="Example: jack543!" {...nickname} required={true} />
-            <input placeholder="Email" {...yourEmail} required={true} />
-            <button type="button">Upload Photo</button>
-            <button type="submit">Submit Answer</button>
-          </form>
         </div>
       </React.Fragment>, modalAnchor.current
     ) : null

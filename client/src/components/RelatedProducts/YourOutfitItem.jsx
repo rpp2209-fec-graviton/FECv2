@@ -1,18 +1,11 @@
 import React, { useState } from "react";
 import styles from './YourOutfitItem.module.css';
 
-function YourOutfitItem ({ item, fetchData, changeProduct }) {
-  const [photoUrl, setPhotoUrl] = useState(null);
-
-  fetchData(`products/${item.id}/styles`)
-  .then((styles) => {
-    setPhotoUrl(styles.results[0].photos[0].thumbnail_url);
-  });
-
-  if (photoUrl) {
+function YourOutfitItem ({ item, changeProduct, photo, removeFromOutfit }) {
+  if (item) {
     return (
-      <div onClick={() => changeProduct(item.id)} className={styles.outfitCard}>
-        <img src={photoUrl}/>
+      <div className={styles.outfitCard}>
+        <img src={photo} onClick={() => changeProduct(item.id)}/>
         <br/>
         {item.category}
         <br/>
@@ -20,7 +13,7 @@ function YourOutfitItem ({ item, fetchData, changeProduct }) {
         <br/>
         {item.default_price}
         <br/>
-        {/* {props.productInfo.starRating} */}
+        <button onClick={() => removeFromOutfit(item.id)}> Remove </button>
         <br/>
       </div>
     )

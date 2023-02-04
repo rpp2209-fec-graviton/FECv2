@@ -8,15 +8,18 @@ function RPCard ({ rp, rpStyles, changeProduct }) {
     // var relatedProduct = props.productInfo;
     // return comparison(currentProduct, relatedProduct);
   };
-  var imgUrl = rpStyles[0].photos[0].thumbnail_url;
-
-  var defaultStyle = rpStyles.filter((style) => {
-    return style['default?'];
-  });
+  var imgUrl = null;
+  var defaultStyle = [];
+  if (rpStyles) {
+    imgUrl = rpStyles[0].photos[0].thumbnail_url;
+    defaultStyle = rpStyles.filter((style) => {
+      return style['default?'];
+    });
+  }
 
   var originalPrice = null;
   var salePrice = null;
-  if (defaultStyle[0]) {
+  if (defaultStyle.length > 0) {
     originalPrice = defaultStyle[0].original_price;
     if (defaultStyle[0].sale_price !== null) {
       salePrice = defaultStyle[0].sale_price;
@@ -24,8 +27,8 @@ function RPCard ({ rp, rpStyles, changeProduct }) {
   }
 
   return (
-    <div className={styles.card} onClick={() => changeProduct(rp.id)} data-testid='rpcard'>
-      <img src={imgUrl}/>
+    <div className={styles.card} data-testid='rpcard'>
+      <img onClick={() => changeProduct(rp.id)} src={imgUrl}/>
       <br/>
       <button onClick={starProduct}>Star</button>
       <br/>
@@ -33,7 +36,7 @@ function RPCard ({ rp, rpStyles, changeProduct }) {
       <br/>
       {rp.name}
       <br/>
-        {salePrice ? <>{salePrice} {originalPrice}</> : <>{originalPrice}</>}
+      {salePrice ? <span className={styles.red}>{salePrice} <strike>{originalPrice}</strike></span> : <span>{originalPrice}</span>}
       <br/>
       {/* {props.productInfo.starRating} */}
       <br/>

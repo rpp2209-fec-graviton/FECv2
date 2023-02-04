@@ -2,16 +2,17 @@ import React, { useState, useEffect } from "react";
 //COMPONENTS
 import Answer from "./Answer.jsx";
 import SeeMoreAnswers from "./SeeMoreAnswersBtn.jsx";
-import AnswerModal from "../Modals/AnswerModal.jsx";
 
 //HOOKS
 import useAnswersList from "../hooks/useAnswersList.jsx";
 import useCount from "../hooks/useCount.jsx";
 import usePage from "../hooks/usePage.jsx";
 import useMoreA from "../hooks/useMoreQA.jsx";
-import useModal from "../hooks/useModal.jsx";
 
-function AnswersList({ question_id }) {
+//CSS
+import styles from "../questions.module.css";
+
+function AnswersList({ question_id, q }) {
   /*Implementation Tasks
   1. Sort Answers by helpfulness/Sellar
   3. Implement "See More Answers"/"Collapse Answers"
@@ -21,7 +22,6 @@ function AnswersList({ question_id }) {
   const [count, makeCount] = useCount(2);
   const [page, makePage] = usePage(1);
   const [more, showMore, toggleMore] = useMoreA();
-  const { isShowing, toggle } = useModal();
 
   useEffect(() => {
     getAList(question_id, page)
@@ -38,7 +38,7 @@ function AnswersList({ question_id }) {
   };
 
   return (
-    <div className="AnswersList">
+    <div className={styles.answersList}>
       {answersList.length > 0 && answersList.slice(0, count).map((ans, index) => {
         return <div key={ans.answer_id} className="Answer">
           <Answer ans={ans} />
@@ -46,11 +46,7 @@ function AnswersList({ question_id }) {
       })}
       {answersList.length > 2 ?
         <SeeMoreAnswers {...{ count, more, showMore, makeCount, makePage, updateAList, checkAList }} />
-        : <sub onClick={toggle}> Submit an Answer </sub>}
-      <AnswerModal
-        isShowing={isShowing}
-        hide={toggle}
-      />
+        : null}
     </div>
   )
 

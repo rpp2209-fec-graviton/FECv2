@@ -15,7 +15,10 @@ import useMore from "../hooks/useMoreQA.jsx";
 import useModal from "../hooks/useModal.jsx";
 
 //CONTEXT
-import { useProductContext } from "../../Context/ContextProvider.jsx";
+import { useQuestionsContext } from "../Context/QuestionsProvider.jsx";
+
+//CSS
+import styles from "../questions.module.css";
 
 function QuestionsList(props) {
   const [page, makePage] = usePage(1);
@@ -23,16 +26,11 @@ function QuestionsList(props) {
   const [questionsList, getQList, filterQList] = useQuestionsList();
   const [more, showMore, toggleMore] = useMore();
   const { isShowing, toggle } = useModal();
-
-  const {currentProductId, useClickLogger} = useProductContext();
+  const {product_id, useClickLogger} = useQuestionsContext();
   const [withClickLogger] = useClickLogger('Questions');
 
-  /*Implementation tasks
-    [] Expands 2 Questions at a time and Scrollable
-    [] Confined to a single page, any longer should be scrollable
-  */
   var updateQList = () => {
-    getQList('71698', page);
+    getQList(product_id, page);
   }
 
   var checkQList = () => {
@@ -43,27 +41,27 @@ function QuestionsList(props) {
 
 
   useEffect(() => {
-    getQList('71699', page);
-  }, [])
+    getQList(product_id, page);
+  }, [product_id])
 
   return (
-    <div>
+    <div className={styles.questionsView}>
       <SearchBar {...{ filterQList }} />
-      <div>
+      <div className={styles.questionsView__list}>
         {questionsList.map((q, index) => {
           if (index >= count) {
             return;
           }
           return (
-            <div className="Question" key={index}>
+            < React.Fragment key={index}>
               <Question q={q} />
-              <AnswersList question_id={q.question_id} />
-            </div>
+              <AnswersList question_id={q.question_id} q={q} />
+            </ React.Fragment >
           )
         })}
       </div>
       {questionsList.length > 0 && withClickLogger(<MoreAnsweredQ {...{ count, more, showMore, makeCount, makePage, updateQList, checkQList }} />)}
-      <button onClick={toggle}> Submit a Question + </button>
+      <button className={styles.questionsView__btn} onClick={toggle}> Submit a Question + </button>
       <QuestionModal
         isShowing={isShowing}
         hide={toggle}
