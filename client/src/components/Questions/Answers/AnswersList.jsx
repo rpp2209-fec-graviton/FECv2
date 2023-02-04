@@ -9,6 +9,9 @@ import useCount from "../hooks/useCount.jsx";
 import usePage from "../hooks/usePage.jsx";
 import useMoreA from "../hooks/useMoreQA.jsx";
 
+//CSS
+import styles from "../questions.module.css";
+
 function AnswersList({ question_id, q }) {
   /*Implementation Tasks
   1. Sort Answers by helpfulness/Sellar
@@ -35,7 +38,7 @@ function AnswersList({ question_id, q }) {
   };
 
   return (
-    <div className="AnswersList">
+    <div className={styles.answersList}>
       {answersList.length > 0 && answersList.slice(0, count).map((ans, index) => {
         return <div key={ans.answer_id} className="Answer">
           <Answer ans={ans} />
