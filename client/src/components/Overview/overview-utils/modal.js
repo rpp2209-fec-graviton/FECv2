@@ -12,6 +12,12 @@ function toggleModal(show, setShow) {
 	fullImage.classList.toggle(styles['modal-hidden']);
 };
 
+// =============================================
+//            Zoom Feature To-Dos
+// Scrolling to the top-right/left bottom right/left
+// corners dont pan all the way to the corners of
+// 					the zoomed in image
+// =============================================
 function zoomModal() {
 	// Get elements from DOM
 	var container = document.getElementById('modal');
@@ -34,6 +40,7 @@ function zoomModal() {
 	// Click one more time to revert to original image size
 	container.addEventListener('click', (e) => {
 		modal.style.transform = "scale(1)";
+		modal.style.cursor = "default";
 	});
 
 }
