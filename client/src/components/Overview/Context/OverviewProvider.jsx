@@ -1,22 +1,24 @@
 import React, { useState, createContext, useContext } from 'react';
+
+import { useProductContext } from '../../Context/ContextProvider.jsx';
+import useStyles from '../hooks/useStyles.jsx';
+
 export const OverviewContext = createContext();
 
 export default function OverviewProvider({ children }) {
-	const [products, setProducts] = useState([]);
-	const [selectedStyle, setSelectedStyle] = useState({});
-	const [pStyles, setStyles] = useState({});
-	const [product, setProduct] = useState({});
+	const { currentProductId } = useProductContext();
+	const { allProductStyles, selectedStyle } = useStyles(currentProductId);
+
+	const currentProductStyles = allProductStyles[currentProductId];
+	const [ product, setProduct ] = useState({});
 
 	// Set Up Overview Context Values
 	const ctx = {
 		selectedStyle,
-		setSelectedStyle,
-		pStyles,
-		setStyles,
+		allProductStyles,
+		currentProductStyles,
 		product,
-		setProduct,
-		products,
-    setProducts
+		setProduct
 	};
 
 	return (
