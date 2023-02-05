@@ -34,7 +34,7 @@ function Images () {
 		imgURL &&
 		<div className={styles.overview__images}>
 			<Modal show={show} setShow={setShow}>
-				<img className={styles.modal__content} src={imgURL} alt="modal" />
+				<img id="modal__content" className={styles.modal__content} src={imgURL} alt="modal-content" />
 			</Modal>
 
 			<img id="image-lg" className={styles.overview__image} src={imgURL} onClick={() => toggleModal(show, setShow)}/>

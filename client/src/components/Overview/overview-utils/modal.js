@@ -13,12 +13,21 @@ function zoomModal() {
 	var container = document.getElementById('modal');
 	var modal = document.querySelector('#modal__content');
 
+	container.addEventListener('dblclick', (e) => {
+		modal.style.transform = "scale(2.5)";
+	});
+
 	container.addEventListener('mousemove', (e) => {
 		const x = e.clientX - e.target.offsetLeft;
 		const y = e.clientY - e.target.offsetTop;
 
-		// console.log(x, y);
+		modal.style.transformOrigin = `${x}px ${y}px`;
 	});
+
+	container.addEventListener('click', (e) => {
+		modal.style.transform = "scale(1)";
+	});
+
 }
 
 export { toggleModal, zoomModal }
