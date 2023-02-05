@@ -7,14 +7,11 @@ import { useOverviewContext } from "../Context/OverviewProvider.jsx";
 import useFetchProduct from '../../Hooks/useFetchProduct.jsx';
 import styles from '../overview.module.css';
 
-// =============================================
-//          TO-DO: Sale Price Styling
-// =============================================
 function ProductInfo() {
 	const { currentProductId } = useProductContext();
 	const { response } = useFetchProduct(currentProductId);
 	const { price, setPrice, selectedStyle } = useOverviewContext();
-	price && console.log('Price type', price.type);
+
 	// =============================================
 	//                  TO-DO:
 	//  Figure out if there's a better way to set
