@@ -131,13 +131,14 @@
       Modal Styles
 ========================*/
 .images__modal {
-  height: 1200px;
-  background: white;
+  height: 20%;
   box-shadow: -2rem 2rem 2rem rgba(black, 0.2);
+
   filter: blur(0);
-  transition: 1.1s ease-out;
-  transform: scale(1);
+  transition: 1.5s ease-in-out;
+  transform: scale(0.5);
   opacity: 1;
+
   visibility: visible;
   position: fixed;
   z-index: 1;
@@ -151,7 +152,7 @@
 }
 
 .modal__content {
-  height: 100%;
+  height: 1400px;
   width: 100%;
 }
 
