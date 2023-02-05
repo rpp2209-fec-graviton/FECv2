@@ -59,8 +59,11 @@
 }
 
 .product-info__sale-price {
-  text-decoration: line-through;
   color: var(--red);
+}
+
+.product-info__default-price {
+  text-decoration: line-through;
 }
 
 .overview__style-selector {

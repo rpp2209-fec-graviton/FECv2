@@ -34,7 +34,7 @@ function ProductInfo() {
 			<h2>{response.name}</h2>
 			{ (price && price.type === 'sale') ?
 				<>
-					<span className={`${styles['product-info__sale-price']}`}> ${price.price} </span><span> ${response.default_price} </span>
+					<span className={`${styles['product-info__sale-price']}`}> ${price.price} </span><span className={`${styles['product-info__default-price']}`}> ${response.default_price} </span>
 				</> :
 				<p>${price.price}</p>
 			}
