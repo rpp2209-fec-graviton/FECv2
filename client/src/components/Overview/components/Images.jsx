@@ -9,23 +9,21 @@ import { useProductContext } from "../../Context/ContextProvider.jsx";
 import { useOverviewContext } from "../Context/OverviewProvider.jsx";
 
 function Images () {
-	// Modal State
 	const [show, setShow] = useState(false);
-
-	// Global Context
 	const { currentProductId } = useProductContext();
+	const { selectedStyle, currentProductStyles, allProductStyles } = useOverviewContext();
+	const photos = selectedStyle.photos;
 
-	// Overview Context
-	const { pStyles, selectedStyle, setSelectedStyle } = useOverviewContext();
+	console.log('Current prod styles', currentProductStyles, 'selectedStyle', selectedStyle);
 
-	if (pStyles[currentProductId]) {
+	if (selectedStyle && currentProductStyles) {
 		// Get First Style's Url
-		let url = pStyles[currentProductId][0].photos[0].url;
+		let url = photos && photos[0].url;
 
 		// Update URL based on currently selected style (set in Thumbnail.jsx)
-		pStyles[currentProductId].forEach(style => {
+		currentProductStyles.forEach(style => {
 			if (style.style_id === selectedStyle.style_id) {
-				url = selectedStyle['photos'][0].url;
+				url = photos[0].url;
 			}
 		})
 
