@@ -7,21 +7,33 @@ export const OverviewContext = createContext();
 
 export default function OverviewProvider({ children }) {
 	const { currentProductId } = useProductContext();
-	const { allProductStyles, selectedStyle } = useStyles(currentProductId);
-
+	const { allProductStyles } = useStyles(currentProductId);
 	const currentProductStyles = allProductStyles[currentProductId];
-	const [ product, setProduct ] = useState({});
-	const [imgURL, setURL] = useState('');
 
-	// Set Up Overview Context Values
+	const [selectedStyle, setSelectedStyle] = useState({});
+
+	// Used for rendering Product Image and Info
+	const [ imgURL, setURL ] = useState('');
+	const [ price, setPrice ] = useState({ price: '', type: 'default'});
+
+	// Update Large Image URL and Style Price when selectedStyle changes
+	const handleStyleChange = (style) => {
+		setSelectedStyle(style);
+		setURL(style.photos && style.photos[0].url);
+		setPrice(style.sale_price && style.sale_price !== null ? { price: style.sale_price, type: 'sale' } : { price: style.original_price, type: 'default' } );
+	};
+
+	// Overview Context Values
 	const ctx = {
-		selectedStyle,
 		allProductStyles,
 		currentProductStyles,
-		product,
-		setProduct,
+		selectedStyle,
+		setSelectedStyle,
+		handleStyleChange,
 		imgURL,
-		setURL
+		setURL,
+		price,
+		setPrice
 	};
 
 	return (
