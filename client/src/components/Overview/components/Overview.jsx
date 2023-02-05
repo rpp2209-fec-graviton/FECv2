@@ -21,8 +21,8 @@ function Overview() {
 		currentProductId &&
 		<div className={`${styles.overview} ${styles.grid}`}>
 			<Images />
-			{/* <StyleSelector />
-			<ProductInfo /> */}
+			<StyleSelector />
+			{/* <ProductInfo /> */}
 		</div>
 	);
 };

@@ -11,35 +11,26 @@ import { useOverviewContext } from "../Context/OverviewProvider.jsx";
 function Images () {
 	const [show, setShow] = useState(false);
 	const { currentProductId } = useProductContext();
-	const { selectedStyle, currentProductStyles, allProductStyles } = useOverviewContext();
-	const photos = selectedStyle.photos;
+	const { imgURL, setURL, selectedStyle, currentProductStyles, allProductStyles } = useOverviewContext();
 
-	console.log('Current prod styles', currentProductStyles, 'selectedStyle', selectedStyle);
+	useEffect(() => {
+		if (selectedStyle.photos) {
+			setURL(selectedStyle.photos[0].url);
+		}
+	}, [selectedStyle]);
 
-	if (selectedStyle && currentProductStyles) {
-		// Get First Style's Url
-		let url = photos && photos[0].url;
+	return (
+		imgURL &&
+		<div className={styles.overview__images}>
+			<Modal toggleModal={()=> toggleModal(show, setShow)} show={show} setShow={setShow}>
+				<img className={styles.modal__content} src={imgURL} alt="modal" />
+			</Modal>
 
-		// Update URL based on currently selected style (set in Thumbnail.jsx)
-		currentProductStyles.forEach(style => {
-			if (style.style_id === selectedStyle.style_id) {
-				url = photos[0].url;
-			}
-		})
+			<img id="image-lg" className={styles.overview__image} src={imgURL} onClick={() => toggleModal(show, setShow)}/>
+			<ThumbnailCarousel type="styles__carousel" />
+		</div>
+	)
 
-		return (
-			<div className={styles.overview__images}>
-				<Modal toggleModal={()=> toggleModal(show, setShow)} show={show} setShow={setShow}>
-					<img className={styles.modal__content} src={url} alt="modal" />
-				</Modal>
-
-				<img id="image-lg" className={styles.overview__image} src={url} onClick={() => toggleModal(show, setShow)}/>
-				<ThumbnailCarousel type="styles__carousel" />
-			</div>
-		)
-	} else {
-		return (<h2>No Images to Display</h2>)
-	}
 };
 
 export default Images;

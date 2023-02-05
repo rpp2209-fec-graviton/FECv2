@@ -5,11 +5,6 @@ export default function useStyles(id) {
 	const [selectedStyle, setSelectedStyle] = useState({});
 	const [allProductStyles, setStyles] = useState({});
 
-	const handleStyleChange = (style) => {
-		console.log('got here');
-		setSelectedStyle(style);
-	};
-
 	useEffect(() => {
 		if (id) {
 			// Set All Styles for Each Product
@@ -18,7 +13,6 @@ export default function useStyles(id) {
 					console.log('Fetch Styles Err', err);
 				} else {
 					let newStyles = payload.data.results;
-
 					setSelectedStyle(newStyles[0]);
 
 					setStyles((prevState) => ({
@@ -30,5 +24,5 @@ export default function useStyles(id) {
 		}
 	}, [id]);
 
-	return { allProductStyles, selectedStyle, handleStyleChange };
+	return { allProductStyles, selectedStyle, setSelectedStyle };
 }

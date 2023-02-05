@@ -11,6 +11,7 @@ export default function OverviewProvider({ children }) {
 
 	const currentProductStyles = allProductStyles[currentProductId];
 	const [ product, setProduct ] = useState({});
+	const [imgURL, setURL] = useState('');
 
 	// Set Up Overview Context Values
 	const ctx = {
@@ -18,7 +19,9 @@ export default function OverviewProvider({ children }) {
 		allProductStyles,
 		currentProductStyles,
 		product,
-		setProduct
+		setProduct,
+		imgURL,
+		setURL
 	};
 
 	return (
