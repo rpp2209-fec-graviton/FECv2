@@ -59,7 +59,7 @@
 
 .overview__style-selector {
   grid-column: 6 / span 6;
-  grid-row-start: 4;
+  grid-row-start: 6;
   height: 80px;
 }
 
@@ -72,6 +72,11 @@
   object-fit: cover;
   width: 400px;
   height: auto;
+  grid-row: 1 / span 10;
+}
+
+.style-selector__header {
+  margin-left: 0;
 }
 
 /* =======================
