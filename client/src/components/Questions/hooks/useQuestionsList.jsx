@@ -13,14 +13,14 @@ export default function useQuestionsList() {
   var getQList = (product_id, page) => {
     axios({
       method: 'GET',
-      url: `http://localhost:3000/qa/questions?product_id=${product_id}&count=16&page=${page}`
+      url: `${window.location.origin}/qa/questions?product_id=${product_id}&count=16&page=${page}`
     })
       .then((res) => {
         setQuestionsList(res.data);
       })
       .catch((err) => {
-        console.log('error from useQuestionsList');
-        throw new Error(error);
+        console.log('error from useQuestionsList', err);
+        throw new Error ('ERROR in useQuestionsList')
       })
 
   }

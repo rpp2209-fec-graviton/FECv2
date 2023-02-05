@@ -11,7 +11,6 @@ export default function useHelpful(QAid, helpfulCategory) {
   }
 
   const localStorage = JSON.parse(window.localStorage.getItem(category));
-  console.log('before', localStorage);
   const [isHelpful, setIsHelpful] = useState(localStorage[id]);
 
   var helpfulStyle = { fontWeight: 'bold', color: 'blue' };
@@ -20,7 +19,7 @@ export default function useHelpful(QAid, helpfulCategory) {
     if (!isHelpful) {
       axios({
         method: 'PUT',
-        url: `http://localhost:3000/qa/${category}/${id}/helpful`
+        url: `${window.location.origin}/qa/${category}/${id}/helpful`
       })
         .then((res) => {
           window.localStorage.setItem(category, JSON.stringify({ ...localStorage, [id]: true }));
