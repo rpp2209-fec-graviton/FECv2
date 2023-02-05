@@ -7,16 +7,27 @@ import styles from '../overview.module.css';
 
 import { useProductContext } from "../../Context/ContextProvider.jsx";
 import { useOverviewContext } from "../Context/OverviewProvider.jsx";
+import useStyles from '../hooks/useStyles.jsx';
 
 function Images () {
 	const [show, setShow] = useState(false);
 	const { currentProductId } = useProductContext();
-	const { imgURL, setURL, selectedStyle, currentProductStyles, allProductStyles } = useOverviewContext();
+	const {
+		imgURL,
+		setURL,
+		selectedStyle,
+		setSelectedStyle,
+		currentProductStyles
+	} = useOverviewContext();
+
+	const { allProductStyles } = useStyles(currentProductId);
 
 	useEffect(() => {
-		if (selectedStyle.photos) {
-			setURL(selectedStyle.photos[0].url);
-		}
+		currentProductStyles && setSelectedStyle(currentProductStyles[0]);
+	}, [allProductStyles]);
+
+	useEffect(() => {
+		selectedStyle.photos && setURL(selectedStyle.photos[0].url);
 	}, [selectedStyle]);
 
 	return (
