@@ -5,6 +5,7 @@
   --blue: #1e90ff;
   --white: #ffffff;
   --silver: #c0c0c0;
+  --red: #ff0000;
 }
 
 /* =======================
@@ -27,7 +28,7 @@
 }
 
 /* =======================
-      Testing Styles
+      Global Styles
 ========================*/
 .error {
   border: 5px solid red;
@@ -46,6 +47,10 @@
   border: 2px solid var(--silver);
 }
 
+/* .inline {
+  display: inline;
+} */
+
 /* =======================
     Overview Styles
 ========================*/
@@ -55,6 +60,11 @@
 
 .overview__product-info {
   grid-column: 6 / span 4;
+}
+
+.product-info__sale-price {
+  text-decoration: line-through;
+  color: var(--red);
 }
 
 .overview__style-selector {
