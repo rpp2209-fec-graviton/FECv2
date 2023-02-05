@@ -20,7 +20,7 @@ function Images () {
 		currentProductStyles
 	} = useOverviewContext();
 
-	const { allProductStyles } = useStyles(currentProductId);
+	const allProductStyles = useStyles(currentProductId);
 
 	useEffect(() => {
 		currentProductStyles && setSelectedStyle(currentProductStyles[0]);

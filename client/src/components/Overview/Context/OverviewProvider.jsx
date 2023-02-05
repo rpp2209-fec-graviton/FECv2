@@ -7,7 +7,7 @@ export const OverviewContext = createContext();
 
 export default function OverviewProvider({ children }) {
 	const { currentProductId } = useProductContext();
-	const { allProductStyles } = useStyles(currentProductId);
+	const allProductStyles = useStyles(currentProductId);
 	const currentProductStyles = allProductStyles[currentProductId];
 
 	const [selectedStyle, setSelectedStyle] = useState({});

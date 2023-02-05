@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { fetch } from '../../../../../server/utils/fetch.js';
 
 export default function useStyles(id) {
-	const [currentStyle, setStyle] = useState({});
 	const [allProductStyles, setStyles] = useState({});
 
 	useEffect(() => {
@@ -12,17 +11,14 @@ export default function useStyles(id) {
 				if (err) {
 					console.log('Fetch Styles Err', err);
 				} else {
-					let newStyles = payload.data.results;
-					setStyle(newStyles[0]);
-
 					setStyles((prevState) => ({
 						...prevState,
-						[id]: newStyles
+						[id]: payload.data.results
 					}));
 				}
 			});
 		}
 	}, [id]);
 
-	return { allProductStyles, currentStyle, setStyle };
+	return allProductStyles;
 }
