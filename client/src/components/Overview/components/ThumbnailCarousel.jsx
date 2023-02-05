@@ -9,7 +9,7 @@ function ThumbnailCarousel({ type }) {
 	const { currentProductId } = useProductContext();
 	const { currentProductStyles, allProductStyles, setStyles } = useOverviewContext();
 
-	const carousel = currentProductStyles.map(style => (
+	const carousel = currentProductStyles && currentProductStyles.map(style => (
 		<Thumbnail
 			carouselType={type}
 			type={type === 'styles__carousel' ? 'thumbnail-square' : 'thumbnail-rounded'}
