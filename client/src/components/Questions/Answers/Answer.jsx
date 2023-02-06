@@ -16,7 +16,7 @@ function Answer({ ans }) {
 
   return (
     <div className={styles.answer} >
-      <p data-testid="test-answer"><b>A: </b>{ans.body}
+      <p data-testid="answer"><b>A: </b>{ans.body}
         <sub>
           by {ans.answerer_name}, {createDate(ans.date)} |
           Helpful?&nbsp;
