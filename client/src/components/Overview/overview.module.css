@@ -13,7 +13,9 @@
 ========================*/
 .grid {
   display: grid;
-  grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+  grid-gap: 10px;
+  grid-template-columns: repeat(autofill, 180px);
+  /* grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%; */
   grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
 }
 
@@ -89,7 +91,7 @@
   /* object-fit: cover; */
   width: 400px;
   height: auto;
-  grid-row: 1 / span 10;
+  /* grid-row: 1 / span 10; */
 }
 
 .style-selector__header {
