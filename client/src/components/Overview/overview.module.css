@@ -2,10 +2,12 @@
       General Styles
 ========================*/
 :root {
+  --black: #000000;
   --blue: #1e90ff;
-  --white: #ffffff;
-  --silver: #c0c0c0;
+  --charcoal: #2e2e2ec4;
   --red: #ff0000;
+  --silver: #c0c0c0;
+  --white: #ffffff;
 }
 
 /* =======================
@@ -49,14 +51,6 @@
   flex-direction: column;
 }
 
-.flex-row {
-  flex-direction: row;
-}
-
-.inline {
-  display: inline;
-}
-
 /* =======================
     Overview Styles
 ========================*/
@@ -66,10 +60,31 @@
   margin: 80px 160px;
 }
 
-.overview__product-info {
-  grid-column: 6 / span 4;
+.overview__images {
+  position: relative;
+  grid-column-start: 2;
 }
 
+.overview__image {
+  width: 600px;
+  height: auto;
+  grid-row: 2 / span 5;
+}
+
+.overview__product-info {
+  grid-column: 7 / span 4;
+}
+
+
+.overview__style-selector {
+  grid-column: 7 / span 6;
+  grid-row-start: 5;
+  height: 80px;
+}
+
+/* =======================
+      Product Info
+========================*/
 .product-info__sale-price {
   color: var(--red);
 }
@@ -78,24 +93,9 @@
   text-decoration: line-through;
 }
 
-.overview__style-selector {
-  grid-column: 6 / span 6;
-  grid-row-start: 5;
-  height: 80px;
-}
-
-.overview__images {
-  position: relative;
-  grid-column-start: 2;
-}
-
-.overview__image {
-  /* object-fit: cover; */
-  width: 400px;
-  height: auto;
-  /* grid-row: 1 / span 10; */
-}
-
+/* =======================
+      Style Selector
+========================*/
 .style-selector__header {
   margin-left: 0;
 }
@@ -104,13 +104,12 @@
   font-weight: 400;
 }
 
-/* =======================
-      Image Styles
-========================*/
-/*        TO-DO:
-  Convert scrollbar to arrows
-  that can be clicked to scroll
-*/
+/* ===============================
+         Image Styles
+            TO-DO
+Convert scrollbar to ⏮ arrows ⏭
+ that can be clicked to scroll
+================================*/
 .carousel {
   /* border: 1px solid var(--white); */
 }
@@ -127,7 +126,7 @@
 }
 
 .images__carousel {
-  /* border: 1px solid var(--white); */
+  max-width: 448px;
 }
 
 .thumbnail-square {
@@ -137,10 +136,12 @@
 }
 
 .thumbnail-rounded {
+  object-fit: cover;
   border-radius: 50%;
-  border: 1px solid var(--silver);
-  width: 80px;
-  height: 80px;
+  border: 2px solid var(--charcoal);
+  width: 90px;
+  height: 90px;
+  margin: 10px 8px;
 }
 
 /* =======================
