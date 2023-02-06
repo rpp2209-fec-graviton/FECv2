@@ -7,9 +7,9 @@ import { useOverviewContext } from "../Context/OverviewProvider.jsx";
 
 function ThumbnailCarousel({ type }) {
 	const { currentProductId } = useProductContext();
-	const { currentProductStyles, allProductStyles, setStyles } = useOverviewContext();
+	const { currentProductStyles, allProductStyles, setStyles, selectedStyle } = useOverviewContext();
 
-	const carousel = currentProductStyles && currentProductStyles.map(style => (
+	const productCarousel = currentProductStyles && currentProductStyles.map(style => (
 		<Thumbnail
 			carouselType={type}
 			type={type === 'styles__carousel' ? 'thumbnail-square' : 'thumbnail-rounded'}
@@ -19,10 +19,23 @@ function ThumbnailCarousel({ type }) {
 		/>)
 	);
 
+	const styleCarousel = currentProductStyles && currentProductStyles.map(style => {
+		return selectedStyle.photos && selectedStyle.photos.map(photo => (
+			<Thumbnail
+				carouselType={type}
+				type={type === 'styles__carousel' ? 'thumbnail-square' : 'thumbnail-rounded'}
+				key={photo.thumbnail_url}
+				photos={photo}
+				style={style}
+			/>
+			));
+		}
+	);
+
 	return (
 		currentProductStyles &&
 		<div className={`${styles[type]} ${styles.carousel}`}>
-			{carousel}
+			{type === 'images__carousel' ? productCarousel : styleCarousel }
 		</div>
 	)
 };
