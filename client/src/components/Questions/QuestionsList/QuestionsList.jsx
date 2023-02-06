@@ -47,18 +47,18 @@ function QuestionsList(props) {
   return (
     <div className={styles.questionsView}>
       <SearchBar {...{ filterQList }} />
-      <div className={styles.questionsView__list}>
-        {questionsList.map((q, index) => {
+      <div data-testid="questionsView__list" className={styles.questionsView__list}>
+        {questionsList ? questionsList.map((q, index) => {
           if (index >= count) {
             return;
           }
           return (
-            < React.Fragment key={index}>
+            < div data-testid="QandA" key={index}>
               <Question q={q} />
               <AnswersList question_id={q.question_id} q={q} />
-            </ React.Fragment >
+            </ div >
           )
-        })}
+        }) : null}
       </div>
       {questionsList.length > 0 && <MoreAnsweredQ {...{ count, more, showMore, makeCount, makePage, updateQList, checkQList }} />}
       <button className={styles.questionsView__btn} onClick={toggle}> Submit a Question + </button>
