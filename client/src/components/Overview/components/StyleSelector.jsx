@@ -6,7 +6,6 @@ import ThumbnailCarousel from './ThumbnailCarousel.jsx';
 
 import { useOverviewContext } from "../Context/OverviewProvider.jsx";
 import { useProductContext } from '../../Context/ContextProvider.jsx';
-import useFetchProductInfo from '../../Reviews/hooks/useFetchProductInfo.jsx';
 import useFetchProduct from '../../Hooks/useFetchProduct.jsx';
 
 import styles from '../overview.module.css';
