@@ -5,7 +5,9 @@ import Button from './Button.jsx';
 import ThumbnailCarousel from './ThumbnailCarousel.jsx';
 
 import { useOverviewContext } from "../Context/OverviewProvider.jsx";
+import { useProductContext } from '../../Context/ContextProvider.jsx';
 import useFetchProductInfo from '../../Reviews/hooks/useFetchProductInfo.jsx';
+import useFetchProduct from '../../Hooks/useFetchProduct.jsx';
 
 import styles from '../overview.module.css';
 
@@ -22,6 +24,8 @@ function StyleSelector () {
 
 	// Overview Context
 	const { allProductStyles, currentProductStyles, selectedStyle } = useOverviewContext();
+	const { currentProductId, addToOutfit } = useProductContext();
+	const { response } = useFetchProduct(currentProductId);
 
 	// =============================================
 	//            FUNCTIONALITY TO-DOs
@@ -72,8 +76,9 @@ function StyleSelector () {
 		}
 	};
 
-	const handleStarClick = () => {
-		console.log('Clicked! Adding to Outfit (TODO)...');
+	const handleAddToOutfitList = () => {
+		const url = selectedStyle && selectedStyle.photos[0].thumbnail_url;
+		addToOutfit(response, url);
 	};
 
 	return (
@@ -104,7 +109,7 @@ function StyleSelector () {
 
 			<div>
 				<Button type='style-selector__button' handleClick={handleAddToBag}>+ Add to Bag</Button>
-				<Button type='style-selector__button' handleClick={handleStarClick}>⭐</Button>
+				<Button type='style-selector__button' handleClick={handleAddToOutfitList}>⭐</Button>
 			</div>
 		</div>
 	)

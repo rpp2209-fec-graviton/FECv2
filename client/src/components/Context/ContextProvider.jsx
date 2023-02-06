@@ -6,13 +6,19 @@ const ProductContext = createContext(null);
 
 export default function ContextProvider({ children }) {
 
-  // Needed by All Widgets
+  // =============================================
+  //                Global State
+  // =============================================
   const [currentProductId, setCurrentProductId] = useState(71697)
 
-  // Needed by Overview, Related Products, and Reviews
+  // =============================================
+  //  Shared: Overview, Related Products, Reviews
+  // =============================================
   const [ratingsAverage, setRatingsAverage] = useState(null)
 
-  // Neede by Overview and Related Products
+  // =============================================
+  //    Shared: Overview and Related Products
+  // =============================================
   const [outfitItems, setOutfitItems] = useState([])
   const [outfitPhotoUrls, setOutfitPhotoUrls] = useState({});
 
@@ -23,14 +29,26 @@ export default function ContextProvider({ children }) {
     setCurrentProductId(productId)
   }
 
-  const addToOutfit = (fetchData, cp) => {
-    if (!outfitItems.some(item => item.id === cp.id)) {
-      fetchData(`products/${cp.id}/styles`)
-      .then((styles) => {
-        var itemPhotoUrl = styles.results[0].photos[0].thumbnail_url;
-        setOutfitPhotoUrls({...outfitPhotoUrls, [cp.id]: itemPhotoUrl});
-        setOutfitItems([...outfitItems, cp]);
-      });
+  const addToOutfit = (product, ...args) => {
+    // Related Product Logic
+    if (typeof args[1] === 'function') {
+      console.log('yes');
+      const cp = args[0];
+      const fetchData = args[1];
+
+      if (!outfitItems.some(item => item.id === cp.id)) {
+        fetchData(`products/${cp.id}/styles`)
+        .then((styles) => {
+          var itemPhotoUrl = styles.results[0].photos[0].thumbnail_url;
+          setOutfitPhotoUrls({...outfitPhotoUrls, [cp.id]: itemPhotoUrl});
+          setOutfitItems([...outfitItems, cp]);
+        });
+      }
+    } else { // Overview Logic
+      const url = args[0];
+      console.log('product', url);
+      setOutfitPhotoUrls({...outfitPhotoUrls, [product.id]: url});
+      setOutfitItems([...outfitItems, product]);
     }
   };
 
@@ -41,6 +59,9 @@ export default function ContextProvider({ children }) {
     setOutfitItems(newState);
   };
 
+  // =============================================
+  //               Provider Setup
+  // =============================================
   const ctx = {
     loading,
     error,

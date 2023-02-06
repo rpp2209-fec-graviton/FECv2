@@ -30,7 +30,7 @@ function YourOutfitList ({ cp, fetchData, changeProduct }) {
     <div>
       Your Outfit
       <div>
-        <button onClick={() => addToOutfit(fetchData, cp)}> Add to Outfit (+) </button>
+        <button onClick={() => addToOutfit(cp, fetchData)}> Add to Outfit (+) </button>
       </div>
       {outfitItems && outfitItems.map((item) => {
         return <YourOutfitItem key={item.id} photo={outfitPhotoUrls[item.id]}  item={item} changeProduct={changeProduct} removeFromOutfit={removeFromOutfit}/>
