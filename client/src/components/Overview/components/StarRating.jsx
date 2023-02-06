@@ -16,7 +16,7 @@ function StarRating() {
 
 	return (
 		<div className={styles.stars__outer}>
-			<div className={styles.stars__inner}></div>
+			<div id="stars" className={styles.stars__inner}></div>
 			{(reviewCount && reviewCount !== 0) && (<ReviewsLink reviewCount={reviewCount} />)}
 		</div>
 	)
