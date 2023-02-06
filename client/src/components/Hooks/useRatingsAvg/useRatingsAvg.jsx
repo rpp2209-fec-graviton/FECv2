@@ -58,12 +58,11 @@ export default function useRatingsAvg(id) {
 	//                 Debug To-Do:
 	// 		Fill Percent calculation is correct
 	// 				but stars fill incorrectly
-	// (shows 100% fill for a 60% average rating)
+	// (shows 100% fill for a 60% average rating).
 	// =============================================
 	useEffect(() => {
 		if (ratingsAverage && reviewCount) {
-			const fillPercent = (3 / 5) * 100; // Test a value < 100%
-			// const fillPercent = (ratingsAverage / reviewCount) * 100;
+			const fillPercent = (ratingsAverage / reviewCount) * 100;
 			const elem = document.getElementById('stars');
 			elem.style.width = `${fillPercent}%`;
 		}
