@@ -54,6 +54,7 @@ export default function useRatingsAvg(id) {
 	useEffect(() => {
 		const average = ratingSum / reviewCount;
 		average && setRatingsAverage(average);
+		// reviewCount && setCount(0);
 	}, [ratingSum, reviewCount]);
 
 	// Return average rating and Review Count

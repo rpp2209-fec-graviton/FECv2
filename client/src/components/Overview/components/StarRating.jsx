@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import ReviewsLink from './ReviewsLink.jsx';
 
 import useRatingsAvg from '../../Hooks/useRatingsAvg/useRatingsAvg.jsx';
 import { useProductContext } from "../../Context/ContextProvider.jsx";
@@ -16,10 +17,7 @@ function StarRating() {
 	return (
 		<div className={styles.stars__outer}>
 			<div className={styles.stars__inner}></div>
-			<a
-				className={styles.stars__a}
-				href="#reviews"
-			>Read all reviews</a>
+			{(reviewCount && reviewCount !== 0) && (<ReviewsLink reviewCount={reviewCount} />)}
 		</div>
 	)
 }
