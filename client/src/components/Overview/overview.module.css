@@ -9,6 +9,26 @@
 }
 
 /* =======================
+      Global Styles
+========================*/
+.error {
+  border: 5px solid red;
+}
+
+.hidden {
+  visibility: hidden;
+  transform: scale(0.33);
+}
+
+.border {
+  border: 2px solid var(--silver);
+}
+
+.grey-border {
+  border: 2px solid var(--silver);
+}
+
+/* =======================
       Grid & Flexbox
 ========================*/
 .grid {
@@ -38,30 +58,12 @@
 }
 
 /* =======================
-      Global Styles
-========================*/
-.error {
-  border: 5px solid red;
-}
-
-.hidden {
-  visibility: hidden;
-  transform: scale(0.33);
-}
-
-.border {
-  border: 2px solid var(--silver);
-}
-
-.grey-border {
-  border: 2px solid var(--silver);
-}
-
-/* =======================
     Overview Styles
 ========================*/
 .overview {
   padding: 40px;
+  max-width: 80%;
+  margin: 80px 160px;
 }
 
 .overview__product-info {
@@ -78,7 +80,7 @@
 
 .overview__style-selector {
   grid-column: 6 / span 6;
-  grid-row-start: 6;
+  grid-row-start: 5;
   height: 80px;
 }
 
@@ -96,6 +98,10 @@
 
 .style-selector__header {
   margin-left: 0;
+}
+
+.header-undecorated {
+  font-weight: 400;
 }
 
 /* =======================
@@ -227,5 +233,5 @@
   top: 0;
   font-size: 32px;
   height: 40px;
-  width: 64px;
+  min-width: 56px;
 }

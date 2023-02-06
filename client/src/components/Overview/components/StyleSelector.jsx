@@ -42,11 +42,14 @@ function StyleSelector () {
 
 		if (currentSize === 'Select Size') {
 			console.log('Please select size');
+
+		} else if (currentQty === 'Quantity') {
+			console.log('Please select a Quantity');
+
 		} else {
 			const selected = currentProductStyles && currentProductStyles.filter(style => style.style_id === selectedStyle.style_id)
 			const skus = selected[0].skus;
 			const keys = Object.keys(selected[0].skus);
-			const vals = Object.values(selected[0].skus);
 			var selectedSKU;
 
 			keys.forEach(sku => {
@@ -75,7 +78,7 @@ function StyleSelector () {
 
 	return (
 		<div className={styles['overview__style-selector']}>
-			<h3 className={styles['style-selector__header']}>Style &gt; {selectedStyle.name}</h3>
+			<h3 className={styles['style-selector__header']}>Style &gt; <span className={styles['header-undecorated']}>{selectedStyle.name}</span></h3>
 			<ThumbnailCarousel type="images__carousel"  />
 
 			<select
