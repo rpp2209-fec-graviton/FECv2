@@ -2,7 +2,8 @@
  * @jest-environment jsdom
  */
 import React from "react";
-import { render, fireEvent, screen } from "@testing-library/react";
+import { render, fireEvent, screen, waitFor, act, } from "@testing-library/react";
+import '@testing-library/jest-dom';
 
 //COMPONENTS
 import QuestionsList from "./QuestionsList/QuestionsList.jsx";
@@ -11,6 +12,9 @@ import AnswersList from "./Answers/AnswersList.jsx";
 import Answer from "./Answers/Answer.jsx";
 import SearchBar from "./QuestionsList/SearchBar.jsx";
 import QuestionsView from "./index.js";
+
+//HOOKS
+import useQuestionsList from "./hooks/useQuestionsList.jsx"
 
 //CONTEXT
 import QuestionsProvider from "./Context/QuestionsProvider.jsx";
@@ -24,23 +28,106 @@ afterEach(() => mswQuestionsServer.resetHandlers())
 afterAll(() => mswQuestionsServer.close())
 
 
-const renderQuestionsList = () => {
-
+const renderQuestionsView = () => {
   return render(
     <ContextProvider>
       <QuestionsProvider>
-        <QuestionsList />
+        <QuestionsView />
       </QuestionsProvider>
     </ContextProvider>
   );
 };
 
-describe("Questions List Component", () => {
+const renderAnswersList = () => {
+  return render(
+    <ContextProvider>
+      <QuestionsProvider>
+        <AnswersList />
+      </QuestionsProvider>
+    </ContextProvider>
+  );
+};
+
+
+describe("Questions and Answers List Component", () => {
   it("should only render two questions by default", async () => {
-    const { container } = renderQuestionsList();
-    console.log( await container.getByText('') );
+    const { findAllByTestId, queryAllByTestId, findByTestId } = renderQuestionsView()
+    await waitFor(() => {
+      const questionsList = queryAllByTestId('QandA');
+      expect(questionsList.length).toBe(2);
+    });
   });
-})
+
+  it("should load more questions when prompted", async () => {
+    const { findAllByTestId, queryAllByTestId, findByTestId } = renderQuestionsView();
+    await waitFor(() => {
+      const questionsList = queryAllByTestId('QandA');
+      expect(questionsList.length).toBe(2);
+    });
+    fireEvent.click(await findByTestId('load-more-questions'));
+    expect((await queryAllByTestId('QandA')).length).toBe(3);
+  });
+
+  it("should collapse questions list when prompted", async () => {
+    const { findAllByTestId, queryAllByTestId, findByTestId, getByTestId } = renderQuestionsView();
+    await waitFor(() => {
+      const questionsList = queryAllByTestId('QandA');
+      expect(questionsList.length).toBe(2);
+
+      fireEvent.click(getByTestId('load-more-questions'));
+      expect((queryAllByTestId('QandA')).length).toBe(3);
+    });
+
+    fireEvent.click(getByTestId('load-more-questions'));
+    expect((await queryAllByTestId('QandA')).length).toBe(2);
+  });
+});
+
+describe("Answer List Component", () => {
+  it("should only render two answers for by default", async () => {
+    const { findAllByTestId, queryAllByTestId, findByTestId } = renderAnswersList()
+    await waitFor(() => {
+      const answersList = queryAllByTestId('answers__list');
+      expect(answersList.length).toBe(2);
+    });
+  });
+
+  it("should load more questions when prompted", async () => {
+    const { findAllByTestId, queryAllByTestId, findByTestId, getByTestId } = renderAnswersList()
+    await waitFor(() => {
+      const answersList = queryAllByTestId('answers__list');
+      expect(answersList.length).toBe(2);
+      expect(findByTestId('see-more-answers')).toBeTruthy();
+    });
+    fireEvent.click(getByTestId('see-more-answers'));
+    expect((queryAllByTestId('answers__list')).length).toBe(3);
+  });
+
+  // it("should collapse questions list when prompted", async () => {
+  //   const { findAllByTestId, queryAllByTestId, findByTestId, getByTestId } = renderQuestionsView();
+  //   await waitFor(() => {
+  //     const questionsList = queryAllByTestId('QandA');
+  //     expect(questionsList.length).toBe(2);
+
+  //     fireEvent.click(getByTestId('load-more-questions'));
+  //     expect((queryAllByTestId('QandA')).length).toBe(3);
+  //   });
+
+  //   fireEvent.click(getByTestId('load-more-questions'));
+  //   expect((await queryAllByTestId('QandA')).length).toBe(2);
+  // });
+});
+
+describe("Question Component", () => {
+  it("should only render a question", async () => {
+    // const { findByTestId } = renderQuestion();
+
+    // console.log(await findByTestId('question'))
+
+  });
+});
+
+
 
   // it("should render two more questions when button is clicked", async () => {
   //   let { getByText, container } = render(<QuestionsList questionsList={[0, 1, 2, 3, 4]} />);

@@ -21,7 +21,14 @@ export const handlers = [
   rest.get(`${window.location.origin}/qa/questions`, async (req, res, ctx) => {
     return res(
       ctx.status(200),
-      ctx.json(SampleData['/qa/questions'])
+      ctx.json(SampleData['/qa/questions'].results)
+    )
+  }),
+
+  rest.get(`${window.location.origin}/qa/questions/:question_id/answers`, async (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json(SampleData['/qa/questions/:question_id/answers'].results)
     )
   }),
 ]
