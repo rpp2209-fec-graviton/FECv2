@@ -1,5 +1,5 @@
 import React from "react";
-import comparison from './RPComparison.jsx';
+import RPComparison from './RPComparison.jsx';
 import styles from './RPCard.module.css';
 
 function RPCard ({ rp, rpStyles, rpRating, changeProduct }) {

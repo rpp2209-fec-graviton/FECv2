@@ -15,6 +15,7 @@ import { useProductContext } from '../Context/ContextProvider.jsx';
 import OverviewProvider from '../Overview/Context/OverviewProvider.jsx';
 import ReviewProvider from '../Reviews/Context/ReviewProvider.jsx';
 import QuestionsProvider from '../Questions/Context/QuestionsProvider.jsx';
+import RPProvider from '../RelatedProducts/Context/RPProvider.jsx'
 
 function Home () {
 	// Get id from query string
@@ -47,7 +48,9 @@ function Home () {
 
 					{/* Related Products  */}
 					<ErrorBoundary component="Related">
-						<RelatedProducts />
+            <RPProvider>
+						  <RelatedProducts />
+						</RPProvider>
 					</ErrorBoundary>
 
 					{/* Product Questions  */}

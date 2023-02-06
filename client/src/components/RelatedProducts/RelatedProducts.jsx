@@ -1,19 +1,15 @@
 const axios = require('axios');
 import { useParams } from "react-router-dom";
 import { useNavigate } from  'react-router-dom';
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { fetch } from "../../../../server/utils/fetch.js"
-import { useProductContext } from "../Context/ContextProvider.jsx";
+import { useRPContext } from "./Context/RPProvider.jsx";
 import RPList from "./RPList.jsx";
 import YourOutfitList from "./YourOutfitList.jsx"
 
 function RelatedProducts () {
-  const [currentProductData, setCurrentProductData] = useState(null);
-  const [rpData, setRpData] = useState(null);
-  const [rpStyles, setRpStyles] = useState(null);
-  const [rpRatings, setRpRatings] = useState(null);
+  const { useClickLogger, product_id, changeProduct, currentProductData, setCurrentProductData, rpData, rpStyles, rpRatings, setRpData, setRpStyles, setRpRatings } = useRPContext();
   const [loaded, setLoaded] = useState(false);
-  const { currentProductId, setCurrentProductId } = useProductContext();
   const navigate = useNavigate();
 
   async function fetchData(ep) {
@@ -29,14 +25,11 @@ function RelatedProducts () {
     })
   }
 
-  function changeProduct (id) {
-    navigate(`/${id}`)
-  };
-
   useEffect(() => {
+    console.log('got here');
     setLoaded(false);
     let idList;
-    fetchData(`products/${currentProductId}/related`)
+    fetchData(`products/${product_id}/related`)
     .then((ids) => {
       idList = [...new Set(ids)];
       return Promise.all(idList.map((id) => {
@@ -70,19 +63,19 @@ function RelatedProducts () {
         ratingList[review.product_id] = average.toFixed(1);
       })
       setRpRatings(ratingList);
-      return fetchData(`products/${currentProductId}`)
+      return fetchData(`products/${product_id}`)
     })
     .then((currentProductData) => {
       setCurrentProductData(currentProductData);
       setLoaded(true);
     })
-  },[currentProductId]);
+  },[product_id]);
 
   return (
-    <div data-testid='rp'>
-      {loaded ? <><RPList rps={rpData} rpRatings={rpRatings} rpStyles={rpStyles} changeProduct={changeProduct}/><br/></> : null}
-      {loaded ? <><YourOutfitList cp={currentProductData} fetchData={fetchData} changeProduct={changeProduct}/></>: null}
-    </div>
+      <div data-testid='rp'>
+        {loaded ? <><RPList/><br/></> : null}
+        {loaded ? <><YourOutfitList/></>: null}
+      </div>
   )
 }
 
