@@ -1,27 +1,17 @@
 import React, { useState, useEffect } from "react";
 import YourOutfitItem from "./YourOutfitItem.jsx";
+import { useProductContext } from '../Context/ContextProvider.jsx';
 
 function YourOutfitList ({ cp, fetchData, changeProduct }) {
-  const [outfitItems, setOutfitItems] = useState([]);
-  const [outfitPhotoUrls, setOutfitPhotoUrls] = useState({});
+  const {
+    outfitItems,
+    setOutfitItems,
+    addToOutfit,
+    removeFromOutfit,
+    outfitPhotoUrls,
+    setOutfitPhotoUrls
+  } = useProductContext();
 
-  function addToOutfit() {
-    if (!outfitItems.some(item => item.id === cp.id)) {
-      fetchData(`products/${cp.id}/styles`)
-      .then((styles) => {
-        var itemPhotoUrl = styles.results[0].photos[0].thumbnail_url;
-        setOutfitPhotoUrls({...outfitPhotoUrls, [cp.id]: itemPhotoUrl});
-        setOutfitItems([...outfitItems, cp]);
-      });
-    }
-  };
-
-  function removeFromOutfit(id) {
-    var newState = outfitItems.filter((item) => {
-      return item.id !== id;
-    });
-    setOutfitItems(newState);
-  }
   // get the items once on first load
   useEffect(() => {
     const storedItems = window.localStorage.getItem('OUTFIT_ITEMS');
@@ -40,7 +30,7 @@ function YourOutfitList ({ cp, fetchData, changeProduct }) {
     <div>
       Your Outfit
       <div>
-        <button onClick={addToOutfit}> Add to Outfit (+) </button>
+        <button onClick={() => addToOutfit(fetchData, cp)}> Add to Outfit (+) </button>
       </div>
       {outfitItems && outfitItems.map((item) => {
         return <YourOutfitItem key={item.id} photo={outfitPhotoUrls[item.id]}  item={item} changeProduct={changeProduct} removeFromOutfit={removeFromOutfit}/>
