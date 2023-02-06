@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import ReviewsLink from './ReviewsLink.jsx';
+import ReviewsLink from '../Overview/components/ReviewsLink.jsx';
 
-import useRatingsAvg from '../../Hooks/useRatingsAvg/useRatingsAvg.jsx';
-import { useProductContext } from "../../Context/ContextProvider.jsx";
+import useRatingsAvg from '../Hooks/useRatingsAvg/useRatingsAvg.jsx';
+import { useProductContext } from "../Context/ContextProvider.jsx";
 
-import styles from '../overview.module.css';
+import styles from '../Overview/overview.module.css';
 
-function StarRating() {
+function StarRatingBar() {
 	const { currentProductId, ratingsAverage } = useProductContext();
 	const { reviewCount } = useRatingsAvg();
 
@@ -24,4 +24,4 @@ function StarRating() {
 	)
 }
 
-export default StarRating;
+export default StarRatingBar;

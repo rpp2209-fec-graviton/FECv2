@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Button from './Button.jsx';
-import StarRating from './StarRating.jsx';
+import StarRatingBar from '../../StarRatingBar/StarRatingBar.jsx';
 
 import { useProductContext } from "../../Context/ContextProvider.jsx";
 import { useOverviewContext } from "../Context/OverviewProvider.jsx";
@@ -29,7 +29,7 @@ function ProductInfo() {
 	return (
 		response &&
 		<div className={styles['overview__product-info']}>
-			<StarRating />
+			<StarRatingBar />
 			<p>{response.category}</p>
 			<h2>{response.name}</h2>
 			{ (price && price.type === 'sale') ?
