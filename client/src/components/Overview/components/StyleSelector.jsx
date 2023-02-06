@@ -82,6 +82,7 @@ function StyleSelector () {
 	};
 
 	return (
+		selectedStyle &&
 		<div className={styles['overview__style-selector']}>
 			<h3 className={styles['style-selector__header']}>Style &gt; <span className={styles['header-undecorated']}>{selectedStyle.name}</span></h3>
 			<ThumbnailCarousel type="images__carousel"  />
