@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from './reviews.module.scss';
-import ReviewForm from './Review-Form/index';
+import Form from './Review-Form/form-index.jsx'
 import ReviewList from './Review-List/index';
 import ReviewRatings from './Review-Ratings/index';
 import ReviewCard from './Review-Card/index.js'
@@ -28,7 +28,7 @@ export default function Reviews({ reviewData }) {
 
   return (
     <div id="reviews" className={styles.reviews}>
-      <ReviewForm />
+      <Form />
       <ReviewWrapper>
         <ReviewRatings />
         <ReviewList>
