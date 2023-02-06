@@ -2,7 +2,7 @@ const axios = require('axios');
 import { useParams } from "react-router-dom";
 import { useNavigate } from  'react-router-dom';
 import React, { useState, useEffect } from "react";
-import { fetch } from "../../../../server/utils/fetch.js"
+import { fetch } from "../../../../server/utils/data-utils.js"
 import { useProductContext } from "../Context/ContextProvider.jsx";
 import RPList from "./RPList.jsx";
 import YourOutfitList from "./YourOutfitList.jsx"
