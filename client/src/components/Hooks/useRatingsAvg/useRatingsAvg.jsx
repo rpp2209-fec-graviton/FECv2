@@ -9,8 +9,8 @@ import { useProductContext } from "../../Context/ContextProvider.jsx";
 //  Next task is to figure out how to convert
 // average from number to percentage/stars filled
 // =============================================
-export default function getRatingsAvg(id) {
-	const { setRatingsAverage } = useProductContext();
+export default function useRatingsAvg(id) {
+	const { ratingsAverage, setRatingsAverage } = useProductContext();
 	const [reviewCount, setCount] = useState(0);
 	const [ratingSum, setSum] = useState(0);
 
@@ -52,7 +52,9 @@ export default function getRatingsAvg(id) {
 		}
 	})
 
-	// Return average rating
 	const average = ratingSum / reviewCount;
 	!average ? null : setRatingsAverage(average);
+
+	// Return average rating and Review Count
+	return { ratingsAverage, reviewCount };
 };
