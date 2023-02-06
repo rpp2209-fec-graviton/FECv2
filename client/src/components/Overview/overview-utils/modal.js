@@ -5,10 +5,12 @@ function toggleModal(show, setShow) {
 
 	// Get elements from DOM
 	var fullImage = document.querySelector('#image-lg');
-	var modal = document.querySelector('#modal');
+	var modal = document.getElementById('modal');
+	var content = document.getElementById('modal__content');
 
 	// Toggle Image and Modal Visibility
 	modal.classList.toggle(styles['modal-hidden']);
+	content.classList.toggle(styles['modal-hidden']);
 	fullImage.classList.toggle(styles['modal-hidden']);
 };
 

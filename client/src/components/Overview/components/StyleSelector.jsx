@@ -79,8 +79,8 @@ function StyleSelector () {
 			</select>
 
 			<div>
-				<Button handleClick={handleAddToBag}>+ Add to Bag</Button>
-				<Button handleClick={handleStarClick}>⭐</Button>
+				<Button type='style-selector__button' handleClick={handleAddToBag}>+ Add to Bag</Button>
+				<Button type='style-selector__button' handleClick={handleStarClick}>⭐</Button>
 			</div>
 		</div>
 	)

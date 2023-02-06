@@ -20,11 +20,19 @@
 .flex {
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
 }
 
 .flex-column {
   flex-direction: column;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.inline {
+  display: inline;
 }
 
 /* =======================
@@ -78,7 +86,7 @@
 }
 
 .overview__image {
-  object-fit: cover;
+  /* object-fit: cover; */
   width: 400px;
   height: auto;
   grid-row: 1 / span 10;
@@ -131,7 +139,7 @@
       Modal Styles
 ========================*/
 .images__modal {
-  height: 20%;
+  height: 0;
   box-shadow: -2rem 2rem 2rem rgba(black, 0.2);
 
   filter: blur(0);
@@ -141,7 +149,7 @@
 
   visibility: visible;
   position: fixed;
-  z-index: 1;
+  z-index: 3;
 }
 
 .modal-hidden {
@@ -149,11 +157,13 @@
   opacity: 0;
   filter: blur(8px);
   box-shadow: 1rem 0 0 rgba(black, 0.2);
+  visibility: hidden;
+  transition: 1.5s ease-out;
 }
 
 .modal__content {
   height: 1400px;
-  width: 100%;
+  width: 150%;
 }
 
 /* =======================
@@ -192,15 +202,28 @@
 ========================*/
 .button,
 .drop-down {
-  margin: 32px 8px 0 0;
-  height: 40px;
-  width: 240px;
-  border: 1px solid rgba(47, 79, 79, 0.8);
   justify-content: center;
   display: inline-flex;
   align-items: center;
+  border: 1px solid rgba(47, 79, 79, 0.8);
+}
+
+.style-selector__button,
+.drop-down {
+  margin: 32px 8px 0 0;
+  height: 40px;
+  width: 240px;
 }
 
 .button:active {
   box-shadow: inset 3px 3px 5px 6px #ccc;;
+}
+
+.modal-button {
+  margin-left: 8px;
+  background-color: var(--white);
+  top: 0;
+  font-size: 32px;
+  height: 40px;
+  width: 64px;
 }
