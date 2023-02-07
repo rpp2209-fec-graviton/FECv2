@@ -25,8 +25,11 @@ export default function useRatingsAvg(id) {
 		}
 	});
 
+	// =============================================
+	// Effect: Get Reviews, set Review Count and Sum
+	//   whenever the Review Response changes
+	// =============================================
 	useEffect(() => {
-
 		try {
 			if (reviewResponse) {
 				// Get Selected Product Reviews
@@ -51,6 +54,21 @@ export default function useRatingsAvg(id) {
 
 	}, [reviewResponse]);
 
+	// =============================================
+	//                 Debug To-Do:
+	// 		Fill Percent calculation is correct
+	// 				but stars fill incorrectly
+	// (shows 100% fill for a 60% average rating).
+	// =============================================
+	useEffect(() => {
+		if (ratingsAverage && reviewCount) {
+			const fillPercent = (ratingsAverage / reviewCount) * 100;
+			const elem = document.getElementById('stars');
+			elem.style.width = `${fillPercent}%`;
+		}
+	}, [ratingsAverage]);
+
+	// Update Average when ratingSum or reviewCount changes
 	useEffect(() => {
 		const average = ratingSum / reviewCount;
 		average && setRatingsAverage(average);

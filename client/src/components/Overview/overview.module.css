@@ -206,6 +206,14 @@ Convert scrollbar to ⏮ arrows ⏭
   vertical-align: text-top;
 }
 
+
+.stars__reviews {
+  visibility: hidden;
+  height: 0;
+  width: 0;
+}
+
+
 /* =======================
       Button Styles
 ========================*/
