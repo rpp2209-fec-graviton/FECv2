@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import styles from "../questions.module.css";
 
 export default function useHelpful(QAid, helpfulCategory) {
   //to save in local scope
@@ -13,8 +14,6 @@ export default function useHelpful(QAid, helpfulCategory) {
   const localStorage = JSON.parse(window.localStorage.getItem(category));
   console.log('before', localStorage);
   const [isHelpful, setIsHelpful] = useState(localStorage[id]);
-
-  var helpfulStyle = { fontWeight: 'bold', color: 'blue' };
 
   const helpfulQA = () => {
     if (!isHelpful) {
@@ -31,5 +30,5 @@ export default function useHelpful(QAid, helpfulCategory) {
         })
     }
   }
-  return [isHelpful, helpfulQA, helpfulStyle];
+  return [isHelpful, helpfulQA];
 }

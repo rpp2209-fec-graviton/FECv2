@@ -8,8 +8,6 @@ export default function useReport(QAid, reportedCategory) {
 
   const [isReported, setIsReported] = useState(false);
 
-  var reportedStyle = { fontWeight: 'bold', color: 'blue' };
-
   const reportQA = () => {
     if (!reportedList[id]) {
       axios({
@@ -24,5 +22,5 @@ export default function useReport(QAid, reportedCategory) {
         })
     }
   }
-  return [isReported, reportQA, reportedStyle];
+  return [isReported, reportQA];
 }
