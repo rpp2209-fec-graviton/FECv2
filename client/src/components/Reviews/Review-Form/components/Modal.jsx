@@ -10,6 +10,8 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
+import useReviewPost from "../../hooks/useReviewPost.jsx";
+
 import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import {
   FormHelperText,
@@ -73,14 +75,12 @@ const validationSchema = yup.object({
 export default function Modal(props) {
   const { open, handleClose } = props;
   const [link, setLink] = React.useState("http://www.google.com/");
+  const { handlePost } = useReviewPost()
   const formik = useFormik({
     initialValues: {
       firstName: "",
       lastName: "",
       email: "",
-      birth: "",
-      effectiveDate: "",
-      policyNum: "",
       fullRefund: "",
       password: "foobar",
       refundForm: null,
@@ -94,6 +94,7 @@ export default function Modal(props) {
         formData.append(key, values[key]);
         return formData;
       }, new FormData());
+
       //console.log(values.refundForm);
       //formData.append("refundForm", values.refundForm);
       // for (let value of formData.values()) {
@@ -103,6 +104,8 @@ export default function Modal(props) {
       for (let value of formData.entries()) {
         console.log(value);
       }
+
+      handlePost(values);
       // for (var pair of formData.entries()) {
       //   console.log(pair[0] + ", " + pair[1]);
       // }
@@ -241,7 +244,7 @@ export default function Modal(props) {
                   id="comment"
                   name="comment"
                   multiline
-                  rows={4}
+                  // rows={4}
                   value={formik.values.comment}
                   onChange={formik.handleChange}
                 />
@@ -255,7 +258,7 @@ export default function Modal(props) {
                   id="comment"
                   name="comment"
                   multiline
-                  rows={4}
+                  // rows={4}
                   value={formik.values.comment}
                   onChange={formik.handleChange}
                 />
