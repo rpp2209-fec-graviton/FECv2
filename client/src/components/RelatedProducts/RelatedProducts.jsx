@@ -26,7 +26,6 @@ function RelatedProducts () {
   }
 
   useEffect(() => {
-    console.log('got here');
     setLoaded(false);
     let idList;
     fetchData(`products/${product_id}/related`)

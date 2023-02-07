@@ -2,7 +2,7 @@ import React from "react";
 import RPComparison from './RPComparison.jsx';
 import styles from './RPCard.module.css';
 
-function RPCard ({ rp, rpStyles, rpRating, changeProduct }) {
+function RPCard ({ rp, rpStyles, rpRating, changeProduct, setModalIsOpen }) {
   function starProduct (e) {
     // var currentProduct;
     // var relatedProduct = props.productInfo;
@@ -28,9 +28,8 @@ function RPCard ({ rp, rpStyles, rpRating, changeProduct }) {
 
   return (
     <div className={styles.card} data-testid='rpcard'>
-      <img onClick={() => changeProduct(rp.id)} src={imgUrl}/>
-      <br/>
-      <button onClick={starProduct}>Star</button>
+      <img src={imgUrl} onClick={() => changeProduct(rp.id)}/>
+      <h3 className={styles.star} onClick={() => setModalIsOpen(true)}>⭐</h3>
       <br/>
       {rp.category}
       <br/>

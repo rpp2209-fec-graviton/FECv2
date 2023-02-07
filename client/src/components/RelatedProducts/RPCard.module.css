@@ -1,9 +1,23 @@
 .card {
+  position: relative;
   display: inline-block;
   border:1px solid black;
 }
 .red {
   color: red;
+}
+.star {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+}
+.comparison {
+  width: 300px;
+  height: 300px;
+  background: white;
+  z-index: 10;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
 }
 img {
   width: 150px;
