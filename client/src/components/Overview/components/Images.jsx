@@ -22,10 +22,12 @@ function Images () {
 
 	const allProductStyles = useStyles(currentProductId);
 
+	// Update the selected style when currentProductStyles changes
 	useEffect(() => {
 		currentProductStyles && setSelectedStyle(currentProductStyles[0]);
-	}, [allProductStyles]);
+	}, [currentProductStyles]);
 
+	// Update the full size image when the selected style changes
 	useEffect(() => {
 		selectedStyle.photos && setURL(selectedStyle.photos[0].url);
 	}, [selectedStyle]);
