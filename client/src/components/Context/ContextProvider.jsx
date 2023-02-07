@@ -24,7 +24,8 @@ export default function ContextProvider({ children }) {
     currentProductId,
     setCurrentProductId,
     ratingsAverage,
-    setRatingsAverage
+    setRatingsAverage,
+    useClickLogger
   };
 
   return (

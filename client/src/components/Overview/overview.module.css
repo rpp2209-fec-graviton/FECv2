@@ -5,6 +5,7 @@
   --blue: #1e90ff;
   --white: #ffffff;
   --silver: #c0c0c0;
+  --red: #ff0000;
 }
 
 /* =======================
@@ -27,7 +28,7 @@
 }
 
 /* =======================
-      Testing Styles
+      Global Styles
 ========================*/
 .error {
   border: 5px solid red;
@@ -57,9 +58,17 @@
   grid-column: 6 / span 4;
 }
 
+.product-info__sale-price {
+  color: var(--red);
+}
+
+.product-info__default-price {
+  text-decoration: line-through;
+}
+
 .overview__style-selector {
   grid-column: 6 / span 6;
-  grid-row-start: 4;
+  grid-row-start: 6;
   height: 80px;
 }
 
@@ -72,6 +81,11 @@
   object-fit: cover;
   width: 400px;
   height: auto;
+  grid-row: 1 / span 10;
+}
+
+.style-selector__header {
+  margin-left: 0;
 }
 
 /* =======================

@@ -17,7 +17,7 @@ function StyleSelector () {
 	const qtyRef = useRef(0);
 
 	// Overview Context
-	const { pStyles, selectedStyle } = useOverviewContext();
+	const { allProductStyles, selectedStyle } = useOverviewContext();
 
 	// =============================================
 	//            FUNCTIONALITY TO-DOs
@@ -38,19 +38,6 @@ function StyleSelector () {
 		const currentQty = qtyRef.current[qtyRef.current.selectedIndex].value;
 
 		setCart({ size: currentSize, qty: currentQty });
-
-		// switch (status) {
-		// 	case ('no stock'): // get product styles to check stock (field is called 'quantity')
-		// 		// toggle hide button class
-		// 		break;
-		// 	case ('valid'):
-		// 		console.log('Added to cart!');
-		// 		break;
-		// 	default ('Select Size'):
-		// 		// open select size dropdown TODO
-		// 		window.alert('Please select size.')
-		// 		break;
-		// }
 	};
 
 	const handleDropdownChange = (e) => {
@@ -67,7 +54,7 @@ function StyleSelector () {
 
 	return (
 		<div className={styles['overview__style-selector']}>
-			<h3>Style &gt; {selectedStyle.name}</h3>
+			<h3 className={styles['style-selector__header']}>Style &gt; {selectedStyle.name}</h3>
 			<ThumbnailCarousel type="images__carousel"  />
 
 			<select
