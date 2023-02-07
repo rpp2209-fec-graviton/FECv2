@@ -11,10 +11,9 @@ export default function useMore() {
       return;
     }
 
-    if (count%4 === 0) {
+    if (count%6 === 0) {
       makePage.increment();
       makeCount.increment();
-      updateList();
     } else {
       makeCount.increment();
     }

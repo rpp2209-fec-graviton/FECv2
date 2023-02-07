@@ -42,7 +42,7 @@ function QuestionsList(props) {
 
   useEffect(() => {
     getQList(product_id, page);
-  }, [product_id])
+  }, [page])
 
   return (
     <div className={styles.questionsView}>
@@ -60,7 +60,8 @@ function QuestionsList(props) {
           )
         })}
       </div>
-      {questionsList.length > 0 && withClickLogger(<MoreAnsweredQ {...{ count, more, showMore, makeCount, makePage, updateQList, checkQList }} />)}
+      {console.log(questionsList, product_id)}
+      {questionsList.length > 0 && <MoreAnsweredQ {...{ count, more, showMore, makeCount, makePage, updateQList, checkQList }} />}
       <button className={styles.questionsView__btn} onClick={toggle}> Submit a Question + </button>
       <QuestionModal
         isShowing={isShowing}
