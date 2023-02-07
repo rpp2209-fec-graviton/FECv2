@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetch } from '../../../../../server/utils/fetch.js';
+import { fetch } from '../../../../../server/utils/data-utils.js';
 
 export default function useStyles(id) {
 	const [allProductStyles, setStyles] = useState({});

@@ -47,5 +47,3 @@ let fetch = async (endpoint, cb) => {
 		cb(err);
 	}
 };
-
-module.exports = { fetch };
