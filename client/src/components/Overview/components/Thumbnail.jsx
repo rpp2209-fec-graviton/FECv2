@@ -6,13 +6,15 @@ import styles from '../overview.module.css';
 
 function Thumbnail({ carouselType, type, photos, style }) {
 	const { currentProductId } = useProductContext();
-	const { selectedStyle, setSelectedStyle, setURL, handleStyleChange } = useOverviewContext();
+	const { handleStyleChange } = useOverviewContext();
+	const urls = carouselType === 'styles__carousel' ? photos : photos[0];
 
 	return (
 		<img
-			onClick={() => handleStyleChange(style)}
+			onClick={(e) => handleStyleChange(e, style, type)}
 			className={`${styles[type]} ${styles.thumbnail}`}
-			src={photos[0].thumbnail_url}
+			id={urls.url} // figure out a better way to pass this along with thumbnail
+			src={urls && urls.thumbnail_url}
 			alt="thumbnail image"
 		/>
 	)

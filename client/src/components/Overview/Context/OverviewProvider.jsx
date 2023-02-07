@@ -17,10 +17,16 @@ export default function OverviewProvider({ children }) {
 	const [ price, setPrice ] = useState({ price: '', type: 'default'});
 
 	// Update Large Image URL and Style Price when selectedStyle changes
-	const handleStyleChange = (style) => {
-		setSelectedStyle(style);
-		setURL(style.photos && style.photos[0].url);
-		setPrice(style.sale_price && style.sale_price !== null ? { price: style.sale_price, type: 'sale' } : { price: style.original_price, type: 'default' } );
+	const handleStyleChange = (e, style, type) => {
+		// console.log('Style', selectedStyle);
+
+		if (type === 'thumbnail-rounded') {
+			setSelectedStyle(style);
+			setURL(e.target.id && e.target.id);
+			setPrice(style.sale_price && style.sale_price !== null ? { price: style.sale_price, type: 'sale' } : { price: style.original_price, type: 'default' } );
+		} else {
+			setURL(e.target.id && e.target.id);
+		}
 	};
 
 	// Overview Context Values
