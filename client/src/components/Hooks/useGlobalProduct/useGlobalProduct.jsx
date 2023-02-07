@@ -8,13 +8,11 @@ const useGlobalProduct = () => {
 	const { currentProductId, setCurrentProductId } = useProductContext();
 
 	useEffect(() => {
-		if (currentProductId) {
-			// Remove trailing slash '/' and set to
-			// Global `selected product id` Context
-			const id = productId['*'].split('/')[0];
-			setCurrentProductId(id);
-		}
-	}, [productId, currentProductId]);
+		// Remove trailing slash '/' and set to
+		// Global `selected product id` Context
+		const id = productId && productId['*'].split('/')[0];
+		setCurrentProductId(id);
+	}, [productId]);
 
 	return currentProductId;
 };

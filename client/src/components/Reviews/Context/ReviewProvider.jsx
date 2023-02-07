@@ -31,7 +31,7 @@ export default function ReviewProvider({ children }) {
   }
 
 
-  const { filteredReviews } = useRatingFilter(reviewLoading, reviewError, reviewResponse, reviewRating,)
+  const { filteredReviews } = useRatingFilter(reviewLoading, reviewError, reviewResponse, reviewRating) ;
 
   const ctx = {
     sortOrder,
@@ -49,7 +49,7 @@ export default function ReviewProvider({ children }) {
   return (
 
     <ReviewContext.Provider value={ctx}>
-      {console.log('review-response', reviewResponse, sortOrder)}
+      {/* {console.log('review-response', reviewResponse, sortOrder)} */}
       {children}
     </ReviewContext.Provider>
   )

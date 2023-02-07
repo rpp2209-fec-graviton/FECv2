@@ -26,7 +26,7 @@ function Home () {
 			<Route path='/:productId' element={
 				<div className="body">
 					{/* Dev Logger: Uncomment to view selected product on page load */}
-					<h3>Selected Product Is: {currentProductId && currentProductId}</h3>
+					{/* <h3>Selected Product Is: {currentProductId && currentProductId}</h3> */}
 
 					{/* Overview  */}
 					<ErrorBoundary component="Overview">

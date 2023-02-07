@@ -5,19 +5,12 @@ import useFetchProductInfo from '../../Reviews/hooks/useFetchProductInfo.jsx';
 import { fetch } from '../../../../../server/utils/data-utils.js';
 import { useProductContext } from "../../Context/ContextProvider.jsx";
 
-// Ratings Average = Ratings Sum / Review Count
-
-// =============================================
-//        TO-DO: Calculation is finished,
-//  Next task is to figure out how to convert
-// average from number to percentage/stars filled
-// =============================================
 export default function useRatingsAvg(id) {
 	const { currentProductId, sortOrder, ratingsAverage, setRatingsAverage } = useProductContext();
 	const [reviewCount, setCount] = useState(0);
 	const [ratingSum, setSum] = useState(0);
 
-	const { reviewResponse, reviewError, reviewLoading } = useFetchProductInfo(currentProductId, sortOrder);
+	const { reviewResponse } = useFetchProductInfo(currentProductId, sortOrder);
 
 	// =============================================
 	// Effect: Get Reviews, set Review Count and Sum
@@ -50,7 +43,7 @@ export default function useRatingsAvg(id) {
 
 	useEffect(() => {
 		if (ratingsAverage && reviewCount) {
-			const fillPercent = (ratingsAverage / reviewCount) * 100;
+			const fillPercent = (ratingsAverage / 5) * 100;
 			const elem = document.getElementById('stars');
 			elem.style.width = `${fillPercent}%`;
 		}

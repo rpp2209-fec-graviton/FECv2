@@ -10,9 +10,10 @@ function StarRatingBar() {
 	const { currentProductId, ratingsAverage } = useProductContext();
 	const { reviewCount } = useRatingsAvg();
 
-	useEffect(() => {
-		(currentProductId && ratingsAverage) && console.log('Product Rating Avg', ratingsAverage);
-	}, [currentProductId, ratingsAverage]);
+	// Average Rating Logger
+	// useEffect(() => {
+	// 	(currentProductId && ratingsAverage) && console.log('Product Rating Avg', ratingsAverage);
+	// }, [currentProductId, ratingsAverage]);
 
 	return (
 		<>
