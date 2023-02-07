@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from './reviews.module.scss';
-import ReviewForm from './Review-Form/index';
+import Form from './Review-Form/form-index.jsx'
 import ReviewList from './Review-List/index';
 import ReviewRatings from './Review-Ratings/index';
 import ReviewCard from './Review-Card/index.js'
@@ -9,7 +9,7 @@ import ReviewWrapper from './Review-Wrapper';
 
 export default function Reviews({ reviewData }) {
 
-  const { reviewLoading, reviewResponse, reviewError, filteredReviews } = useReviewContext();
+  const { reviewLoading, reviewResponse, reviewError, filteredReviews, showMore, handleShowMoreReviews } = useReviewContext();
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -28,11 +28,11 @@ export default function Reviews({ reviewData }) {
 
   return (
     <div id="reviews" className={styles.reviews}>
-      <ReviewForm />
+      <Form />
       <ReviewWrapper>
         <ReviewRatings />
         <ReviewList>
-          {filteredReviews.map((review) => {
+          {filteredReviews.slice(0, showMore).map((review) => {
             return <ReviewCard key={review.review_id} reviewData={review} />
           })}
         </ReviewList>
