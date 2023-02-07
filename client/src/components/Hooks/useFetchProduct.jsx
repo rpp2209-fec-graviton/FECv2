@@ -16,7 +16,6 @@ const useFetchProduct = (productId) => {
           product_id: productId
         }
       });
-
       setResponse(res.data);
       setError(null);
     } catch (err) {
