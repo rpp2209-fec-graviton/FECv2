@@ -10,19 +10,18 @@ function StarRatingBar() {
 	const { currentProductId, ratingsAverage } = useProductContext();
 	const { reviewCount } = useRatingsAvg();
 
-	// Average Rating Logger
-	// useEffect(() => {
-	// 	(currentProductId && ratingsAverage) && console.log('Product Rating Avg', ratingsAverage);
-	// }, [currentProductId, ratingsAverage]);
-
-	return (
-		<>
-		<div className={styles.stars__outer}>
-			<div id="stars" className={styles.stars__inner}></div>
-		</div>
-		{(reviewCount && reviewCount !== 0) && (<ReviewsLink reviewCount={reviewCount} />)}
-		</>
-	)
+	if (reviewCount && reviewCount !== 0) {
+		return (
+			<>
+			<div className={styles.stars__outer}>
+				<div id="stars" className={styles.stars__inner}></div>
+			</div>
+			<ReviewsLink reviewCount={reviewCount} />
+			</>
+		)
+	} else if (reviewCount === 0) {
+		return (<></>)
+	}
 }
 
 export default StarRatingBar;
