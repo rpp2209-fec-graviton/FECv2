@@ -107,7 +107,7 @@ function StyleSelector () {
 				{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (<option aria-label="qty-option" key={num} value={num}>{num}</option>))}
 			</select>
 
-			<div>
+			<div className={styles['style-selector__buttons']}>
 				<Button type='style-selector__button' handleClick={handleAddToBag}>+ Add to Bag</Button>
 				<Button type='style-selector__button' handleClick={handleAddToOutfitList}>⭐</Button>
 			</div>

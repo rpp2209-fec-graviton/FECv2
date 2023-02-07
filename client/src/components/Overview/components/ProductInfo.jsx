@@ -28,8 +28,10 @@ function ProductInfo() {
 
 	return (
 		response &&
-		<div className={styles['overview__product-info']}>
+		<div className={styles['product-info__detail']}>
 			<StarRatingBar />
+
+			{/* Product Details */}
 			<p>{response.category}</p>
 			<h2>{response.name}</h2>
 			{ (price && price.type === 'sale') ?

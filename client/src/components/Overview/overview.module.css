@@ -33,12 +33,14 @@
 /* =======================
       Grid & Flexbox
 ========================*/
-.grid {
-  display: grid;
+.grid-template {
   grid-gap: 10px;
   grid-template-columns: repeat(autofill, 180px);
-  /* grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%; */
   grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+}
+
+.grid {
+  display: grid;
 }
 
 .flex {
@@ -55,31 +57,36 @@
     Overview Styles
 ========================*/
 .overview {
-  padding: 40px;
-  max-width: 80%;
-  margin: 80px 160px;
+  height: 100%;
+  margin-top: 80px;
+  z-index: 10;
 }
 
 .overview__images {
+  display: table;
   position: relative;
   grid-column-start: 2;
 }
 
 .overview__image {
-  width: 600px;
+  border: 2px solid var(--black);
+  object-fit: cover;
+  width: 400px;
   height: auto;
   grid-row: 2 / span 5;
 }
 
 .overview__product-info {
-  grid-column: 7 / span 4;
+  height: max-content;
+  grid-column-start: 8;
 }
 
+.product-info__detail {
+  grid-row-start: 1;
+}
 
 .overview__style-selector {
-  grid-column: 7 / span 6;
-  grid-row-start: 5;
-  height: 80px;
+  grid-row-start: 3;
 }
 
 /* =======================
@@ -119,28 +126,29 @@ Convert scrollbar to ⏮ arrows ⏭
   left: 16px;
   top: 16px;
   width: 90px;
-  height: 360px;
+  height: 480px;
   overflow-x: hidden;
   overflow-y: scroll;
   z-index: 2;
 }
 
 .images__carousel {
-  max-width: 448px;
+  min-width: 392px;
+  max-width: 400px;
 }
 
 .thumbnail-square {
   border: 1px solid var(--silver);
-  width: 80px;
-  height: 80px;
+  width: 72px;
+  height: 72px;
 }
 
 .thumbnail-rounded {
   object-fit: cover;
   border-radius: 50%;
   border: 2px solid var(--charcoal);
-  width: 90px;
-  height: 90px;
+  width: 72px;
+  height: 72px;
   margin: 10px 8px;
 }
 
@@ -148,18 +156,26 @@ Convert scrollbar to ⏮ arrows ⏭
       Modal Styles
 ========================*/
 .images__modal {
-  height: 0;
+  height: 100vh;
   box-shadow: -2rem 2rem 2rem rgba(black, 0.2);
 
   filter: blur(0);
-  transition: 1.5s ease-in-out;
+  transition: 1.5s ease-out;
   transform: scale(0.5);
   opacity: 1;
 
   visibility: visible;
-  position: fixed;
+  position: absolute;
   z-index: 3;
+
+  /* width: 100vw; */
+  /* height: 100%; */
+  min-height: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  /* overflow-y: hidden; */
 }
+
 
 .modal-hidden {
   height: 0;
@@ -171,8 +187,10 @@ Convert scrollbar to ⏮ arrows ⏭
 }
 
 .modal__content {
-  height: 1400px;
-  width: 150%;
+  object-fit: contain;
+  height: 100%;
+  min-height: 100%;
+  width: 100%;
 }
 
 /* =======================
@@ -243,4 +261,7 @@ Convert scrollbar to ⏮ arrows ⏭
   font-size: 32px;
   height: 40px;
   min-width: 56px;
+}
+.style-selector__buttons {
+  width: max-content;
 }
