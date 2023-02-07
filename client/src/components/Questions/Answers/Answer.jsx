@@ -2,9 +2,11 @@ import React from "react";
 //CSS
 import styles from "../questions.module.css";
 import useReport from "../hooks/useReport.jsx";
+import useHelpful from "../hooks/useHelpful.jsx";
 
 function Answer({ ans }) {
-  const [isReported, reportQA, reportedStyle] = useReport(ans.answer_id, 'answers');
+  const [isReported, reportQA] = useReport(ans.answer_id, 'answers');
+  const [isHelpful, helpfulQA] = useHelpful(ans.answer_id, 'answers');
 
   var createDate = (date) => {
     var options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -17,12 +19,15 @@ function Answer({ ans }) {
       <p data-testid="test-answer"><b>A: </b>{ans.body}
         <sub>
           by {ans.answerer_name}, {createDate(ans.date)} |
-          Helpful?
-          <a> Yes ({ans.helpfulness}) </a>
+          Helpful?&nbsp;
+          {isHelpful ?
+            <a className={styles.link__clicked}>Yes ({ans.helpfulness + 1})</a> :
+            <a onClick={helpfulQA}>Yes ({ans.helpfulness})</a>
+          }&nbsp;
           | {isReported ?
-          <a style={reportedStyle}>Reported</a> :
-          <a onClick={reportQA}>Report</a>
-        }&nbsp;&nbsp;
+            <a className={styles.linked__clicked}>Reported</a> :
+            <a onClick={reportQA}>Report</a>
+          }&nbsp;&nbsp;
         </sub>
       </p>
     </div>
