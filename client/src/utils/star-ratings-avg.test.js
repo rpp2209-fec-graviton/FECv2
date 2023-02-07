@@ -61,7 +61,7 @@ describe.only('Star Ratings Calculation', () => {
 
   // To-Do: Cant get this test working
   it('WRITE TEST TO-DO should use mocked data', async () => {
-    // const fetch = jest.mock('../../../server/utils/fetch.js');
+    // const fetch = jest.mock('../../../server/utils/data-utils.js');
     // const useContext = jest.fn();
 
     // await getRatingsAvg(1);

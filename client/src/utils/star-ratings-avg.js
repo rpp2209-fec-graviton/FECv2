@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { fetch } from '../../../server/utils/fetch.js';
+import { fetch } from '../../../server/utils/data-utils.js';
 import { useProductContext } from "../components/Context/ContextProvider.jsx";
 
 // =============================================
