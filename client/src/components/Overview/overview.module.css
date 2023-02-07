@@ -71,9 +71,9 @@
 .overview__image {
   border: 2px solid var(--black);
   object-fit: cover;
+  grid-row: 2 / span 5;
   width: 400px;
   height: auto;
-  grid-row: 2 / span 5;
 }
 
 .overview__product-info {
