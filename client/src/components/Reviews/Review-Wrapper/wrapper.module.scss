@@ -1,9 +1,10 @@
 .wrapper {
   display: flex;
+  width: 80vw;
   flex-direction: row;
-  justify-content: left;
-  align-items: center;
-  padding-left: 10vw;
-  padding-right: 10vw;
+  justify-content: center;
+  align-items: flex-start;
   margin: 0 0 0 0;
+  padding-bottom: 20vh;
+
 }
