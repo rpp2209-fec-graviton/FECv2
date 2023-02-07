@@ -9,7 +9,7 @@ export default function useReport(QAid, reportedCategory) {
   const [isReported, setIsReported] = useState(false);
 
   const reportQA = () => {
-    if (!reportedList[id]) {
+    if (!isReported) {
       axios({
         method: 'PUT',
         url: `http://localhost:3000/qa/${category}/${id}/report`
