@@ -39,11 +39,16 @@ function AnswersList({ question_id, q }) {
 
   return (
     <div className={styles.answersList}>
-      {answersList.length > 0 && answersList.slice(0, count).map((ans, index) => {
-        return <div key={ans.answer_id} className="Answer">
+      {JSON.stringify(answersList.length)}
+      {answersList.length > 0 ? answersList.map((ans, index) => {
+        if (index >= count) {
+          return;
+        }
+
+        return <div key={ans.answer_id} data-testid="answers__list">
           <Answer ans={ans} />
         </div>
-      })}
+      }) : <button>submit an answer</button>}
       {answersList.length > 2 ?
         <SeeMoreAnswers {...{ count, more, showMore, makeCount, makePage, updateAList, checkAList }} />
         : null}

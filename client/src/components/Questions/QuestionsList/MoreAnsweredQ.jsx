@@ -5,7 +5,7 @@ export default function MoreAnsweredQ({ count, more, showMore, makeCount, makePa
 
   return (
     <div>
-      <button className={styles.questionsView__btn} onClick={() => { showMore(count, makeCount, makePage, updateQList, checkQList) }}>
+      <button data-testid="load-more-questions" className={styles.questionsView__btn} onClick={() => { showMore(count, makeCount, makePage, updateQList, checkQList) }}>
         {more ? 'More Answered Questions' : 'Collapse Answers'}
       </button>
     </div>

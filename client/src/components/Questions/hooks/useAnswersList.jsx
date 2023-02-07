@@ -8,11 +8,11 @@ export default function useAnswersList() {
     try {
       setAnswersList((await axios({
         method: 'GET',
-        url: `http://localhost:3000/qa/questions/${question_id}/answers?count=16&page=${page}`
+        url: `${window.location.origin}/qa/questions/${question_id}/answers?count=16&page=${page}`
       })).data)
     } catch (error) {
-      console.log('error from useAnswersList');
-      throw new Error(error);
+      console.log('error from useAnswersList', error);
+      throw error;
     }
   }
 
