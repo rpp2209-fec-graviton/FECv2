@@ -13,17 +13,11 @@ import { useProductContext } from "../../Context/ContextProvider.jsx";
 // average from number to percentage/stars filled
 // =============================================
 export default function useRatingsAvg(id) {
-	const { currentProductId, ratingsAverage, setRatingsAverage } = useProductContext();
+	const { currentProductId, sortOrder, ratingsAverage, setRatingsAverage } = useProductContext();
 	const [reviewCount, setCount] = useState(0);
 	const [ratingSum, setSum] = useState(0);
 
-	const { reviewResponse, reviewError, reviewLoading } = useFetchProductInfo({
-		method: 'POST',
-		url: '/reviews/results',
-		data: {
-			product_id: currentProductId,
-		}
-	});
+	const { reviewResponse, reviewError, reviewLoading } = useFetchProductInfo(currentProductId, sortOrder);
 
 	// =============================================
 	// Effect: Get Reviews, set Review Count and Sum
@@ -54,12 +48,6 @@ export default function useRatingsAvg(id) {
 
 	}, [reviewResponse]);
 
-	// =============================================
-	//                 Debug To-Do:
-	// 		Fill Percent calculation is correct
-	// 				but stars fill incorrectly
-	// (shows 100% fill for a 60% average rating).
-	// =============================================
 	useEffect(() => {
 		if (ratingsAverage && reviewCount) {
 			const fillPercent = (ratingsAverage / reviewCount) * 100;
