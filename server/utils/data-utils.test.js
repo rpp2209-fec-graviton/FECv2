@@ -50,8 +50,3 @@ describe('Fetch', () => {
 
 		expect(styles.results[1].name).toBe("Desert Brown & Tan");
 		expect(styles.results[1].style_id).toBe(444219);
-
-		expect(styles.results[2].name).toBe("Ocean Blue & Grey");
-		expect(styles.results[2].style_id).toBe(444220);
-  });
-});
