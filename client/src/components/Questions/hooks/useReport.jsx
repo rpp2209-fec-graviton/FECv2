@@ -15,11 +15,13 @@ export default function useReport(QAid, reportedCategory) {
   const [reportedList, setReportedList] = useState(localStorage);
   const [isReported, setIsReported] = useState(localStorage[id]);
 
+  var reportedStyle = { fontWeight: 'bold', color: 'blue' };
+
   const reportQA = () => {
     if (!reportedList[id]) {
       axios({
         method: 'PUT',
-        url: `http://localhost:3000/qa/questions/${id}/report`
+        url: `http://localhost:3000/qa/${category}/${id}/report`
       })
         .then((res) => {
           setReportedList({ ...reportedList, [id]: true });
@@ -27,9 +29,9 @@ export default function useReport(QAid, reportedCategory) {
           window.localStorage.setItem(category, JSON.stringify(reportedList));
         })
         .catch((err) => {
-          console.log(error);
+          console.log(err);
         })
     }
   }
-  return [isReported, reportQA];
+  return [isReported, reportQA, reportedStyle];
 }

@@ -7,9 +7,7 @@ import useReport from "../hooks/useReport.jsx";
 function Question({ q }) {
 
   const { isShowing, toggle } = useModal();
-  const [isReported, reportQA] = useReport(q.question_id, 'reportedQ');
-
-  var reportedStyle = { fontWeight: 'bold', color: 'blue' };
+  const [isReported, reportQA, reportedStyle] = useReport(q.question_id, 'questions');
 
   return (
     <div className={styles.question}>
