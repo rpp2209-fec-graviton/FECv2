@@ -182,9 +182,3 @@ h3 {
   color: blue;
   font-weight: bold;
 }
-
-/* Links */
-.link__clicked {
-  color: blue;
-  font-weight: bold;
-}

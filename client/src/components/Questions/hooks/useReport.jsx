@@ -6,21 +6,32 @@ export default function useReport(QAid, reportedCategory) {
   const category = reportedCategory;
   const id = QAid;
 
-  const [isReported, setIsReported] = useState(false);
+  if (window.localStorage.getItem(category) === null) {
+    window.localStorage.setItem(category, '{}');
+  }
+
+  const localStorage = JSON.parse(window.localStorage.getItem(category));
+
+  const [reportedList, setReportedList] = useState(localStorage);
+  const [isReported, setIsReported] = useState(localStorage[id]);
+
+  var reportedStyle = { fontWeight: 'bold', color: 'blue' };
 
   const reportQA = () => {
-    if (!isReported) {
+    if (!reportedList[id]) {
       axios({
         method: 'PUT',
         url: `http://localhost:3000/qa/${category}/${id}/report`
       })
         .then((res) => {
+          setReportedList({ ...reportedList, [id]: true });
           setIsReported(true);
+          window.localStorage.setItem(category, JSON.stringify(reportedList));
         })
         .catch((err) => {
           console.log(err);
         })
     }
   }
-  return [isReported, reportQA];
+  return [isReported, reportQA, reportedStyle];
 }
