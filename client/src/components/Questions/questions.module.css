@@ -153,6 +153,16 @@ h3 {
   font-size: medium;
 }
 
+.answersList__noA{
+  text-decoration: underline;
+}
+
+.answersList__noA:hover{
+  color: blue;
+  font-weight: bold;
+}
+
+
 /* Answer */
 .answer__seeMoreA {
   text-decoration: underline;

@@ -60,7 +60,6 @@ function QuestionsList(props) {
           )
         }) : null}
       </div>
-      {console.log(questionsList, product_id)}
       {questionsList.length > 0 && <MoreAnsweredQ {...{ count, more, showMore, makeCount, makePage, updateQList, checkQList }} />}
       <button className={styles.questionsView__btn} onClick={toggle}> Submit a Question + </button>
       <QuestionModal
