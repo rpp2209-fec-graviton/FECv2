@@ -1,7 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
+import axios from 'axios';
+
 import Button from './Button.jsx';
 import ThumbnailCarousel from './ThumbnailCarousel.jsx';
+
 import { useOverviewContext } from "../Context/OverviewProvider.jsx";
+import useFetchProductInfo from '../../Reviews/hooks/useFetchProductInfo.jsx';
+
 import styles from '../overview.module.css';
 
 function StyleSelector () {
@@ -10,14 +15,13 @@ function StyleSelector () {
 	// Controlled Drop-Down Component Values
 	const [size, setSize] = useState('');
 	const [qty, setQty] = useState(0);
-	const [cart, setCart] = useState({ size: '', qty: 0 });
 
 	// DOM Element Refs
 	const sizeRef = useRef('');
 	const qtyRef = useRef(0);
 
 	// Overview Context
-	const { allProductStyles, selectedStyle } = useOverviewContext();
+	const { allProductStyles, currentProductStyles, selectedStyle } = useOverviewContext();
 
 	// =============================================
 	//            FUNCTIONALITY TO-DOs
@@ -30,14 +34,34 @@ function StyleSelector () {
 	// If there is no stock: This button should be hidden
 
 	// If both a valid size and valid quantity are selected: Clicking this button will add the product to the user’s cart.
-	const handleAddToBag = (e) => {
+	const handleAddToBag = async (e) => {
 		e.preventDefault();
-		console.log('Adding to Bag...');
 
 		const currentSize = sizeRef.current[sizeRef.current.selectedIndex].value;
 		const currentQty = qtyRef.current[qtyRef.current.selectedIndex].value;
 
-		setCart({ size: currentSize, qty: currentQty });
+		if (currentSize === 'Select Size') {
+			console.log('Please select size');
+
+		} else if (currentQty === 'Quantity') {
+			console.log('Please select a Quantity');
+
+		} else {
+			const selected = currentProductStyles && currentProductStyles.filter(style => style.style_id === selectedStyle.style_id)
+			const skus = selected[0].skus;
+			const keys = Object.keys(selected[0].skus);
+			var selectedSKU;
+
+			keys.forEach(sku => {
+				if (skus[sku].size === currentSize) {
+					selectedSKU = sku;
+				}
+			});
+
+			await axios.post('/api/cart', { sku_id: selectedSKU, count: currentQty });
+			console.log(`Added ${currentQty} size ${skus[selectedSKU].size} to Bag!`);
+		}
+
 	};
 
 	const handleDropdownChange = (e) => {
@@ -54,7 +78,7 @@ function StyleSelector () {
 
 	return (
 		<div className={styles['overview__style-selector']}>
-			<h3 className={styles['style-selector__header']}>Style &gt; {selectedStyle.name}</h3>
+			<h3 className={styles['style-selector__header']}>Style &gt; <span className={styles['header-undecorated']}>{selectedStyle.name}</span></h3>
 			<ThumbnailCarousel type="images__carousel"  />
 
 			<select

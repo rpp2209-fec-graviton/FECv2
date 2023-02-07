@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 require('dotenv').config()
-import { fetch } from './fetch.js';
+import { fetch } from './data-utils.js';
 import '@testing-library/jest-dom';
 
 describe('Fetch', () => {
