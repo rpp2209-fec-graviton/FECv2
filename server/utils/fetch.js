@@ -1,5 +1,12 @@
 const axios = require('axios');
 
+// =============================================
+//                Test Mock Axios
+// =============================================
+// Uncomment to confirm mock axios in fetch.test.js worked
+// (should see mock funcs added on top of axios)
+// console.log(axios);
+
 // ===========================================================================
 // USAGE: fetch('products', () => { /* do something with payload */ });
 // ===========================================================================
@@ -40,5 +47,3 @@ let fetch = async (endpoint, cb) => {
 		cb(err);
 	}
 };
-
-module.exports = { fetch };

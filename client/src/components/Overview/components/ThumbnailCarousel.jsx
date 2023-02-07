@@ -6,30 +6,38 @@ import { useProductContext } from "../../Context/ContextProvider.jsx";
 import { useOverviewContext } from "../Context/OverviewProvider.jsx";
 
 function ThumbnailCarousel({ type }) {
-	const { products, currentProductId, setCurrentProductId } = useProductContext();
-	const { pStyles, setStyles } = useOverviewContext();
+	const { currentProductId } = useProductContext();
+	const { currentProductStyles, allProductStyles, setStyles, selectedStyle } = useOverviewContext();
 
-	if (pStyles[currentProductId]) {
-		const carousel = pStyles[currentProductId].map(style => (
+	const productCarousel = currentProductStyles && currentProductStyles.map(style => (
+		<Thumbnail
+			carouselType={type}
+			type={type === 'styles__carousel' ? 'thumbnail-square' : 'thumbnail-rounded'}
+			key={style.style_id}
+			photos={style.photos}
+			style={style}
+		/>)
+	);
+
+	const styleCarousel = currentProductStyles && currentProductStyles.map(style => {
+		return selectedStyle.photos && selectedStyle.photos.map(photo => (
 			<Thumbnail
 				carouselType={type}
 				type={type === 'styles__carousel' ? 'thumbnail-square' : 'thumbnail-rounded'}
-				key={style.style_id}
-				photos={style.photos}
+				key={photo.thumbnail_url}
+				photos={photo}
 				style={style}
-			/>));
+			/>
+			));
+		}
+	);
 
-		return (
-			<div className={`${styles[type]} ${styles.carousel}`}>
-				{carousel}
-			</div>
-		)
-	} else {
-		return (
-			<h3>No Styles Render in Thumbnail</h3>
-		)
-	}
-
+	return (
+		currentProductStyles &&
+		<div className={`${styles[type]} ${styles.carousel}`}>
+			{type === 'images__carousel' ? productCarousel : styleCarousel }
+		</div>
+	)
 };
 
 export default ThumbnailCarousel;

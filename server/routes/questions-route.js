@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const axios = require('axios');
-const { fetch } = require('.././utils/fetch.js');
+const { fetch } = require('.././utils/data-utils.js');
 
 var sortList = (array, key) => {
   return (
@@ -9,7 +9,7 @@ var sortList = (array, key) => {
       return b[key]- a[key]
     })
   )
-};
+}
 
 
 router.get('/questions', (req, res) => {
@@ -20,7 +20,7 @@ router.get('/questions', (req, res) => {
       res.send(sortList(payload.data.results, 'question_helpfulness'));
     }
   })
-});
+})
 
 router.post('/questions', (req, res) => {
   try {
@@ -31,13 +31,16 @@ router.post('/questions', (req, res) => {
       data: req.body
     })
     .then((response) => {
+      console.log(response)
       res.status(201).json(response.data);
     })
   } catch (error) {
     console.log(error);
     res.status(400).json('error');
   }
-});
+})
+
+
 
 router.get('/questions/:question_id/answers', (req, res) => {
   fetch(`qa${req.url}`, (err, payload) => {
@@ -47,7 +50,7 @@ router.get('/questions/:question_id/answers', (req, res) => {
       res.send(sortList(payload.data.results, 'helpfulness'));
     }
   })
-});
+})
 
 router.post('/questions/:question_id/answers', (req, res) => {
   try {
@@ -58,13 +61,14 @@ router.post('/questions/:question_id/answers', (req, res) => {
       data: req.body
     })
     .then((response) => {
+      console.log(response)
       res.status(201).json(response.data);
     })
   } catch (error) {
     console.log(error);
     res.status(400).json('error');
   }
-});
+})
 
 router.put('/questions/:question_id/report', (req, res) => {
     axios({
@@ -73,13 +77,14 @@ router.put('/questions/:question_id/report', (req, res) => {
       headers: { "Authorization": `${process.env.API_KEY}` },
     })
     .then((response) => {
+      console.log(response)
       res.status(204).json(response.data);
     })
     .catch((error) =>{
     console.log(error);
     res.status(400).json('error');
     });
-});
+})
 
 router.put('/answers/:answer_id/report', (req, res) => {
   axios({
@@ -88,21 +93,7 @@ router.put('/answers/:answer_id/report', (req, res) => {
     headers: { "Authorization": `${process.env.API_KEY}` },
   })
   .then((response) => {
-    res.status(204).json(response.data);
-  })
-  .catch((error) =>{
-  console.log(error);
-  res.status(400).json('error');
-  });
-});
-
-router.put('/answers/:answer_id/helpful', (req, res) => {
-  axios({
-    method: 'PUT',
-    url: process.env.API_URL + `/qa${req.url}`,
-    headers: { "Authorization": `${process.env.API_KEY}` },
-  })
-  .then((response) => {
+    console.log(response)
     res.status(204).json(response.data);
   })
   .catch((error) =>{
@@ -111,18 +102,5 @@ router.put('/answers/:answer_id/helpful', (req, res) => {
   });
 })
 
-router.put('/questions/:answer_id/helpful', (req, res) => {
-  axios({
-    method: 'PUT',
-    url: process.env.API_URL + `/qa${req.url}`,
-    headers: { "Authorization": `${process.env.API_KEY}` },
-  })
-  .then((response) => {
-    res.status(204).json(response.data);
-  })
-  .catch((error) =>{
-  console.log(error);
-  res.status(400).json('error');
-  });
-})
+
 module.exports = router;

@@ -4,74 +4,13 @@ import axios from 'axios';
 import ProductInfo from './ProductInfo.jsx';
 import Images from './Images.jsx';
 import StyleSelector from './StyleSelector.jsx';
-import { useProductContext } from "../../Context/ContextProvider.jsx";
-import { useOverviewContext } from "../Context/OverviewProvider.jsx";
 
-import { fetch } from '../../../../../server/utils/fetch.js';
+import { fetch } from '../../../../../server/utils/data-utils.js';
 import styles from '../overview.module.css';
 
 function Overview() {
-	// Global Context
-	const { currentProductId } = useProductContext();
-	// Overview Context
-	const { products, setProducts, product, setProduct, pStyles, setStyles, selectedStyle, setSelectedStyle } = useOverviewContext();
-
-	// Shared State (TODO: Move to global state)
-	// const [starred, setStarred] = useState(false);
-	// const [starRating, setStarRating] = useState(0);
-
-	// Fetch and Set All Products
-	useEffect(() => {
-		fetch('products', (err, payload) => {
-			if (err) {
-				console.log("Caught Error", err);
-			} else {
-				setProducts(payload.data);
-			}
-		})
-	}, []);
-
-	// Fetch and Set Selected Product
-	useEffect(() => {
-		for (var current of products) {
-			if (current.id.toString() === currentProductId) {
-				console.log('got here');
-				setProduct(current);
-			}
-		}
-
-		// Get/Set All Styles for Each Product
-		Object.values(products).forEach(item => {
-			fetch(`products/${item.id}/styles`, (err, payload) => {
-				if (err) {
-					console.log('Styles Fetch Err', err);
-				} else {
-					let newStyles = payload.data.results;
-					setSelectedStyle(newStyles[0]);
-
-					setStyles((prevState) => ({
-						...prevState,
-						[item.id]: newStyles
-					}));
-				}
-			});
-		});
-
-	}, [products]);
-
-	useEffect(() => {
-		if(product) {
-			console.log('product', product);
-		}
-	}, [product]);
-
-	const handleClick = (e) => {
-		e.target.classList = 'test';
-	};
-
 	return (
-		products &&
-		<div data-testid="overview" className={`${styles.overview} ${styles.grid}`}>
+		<div className={`${styles.overview} ${styles.grid}`}>
 			<Images />
 			<StyleSelector />
 			<ProductInfo />

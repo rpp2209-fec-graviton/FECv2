@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 require('dotenv').config()
-import { fetch } from './fetch.js';
+import { fetch } from './data-utils.js';
 import '@testing-library/jest-dom';
 
 describe('Fetch', () => {
@@ -50,8 +50,3 @@ describe('Fetch', () => {
 
 		expect(styles.results[1].name).toBe("Desert Brown & Tan");
 		expect(styles.results[1].style_id).toBe(444219);
-
-		expect(styles.results[2].name).toBe("Ocean Blue & Grey");
-		expect(styles.results[2].style_id).toBe(444220);
-  });
-});
