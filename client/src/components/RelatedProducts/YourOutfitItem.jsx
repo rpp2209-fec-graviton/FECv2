@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import styles from './YourOutfitItem.module.css';
+import styles from './RPCard.module.css';
+import { useRPContext } from "./Context/RPProvider.jsx";
 
-function YourOutfitItem ({ item, changeProduct, photo, removeFromOutfit }) {
+function YourOutfitItem ({ item, photo, removeFromOutfit }) {
+  const { changeProduct } = useRPContext();
   if (item) {
     return (
-      <div className={styles.outfitCard}>
+      <div className={styles.card}>
         <img src={photo} onClick={() => changeProduct(item.id)}/>
         <br/>
         {item.category}

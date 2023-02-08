@@ -1,41 +1,18 @@
 const axios = require('axios');
 import { useParams } from "react-router-dom";
-import { useNavigate } from  'react-router-dom';
-import React, { useState, useEffect } from "react";
-import { fetch } from "../../../../server/utils/data-utils.js"
-import { useProductContext } from "../Context/ContextProvider.jsx";
+import React, { useState, useEffect, useContext } from "react";
+import { useRPContext } from "./Context/RPProvider.jsx";
 import RPList from "./RPList.jsx";
 import YourOutfitList from "./YourOutfitList.jsx"
 
 function RelatedProducts () {
-  const [rpData, setRpData] = useState(null);
-  const [rpStyles, setRpStyles] = useState(null);
-  const [currentProductData, setCurrentProductData] = useState(null);
+  const { fetchData, useClickLogger, product_id, currentProductData, setCurrentProductData, setRpData, setRpStyles, setRpRatings } = useRPContext();
   const [loaded, setLoaded] = useState(false);
-  const { currentProductId } = useProductContext();
-  const navigate = useNavigate();
-
-  async function fetchData(ep) {
-    return new Promise((resolve, reject) => {
-      const callback = async (err, data) => {
-        if(err) {
-          reject(err);
-        } else {
-          resolve(data.data);
-        }
-      }
-      fetch(ep, callback)
-    })
-  }
-
-  function changeProduct (id) {
-    navigate(`/${id}`)
-  };
 
   useEffect(() => {
     setLoaded(false);
     let idList;
-    fetchData(`products/${currentProductId}/related`)
+    fetchData(`products/${product_id}/related`)
     .then((ids) => {
       idList = [...new Set(ids)];
       return Promise.all(idList.map((id) => {
@@ -50,18 +27,38 @@ function RelatedProducts () {
     })
     .then((styles) => {
       setRpStyles(styles);
-      return fetchData(`products/${currentProductId}`)
+      return Promise.all(idList.map((id) => {
+        return fetchData(`reviews/meta?product_id=${id}`)
+      }))
+    })
+    .then((reviews) => {
+      var ratingList = {};
+      var average;
+      reviews.forEach((review) => {
+        var totalCount = 0;
+        var total = 0;
+        for (var rating in review.ratings) {
+          var ratingCount = parseInt(review.ratings[rating]);
+          totalCount += ratingCount;
+          total += rating * ratingCount;
+        }
+        average = total / totalCount;
+        ratingList[review.product_id] = average.toFixed(1);
+      })
+      setRpRatings(ratingList);
+      return fetchData(`products/${product_id}`)
     })
     .then((currentProductData) => {
       setCurrentProductData(currentProductData);
       setLoaded(true);
     })
-  },[currentProductId]);
+  },[product_id]);
 
   return (
-    <div data-testid='rp'>
-      {loaded? <><RPList rps={rpData} rpStyles={rpStyles} changeProduct={changeProduct}/><br/><YourOutfitList cp={currentProductData} fetchData={fetchData} changeProduct={changeProduct}/></>: null}
-    </div>
+      <div data-testid='rp'>
+        {loaded ? <><RPList/><br/></> : null}
+        {loaded ? <><YourOutfitList/></>: null}
+      </div>
   )
 }
 

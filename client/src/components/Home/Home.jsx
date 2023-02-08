@@ -13,6 +13,7 @@ import QuestionsView from '../Questions/index.js';
 import OverviewProvider from '../Overview/Context/OverviewProvider.jsx';
 import ReviewProvider from '../Reviews/Context/ReviewProvider.jsx';
 import QuestionsProvider from '../Questions/Context/QuestionsProvider.jsx';
+import RPProvider from '../RelatedProducts/Context/RPProvider.jsx'
 
 // Hooks
 import useGlobalProduct from '../Hooks/useGlobalProduct/useGlobalProduct.jsx';
@@ -37,7 +38,9 @@ function Home () {
 
 					{/* Related Products  */}
 					<ErrorBoundary component="Related">
-						<RelatedProducts />
+            <RPProvider>
+						  <RelatedProducts />
+						</RPProvider>
 					</ErrorBoundary>
 
 					{/* Product Questions  */}
