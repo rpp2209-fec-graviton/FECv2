@@ -6,9 +6,16 @@ import axios from 'axios';
 function useReviewPost() {
 
   const handlePost = (payload) => {
+
+    console.log(payload, 'payload');
+
+
     axios({
+      url: '/reviews',
       method:'post',
-      data: payload,
+      data: {
+        payload: payload
+      }
     })
   }
   return { handlePost }
