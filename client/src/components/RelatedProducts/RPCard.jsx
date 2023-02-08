@@ -1,13 +1,10 @@
 import React from "react";
-import comparison from './RPComparison.jsx';
+import RPComparison from './RPComparison.jsx';
 import styles from './RPCard.module.css';
+import { useRPContext } from "./Context/RPProvider.jsx";
 
-function RPCard ({ rp, rpStyles, changeProduct }) {
-  function starProduct (e) {
-    // var currentProduct;
-    // var relatedProduct = props.productInfo;
-    // return comparison(currentProduct, relatedProduct);
-  };
+function RPCard ({ rp, rpStyles, rpRating, toggleComparison }) {
+  const { changeProduct } = useRPContext();
   var imgUrl = null;
   var defaultStyle = [];
   if (rpStyles) {
@@ -28,9 +25,8 @@ function RPCard ({ rp, rpStyles, changeProduct }) {
 
   return (
     <div className={styles.card} data-testid='rpcard'>
-      <img onClick={() => changeProduct(rp.id)} src={imgUrl}/>
-      <br/>
-      <button onClick={starProduct}>Star</button>
+      <img src={imgUrl} onClick={() => changeProduct(rp.id)}/>
+      <h3 className={styles.star} onClick={() => toggleComparison(rp.id)}>⭐</h3>
       <br/>
       {rp.category}
       <br/>
@@ -38,7 +34,7 @@ function RPCard ({ rp, rpStyles, changeProduct }) {
       <br/>
       {salePrice ? <span className={styles.red}>{salePrice} <strike>{originalPrice}</strike></span> : <span>{originalPrice}</span>}
       <br/>
-      {/* {props.productInfo.starRating} */}
+      {rpRating}
       <br/>
     </div>
   )
