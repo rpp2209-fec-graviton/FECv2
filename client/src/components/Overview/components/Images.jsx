@@ -32,6 +32,14 @@ function Images () {
 		selectedStyle.photos && setURL(selectedStyle.photos[0].url);
 	}, [selectedStyle]);
 
+	const handleHover = (e) => {
+		const image = document.querySelector('#image-lg');
+
+		if (e._reactName === 'onMouseEnter') {
+			image.style.cursor = 'zoom-in';
+		}
+	};
+
 	return (
 		imgURL &&
 		<div className={styles.overview__images}>
@@ -39,7 +47,13 @@ function Images () {
 				<img id="modal__content" className={`${styles.modal__content} ${styles['modal-hidden']}`} src={imgURL} alt="modal" />
 			</Modal>
 
-			<img id="image-lg" className={styles.overview__image} src={imgURL} onClick={() => toggleModal(show, setShow)}/>
+			<img
+				id="image-lg"
+				className={styles.overview__image}
+				src={imgURL}
+				onClick={() => toggleModal(show, setShow)}
+				onMouseEnter={handleHover}
+			/>
 			<ThumbnailCarousel type="styles__carousel" />
 		</div>
 	)
