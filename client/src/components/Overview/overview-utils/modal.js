@@ -12,6 +12,7 @@ function toggleModal(show, setShow) {
 	modal.classList.toggle(styles['modal-hidden']);
 	content.classList.toggle(styles['modal-hidden']);
 	fullImage.classList.toggle(styles['modal-hidden']);
+	modal.style.cursor = "crosshair";
 };
 
 // =============================================
@@ -28,7 +29,7 @@ function zoomModal() {
 	// Double Click to zoom image
 	container.addEventListener('dblclick', (e) => {
 		modal.style.transform = "scale(2.5)";
-		modal.style.cursor = "crosshair";
+		modal.style.cursor = "zoom-out";
 	});
 
 	// Move mouse to pan around image
@@ -42,7 +43,7 @@ function zoomModal() {
 	// Click one more time to revert to original image size
 	container.addEventListener('click', (e) => {
 		modal.style.transform = "scale(1)";
-		modal.style.cursor = "default";
+		modal.style.cursor = "crosshair";
 	});
 
 }
