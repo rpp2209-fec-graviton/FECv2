@@ -36,6 +36,10 @@ function QuestionModal({ isShowing, hide, Question }) {
         }
       }).then((res) => {
         console.log('Question', res.data);
+        yourQuestion.reset.thevalue();
+        nickname.reset.thevalue();
+        yourEmail.reset.thevalue();
+        hide();
       })
     }
   };

@@ -44,6 +44,10 @@ function AnswerModal({ isShowing, hide, q, question_id }) {
         }
       }).then((res) => {
         console.log('Answer', res.data);
+        yourEmail.reset.thevalue();
+        nickname.reset.thevalue();
+        yourAnswer.reset.thevalue();
+        hide();
       })
     }
   };
