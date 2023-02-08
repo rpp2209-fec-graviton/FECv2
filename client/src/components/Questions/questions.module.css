@@ -134,8 +134,9 @@ h3 {
 }
 
 .modal__form label {
-  position: relative;
+  position: block;
   display: flex;
+  align-items:baseline;
   margin-bottom: 20px;
 }
 
@@ -145,6 +146,11 @@ h3 {
   resize: none;
 }
 
+.modal__form sub {
+  font-size:0.7em;
+  position:absolute;
+  margin-top: 25px;
+}
 /* Answers List */
 .answersList {
   max-height: 50vh;
