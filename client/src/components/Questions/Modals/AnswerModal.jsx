@@ -28,7 +28,7 @@ function AnswerModal({ isShowing, hide, q, question_id}) {
     event.preventDefault();
     axios({
       method: 'Post',
-      url: `http://localhost:3000/qa/questions/${question_id}/answers`,
+      url: `${window.location.origin}/qa/questions/${question_id}/answers`,
       data: {
         body: yourAnswer.value,
         name: nickname.value,

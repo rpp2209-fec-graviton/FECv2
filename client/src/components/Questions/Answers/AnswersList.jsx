@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 //COMPONENTS
 import Answer from "./Answer.jsx";
 import SeeMoreAnswers from "./SeeMoreAnswersBtn.jsx";
+import AnswerModal from "../Modals/AnswerModal.jsx";
 
 //HOOKS
 import useAnswersList from "../hooks/useAnswersList.jsx";
 import useCount from "../hooks/useCount.jsx";
 import usePage from "../hooks/usePage.jsx";
 import useMoreA from "../hooks/useMoreQA.jsx";
+import useModal from "../hooks/useModal.jsx";
 
 //CSS
 import styles from "../questions.module.css";
@@ -22,6 +24,7 @@ function AnswersList({ question_id, q }) {
   const [count, makeCount] = useCount(2);
   const [page, makePage] = usePage(1);
   const [more, showMore, toggleMore] = useMoreA();
+  const { isShowing, toggle } = useModal();
 
   useEffect(() => {
     getAList(question_id, page)
@@ -39,7 +42,6 @@ function AnswersList({ question_id, q }) {
 
   return (
     <div className={styles.answersList}>
-      {JSON.stringify(answersList.length)}
       {answersList.length > 0 ? answersList.map((ans, index) => {
         if (index >= count) {
           return;
@@ -48,10 +50,17 @@ function AnswersList({ question_id, q }) {
         return <div key={ans.answer_id} data-testid="answers__list">
           <Answer ans={ans} />
         </div>
-      }) : <button>submit an answer</button>}
+      }) : <sub className={styles.answersList__noA} onClick={toggle}> Looks like there's no answers... Would you like submit one? </sub> }
+
       {answersList.length > 2 ?
         <SeeMoreAnswers {...{ count, more, showMore, makeCount, makePage, updateAList, checkAList }} />
         : null}
+      <AnswerModal
+        isShowing={isShowing}
+        hide={toggle}
+        q={q}
+        question_id={q.question_id}
+      />
     </div>
   )
 
