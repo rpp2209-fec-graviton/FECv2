@@ -11,6 +11,11 @@ var sortList = (array, key) => {
   )
 }
 
+const sortAList = (aList) => {
+  return aList.sort((a, b) => {
+    return b.answerer_name.toLowerCase().indexOf('seller') - a.answerer_name.toLowerCase().indexOf('seller');
+  })
+}
 
 router.get('/questions', (req, res) => {
   fetch(`qa${req.url}`, (err, payload) => {
@@ -47,7 +52,7 @@ router.get('/questions/:question_id/answers', (req, res) => {
     if (err) {
       throw err;
     } else {
-      res.send(sortList(payload.data.results, 'helpfulness'));
+      res.send(sortAList(sortList(payload.data.results, 'helpfulness')));
     }
   })
 })
