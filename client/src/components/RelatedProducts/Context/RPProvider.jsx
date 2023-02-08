@@ -1,7 +1,7 @@
 import React, { useState, createContext, useContext } from 'react';
 import { useNavigate } from  'react-router-dom';
 import { useProductContext } from "../../Context/ContextProvider.jsx";
-import { fetch } from "../../../../../server/utils/fetch.js"
+import { fetch } from "../../../../../server/utils/data-utils.js"
 
 const RPContext = createContext();
 

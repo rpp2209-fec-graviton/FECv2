@@ -1,7 +1,6 @@
 const axios = require('axios');
 import { useParams } from "react-router-dom";
 import React, { useState, useEffect, useContext } from "react";
-import { fetch } from "../../../../server/utils/fetch.js"
 import { useRPContext } from "./Context/RPProvider.jsx";
 import RPList from "./RPList.jsx";
 import YourOutfitList from "./YourOutfitList.jsx"
