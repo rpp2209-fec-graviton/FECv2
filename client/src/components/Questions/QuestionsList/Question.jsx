@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import AnswerModal from "../Modals/AnswerModal.jsx";
 import useModal from "../hooks/useModal.jsx";
 import styles from "../questions.module.css";
@@ -9,7 +9,11 @@ function Question({ q }) {
 
   const { isShowing, toggle } = useModal();
   const [isReported, reportQA, reportedStyle] = useReport(q.question_id, 'questions');
-  const [isHelpful, helpfulQA, helpfulStyle] = useHelpful(q.question_id, 'questions')
+  const [isHelpful, helpfulQA, helpfulStyle, updateIsHelpful] = useHelpful(q.question_id, 'questions');
+
+  useEffect(() => {
+    updateIsHelpful(q.question_id);
+  }, [q])
 
   return (
     <div className={styles.question}>

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function useHelpful(QAid, helpfulCategory) {
   //to save in local scope
@@ -14,6 +14,11 @@ export default function useHelpful(QAid, helpfulCategory) {
   const [isHelpful, setIsHelpful] = useState(localStorage[id]);
 
   var helpfulStyle = { fontWeight: 'bold', color: 'blue' };
+
+  const updateIsHelpful = (id) => {
+    var localStorage = JSON.parse(window.localStorage.getItem(category));
+    setIsHelpful(!!localStorage[id]);
+  }
 
   const helpfulQA = () => {
     if (!isHelpful) {
@@ -30,5 +35,5 @@ export default function useHelpful(QAid, helpfulCategory) {
         })
     }
   }
-  return [isHelpful, helpfulQA, helpfulStyle];
+  return [isHelpful, helpfulQA, helpfulStyle, updateIsHelpful];
 }
