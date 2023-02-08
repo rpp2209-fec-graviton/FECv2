@@ -21,9 +21,9 @@ function QuestionModal({ isShowing, hide, Question }) {
     if (yourEmail.value.indexOf('@') === -1 && yourEmail.value.indexOf('.') === -1) {
       alert('You must enter the following: \nCorrect Email Format (____@___.com)')
     } else if (nickname.value.length <= 3) {
-      alert('You must enter the following:\nnickname')
+      alert('You must enter the following:\nValid Nickname')
     } else if (yourQuestion.value.length <= 3) {
-      alert('You must enter the following:\nquestion')
+      alert('You must enter the following:\nValid Question')
     } else {
       axios({
         method: 'Post',
