@@ -13,7 +13,7 @@ function YourOutfitItem ({ item, photo, removeFromOutfit }) {
         <br/>
         {item.name}
         <br/>
-        {item.default_price}
+        <span>${item.default_price}</span>
         <br/>
         <button onClick={() => removeFromOutfit(item.id)}> Remove </button>
         <br/>

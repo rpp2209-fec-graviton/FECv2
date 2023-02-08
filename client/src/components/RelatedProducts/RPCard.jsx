@@ -32,7 +32,8 @@ function RPCard ({ rp, rpStyles, rpRating, toggleComparison }) {
       <br/>
       {rp.name}
       <br/>
-      {salePrice ? <span className={styles.red}>{salePrice} <strike>{originalPrice}</strike></span> : <span>{originalPrice}</span>}
+      {salePrice && <span className={styles.red}>${salePrice} <strike>${originalPrice}</strike></span>}
+      {originalPrice && <span>${originalPrice}</span>}
       <br/>
       {rpRating}
       <br/>
