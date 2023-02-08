@@ -40,7 +40,8 @@ function ProductInfo() {
 				</> :
 				<p>${price.price}</p>
 			}
-			<p>{response.description}</p>
+			{/* Move to below Image/Style Selector  */}
+			{/* <p>{response.description}</p> */}
 		</div>
 	);
 };

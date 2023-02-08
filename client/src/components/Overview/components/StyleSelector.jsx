@@ -44,9 +44,11 @@ function StyleSelector () {
 		const currentQty = qtyRef.current[qtyRef.current.selectedIndex].value;
 
 		if (currentSize === 'Select Size') {
+			window.alert('Please select size');
 			console.log('Please select size');
 
 		} else if (currentQty === 'Quantity') {
+			window.alert('Please select a Quantity');
 			console.log('Please select a Quantity');
 
 		} else {

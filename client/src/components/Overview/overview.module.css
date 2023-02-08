@@ -1,5 +1,5 @@
 /* =======================
-      General Styles
+      CSS Variables
 ========================*/
 :root {
   --black: #000000;
@@ -8,6 +8,39 @@
   --red: #ff0000;
   --silver: #c0c0c0;
   --white: #ffffff;
+}
+
+/* =======================
+        Clearfix
+========================*/
+/* html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+} */
+
+h1, h2, h3, h4, h5, h6, p, a {
+	margin: 8px 0;
+	/* padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline; */
 }
 
 /* =======================
@@ -26,18 +59,14 @@
   border: 2px solid var(--silver);
 }
 
-.grey-border {
-  border: 2px solid var(--silver);
-}
-
 /* =======================
       Grid & Flexbox
 ========================*/
-.grid-template {
+/* .grid-template {
   grid-gap: 10px;
   grid-template-columns: repeat(autofill, 180px);
   grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
-}
+} */
 
 .grid {
   display: grid;
@@ -46,7 +75,6 @@
 .flex {
   display: flex;
   justify-content: center;
-  /* align-items: center; */
 }
 
 .flex-column {
@@ -57,28 +85,32 @@
     Overview Styles
 ========================*/
 .overview {
-  height: 100%;
-  margin-top: 80px;
+  height: 80%;
+  max-width: 60%;
+  margin: 0 auto;
+  padding: 60px 0;
   z-index: 10;
 }
 
 .overview__images {
   display: table;
   position: relative;
-  grid-column-start: 2;
+  /* grid-column-start: 2; */
 }
 
 .overview__image {
   border: 2px solid var(--black);
   object-fit: cover;
-  grid-row: 2 / span 5;
-  width: 400px;
-  height: auto;
+  object-position: top;
+  /* grid-row: 2 / span 5; */
+  width: auto;
+  height: 500px;
 }
 
 .overview__product-info {
   height: max-content;
-  grid-column-start: 8;
+  /* grid-column-start: 8; */
+  margin-left: 80px;
 }
 
 .product-info__detail {
@@ -86,7 +118,7 @@
 }
 
 .overview__style-selector {
-  grid-row-start: 3;
+  /* grid-row-start: 3; */
 }
 
 /* =======================
@@ -147,9 +179,15 @@ Convert scrollbar to ⏮ arrows ⏭
   object-fit: cover;
   border-radius: 50%;
   border: 2px solid var(--charcoal);
-  width: 72px;
-  height: 72px;
-  margin: 10px 8px;
+  width: 80px;
+  height: 80px;
+  margin: 10px 4px;
+}
+
+.thumbnail-square,
+.thumbnail-rounded {
+  object-fit: cover;
+  object-position: top;
 }
 
 /* =======================
@@ -237,17 +275,18 @@ Convert scrollbar to ⏮ arrows ⏭
 ========================*/
 .button,
 .drop-down {
+  font-size: 14px;
   justify-content: center;
   display: inline-flex;
   align-items: center;
-  border: 1px solid rgba(47, 79, 79, 0.8);
+  border: 1.5px solid var(--black);
 }
 
 .style-selector__button,
 .drop-down {
-  margin: 32px 8px 0 0;
+  margin: 16px 8px;
   height: 40px;
-  width: 240px;
+  width: 200px;
 }
 
 .button:active {

@@ -40,19 +40,6 @@ function Images () {
 		}
 	};
 
-	// DEBUG TODO: Landscape Image Only Changes Size on SECOND Click/URL Change
-	const handleSetImageSize = () => {
-		let image = document.getElementById('image-lg');
-		console.log('Dimensions', image.naturalWidth, 'x', image.naturalHeight);
-
-		image.naturalWidth > image.naturalHeight ?  image.style.width = '600px' : image.style.width = '400px';
-	};
-
-	useEffect(() => {
-		imgURL && console.log('Image changed');
-		imgURL && handleSetImageSize();
-	}, [imgURL]);
-
 	return (
 		imgURL &&
 		<div className={styles.overview__images}>
