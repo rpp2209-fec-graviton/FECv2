@@ -4,49 +4,46 @@ import React from 'react';
 
 import { render, fireEvent, waitFor, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-
 import { logRoles } from '@testing-library/dom';
-import { mswOverviewServer } from "./utils/server.js";
-
 import '@testing-library/jest-dom';
 
 // =============================================
 //          Component & State Imports
 // =============================================
 // Components
-import Button from './components/Button.jsx';
-import Images from './components/Images.jsx';
-import Modal from './components/Modal.jsx';
-import Overview from './components/Overview.jsx';
-import ProductInfo from './components/ProductInfo.jsx';
-import StarRatingBar from '../StarRatingBar/StarRatingBar.jsx';
-import StyleSelector from './components/StyleSelector.jsx';
-import ThumbnailCarousel from './components/ThumbnailCarousel.jsx';
-import Thumbnail from './components/Thumbnail.jsx';
+import Button from '../components/Button.jsx';
+import Images from '../components/Images.jsx';
+import Modal from '../components/Modal.jsx';
+import Overview from '../components/Overview.jsx';
+import ProductInfo from '../components/ProductInfo.jsx';
+import StarRatingBar from '../../StarRatingBar/StarRatingBar.jsx';
+import StyleSelector from '../components/StyleSelector.jsx';
+import ThumbnailCarousel from '../components/ThumbnailCarousel.jsx';
+import Thumbnail from '../components/Thumbnail.jsx';
 
 // Context
-import ContextProvider from "../Context/ContextProvider.jsx";
-import OverviewProvider from "./Context/OverviewProvider.jsx";
+import ContextProvider from "../../Context/ContextProvider.jsx";
+import OverviewProvider from "../Context/OverviewProvider.jsx";
 
 // ==================================
 //    ⬇ ⭐ TESTING THE TESTS ⭐ ⬇
 // ==================================
-// describe('Testing Environment', () => {
-//   it('uses jsdom', () => {
-//     const overview = document.createElement('div');
-//     expect(overview).not.toBeNull();
-//   });
+describe('Testing Environment', () => {
+  it('uses jsdom', () => {
+    const overview = document.createElement('div');
+    expect(overview).not.toBeNull();
+  });
 
-//   it('uses jest-dom', function() {
-//     document.body.innerHTML = `
-//       <span data-testid="not-empty"><span data-testid="empty"></span></span>
-//       <div data-testid="visible">Visible Example</div>
-//     `
+  it('uses jest-dom', function() {
+    document.body.innerHTML = `
+      <span data-testid="not-empty"><span data-testid="empty"></span></span>
+      <div data-testid="visible">Visible Example</div>
+    `
 
-//     expect(screen.queryByTestId('not-empty')).not.toBeEmptyDOMElement()
-//     expect(screen.getByText('Visible Example')).toBeVisible()
-//   });
-// });
+    expect(screen.queryByTestId('not-empty')).not.toBeEmptyDOMElement()
+    expect(screen.getByText('Visible Example')).toBeVisible()
+  });
+});
 
 // Check Access To Env Vars
 describe('ENV Variables', () => {
@@ -58,6 +55,8 @@ describe('ENV Variables', () => {
 // ==================================
 //     ⬇ ⭐ MSW / SERVER ⭐ ⬇
 // ==================================
+import { mswOverviewServer } from "./utils/mockServer.js";
+
 beforeEach(() => mswOverviewServer.listen())
 afterEach(() => mswOverviewServer.resetHandlers())
 afterAll(() => mswOverviewServer.close())
@@ -67,30 +66,51 @@ afterAll(() => mswOverviewServer.close())
 //      Arrange, Assert, Act
 // ==================================
 
-
+// Utils
 const renderOverview = () => {
+
   // Set up Fake Context Values
-  const ctx = { currentProductId: 1 };
-  const context = { products: [] };
+  // const ctx = { currentProductId: 1 };
+  // const context = { products: [] };
+
+  // return render(
+  //   <ContextProvider value={ctx}>
+  //     <OverviewProvider value={context}>
+  //     <Overview />
+  //     </OverviewProvider>
+  //   </ContextProvider>
+  // );
 
   return render(
-    <ContextProvider value={ctx}>
-      <OverviewProvider value={context}>
-      <Overview />
+    <ContextProvider>
+      <OverviewProvider>
+        <Overview />
       </OverviewProvider>
     </ContextProvider>
   );
+
 };
 
+describe.only('Server', () => {
+  it('should fetch a list of products', async () => {
 
-describe.only('Overview', () => {
+    mswOverviewServer.use(fetchProducts_response)
+
+    const data = await fetchProducts_response()
+    console.log('Data?', data);
+    // expect(data.length).toBe(3);
+  });
+});
+
+describe('Overview', () => {
+
   // Testing Setup
   afterEach(jest.clearAllMocks);
 
-  it('should pass fake context values to Overview Mock', async () => {
+  it('should render to the DOM', async () => {
 
     // Mock Overview Component for testing
-    jest.mock('./components/Overview', () => () => {
+    jest.mock('../components/Overview', () => () => {
       return <mock-overview data-testid="overview" />
     });
 
@@ -99,6 +119,10 @@ describe.only('Overview', () => {
 
     await waitFor(() => expect(screen.getByTestId('overview')).toBeInTheDocument());
   });
+
+  // it('should pass fake context values to Overview Mock', function() {
+  //   // todo
+  // });
 
   // it('Product Details should render', async () => {
   //   const reviewsText = await screen.findByText(/^Read all reviews/)

@@ -1,6 +1,3 @@
-// =============================================
-//             TO-DO: MSW Research
-// =============================================
 import { setupServer } from 'msw/node';
 import { handlers } from './mockHandlers.js';
 
