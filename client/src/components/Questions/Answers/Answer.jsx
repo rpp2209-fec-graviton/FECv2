@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 //CSS
 import styles from "../questions.module.css";
 import useReport from "../hooks/useReport.jsx";
@@ -17,7 +17,9 @@ function Answer({ ans }) {
     <div className={styles.answer} >
       <p data-testid="answer"><b>A: </b>{ans.body}
         <sub>
-          by {ans.answerer_name}, {createDate(ans.date)} |
+          by {ans.answerer_name === 'seller' ?
+          <b>{ans.answerer_name}</b> :
+          `${ans.answerer_name}`}, {createDate(ans.date)} |
           Helpful?
           {isHelpful ?
           <a style={helpfulStyle}>Yes ({ans.helpfulness})</a> :

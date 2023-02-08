@@ -23,12 +23,15 @@ function AnswersList({ question_id, q }) {
   const [answersList, getAList] = useAnswersList();
   const [count, makeCount] = useCount(2);
   const [page, makePage] = usePage(1);
-  const [more, showMore, toggleMore] = useMoreA();
+  const [more, setMore, showMore, toggleMore] = useMoreA();
   const { isShowing, toggle } = useModal();
 
   useEffect(() => {
-    getAList(question_id, page)
-  }, [])
+    getAList(question_id, page);
+    makeCount.reset();
+    makePage.reset();
+    setMore(true);
+  }, [question_id])
 
   var updateAList = () => {
     getAList(question_id, page)

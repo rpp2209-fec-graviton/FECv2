@@ -13,6 +13,10 @@ export default function useHelpful(QAid, helpfulCategory) {
   const localStorage = JSON.parse(window.localStorage.getItem(category));
   const [isHelpful, setIsHelpful] = useState(localStorage[id]);
 
+  const resetIsHelpful = () => {
+    setIsHelpful(localStorage[id]);
+  }
+
   var helpfulStyle = { fontWeight: 'bold', color: 'blue' };
 
   const helpfulQA = () => {
@@ -30,5 +34,5 @@ export default function useHelpful(QAid, helpfulCategory) {
         })
     }
   }
-  return [isHelpful, helpfulQA, helpfulStyle];
+  return [isHelpful, helpfulQA, helpfulStyle, resetIsHelpful];
 }

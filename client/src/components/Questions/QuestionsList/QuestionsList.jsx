@@ -24,7 +24,7 @@ function QuestionsList(props) {
   const [page, makePage] = usePage(1);
   const [count, makeCount] = useCount(2);
   const [questionsList, getQList, filterQList] = useQuestionsList();
-  const [more, showMore, toggleMore] = useMore();
+  const [more, setMore, showMore, toggleMore] = useMore();
   const { isShowing, toggle } = useModal();
   const {product_id, useClickLogger} = useQuestionsContext();
   const [withClickLogger] = useClickLogger('Questions');
@@ -44,6 +44,7 @@ function QuestionsList(props) {
     getQList(product_id, page);
     makeCount.reset();
     makePage.reset();
+    setMore(true);
   }, [page, product_id])
 
   return (
