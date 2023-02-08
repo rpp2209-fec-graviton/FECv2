@@ -1,13 +1,10 @@
 import React from "react";
 import RPComparison from './RPComparison.jsx';
 import styles from './RPCard.module.css';
+import { useRPContext } from "./Context/RPProvider.jsx";
 
-function RPCard ({ rp, rpStyles, rpRating, changeProduct, setModalIsOpen }) {
-  function starProduct (e) {
-    // var currentProduct;
-    // var relatedProduct = props.productInfo;
-    // return comparison(currentProduct, relatedProduct);
-  };
+function RPCard ({ rp, rpStyles, rpRating, toggleComparison }) {
+  const { changeProduct } = useRPContext();
   var imgUrl = null;
   var defaultStyle = [];
   if (rpStyles) {
@@ -29,7 +26,7 @@ function RPCard ({ rp, rpStyles, rpRating, changeProduct, setModalIsOpen }) {
   return (
     <div className={styles.card} data-testid='rpcard'>
       <img src={imgUrl} onClick={() => changeProduct(rp.id)}/>
-      <h3 className={styles.star} onClick={() => setModalIsOpen(true)}>⭐</h3>
+      <h3 className={styles.star} onClick={() => toggleComparison(rp.id)}>⭐</h3>
       <br/>
       {rp.category}
       <br/>

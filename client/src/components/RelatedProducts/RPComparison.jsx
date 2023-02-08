@@ -2,24 +2,59 @@ import React from "react";
 import { useRPContext } from "./Context/RPProvider.jsx";
 import styles from './RPCard.module.css';
 
-function RPComparison ({ rp }) {
+function RPComparison ({ rp, toggleComparison, modalIsOpen }) {
   const { currentProductData } = useRPContext();
+
+  function isSharedFeature(feature, arr) {
+    return arr.some(x => (feature.value === x.value) && (feature.feature === x.feature))
+  }
+
   return (
-    <div className={styles.comparison}>
-       <ul>
-        {currentProductData.features.map((feature) => {
-          if(rp.features.includes(feature)) {
-            return <li>&#10003; {feature.value} {feature.feature} &#10003;</li>
-          } else {
-            return <li>&#10003; {feature.value} {feature.feature}</li>
-          }
-        })}
-        {rp.features.map((feature) => {
-          if(!currentProductData.features.includes(feature)) {
-            return <li>{feature.value} {feature.feature} &#10003;</li>
-          }
-        })}
-      </ul>
+    <div className={styles.comparisonContainer}>
+      <div className={styles.comparison}>
+        <h4>COMPARING</h4>
+        <table>
+          <tbody>
+            <tr>
+              <th>{currentProductData.name}</th>
+              <th></th>
+              <th>{rp.name}</th>
+            </tr>
+            {currentProductData.features.map((feature, index) => {
+              if (isSharedFeature(feature, rp.features)) {
+                return (
+                  <tr>
+                    <td>&#10003;</td>
+                    <td>{feature.value} {feature.feature}</td>
+                    <td>&#10003;</td>
+                  </tr>
+                );
+              } else {
+                return (
+                  <tr>
+                    <td>&#10003;</td>
+                    <td>{feature.value} {feature.feature}</td>
+                    <td></td>
+                  </tr>
+                );
+              }
+            })}
+            {rp.features.map((feature, index) => {
+              if(!isSharedFeature(feature, currentProductData.features)) {
+                return (
+                  <tr>
+                    <td></td>
+                    <td>{feature.value} {feature.feature}</td>
+                    <td>&#10003;</td>
+                  </tr>
+                );
+              }
+            })}
+          </tbody>
+        </table>
+        <br></br>
+        <button className={styles.closeButton} onClick={() => toggleComparison(null)}>Close</button>
+      </div>
     </div>
   );
 }

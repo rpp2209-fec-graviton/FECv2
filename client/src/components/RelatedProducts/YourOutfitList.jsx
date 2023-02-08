@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
 import YourOutfitItem from "./YourOutfitItem.jsx";
+import { useRPContext } from "./Context/RPProvider.jsx";
 
-function YourOutfitList ({ cp, fetchData, changeProduct }) {
+function YourOutfitList () {
+  const { fetchData, currentProductData, changeProduct } = useRPContext();
   const [outfitItems, setOutfitItems] = useState([]);
   const [outfitPhotoUrls, setOutfitPhotoUrls] = useState({});
 
   function addToOutfit() {
-    if (!outfitItems.some(item => item.id === cp.id)) {
-      fetchData(`products/${cp.id}/styles`)
+    if (!outfitItems.some(item => item.id === currentProductData.id)) {
+      fetchData(`products/${currentProductData.id}/styles`)
       .then((styles) => {
         var itemPhotoUrl = styles.results[0].photos[0].thumbnail_url;
-        setOutfitPhotoUrls({...outfitPhotoUrls, [cp.id]: itemPhotoUrl});
-        setOutfitItems([...outfitItems, cp]);
+        setOutfitPhotoUrls({...outfitPhotoUrls, [currentProductData.id]: itemPhotoUrl});
+        setOutfitItems([...outfitItems, currentProductData]);
       });
     }
   };
@@ -38,7 +40,9 @@ function YourOutfitList ({ cp, fetchData, changeProduct }) {
 
   return (
     <div>
+      <h2>
       Your Outfit
+      </h2>
       <div>
         <button onClick={addToOutfit}> Add to Outfit (+) </button>
       </div>

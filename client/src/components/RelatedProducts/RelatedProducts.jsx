@@ -1,6 +1,5 @@
 const axios = require('axios');
 import { useParams } from "react-router-dom";
-import { useNavigate } from  'react-router-dom';
 import React, { useState, useEffect, useContext } from "react";
 import { fetch } from "../../../../server/utils/fetch.js"
 import { useRPContext } from "./Context/RPProvider.jsx";
@@ -8,22 +7,8 @@ import RPList from "./RPList.jsx";
 import YourOutfitList from "./YourOutfitList.jsx"
 
 function RelatedProducts () {
-  const { useClickLogger, product_id, changeProduct, currentProductData, setCurrentProductData, rpData, rpStyles, rpRatings, setRpData, setRpStyles, setRpRatings } = useRPContext();
+  const { fetchData, useClickLogger, product_id, currentProductData, setCurrentProductData, setRpData, setRpStyles, setRpRatings } = useRPContext();
   const [loaded, setLoaded] = useState(false);
-  const navigate = useNavigate();
-
-  async function fetchData(ep) {
-    return new Promise((resolve, reject) => {
-      const callback = async (err, data) => {
-        if(err) {
-          reject(err);
-        } else {
-          resolve(data.data);
-        }
-      }
-      fetch(ep, callback);
-    })
-  }
 
   useEffect(() => {
     setLoaded(false);
