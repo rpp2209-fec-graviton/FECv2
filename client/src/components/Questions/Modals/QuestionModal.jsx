@@ -40,7 +40,6 @@ function QuestionModal({ isShowing, hide, Question }) {
     })
       .then((res) => {
         setProductName(res.data.name);
-        console.log(productName, 'in then call', res.data.name);
       })
       .catch((err) => {
         throw err;
