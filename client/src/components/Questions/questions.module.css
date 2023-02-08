@@ -91,7 +91,7 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
+  z-index: 3;
 }
 
 .modal__wrapper {
@@ -152,6 +152,16 @@ h3 {
   overflow-y: scroll;
   font-size: medium;
 }
+
+.answersList__noA{
+  text-decoration: underline;
+}
+
+.answersList__noA:hover{
+  color: blue;
+  font-weight: bold;
+}
+
 
 /* Answer */
 .answer__seeMoreA {

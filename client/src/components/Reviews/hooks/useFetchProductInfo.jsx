@@ -31,7 +31,7 @@ const useFetchProductInfo = (product_id, sortOrder) => {
 
   useEffect(() => {
     fetchData(params);
-  }, [sortOrder]);
+  }, [product_id, sortOrder]);
 
   return { reviewResponse, reviewError, reviewLoading };
 };
