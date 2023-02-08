@@ -9,15 +9,6 @@ import useInput from "../hooks/useInput.jsx";
 
 function QuestionModal({ isShowing, hide, Question }) {
 
-  /*
-  Overlays product page titled  “Ask Your Question” and subtitled “About the [Product Name Here]”.  The product name should be inserted into the subtitle.
-  Question inputs
-  Your Question (mandatory):
-  What is your nickname (mandatory)
-  Your email (mandatory)
-  Submit question (button)
-  */
-
   const [mount, setMount] = useState(false);
   const [productName, setProductName] = useState('');
   const { modalAnchor, product_id } = useQuestionsContext();
@@ -29,7 +20,7 @@ function QuestionModal({ isShowing, hide, Question }) {
     event.preventDefault();
     axios({
       method: 'Post',
-      url: `http://localhost:3000/qa/questions`,
+      url: `${window.location.origin}/qa/questions`,
       data: {
         body: yourQuestion.value,
         name: nickname.value,
@@ -41,16 +32,24 @@ function QuestionModal({ isShowing, hide, Question }) {
     })
   };
 
-  useEffect(() => {
+  const getProductName = () => {
     axios({
       method: 'POST',
       url: `${window.location.origin}/products`,
       data: { product_id }
     })
       .then((res) => {
-        setProductName(res.data.name)
+        setProductName(res.data.name);
+        console.log(productName, 'in then call', res.data.name);
       })
-  }, [])
+      .catch((err) => {
+        throw err;
+      })
+  };
+
+  useEffect(() => {
+    getProductName();
+  }, [product_id])
 
   return (
     isShowing ? ReactDOM.createPortal(
