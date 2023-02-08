@@ -4,7 +4,7 @@ const express = require('express')
 const app = express();
 const port = process.env.PORT || 3000;
 const exampleRoutes = require('../ExampleData/index.js'); //e.g. exampleRoutes['/cart'];
-const { fetch } = require('./utils/fetch.js');
+const { fetch } = require('./utils/data-utils.js');
 
 // =============================================
 //                Middleware
@@ -54,10 +54,11 @@ app.use('/:productId', express.static(path.join(__dirname, '../dist')));
 // =============================================
 //               Route Imports
 // =============================================
+app.use('/api/cart', require('./routes/cart-route')); // had to use `/api/cart` bc express assumes the first url param is the product id
 app.use('/interactions', require('./routes/interactions-route'));
 app.use('/products', require('./routes/product-route'))
 app.use('/reviews', require('./routes/review-route'))
-app.use('/qa/questions', require('./routes/questions-route'));
+app.use('/qa', require('./routes/questions-route'));
 
 process.on("SIGINT", () => {
   console.log("Server shutting down...");

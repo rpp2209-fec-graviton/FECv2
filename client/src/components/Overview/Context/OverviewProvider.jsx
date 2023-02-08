@@ -1,22 +1,45 @@
 import React, { useState, createContext, useContext } from 'react';
+
+import { useProductContext } from '../../Context/ContextProvider.jsx';
+import useStyles from '../hooks/useStyles.jsx';
+
 export const OverviewContext = createContext();
 
 export default function OverviewProvider({ children }) {
-	const [products, setProducts] = useState([]);
-	const [selectedStyle, setSelectedStyle] = useState({});
-	const [pStyles, setStyles] = useState({});
-	const [product, setProduct] = useState({});
+	const { currentProductId } = useProductContext();
+	const allProductStyles = useStyles(currentProductId);
+	const currentProductStyles = allProductStyles[currentProductId];
 
-	// Set Up Overview Context Values
+	const [selectedStyle, setSelectedStyle] = useState({});
+
+	// Used for rendering Product Image and Info
+	const [ imgURL, setURL ] = useState('');
+	const [ price, setPrice ] = useState({ price: '', type: 'default'});
+
+	// Update Large Image URL and Style Price when selectedStyle changes
+	const handleStyleChange = (e, style, type) => {
+		// console.log('Style', selectedStyle);
+
+		if (type === 'thumbnail-rounded') {
+			setSelectedStyle(style);
+			setURL(e.target.id && e.target.id);
+			setPrice(style.sale_price && style.sale_price !== null ? { price: style.sale_price, type: 'sale' } : { price: style.original_price, type: 'default' } );
+		} else {
+			setURL(e.target.id && e.target.id);
+		}
+	};
+
+	// Overview Context Values
 	const ctx = {
+		allProductStyles,
+		currentProductStyles,
 		selectedStyle,
 		setSelectedStyle,
-		pStyles,
-		setStyles,
-		product,
-		setProduct,
-		products,
-    setProducts
+		handleStyleChange,
+		imgURL,
+		setURL,
+		price,
+		setPrice
 	};
 
 	return (

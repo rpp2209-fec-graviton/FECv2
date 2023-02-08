@@ -1,14 +1,19 @@
 import React from 'react';
 import styles from './BottomBar.scss';
 
-function BottomBar() {
+function BottomBar({helpfulness }) {
   return (
-    <div>
-      <div className={styles.cardBottomBar} />
+    <div className={styles.bottombar__container}>
+      <sub>
+        <a> Yes ({helpfulness}) </a>
+        | <a> Report </a>
+      </sub>
+      <div className={styles.bottombar__bottomborder} />
 
     </div>
-
   );
 }
 
 export default BottomBar;
+
+

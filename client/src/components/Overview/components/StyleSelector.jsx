@@ -1,7 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
+import axios from 'axios';
+
 import Button from './Button.jsx';
 import ThumbnailCarousel from './ThumbnailCarousel.jsx';
+
 import { useOverviewContext } from "../Context/OverviewProvider.jsx";
+import { useProductContext } from '../../Context/ContextProvider.jsx';
+import useFetchProduct from '../../Hooks/useFetchProduct.jsx';
+
 import styles from '../overview.module.css';
 
 function StyleSelector () {
@@ -10,14 +16,15 @@ function StyleSelector () {
 	// Controlled Drop-Down Component Values
 	const [size, setSize] = useState('');
 	const [qty, setQty] = useState(0);
-	const [cart, setCart] = useState({ size: '', qty: 0 });
 
 	// DOM Element Refs
 	const sizeRef = useRef('');
 	const qtyRef = useRef(0);
 
 	// Overview Context
-	const { pStyles, selectedStyle } = useOverviewContext();
+	const { allProductStyles, currentProductStyles, selectedStyle } = useOverviewContext();
+	const { currentProductId, addToOutfit } = useProductContext();
+	const { response } = useFetchProduct(currentProductId);
 
 	// =============================================
 	//            FUNCTIONALITY TO-DOs
@@ -30,27 +37,34 @@ function StyleSelector () {
 	// If there is no stock: This button should be hidden
 
 	// If both a valid size and valid quantity are selected: Clicking this button will add the product to the user’s cart.
-	const handleAddToBag = (e) => {
+	const handleAddToBag = async (e) => {
 		e.preventDefault();
-		console.log('Adding to Bag...');
 
 		const currentSize = sizeRef.current[sizeRef.current.selectedIndex].value;
 		const currentQty = qtyRef.current[qtyRef.current.selectedIndex].value;
 
-		setCart({ size: currentSize, qty: currentQty });
+		if (currentSize === 'Select Size') {
+			console.log('Please select size');
 
-		// switch (status) {
-		// 	case ('no stock'): // get product styles to check stock (field is called 'quantity')
-		// 		// toggle hide button class
-		// 		break;
-		// 	case ('valid'):
-		// 		console.log('Added to cart!');
-		// 		break;
-		// 	default ('Select Size'):
-		// 		// open select size dropdown TODO
-		// 		window.alert('Please select size.')
-		// 		break;
-		// }
+		} else if (currentQty === 'Quantity') {
+			console.log('Please select a Quantity');
+
+		} else {
+			const selected = currentProductStyles && currentProductStyles.filter(style => style.style_id === selectedStyle.style_id)
+			const skus = selected[0].skus;
+			const keys = Object.keys(selected[0].skus);
+			var selectedSKU;
+
+			keys.forEach(sku => {
+				if (skus[sku].size === currentSize) {
+					selectedSKU = sku;
+				}
+			});
+
+			await axios.post('/api/cart', { sku_id: selectedSKU, count: currentQty });
+			console.log(`Added ${currentQty} size ${skus[selectedSKU].size} to Bag!`);
+		}
+
 	};
 
 	const handleDropdownChange = (e) => {
@@ -61,13 +75,15 @@ function StyleSelector () {
 		}
 	};
 
-	const handleStarClick = () => {
-		console.log('Clicked! Adding to Outfit (TODO)...');
+	const handleAddToOutfitList = () => {
+		const url = selectedStyle && selectedStyle.photos[0].thumbnail_url;
+		addToOutfit(response, url);
 	};
 
 	return (
+		selectedStyle &&
 		<div className={styles['overview__style-selector']}>
-			<h3>Style &gt; {selectedStyle.name}</h3>
+			<h3 className={styles['style-selector__header']}>Style &gt; <span className={styles['header-undecorated']}>{selectedStyle.name}</span></h3>
 			<ThumbnailCarousel type="images__carousel"  />
 
 			<select
@@ -92,8 +108,8 @@ function StyleSelector () {
 			</select>
 
 			<div>
-				<Button handleClick={handleAddToBag}>+ Add to Bag</Button>
-				<Button handleClick={handleStarClick}>⭐</Button>
+				<Button type='style-selector__button' handleClick={handleAddToBag}>+ Add to Bag</Button>
+				<Button type='style-selector__button' handleClick={handleAddToOutfitList}>⭐</Button>
 			</div>
 		</div>
 	)

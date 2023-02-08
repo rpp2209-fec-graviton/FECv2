@@ -1,10 +1,20 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const useFetchProductInfo = (params) => {
+const useFetchProductInfo = (product_id, sortOrder) => {
   const [reviewResponse, setReviewResponse] = useState(null);
   const [reviewError, setReviewError] = useState(null);
   const [reviewLoading, setReviewLoading] = useState(false);
+
+  const params = {
+    method: 'post',
+    url: '/reviews/results',
+    data: {
+      product_id: product_id,
+      sortOrder: sortOrder,
+      count: 20
+    }
+  }
 
   const fetchData = async (params) => {
     setReviewLoading(true);
@@ -21,7 +31,7 @@ const useFetchProductInfo = (params) => {
 
   useEffect(() => {
     fetchData(params);
-  }, []);
+  }, [sortOrder]);
 
   return { reviewResponse, reviewError, reviewLoading };
 };
