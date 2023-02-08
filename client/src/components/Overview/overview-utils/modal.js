@@ -12,6 +12,7 @@ function toggleModal(show, setShow) {
 	modal.classList.toggle(styles['modal-hidden']);
 	content.classList.toggle(styles['modal-hidden']);
 	fullImage.classList.toggle(styles['modal-hidden']);
+	// fullImage.style.visibility = 'hidden';
 	modal.style.cursor = "crosshair";
 };
 
