@@ -198,3 +198,8 @@ h3 {
   color: blue;
   font-weight: bold;
 }
+
+.answer img{
+  max-width: 400px;
+  max-height: 400px
+}
