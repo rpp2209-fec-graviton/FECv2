@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from './RPCard.module.css';
+import RPStars from './RPStars.jsx';
 import { useRPContext } from "./Context/RPProvider.jsx";
 
 function YourOutfitItem ({ item, photo, removeFromOutfit }) {
@@ -15,6 +16,7 @@ function YourOutfitItem ({ item, photo, removeFromOutfit }) {
         <br/>
         <span>${item.default_price}</span>
         <br/>
+        <RPStars></RPStars>
         <button onClick={() => removeFromOutfit(item.id)}> Remove </button>
         <br/>
       </div>
