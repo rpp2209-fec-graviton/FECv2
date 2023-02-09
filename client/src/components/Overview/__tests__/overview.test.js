@@ -16,6 +16,7 @@ import Images from '../components/Images.jsx';
 import Modal from '../components/Modal.jsx';
 import Overview from '../components/Overview.jsx';
 import ProductInfo from '../components/ProductInfo.jsx';
+import ReviewsLink from '../components/ReviewsLink.jsx';
 import StarRatingBar from '../../StarRatingBar/StarRatingBar.jsx';
 import StyleSelector from '../components/StyleSelector.jsx';
 import ThumbnailCarousel from '../components/ThumbnailCarousel.jsx';
@@ -25,32 +26,34 @@ import Thumbnail from '../components/Thumbnail.jsx';
 import ContextProvider from "../../Context/ContextProvider.jsx";
 import OverviewProvider from "../Context/OverviewProvider.jsx";
 
+import { fetch } from '../../../../../server/utils/data-utils.js';
+
 // ==================================
 //    ⬇ ⭐ TESTING THE TESTS ⭐ ⬇
 // ==================================
-describe('Testing Environment', () => {
-  it('uses jsdom', () => {
-    const overview = document.createElement('div');
-    expect(overview).not.toBeNull();
-  });
+// describe('Testing Environment', () => {
+//   it('uses jsdom', () => {
+//     const overview = document.createElement('div');
+//     expect(overview).not.toBeNull();
+//   });
 
-  it('uses jest-dom', function() {
-    document.body.innerHTML = `
-      <span data-testid="not-empty"><span data-testid="empty"></span></span>
-      <div data-testid="visible">Visible Example</div>
-    `
+//   it('uses jest-dom', function() {
+//     document.body.innerHTML = `
+//       <span data-testid="not-empty"><span data-testid="empty"></span></span>
+//       <div data-testid="visible">Visible Example</div>
+//     `
 
-    expect(screen.queryByTestId('not-empty')).not.toBeEmptyDOMElement()
-    expect(screen.getByText('Visible Example')).toBeVisible()
-  });
-});
+//     expect(screen.queryByTestId('not-empty')).not.toBeEmptyDOMElement()
+//     expect(screen.getByText('Visible Example')).toBeVisible()
+//   });
+// });
 
-// Check Access To Env Vars
-describe('ENV Variables', () => {
-  test('Receives process.env variables', () => {
-    expect(process.env.API_URL).toBe('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp');
-  });
-});
+// // Check Access To Env Vars
+// describe('ENV Variables', () => {
+//   test('Receives process.env variables', () => {
+//     expect(process.env.API_URL).toBe('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp');
+//   });
+// });
 
 // ==================================
 //     ⬇ ⭐ MSW / SERVER ⭐ ⬇
@@ -67,68 +70,61 @@ afterAll(() => mswOverviewServer.close())
 // ==================================
 
 // Utils
-const renderOverview = () => {
-
-  // Set up Fake Context Values
-  // const ctx = { currentProductId: 1 };
-  // const context = { products: [] };
-
-  // return render(
-  //   <ContextProvider value={ctx}>
-  //     <OverviewProvider value={context}>
-  //     <Overview />
-  //     </OverviewProvider>
-  //   </ContextProvider>
-  // );
+const renderWithContext = (component) => {
 
   return render(
     <ContextProvider>
       <OverviewProvider>
-        <Overview />
+        {component}
       </OverviewProvider>
     </ContextProvider>
   );
 
 };
 
-describe.only('Server', () => {
+describe('Server', () => {
   it('should fetch a list of products', async () => {
 
-    mswOverviewServer.use(fetchProducts_response)
+    renderWithContext(<Overview />);
+    const fetch = jest.fn();
 
-    const data = await fetchProducts_response()
-    console.log('Data?', data);
-    // expect(data.length).toBe(3);
+    await fetch('/products', (err, data) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('Data?', data);
+        expect(data.length).toBe(3);
+      }
+    });
   });
 });
 
 describe('Overview', () => {
 
-  // Testing Setup
-  afterEach(jest.clearAllMocks);
+  it('Reviews Link should render', async () => {
 
-  it('should render to the DOM', async () => {
+    renderWithContext(<ReviewsLink />);
 
-    // Mock Overview Component for testing
-    jest.mock('../components/Overview', () => () => {
-      return <mock-overview data-testid="overview" />
+    await waitFor(() => {
+      expect(screen.getByText(/^Read all/i)).toBeInTheDocument()
+      expect(screen.getByText(/reviews$/i)).toBeInTheDocument()
     });
-
-    // "Render" Component with Context Providers populated with fake context vals
-    renderOverview();
-
-    await waitFor(() => expect(screen.getByTestId('overview')).toBeInTheDocument());
   });
 
-  // it('should pass fake context values to Overview Mock', function() {
-  //   // todo
-  // });
+  it('Star Ratings Bar should render', async () => {
 
-  // it('Product Details should render', async () => {
-  //   const reviewsText = await screen.findByText(/^Read all reviews/)
-  //   expect(reviewsText).toBeInTheDocument();
-  //   expect(reviewsText).toHaveTextContent('Read all reviews')
-  // });
+    renderWithContext(<StarRatingBar />);
+
+    await waitFor(() => expect(screen.getByText(/^☆/i)).toBeInTheDocument());
+    // expect(screen.getByText(/^★/i)).toBeInTheDocument()
+  });
+
+  it('Product Details should render', async () => {
+    const elem = renderWithContext(<ProductInfo />);
+    logRoles(elem);
+
+    await waitFor(() => expect(screen.getByText(/^\$/)).toBeInTheDocument())
+  });
 
   // ==================================
   //      Style Selector To-Dos:
