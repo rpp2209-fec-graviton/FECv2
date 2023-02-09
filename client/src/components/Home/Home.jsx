@@ -18,6 +18,9 @@ import RPProvider from '../RelatedProducts/Context/RPProvider.jsx'
 // Hooks
 import useGlobalProduct from '../Hooks/useGlobalProduct/useGlobalProduct.jsx';
 
+// Styles
+import styles from './home.module.css';
+
 function Home () {
 	// Use the URL Params to set Global Product ID State
 	const currentProductId = useGlobalProduct();
@@ -25,7 +28,7 @@ function Home () {
 	return (
 		<Routes>
 			<Route path='/:productId' element={
-				<div className="body">
+				<div className='body'>
 					{/* Dev Logger: Uncomment to view selected product on page load */}
 					{/* <h3>Selected Product Is: {currentProductId && currentProductId}</h3> */}
 

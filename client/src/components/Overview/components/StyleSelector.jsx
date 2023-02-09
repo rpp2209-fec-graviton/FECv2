@@ -44,9 +44,11 @@ function StyleSelector () {
 		const currentQty = qtyRef.current[qtyRef.current.selectedIndex].value;
 
 		if (currentSize === 'Select Size') {
+			window.alert('Please select size');
 			console.log('Please select size');
 
 		} else if (currentQty === 'Quantity') {
+			window.alert('Please select a Quantity');
 			console.log('Please select a Quantity');
 
 		} else {
@@ -107,7 +109,7 @@ function StyleSelector () {
 				{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (<option aria-label="qty-option" key={num} value={num}>{num}</option>))}
 			</select>
 
-			<div>
+			<div className={styles['style-selector__buttons']}>
 				<Button type='style-selector__button' handleClick={handleAddToBag}>+ Add to Bag</Button>
 				<Button type='style-selector__button' handleClick={handleAddToOutfitList}>⭐</Button>
 			</div>
