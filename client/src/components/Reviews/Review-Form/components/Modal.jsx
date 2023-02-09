@@ -10,6 +10,8 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
+import useReviewPost from "../../hooks/useReviewPost.jsx";
+import { useProductContext } from "../../../Context/ContextProvider.jsx";
 import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import {
   FormHelperText,
@@ -73,20 +75,22 @@ const validationSchema = yup.object({
 export default function Modal(props) {
   const { open, handleClose } = props;
   const [link, setLink] = React.useState("http://www.google.com/");
+  const { handlePost } = useReviewPost()
+  const { currentProductId } = useProductContext();
   const formik = useFormik({
     initialValues: {
+      productId: currentProductId,
       firstName: "",
       lastName: "",
       email: "",
-      birth: "",
-      effectiveDate: "",
-      policyNum: "",
-      fullRefund: "",
       password: "foobar",
       refundForm: null,
-      reason: "",
+      body: '',
+      recommend: '',
+      summary: '',
       requiredDocument: "",
-      requiredFile: ""
+      requiredFile: "",
+      rating: ''
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -94,20 +98,23 @@ export default function Modal(props) {
         formData.append(key, values[key]);
         return formData;
       }, new FormData());
+
       //console.log(values.refundForm);
       //formData.append("refundForm", values.refundForm);
       // for (let value of formData.values()) {
       //   console.log()
       //   console.log(value);
       // }
-      for (let value of formData.entries()) {
-        console.log(value);
-      }
+      // for (let value of formData.entries()) {
+      //   console.log(value);
+      // }
+
+      // handlePost(values);
       // for (var pair of formData.entries()) {
       //   console.log(pair[0] + ", " + pair[1]);
       // }
-      console.log(JSON.stringify(values, null, 2));
-      alert(JSON.stringify(values, null, 2));
+      handlePost(values);
+
     }
   });
   const setDownloadForm = (event) => {
@@ -159,25 +166,7 @@ export default function Modal(props) {
           <Divider />
           <form onSubmit={formik.handleSubmit}>
             <Grid container spacing={1}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  className={classes.formControl}
-                  variant="outlined"
-                  fullWidth
-                  id="lastName"
-                  name="lastName"
-                  label="Last Name"
-                  InputLabelProps={{
-                    shrink: true
-                  }}
-                  value={formik.values.lastName}
-                  onChange={formik.handleChange}
-                  error={
-                    formik.touched.lastName && Boolean(formik.errors.lastName)
-                  }
-                  helperText={formik.touched.lastName && formik.errors.lastName}
-                />
-              </Grid>
+
               <Grid item xs={12} sm={6}>
                 <TextField
                   className={classes.formControl}
@@ -198,6 +187,20 @@ export default function Modal(props) {
                     formik.touched.firstName && formik.errors.firstName
                   }
                 />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <FormControl component="fieldset">
+                  <FormLabel component="legend">Recommend</FormLabel>
+                  <RadioGroup
+                    aria-label="recommend"
+                    name="recommend"
+                    value={formik.values.recommend}
+                    onChange={formik.handleChange}
+                  >
+                    <FormControlLabel value="yes" control={<Radio />} label="Yes" />
+                    <FormControlLabel value="no" control={<Radio />} label="No" />
+                  </RadioGroup>
+                </FormControl>
               </Grid>
 
               <Grid item xs={12} sm={6}>
@@ -221,7 +224,7 @@ export default function Modal(props) {
                 <TextField
                   className={classes.formControl}
                   variant="outlined"
-                  label="Prior to the effective date"
+                  label="Date of Purchase"
                   fullWidth
                   id="effectiveDate"
                   name="effectiveDate"
@@ -236,13 +239,13 @@ export default function Modal(props) {
                 <TextField
                   className={classes.formControl}
                   variant="outlined"
-                  label="Comment"
+                  label="summary"
                   fullWidth
-                  id="comment"
-                  name="comment"
+                  id="summary"
+                  name="summary"
                   multiline
-                  rows={4}
-                  value={formik.values.comment}
+                  // rows={4}
+                  value={formik.values.summary}
                   onChange={formik.handleChange}
                 />
               </Grid>
@@ -250,13 +253,13 @@ export default function Modal(props) {
                 <TextField
                   className={classes.formControl}
                   variant="outlined"
-                  label="Comment"
+                  label="body"
                   fullWidth
-                  id="comment"
-                  name="comment"
+                  id="body"
+                  name="body"
                   multiline
-                  rows={4}
-                  value={formik.values.comment}
+                  // rows={4}
+                  value={formik.values.body}
                   onChange={formik.handleChange}
                 />
               </Grid>
@@ -301,15 +304,32 @@ export default function Modal(props) {
                 <FormLabel htmlFor="refundForm">Upload a Photo</FormLabel>
                 <input
                   type="file"
-                  id="refundForm"
-                  name="refundForm"
+                  id="photos"
+                  name="photos"
                   onChange={(event) => {
                     formik.setFieldValue(
-                      "refundForm",
+                      "photos",
                       event.currentTarget.files[0]
                     );
                   }}
                 />
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <FormControl component="fieldset">
+                <FormLabel component="legend">Rating</FormLabel>
+                <RadioGroup
+                  aria-label="rating"
+                  name="rating"
+                  value={formik.values.rating}
+                  onChange={formik.handleChange}
+                >
+                  <FormControlLabel value="1" control={<Radio />} label="1" />
+                  <FormControlLabel value="2" control={<Radio />} label="2" />
+                  <FormControlLabel value="3" control={<Radio />} label="3" />
+                  <FormControlLabel value="4" control={<Radio />} label="4" />
+                  <FormControlLabel value="5" control={<Radio />} label="5" />
+                </RadioGroup>
               </FormControl>
             </Grid>
             <Divider />
@@ -318,30 +338,7 @@ export default function Modal(props) {
               className={classes.formControl}
               style={{ width: "100%" }}
             >
-              <InputLabel htmlFor="reason">The reason</InputLabel>
-              <Select
-                style={{ width: "100%" }}
-                native
-                value={formik.values.reason}
-                onChange={formik.handleChange && setDownloadForm}
-                label="The reason"
-                inputProps={{
-                  name: "reason",
-                  id: "reason"
-                }}
-              >
-                {/* Cancel entire trip prior to the effective date */}
-                <option aria-label="None" value="" />
-                {companies.map((el) => (
-                  <option key={el.id} value={el.id}>
-                    {el.name}
-                  </option>
-                ))}
-                {/* <option aria-label="None" value="" />
-                    <option value={10}>company A</option>
-                    <option value={20}>company B</option>
-                    <option value={30}>company C</option> */}
-              </Select>
+
             </FormControl>
 
             <TextField
