@@ -14,6 +14,9 @@ import useModal from "../hooks/useModal.jsx";
 //CSS
 import styles from "../questions.module.css";
 
+//CONTEXT
+import { useQuestionsContext } from "../Context/QuestionsProvider.jsx";
+
 function AnswersList({ question_id, q }) {
   /*Implementation Tasks
   1. Sort Answers by helpfulness/Sellar
@@ -25,13 +28,15 @@ function AnswersList({ question_id, q }) {
   const [page, makePage] = usePage(1);
   const [more, setMore, showMore, toggleMore] = useMoreA();
   const { isShowing, toggle } = useModal();
+  const {product_id} = useQuestionsContext();
+
 
   useEffect(() => {
     getAList(question_id, page);
     makeCount.reset();
     makePage.reset();
     setMore(true);
-  }, [question_id])
+  }, [product_id])
 
   var updateAList = () => {
     getAList(question_id, page)

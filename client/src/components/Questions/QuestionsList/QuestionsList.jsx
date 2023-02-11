@@ -45,7 +45,7 @@ function QuestionsList(props) {
     makeCount.reset();
     makePage.reset();
     setMore(true);
-  }, [page, product_id])
+  }, [product_id])
 
   return (
     <div className={styles.questionsView}>

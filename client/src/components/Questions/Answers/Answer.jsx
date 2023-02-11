@@ -31,8 +31,8 @@ function Answer({ ans }) {
         }&nbsp;&nbsp;
         </sub>
       </p>
-      {ans.photos.length > 0 && ans.photos.map((url) => {
-        return <img src={url} key={url}/>
+      {ans.photos.length > 0 && ans.photos.map((photo) => {
+        return <img src={photo.url} key={photo}/>
       })}
     </div>
   )
