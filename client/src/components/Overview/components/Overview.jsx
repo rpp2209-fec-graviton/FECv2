@@ -10,10 +10,12 @@ import styles from '../overview.module.css';
 
 function Overview() {
 	return (
-		<div className={`${styles.overview} ${styles.grid}`}>
+		<div className={`${styles.overview} ${styles['grid-template']} ${styles.flex}`}>
 			<Images />
-			<StyleSelector />
-			<ProductInfo />
+			<div className={`${styles.grid} ${styles['overview__product-info']}`}>
+				<StyleSelector />
+				<ProductInfo />
+			</div>
 		</div>
 	);
 };

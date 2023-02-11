@@ -1,5 +1,5 @@
 /* =======================
-      General Styles
+      CSS Variables
 ========================*/
 :root {
   --black: #000000;
@@ -8,6 +8,48 @@
   --red: #ff0000;
   --silver: #c0c0c0;
   --white: #ffffff;
+}
+
+/* =======================
+        Clearfix
+========================*/
+/* html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+} */
+
+h1, h2, h3, h4, h5, h6, p, a {
+	margin: 8px 0;
+	/* padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline; */
+}
+
+img {
+	margin: 0px 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
 
 /* =======================
@@ -26,25 +68,22 @@
   border: 2px solid var(--silver);
 }
 
-.grey-border {
-  border: 2px solid var(--silver);
-}
-
 /* =======================
       Grid & Flexbox
 ========================*/
-.grid {
-  display: grid;
+/* .grid-template {
   grid-gap: 10px;
   grid-template-columns: repeat(autofill, 180px);
-  /* grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%; */
   grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+} */
+
+.grid {
+  display: grid;
 }
 
 .flex {
   display: flex;
   justify-content: center;
-  /* align-items: center; */
 }
 
 .flex-column {
@@ -55,31 +94,41 @@
     Overview Styles
 ========================*/
 .overview {
-  padding: 40px;
-  max-width: 80%;
-  margin: 80px 160px;
+  height: 80%;
+  max-width: 60%;
+  margin: 0 auto;
+  padding: 60px 0;
+  z-index: 10;
 }
 
 .overview__images {
+  display: table;
   position: relative;
-  grid-column-start: 2;
+  /* grid-column-start: 2; */
 }
 
 .overview__image {
-  width: 600px;
-  height: auto;
+  border: 2px solid var(--black);
+  object-fit: cover;
+  object-position: top;
   grid-row: 2 / span 5;
+  width: auto;
+  height: 500px;
 }
+
 
 .overview__product-info {
-  grid-column: 7 / span 4;
+  height: max-content;
+  /* grid-column-start: 8; */
+  margin-left: 80px;
 }
 
+.product-info__detail {
+  grid-row-start: 1;
+}
 
 .overview__style-selector {
-  grid-column: 7 / span 6;
-  grid-row-start: 5;
-  height: 80px;
+  /* grid-row-start: 3; */
 }
 
 /* =======================
@@ -119,34 +168,89 @@ Convert scrollbar to ⏮ arrows ⏭
   left: 16px;
   top: 16px;
   width: 90px;
-  height: 360px;
+  height: 480px;
   overflow-x: hidden;
   overflow-y: scroll;
   z-index: 2;
 }
 
 .images__carousel {
-  max-width: 448px;
+  min-width: 392px;
+  max-width: 400px;
 }
 
 .thumbnail-square {
   border: 1px solid var(--silver);
-  width: 80px;
-  height: 80px;
+  width: 72px;
+  height: 72px;
 }
 
 .thumbnail-rounded {
   object-fit: cover;
   border-radius: 50%;
   border: 2px solid var(--charcoal);
-  width: 90px;
-  height: 90px;
-  margin: 10px 8px;
+  width: 80px;
+  height: 80px;
+  margin: 10px 4px;
+}
+
+.thumbnail-square,
+.thumbnail-rounded {
+  object-fit: cover;
+  object-position: top;
 }
 
 /* =======================
       Modal Styles
 ========================*/
+/* .images__modal { */
+  /* height: 100vh;
+  background-color: var(--white);
+
+  /* width: 100vw; */
+  /* height: 100%; */
+  /* min-height: 100%; */
+  /* box-sizing: border-box; */
+  /* overflow-x: hidden; */
+  /* overflow-y: hidden;*/
+
+  /* ===================== */
+  /* height: 100%;
+  width: 100vw;
+  box-shadow: -2rem 2rem 2rem rgba(black, 0.2);
+
+  filter: blur(0);
+  transition: 1.5s ease-in-out;
+  transform: scale(0.5);
+  opacity: 1;
+
+  visibility: visible;
+  position: fixed;
+  z-index: 3;
+
+  top: -50px;
+  left: 60px;
+}
+
+
+.modal-hidden {
+  height: 0;
+  opacity: 0;
+  filter: blur(8px);
+  box-shadow: 1rem 0 0 rgba(black, 0.2);
+  visibility: hidden;
+  transition: 1.5s ease-out;
+}
+
+.modal__content { */
+  /* position: relative; */
+  /* object-fit: cover;
+  object-position: center;
+  height: 100%;
+  width: 100%;
+} */
+
+
 .images__modal {
   height: 0;
   box-shadow: -2rem 2rem 2rem rgba(black, 0.2);
@@ -159,10 +263,11 @@ Convert scrollbar to ⏮ arrows ⏭
   visibility: visible;
   position: fixed;
   z-index: 3;
+  /* left: 60px; */
 }
 
 .modal-hidden {
-  height: 0;
+  /* height: 0; */
   opacity: 0;
   filter: blur(8px);
   box-shadow: 1rem 0 0 rgba(black, 0.2);
@@ -171,9 +276,12 @@ Convert scrollbar to ⏮ arrows ⏭
 }
 
 .modal__content {
+  object-fit: cover;
   height: 1400px;
-  width: 150%;
+  width: 100%;
+  /* overflow-x: visible; */
 }
+
 
 /* =======================
     Star Rating Styles
@@ -219,17 +327,18 @@ Convert scrollbar to ⏮ arrows ⏭
 ========================*/
 .button,
 .drop-down {
+  font-size: 14px;
   justify-content: center;
   display: inline-flex;
   align-items: center;
-  border: 1px solid rgba(47, 79, 79, 0.8);
+  border: 1.5px solid var(--black);
 }
 
 .style-selector__button,
 .drop-down {
-  margin: 32px 8px 0 0;
+  margin: 16px 8px;
   height: 40px;
-  width: 240px;
+  width: 200px;
 }
 
 .button:active {
@@ -243,4 +352,7 @@ Convert scrollbar to ⏮ arrows ⏭
   font-size: 32px;
   height: 40px;
   min-width: 56px;
+}
+.style-selector__buttons {
+  width: max-content;
 }

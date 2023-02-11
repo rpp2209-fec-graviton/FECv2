@@ -32,10 +32,43 @@ router.post('/results', async (req, res) => {
 
 
 
-// router.get('/count')
+router.post('/', async (req, res) => {
+  const payload = await req.body.payload;
+  const { productId, rating, recommend, summary, firstName, lastName, email, password, refundForm, body, requiredDocument, requiredFile } = payload;
+  axios({
+    method: 'post',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews`,
+    headers: { 'Authorization': process.env.API_KEY },
+    data: {
+      product_id: parseInt(productId),
+      rating: parseInt(rating),
+      summary,
+      body,
+      recommend,
+      name: firstName,
+      email,
+      requiredDocument,
+    }
+  })
+    .then(() => {
+      res.redirect(`/${product_id}`);//get last url
+    })
+    .catch(err => {
+      console.log('Err Saving Review', err);
+      res.status(401).end(JSON.stringify(err));
+    });
+});
 
 
-// router.get('/product_id')
+// const {firstName , lastName , email, password, body, requiredDocument} = await req.body.data.payload
+
+
+// console.log(firstName);
+
+
+
+
+
 
 
 module.exports = router;

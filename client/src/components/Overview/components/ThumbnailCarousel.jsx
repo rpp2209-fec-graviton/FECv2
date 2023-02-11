@@ -19,18 +19,15 @@ function ThumbnailCarousel({ type }) {
 		/>)
 	);
 
-	const styleCarousel = currentProductStyles && currentProductStyles.map(style => {
-		return selectedStyle.photos && selectedStyle.photos.map(photo => (
-			<Thumbnail
-				carouselType={type}
-				type={type === 'styles__carousel' ? 'thumbnail-square' : 'thumbnail-rounded'}
-				key={photo.thumbnail_url}
-				photos={photo}
-				style={style}
-			/>
-			));
-		}
-	);
+	const styleCarousel = selectedStyle.photos && selectedStyle.photos.map(photo => (
+		<Thumbnail
+			carouselType={type}
+			type={type === 'styles__carousel' ? 'thumbnail-square' : 'thumbnail-rounded'}
+			key={photo.thumbnail_url}
+			photos={photo}
+			style={selectedStyle}
+		/>
+	));
 
 	return (
 		currentProductStyles &&
