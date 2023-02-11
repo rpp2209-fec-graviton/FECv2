@@ -11,7 +11,6 @@ function RelatedProducts () {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    setLoaded(false);
     let idList;
     fetchData(`products/${product_id}/related`)
     .then((ids) => {

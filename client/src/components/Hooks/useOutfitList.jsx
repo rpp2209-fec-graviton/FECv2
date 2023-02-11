@@ -41,13 +41,6 @@ const useOutfitList = () => {
 						var itemPhotoUrl = styles.results[0].photos[0].thumbnail_url;
 						setOutfitPhotoUrls({...outfitPhotoUrls, [cp.id]: itemPhotoUrl});
 						setOutfitItems([...outfitItems, cp]);
-						return Promise.all(outfitItems.map((item) => {
-							return fetchData(`reviews/meta?product_id=${item.id}`)
-						}))
-					})
-					.then((outfitItemReviews) => {
-						var ratingList = calculateRatings(outfitItemReviews);
-						setOutfitItemRatings(ratingList);
 					})
 				}
 			} else { // Overview Logic
