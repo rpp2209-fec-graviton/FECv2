@@ -27,7 +27,7 @@ function QuestionModal({ isShowing, hide, Question }) {
     } else {
       axios({
         method: 'Post',
-        url: `${window.location.origin}/qa/questions`,
+        url: `/qa/questions`,
         data: {
           body: yourQuestion.value,
           name: nickname.value,

@@ -55,7 +55,7 @@ function AnswerModal({ isShowing, hide, q, question_id }) {
   useEffect(() => {
     axios({
       method: 'POST',
-      url: `${window.location.origin}/products`,
+      url: `/products`,
       data: { product_id }
     })
       .then((res) => {
