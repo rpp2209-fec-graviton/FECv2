@@ -35,7 +35,7 @@ function AnswerModal({ isShowing, hide, q, question_id }) {
     } else {
       axios({
         method: 'Post',
-        url: `${window.location.origin}/qa/questions/${question_id}/answers`,
+        url: `/qa/questions/${question_id}/answers`,
         data: {
           body: yourAnswer.value,
           name: nickname.value,

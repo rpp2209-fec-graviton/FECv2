@@ -47,7 +47,7 @@ function QuestionModal({ isShowing, hide, Question }) {
   const getProductName = () => {
     axios({
       method: 'POST',
-      url: `${window.location.origin}/products`,
+      url: `/products`,
       data: { product_id }
     })
       .then((res) => {
