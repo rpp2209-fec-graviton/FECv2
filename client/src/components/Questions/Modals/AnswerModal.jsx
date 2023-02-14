@@ -22,7 +22,7 @@ function AnswerModal({ isShowing, hide, q, question_id }) {
   const yourAnswer = useInput('');
   const nickname = useInput('');
   const yourEmail = useInput('');
-  const photos = useInput([]);
+  const [photos, setPhotos] = useState();
 
 
   const submitForm = (event) => {
@@ -35,7 +35,7 @@ function AnswerModal({ isShowing, hide, q, question_id }) {
       alert('You must enter the following:\nValid Answer')
     } else {
       const formData = new FormData();
-      formData.append('photos', photos.value);
+      formData.append('photos', photos);
       formData.append('body', yourAnswer.value);
       formData.append('name', nickname.value);
       formData.append('email', yourEmail.value);
@@ -46,7 +46,7 @@ function AnswerModal({ isShowing, hide, q, question_id }) {
         yourEmail.reset.thevalue();
         nickname.reset.thevalue();
         yourAnswer.reset.thevalue();
-        photos.reset.thevalue();
+        setPhotos([]);
         hide();
       })
     }
@@ -85,7 +85,7 @@ function AnswerModal({ isShowing, hide, q, question_id }) {
                 <input placeholder="Example: jack@email.com" {...yourEmail} required={true} />
                 <sub>For authentication reasons, you will not be emailed</sub>
               </label>
-              <input type="file" accept="image/*" {...photos}>Upload Photo</input>
+              <input type="file" accept="image/*" onChange={(e) => {setPhotos(e.target.files[0])}} name='photos'/>
               <button type="submit">Submit Answer</button>
             </form>
           </div>
