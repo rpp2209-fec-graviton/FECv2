@@ -61,7 +61,7 @@ function AnswerModal({ isShowing, hide, q, question_id }) {
       .then((res) => {
         setProductName(res.data.name)
       })
-  }, [])
+  }, [product_id])
 
   return (
     isShowing ? ReactDOM.createPortal(
