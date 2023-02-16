@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import RPCard from "./RPCard.jsx"
 import RPComparison from "./RPComparison.jsx";
 import { useRPContext } from "./Context/RPProvider.jsx";
-import styles from './RPCard.module.css';
+import styles from './RP.module.css';
 
 function RPList () {
   const [compareId, setCompareId] = useState(null);

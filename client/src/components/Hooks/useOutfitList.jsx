@@ -28,7 +28,6 @@ const useOutfitList = () => {
 		// =============================================
 		// Add an item to the outfit list
 		const addToOutfit = (product, ...args) => {
-			console.log('product', product)
 			// Related Product Logic
 			if (typeof args[0] === 'function') {
 				const cp = product;

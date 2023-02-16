@@ -1,6 +1,6 @@
 import React from "react";
 import RPComparison from './RPComparison.jsx';
-import styles from './RPCard.module.css';
+import styles from './RP.module.css';
 import { useRPContext } from "./Context/RPProvider.jsx";
 
 function RPCard ({ rp, rpStyles, rpRating, toggleComparison }) {

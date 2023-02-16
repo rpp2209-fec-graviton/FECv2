@@ -1,6 +1,6 @@
 import React from "react";
 import { useRPContext } from "./Context/RPProvider.jsx";
-import styles from './RPCard.module.css';
+import styles from './RP.module.css';
 
 function RPComparison ({ rp, toggleComparison, modalIsOpen }) {
   const { currentProductData } = useRPContext();

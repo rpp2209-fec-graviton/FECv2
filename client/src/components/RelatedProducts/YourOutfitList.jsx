@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import YourOutfitItem from "./YourOutfitItem.jsx";
-import styles from './RPCard.module.css';
+import styles from './RP.module.css';
 import { useProductContext } from '../Context/ContextProvider.jsx';
 import { useRPContext } from "./Context/RPProvider.jsx";
 
