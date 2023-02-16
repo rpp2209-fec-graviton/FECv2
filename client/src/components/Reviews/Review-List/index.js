@@ -1,7 +1,11 @@
-import ListContainer from "./components/Review-List-Container/ListContainer.jsx";
 import React from "react";
-import useFetchProduct from "../../Hooks/useFetchProduct.jsx";
+
+import ListContainer from "./components/Review-List-Container/ListContainer.jsx";
+import Button from "../../Overview/components/Button.jsx";
+
 import { useReviewContext } from '../Context/ReviewProvider.jsx'
+
+import useFetchProduct from "../../Hooks/useFetchProduct.jsx";
 import styles from './review-list.module.scss'
 
 export default function ReviewList({ children }) {
@@ -28,7 +32,7 @@ export default function ReviewList({ children }) {
       <ListContainer>
         {children}
       </ListContainer>
-      <button onClick={(e) => { handleShowMoreReviews(e, filteredReviews.length) }}>More Reviews </button>
+      <Button onClick={(e) => { handleShowMoreReviews(e, filteredReviews.length) }}>More Reviews </Button>
     </div>
   );
 }
