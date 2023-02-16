@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import styles from './RP.module.css';
 import { useProductContext } from '../Context/ContextProvider.jsx';
-import RPStars from './RPStars.jsx';
+import OutfitRating from './OutfitRating.jsx';
 import { useRPContext } from "./Context/RPProvider.jsx";
-import useOutfitList  from "../Hooks/useOutfitList.jsx"
 
 function YourOutfitItem ({ item, photo, removeFromOutfit }) {
+  const { outfitItemRatings } = useProductContext();
   const { changeProduct } = useRPContext();
-  const { outfitItemRatings } = useOutfitList();
   if (item) {
     return (
       <div className={styles.card}>
@@ -20,7 +19,7 @@ function YourOutfitItem ({ item, photo, removeFromOutfit }) {
         <br/>
         <span>${item.default_price}</span>
         <br/>
-        {outfitItemRatings && <RPStars id={item.id} rating={outfitItemRatings[item.id]}/>}
+        <OutfitRating rating={outfitItemRatings[item.id]} id={item.id} />
         <br/>
       </div>
     )

@@ -5,7 +5,7 @@ import useFetchProductInfo from '../../Reviews/hooks/useFetchProductInfo.jsx';
 import { fetch } from '../../../../../server/utils/data-utils.js';
 import { useProductContext } from "../../Context/ContextProvider.jsx";
 
-export default function useRatingsAvg(id) {
+export default function useRatingsAvg() {
 	const { currentProductId, sortOrder, ratingsAverage, setRatingsAverage } = useProductContext();
 	const [reviewCount, setCount] = useState(0);
 	const [ratingSum, setSum] = useState(0);

@@ -5,8 +5,13 @@ import { useProductContext } from '../Context/ContextProvider.jsx';
 import { useRPContext } from "./Context/RPProvider.jsx";
 
 function YourOutfitList () {
-  const { outfitItems, addToOutfit, removeFromOutfit, outfitPhotoUrls } = useProductContext();
+  const { outfitItems, addToOutfit, removeFromOutfit, outfitPhotoUrls, setOutfitItemRatings, outfitItemRatings, ratingsAverage } = useProductContext();
   const { fetchData, currentProductData, changeProduct } = useRPContext();
+
+  function handleAddToOutfit() {
+    setOutfitItemRatings({...outfitItemRatings, [currentProductData.id]: ratingsAverage});
+    addToOutfit(currentProductData, fetchData);
+  }
 
   return (
     <div>
@@ -14,7 +19,7 @@ function YourOutfitList () {
       Your Outfit
       </h2>
       <div>
-        <div className={styles.card} onClick={() => addToOutfit(currentProductData, fetchData)}>
+        <div className={styles.card} onClick={handleAddToOutfit}>
           <p> Add to Outfit (+) </p>
         </div>
         {outfitItems && outfitItems.map((item) => {

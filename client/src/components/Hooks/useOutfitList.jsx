@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react';
-import useRatingsAvg from './useRatingsAvg/useRatingsAvg.jsx'
+import useRatingsAvg from "./useRatingsAvg/useRatingsAvg.jsx";
 import axios from 'axios';
-import calculateRatings from "../RelatedProducts/RatingCalculator.jsx";
 
 const useOutfitList = () => {
   const [outfitItems, setOutfitItems] = useState([]);
   const [outfitPhotoUrls, setOutfitPhotoUrls] = useState({});
 	const [outfitItemRatings, setOutfitItemRatings] = useState({});
-	const { ratingsAverage } = useRatingsAvg();
 
 		// =============================================
 		//                  Effects
@@ -41,7 +39,6 @@ const useOutfitList = () => {
 					fetchData(`products/${cp.id}/styles`)
 					.then((styles) => {
 						var itemPhotoUrl = styles.results[0].photos[0].thumbnail_url;
-						setOutfitItemRatings({...outfitItemRatings, [cp.id]: ratingsAverage})
 						setOutfitPhotoUrls({...outfitPhotoUrls, [cp.id]: itemPhotoUrl});
 						setOutfitItems([...outfitItems, cp]);
 					})
@@ -63,7 +60,7 @@ const useOutfitList = () => {
 			setOutfitItems(newState);
 		};
 
-  return { outfitItems, outfitPhotoUrls, addToOutfit, removeFromOutfit, outfitItemRatings };
+  return { outfitItems, outfitPhotoUrls, addToOutfit, removeFromOutfit, outfitItemRatings, setOutfitItemRatings };
 };
 
 export default useOutfitList;
