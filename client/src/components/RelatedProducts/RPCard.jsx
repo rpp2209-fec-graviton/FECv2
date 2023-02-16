@@ -1,11 +1,7 @@
 import React, { useEffect } from "react";
 import RPComparison from './RPComparison.jsx';
-<<<<<<< HEAD
 import styles from './RP.module.css';
-=======
-import styles from './RPCard.module.css';
 import RPStars from './RPStars.jsx';
->>>>>>> e55fc5972e5332d6e7b1eb2dd62f18dfe89155b4
 import { useRPContext } from "./Context/RPProvider.jsx";
 
 function RPCard ({ rp, rpStyles, rpRating, toggleComparison }) {

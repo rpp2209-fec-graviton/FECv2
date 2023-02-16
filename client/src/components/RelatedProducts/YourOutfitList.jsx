@@ -7,7 +7,6 @@ import { useRPContext } from "./Context/RPProvider.jsx";
 function YourOutfitList () {
   const { outfitItems, addToOutfit, removeFromOutfit, outfitPhotoUrls } = useProductContext();
   const { fetchData, currentProductData, changeProduct } = useRPContext();
-  console.log(currentProductData.id, currentProductData.name)
 
   return (
     <div>

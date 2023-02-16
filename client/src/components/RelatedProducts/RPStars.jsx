@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import styles from './RPCard.module.css';
+import styles from './RP.module.css';
 
 function RPStars ({ id, rating }) {
   useEffect(() => {
