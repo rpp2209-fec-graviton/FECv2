@@ -1,0 +1,56 @@
+# Project Title: Graviton Front-End Capstone  <!-- omit in toc -->
+
+## Overview  <!-- omit in toc -->
+This is a web-based front-end for the [API Name], which allows users to [describe what the API does in layman's terms].
+
+
+## Table of Contents  <!-- omit in toc -->
+- [Description](#description)
+  - [Overivew Module](#overivew-module)
+  - [Related-Products Module](#related-products-module)
+  - [Questions-And-Answers Module](#questions-and-answers-module)
+  - [Reviews Module](#reviews-module)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [Credits](#credits)
+- [License](#license)
+
+## Description
+[TALK ABOUT HOW WE BROKE THIS UP INTO 4 PARTS]
+### Overivew Module
+[INSERT FUNCTIONALITY]
+
+### Related-Products Module
+[INSERT FUNCTIONALITY]
+
+### Questions-And-Answers Module
+[INSERT FUNCTIONALITY]
+
+### Reviews Module
+[INSERT FUNCTIONALITY]
+
+## Installation
+To install the project, follow these steps:
+
+1. Clone the repository to your local machine.
+2. Run `npm install` to install the required dependencies.
+3. Create a `.env` file in the root directory of the project and add the necessary environment variables for your API.
+4. Run `npm start` to start the development server.
+
+## Usage
+Once you have the website running, you can use the navigation menu at the top of the page to access the different pages on the website. Each page is designed to be fully responsive and optimized for any device, so you can view the website on a desktop, tablet, or mobile phone.
+
+## Contributing
+[Explain how others can contribute to the project, including any guidelines or requirements for contributing.]
+
+## Credits
+This project was built using the following technologies:
+
+- React
+- Axios
+- React Router
+
+
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
