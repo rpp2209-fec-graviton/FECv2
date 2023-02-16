@@ -1,5 +1,4 @@
 const axios = require('axios');
-import { useParams } from "react-router-dom";
 import React, { useState, useEffect, useContext } from "react";
 import { useRPContext } from "./Context/RPProvider.jsx";
 import RPList from "./RPList.jsx";

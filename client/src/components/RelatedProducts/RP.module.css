@@ -8,15 +8,15 @@
 .red {
   color: red;
 }
-.star {
+.action {
   position: absolute;
-  top: 1px;
-  right: 20px;
+  top: 0px;
+  right: 0px;
 }
 .comparisonContainer {
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Overlay effect: translucent background: black w/ partial opacity */
-  z-index: 1; /* Overlay effect: positioned over other containers */
+  z-index: 500; /* Overlay effect: positioned over other containers */
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   position: fixed; /* Fix position on the top-left corner*/
