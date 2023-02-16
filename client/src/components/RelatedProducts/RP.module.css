@@ -1,0 +1,15 @@
+.flex-with-scroll {
+  display: flex;
+	overflow-x: scroll;
+  justify-content: flex-start;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+}
+
+.flex-child {
+  width: 100%;
+	margin: auto;
+}

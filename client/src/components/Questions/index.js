@@ -3,6 +3,7 @@ import QuestionsList from './QuestionsList/QuestionsList.jsx';
 import SearchBar from './QuestionsList/SearchBar.jsx';
 import { useQuestionsContext } from './Context/QuestionsProvider.jsx';
 import styles from './questions.module.css';
+import globalStyles from '../Home/home.module.css';
 
 export default function QuestionsView() {
   const { modalAnchor } = useQuestionsContext();

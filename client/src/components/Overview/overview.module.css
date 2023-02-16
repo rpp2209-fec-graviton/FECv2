@@ -34,13 +34,8 @@ time, mark, audio, video {
 	vertical-align: baseline;
 } */
 
-h1, h2, h3, h4, h5, h6, p, a {
+h1, h3, h4, h5, h6, p, a {
 	margin: 8px 0;
-	/* padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline; */
 }
 
 img {
@@ -66,6 +61,12 @@ img {
 
 .border {
   border: 2px solid var(--silver);
+}
+
+h2.header {
+  text-align: left;
+  width: 100%;
+  margin-top: 32px;
 }
 
 /* =======================
@@ -95,10 +96,12 @@ img {
 ========================*/
 .overview {
   height: 80%;
-  max-width: 90%;
+  /* From Product Features Branch */
+  /* max-width: 90%; */
+  width: 100%;
   margin: 0 auto;
   padding: 60px 0;
-  z-index: 10;
+  z-index: 3;
 }
 
 .overview__images {
@@ -251,11 +254,10 @@ Convert scrollbar to ⏮ arrows ⏭
 ========================*/
 .button,
 .drop-down {
-  font-size: 14px;
   justify-content: center;
   display: inline-flex;
   align-items: center;
-  border: 1.5px solid var(--black);
+  text-align: left;
 }
 
 .style-selector__button,
@@ -263,6 +265,11 @@ Convert scrollbar to ⏮ arrows ⏭
   margin: 16px 8px;
   height: 40px;
   width: 200px;
+}
+
+.add-to-bag {
+  text-align: left;
+  padding-left: 12px;
 }
 
 .button:active {
@@ -276,6 +283,7 @@ Convert scrollbar to ⏮ arrows ⏭
   height: 24px;
   min-width: 40px;
 }
+
 .style-selector__buttons {
   width: max-content;
 }
@@ -283,20 +291,8 @@ Convert scrollbar to ⏮ arrows ⏭
 /* =======================
       Modal Styles
 ========================*/
-/* .images__modal { */
-  /* height: 100vh;
-  background-color: var(--white);
-
-  /* width: 100vw; */
-  /* height: 100%; */
-  /* min-height: 100%; */
-  /* box-sizing: border-box; */
-  /* overflow-x: hidden; */
-  /* overflow-y: hidden;*/
-
-  /* ===================== */
-  /* height: 100%;
-  width: 100vw;
+.images__modal {
+  height: 0;
   box-shadow: -2rem 2rem 2rem rgba(black, 0.2);
 
   filter: blur(0);
@@ -306,14 +302,11 @@ Convert scrollbar to ⏮ arrows ⏭
 
   visibility: visible;
   position: fixed;
-  z-index: 3;
-
-  top: -50px;
-  left: 60px;
+  z-index: 5;
+  /* left: 60px; */
 }
 
-
-.modal-hidden {
+/* .modal-hidden {
   height: 0;
   opacity: 0;
   filter: blur(8px);
@@ -322,16 +315,29 @@ Convert scrollbar to ⏮ arrows ⏭
   transition: 1.5s ease-out;
 }
 
-.modal__content { */
-  /* position: relative; */
-  /* object-fit: cover;
-  object-position: center;
-  height: 100%;
+.modal__content {
+  object-fit: cover;
+  height: 1400px;
   width: 100%;
+}  */
+
+/* =============================================
+        From Product Features Branch
+============================================= */
+/* .images__modal {
+  height: 0;
+  box-shadow: -2rem 2rem 2rem rgba(black, 0.2);
+
+  transform: scale(0.5);
+  opacity: 1;
+
+  visibility: visible;
+  position: fixed;
+  z-index: 3;
 } */
 
 .modal-hidden {
-  /* height: 0; */
+  height: 0;
   opacity: 0;
   filter: blur(8px);
   box-shadow: 1rem 0 0 rgba(black, 0.2);
@@ -343,34 +349,15 @@ Convert scrollbar to ⏮ arrows ⏭
   object-fit: cover;
   height: 100%;
   width: 100%;
-  /* overflow-x: visible; */
 }
-
-
-.images__modal {
-  height: 0;
-  box-shadow: -2rem 2rem 2rem rgba(black, 0.2);
-
-  transform: scale(0.5);
-  opacity: 1;
-
-  visibility: visible;
-  position: fixed;
-  z-index: 3;
-  /* left: 60px; */
-}
-
 
 .test {
-  /* border: 3px solid var(--silver); */
   position: absolute;
   width: 100%;
-  /* height: 100vh; */
   top: 0;
   left: 0;
 
   filter: blur(0);
-  /* transition: 1.5s ease-in-out; */
   transform: scale(1.5);
   opacity: 1;
 

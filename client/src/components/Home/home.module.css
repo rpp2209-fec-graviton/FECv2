@@ -1,5 +1,69 @@
+/* =======================
+      CSS Variables
+========================*/
+:root {
+  --black: #000000;
+  --blue: #1e90ff;
+  --charcoal: #2e2e2ec4;
+  --red: #ff0000;
+  --silver: rgba(192, 192, 192, 0.25);
+  --white: #ffffff;
+}
+
 body, html {
   height: 100%;
   width: 80vw;
   margin: 0 auto;
+}
+
+/* =======================
+        Headers
+========================*/
+h1, h2, h3, h4, h5, h6 {
+	margin: 8px 0;
+  font-weight: normal;
+}
+
+h2, h3, .header {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 50px;
+  margin-bottom: 25px;
+}
+
+/* =======================
+      Class Selectors
+========================*/
+.border {
+  border: 2px solid var(--silver);
+}
+
+.container {
+  width: 100%;
+  margin: 32px 0;
+}
+
+.btn {
+  box-sizing: border-box;
+  float: left;
+  height: 40px;
+  min-width: 176px;
+
+  margin: 10px 10px 0 0;
+  padding: 10px;
+
+  background-color: transparent;
+  border: 1.5px solid black;
+  border-radius: 0;
+
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.btn:hover {
+  background-color: gray;
 }
