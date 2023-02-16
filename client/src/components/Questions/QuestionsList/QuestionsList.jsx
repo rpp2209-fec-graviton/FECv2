@@ -18,6 +18,7 @@ import useModal from "../hooks/useModal.jsx";
 import { useQuestionsContext } from "../Context/QuestionsProvider.jsx";
 
 //CSS
+import globalStyles from "../../Home/home.module.css";
 import styles from "../questions.module.css";
 
 function QuestionsList(props) {
@@ -64,7 +65,7 @@ function QuestionsList(props) {
         }) : null}
       </div>
       {questionsList.length > 2 && <MoreAnsweredQ {...{ count, more, showMore, makeCount, makePage, updateQList, checkQList }} />}
-      <button className={styles.questionsView__btn} onClick={toggle}> Submit a Question + </button>
+      <button className={globalStyles.btn} onClick={toggle}>+ Submit a Question</button>
       <QuestionModal
         isShowing={isShowing}
         hide={toggle}
