@@ -43,7 +43,7 @@ h2, h3, .header {
 
 .container {
   width: 100%;
-  margin-bottom: 32px;
+  margin: 32px 0;
 }
 
 .btn {
