@@ -1,9 +1,13 @@
 const axios = require('axios');
+
 import { useParams } from "react-router-dom";
 import React, { useState, useEffect, useContext } from "react";
 import { useRPContext } from "./Context/RPProvider.jsx";
 import RPList from "./RPList.jsx";
 import YourOutfitList from "./YourOutfitList.jsx"
+
+import styles from './RP.module.css';
+import globalStyles from '../Home/home.module.css';
 
 function RelatedProducts () {
   const { fetchData, useClickLogger, product_id, currentProductData, setCurrentProductData, setRpData, setRpStyles, setRpRatings } = useRPContext();
@@ -55,7 +59,7 @@ function RelatedProducts () {
   },[product_id]);
 
   return (
-      <div data-testid='rp'>
+      <div className={globalStyles.container} data-testid='rp'>
         {loaded ? <><RPList/><br/></> : null}
         {loaded ? <><YourOutfitList/></>: null}
       </div>

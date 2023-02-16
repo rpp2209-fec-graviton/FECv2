@@ -2,7 +2,7 @@
   position: relative;
   display: inline-block;
   border:1px solid black;
-  padding: 3px;
+  padding: 8px;
   margin: 10px;
 }
 .red {
@@ -50,5 +50,6 @@ table {
   margin: 0 auto;
 }
 .addToOutfit {
-
+  display: flex;
+  align-items: center;
 }
