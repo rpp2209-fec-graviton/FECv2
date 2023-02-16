@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import useRatingsAvg from './useRatingsAvg/useRatingsAvg.jsx'
 import axios from 'axios';
+import calculateRatings from "../RelatedProducts/RatingCalculator.jsx";
 
 const useOutfitList = () => {
   const [outfitItems, setOutfitItems] = useState([]);
@@ -43,7 +44,7 @@ const useOutfitList = () => {
 						setOutfitItemRatings({...outfitItemRatings, [cp.id]: ratingsAverage})
 						setOutfitPhotoUrls({...outfitPhotoUrls, [cp.id]: itemPhotoUrl});
 						setOutfitItems([...outfitItems, cp]);
-					});
+					})
 				}
 			} else { // Overview Logic
 				if (!outfitItems.some(item => item.id === product.id)) {
