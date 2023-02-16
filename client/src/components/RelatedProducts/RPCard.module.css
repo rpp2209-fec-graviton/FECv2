@@ -24,6 +24,7 @@
   left: 0;
   overflow: auto; /* Enable scroll if needed */
   padding-top: 80px; /* Location of the content container */
+  z-index: 4;
 }
 .comparison {
   background-color: white;
