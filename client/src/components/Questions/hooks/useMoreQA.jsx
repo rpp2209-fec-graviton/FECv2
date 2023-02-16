@@ -24,6 +24,6 @@ export default function useMore() {
     setMore(!more);
   }
 
-  return [more, showMore, toggleMore]
+  return [more, setMore, showMore, toggleMore]
 
 }

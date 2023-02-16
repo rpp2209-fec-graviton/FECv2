@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import RPComparison from './RPComparison.jsx';
 import styles from './RPCard.module.css';
+import RPStars from './RPStars.jsx';
 import { useRPContext } from "./Context/RPProvider.jsx";
 
 function RPCard ({ rp, rpStyles, rpRating, toggleComparison }) {
@@ -32,9 +33,10 @@ function RPCard ({ rp, rpStyles, rpRating, toggleComparison }) {
       <br/>
       {rp.name}
       <br/>
-      {salePrice ? <span className={styles.red}>{salePrice} <strike>{originalPrice}</strike></span> : <span>{originalPrice}</span>}
+      {salePrice && <span className={styles.red}>${salePrice} <strike>${originalPrice}</strike></span>}
+      {originalPrice && <span>${originalPrice}</span>}
       <br/>
-      {rpRating}
+      <RPStars id={rp.id} rating={rpRating}/>
       <br/>
     </div>
   )

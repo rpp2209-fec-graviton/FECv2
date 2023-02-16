@@ -18,18 +18,30 @@ function QuestionModal({ isShowing, hide, Question }) {
 
   const submitForm = (event) => {
     event.preventDefault();
-    axios({
-      method: 'Post',
-      url: `${window.location.origin}/qa/questions`,
-      data: {
-        body: yourQuestion.value,
-        name: nickname.value,
-        email: yourEmail.value,
-        product_id
-      }
-    }).then((res) => {
-      console.log('Question', res.data);
-    })
+    if (yourEmail.value.indexOf('@') === -1 && yourEmail.value.indexOf('.') === -1) {
+      alert('You must enter the following: \nCorrect Email Format (____@___.com)')
+    } else if (nickname.value.length <= 3) {
+      alert('You must enter the following:\nValid Nickname')
+    } else if (yourQuestion.value.length <= 3) {
+      alert('You must enter the following:\nValid Question')
+    } else {
+      axios({
+        method: 'Post',
+        url: `${window.location.origin}/qa/questions`,
+        data: {
+          body: yourQuestion.value,
+          name: nickname.value,
+          email: yourEmail.value,
+          product_id: Number(product_id)
+        }
+      }).then((res) => {
+        console.log('Question', res.data);
+        yourQuestion.reset.thevalue();
+        nickname.reset.thevalue();
+        yourEmail.reset.thevalue();
+        hide();
+      })
+    }
   };
 
   const getProductName = () => {
@@ -40,7 +52,6 @@ function QuestionModal({ isShowing, hide, Question }) {
     })
       .then((res) => {
         setProductName(res.data.name);
-        console.log(productName, 'in then call', res.data.name);
       })
       .catch((err) => {
         throw err;
@@ -70,11 +81,13 @@ function QuestionModal({ isShowing, hide, Question }) {
               </label>
               <label>
                 Nickname:&nbsp;
-                <input placeholder="Example: jack543!" {...nickname} required={true} />
+                <input placeholder="Example: jackson11!" {...nickname} required={true} />
+                <sub>For privacy reasons, do not use your full name or email address</sub>
               </label>
               <label>
                 Email:&nbsp;
-                <input placeholder="Email" {...yourEmail} required={true} />
+                <input placeholder="Email@email.com" {...yourEmail} required={true} />
+                <sub>For authentication reasons, you will not be emailed</sub>
               </label>
               <button type="submit">Submit Answer</button>
             </form>

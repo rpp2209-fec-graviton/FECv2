@@ -7,8 +7,13 @@ export default function useInput(initialValue) {
     setValue(event.target.value);
   };
 
+  const thevalue = () => {
+    setValue('');
+  }
+
   return {
     value,
-    onChange: handleChange
+    onChange: handleChange,
+    reset: {thevalue}
   };
 };
