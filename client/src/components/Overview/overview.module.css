@@ -34,7 +34,7 @@ time, mark, audio, video {
 	vertical-align: baseline;
 } */
 
-h1, h2, h3, h4, h5, h6, p, a {
+h1, h3, h4, h5, h6, p, a {
 	margin: 8px 0;
 	/* padding: 0;
 	border: 0;
@@ -68,6 +68,12 @@ img {
   border: 2px solid var(--silver);
 }
 
+h2.header {
+  text-align: left;
+  width: 100%;
+  margin-top: 32px;
+}
+
 /* =======================
       Grid & Flexbox
 ========================*/
@@ -95,7 +101,8 @@ img {
 ========================*/
 .overview {
   height: 80%;
-  max-width: 60%;
+  /* max-width: 60%; */
+  width: 100%;
   margin: 0 auto;
   padding: 60px 0;
   z-index: 10;
@@ -327,11 +334,9 @@ Convert scrollbar to ⏮ arrows ⏭
 ========================*/
 .button,
 .drop-down {
-  font-size: 14px;
   justify-content: center;
   display: inline-flex;
   align-items: center;
-  border: 1.5px solid var(--black);
 }
 
 .style-selector__button,

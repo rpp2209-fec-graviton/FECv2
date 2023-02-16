@@ -8,6 +8,7 @@ import { useOverviewContext } from "../Context/OverviewProvider.jsx";
 import { useProductContext } from '../../Context/ContextProvider.jsx';
 import useFetchProduct from '../../Hooks/useFetchProduct.jsx';
 
+import globalStyles from "../../Home/home.module.css";
 import styles from '../overview.module.css';
 
 function StyleSelector () {
@@ -89,7 +90,7 @@ function StyleSelector () {
 			<ThumbnailCarousel type="images__carousel"  />
 
 			<select
-				className={styles['drop-down']}
+				className={`${styles['drop-down']} ${globalStyles.btn}`}
 				ref={sizeRef}
 				id="size" value={size}
 				onChange={handleDropdownChange}
@@ -99,7 +100,7 @@ function StyleSelector () {
 			</select>
 
 			<select
-				className={styles['drop-down']}
+				className={`${styles['drop-down']} ${globalStyles.btn}`}
 				ref={qtyRef}
 				id="qty"
 				value={qty}
