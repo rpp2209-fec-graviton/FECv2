@@ -17,13 +17,17 @@ const useOutfitList = () => {
 
 			const storedPhotos = window.localStorage.getItem('OUTFIT_PHOTOS');
 			if ( storedPhotos !== null ) setOutfitPhotoUrls(JSON.parse(storedPhotos));
+
+			const storedRatings = window.localStorage.getItem('OUTFIT_RATINGS');
+			if ( storedRatings !== null ) setOutfitItemRatings(JSON.parse(storedRatings));
 		}, []);
 
 		// set the outfit items in local storage, whenever they change
 		useEffect(() => {
 			window.localStorage.setItem('OUTFIT_ITEMS', JSON.stringify(outfitItems));
 			window.localStorage.setItem('OUTFIT_PHOTOS', JSON.stringify(outfitPhotoUrls));
-		}, [outfitItems, outfitPhotoUrls]);
+			window.localStorage.setItem('OUTFIT_RATINGS', JSON.stringify(outfitItemRatings));
+		}, [outfitItems, outfitPhotoUrls, outfitItemRatings]);
 
 		// =============================================
 		//             Utility Functions

@@ -11,7 +11,7 @@ function YourOutfitItem ({ item, photo, removeFromOutfit }) {
     return (
       <div className={styles.card}>
         <img src={photo} onClick={() => changeProduct(item.id)}/>
-        <button className={styles.star} onClick={() => removeFromOutfit(item.id)}>x</button>
+        <button className={styles.action} onClick={() => removeFromOutfit(item.id)}>x</button>
         <br/>
         {item.category}
         <br/>
