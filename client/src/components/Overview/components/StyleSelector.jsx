@@ -111,8 +111,8 @@ function StyleSelector () {
 			</select>
 
 			<div className={styles['style-selector__buttons']}>
-				<Button type='style-selector__button' handleClick={handleAddToBag}>+ Add to Bag</Button>
-				<Button type='style-selector__button' handleClick={handleAddToOutfitList}>⭐</Button>
+				<Button value="add-to-bag" type='style-selector__button' handleClick={handleAddToBag}>+ Add to Bag</Button>
+				<Button value="add-to-outfit-star" type='style-selector__button' handleClick={handleAddToOutfitList}>⭐</Button>
 			</div>
 		</div>
 	)
