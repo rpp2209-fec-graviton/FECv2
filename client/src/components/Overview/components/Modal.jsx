@@ -8,7 +8,7 @@ function Modal ({ show, setShow, children }) {
 	return (
 		<div
 			id="modal"
-			className={`${styles.images__modal} ${styles['modal-hidden']} ${styles.flex}`}
+			className={`${styles.test} ${styles['modal-hidden']} ${styles.flex}`}
 			onClick={zoomModal}
 		>
 			{children}

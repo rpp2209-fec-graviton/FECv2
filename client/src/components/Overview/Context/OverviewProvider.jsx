@@ -16,6 +16,9 @@ export default function OverviewProvider({ children }) {
 	const [ imgURL, setURL ] = useState('');
 	const [ price, setPrice ] = useState({ price: '', type: 'default'});
 
+	// Debug To-Do:
+	// Fullsize Image Doesn't Change on First Click to Thumbnail after a user zooms and returns to default view
+
 	// Update Large Image URL and Style Price when selectedStyle changes
 	const handleStyleChange = (e, style, type) => {
 		// console.log('Style', selectedStyle);
