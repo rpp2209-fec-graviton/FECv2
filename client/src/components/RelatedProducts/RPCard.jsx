@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
+import { useRPContext } from './Context/RPProvider.jsx'
 import RPComparison from './RPComparison.jsx';
-import styles from './RP.module.css';
+import RPCardSetup from './RPCardSetup.jsx'
 import RPStars from './RPStars.jsx';
-import { useRPContext } from "./Context/RPProvider.jsx";
+import styles from './RP.module.css';
 
 function RPCard ({ rp }) {
   const { rpStyles, rpRatings, toggleComparison, changeProduct } = useRPContext();
@@ -10,35 +11,19 @@ function RPCard ({ rp }) {
   var rpStyle = rpStyles[rp.id];
   var rpRating = rpRatings[rp.id];
 
-  var imgUrl = null;
-  var defaultStyle = [];
-  if (rpStyle) {
-    imgUrl = rpStyle[0].photos[0].thumbnail_url;
-    defaultStyle = rpStyle.filter((style) => {
-      return style['default?'];
-    });
-  }
-
-  var originalPrice = null;
-  var salePrice = null;
-  if (defaultStyle.length > 0) {
-    originalPrice = defaultStyle[0].original_price;
-    if (defaultStyle[0].sale_price !== null) {
-      salePrice = defaultStyle[0].sale_price;
-    }
-  }
+  var cardInfo = RPCardSetup(rpStyle);
 
   return (
     <div className={styles.card} data-testid='rpcard'>
-      <img src={imgUrl} onClick={() => changeProduct(rp.id)}/>
+      <img src={cardInfo[0]} onClick={() => changeProduct(rp.id)}/>
       <h3 className={styles.action} onClick={() => toggleComparison(rp.id)}>⭐</h3>
       <br/>
       {rp.category}
       <br/>
       {rp.name}
       <br/>
-      {salePrice && <span className={styles.red}>${salePrice} <strike>${originalPrice}</strike></span>}
-      {originalPrice && <span>${originalPrice}</span>}
+      {cardInfo[2] && <span className={styles.red}>${cardInfo[2]} <strike>${cardInfo[1]}</strike></span>}
+      {cardInfo[1] && <span>${cardInfo[1]}</span>}
       <br/>
       <RPStars id={rp.id} rating={rpRating}/>
       <br/>
