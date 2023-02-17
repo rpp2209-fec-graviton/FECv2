@@ -15,6 +15,7 @@ function Images () {
 	const {
 		imgURL,
 		setURL,
+		handleSetImgAspectRatio,
 		selectedStyle,
 		setSelectedStyle,
 		currentProductStyles
@@ -31,6 +32,10 @@ function Images () {
 	useEffect(() => {
 		selectedStyle.photos && setURL(selectedStyle.photos[0].url);
 	}, [selectedStyle]);
+
+	useEffect(() => {
+		imgURL &&	handleSetImgAspectRatio();
+	}, [imgURL]);
 
 	const handleHover = (e) => {
 		const image = document.querySelector('#image-lg');

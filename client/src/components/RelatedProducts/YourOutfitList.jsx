@@ -9,7 +9,7 @@ import styles from './RPCard.module.css';
 function YourOutfitList () {
   const { outfitItems, addToOutfit, removeFromOutfit, outfitPhotoUrls } = useProductContext();
   const { fetchData, currentProductData, changeProduct } = useRPContext();
-  console.log(currentProductData.id, currentProductData.name)
+  // console.log(currentProductData.id, currentProductData.name)
 
   return (
     <div>

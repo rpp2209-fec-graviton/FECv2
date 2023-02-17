@@ -121,6 +121,7 @@ h2.header {
   position: relative;
   object-fit: contain;
   object-position: center;
+  border: 2px solid var(--black);
 
   width: 100%;
   height: auto;
@@ -130,14 +131,7 @@ h2.header {
   grid-row: 2 / span 5;
 }
 
-.overview__image-landscape,
-.overview__image-portrait {
-  border: 2px solid var(--black);
-}
-
 .overview__image-landscape {
-  /* width: auto;
-  height: auto; */
   min-height: 528px;
   object-fit: cover;
 }
