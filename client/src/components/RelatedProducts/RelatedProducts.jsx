@@ -1,17 +1,19 @@
 const axios = require('axios');
 import React, { useState, useEffect } from "react";
+import { useProductContext } from '../Context/ContextProvider.jsx'
 import { useRPContext } from "./Context/RPProvider.jsx";
 import calculateRatings from "./RatingCalculator.jsx";
 import RPList from "./RPList.jsx";
 import YourOutfitList from "./YourOutfitList.jsx"
 
 function RelatedProducts () {
+  const { currentProductId } = useProductContext();
   const { fetchData, product_id, setRpData, setRpStyles, setRpRatings, setCurrentProductData } = useRPContext();
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     let idList;
-    fetchData(`products/${product_id}/related`)
+    fetchData(`products/${currentProductId}/related`)
     .then((ids) => {
       idList = [...new Set(ids)];
       return Promise.all(idList.map((id) => {
@@ -37,13 +39,13 @@ function RelatedProducts () {
     .then((reviews) => {
       var ratingList = calculateRatings(reviews);
       setRpRatings(ratingList);
-      return fetchData(`products/${product_id}`)
+      return fetchData(`products/${currentProductId}`)
     })
     .then((currentProductData) => {
       setCurrentProductData(currentProductData);
       setLoaded(true);
     })
-  },[product_id]);
+  },[currentProductId]);
 
   return (
     <div data-testid='rp'>

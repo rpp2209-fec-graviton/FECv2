@@ -9,6 +9,7 @@ function YourOutfitList () {
   const { fetchData, currentProductData } = useRPContext();
 
   function handleAddToOutfit() {
+    console.log('current items rating', ratingsAverage)
     setOutfitItemRatings({...outfitItemRatings, [currentProductData.id]: ratingsAverage});
     addToOutfit(currentProductData, fetchData);
   }
