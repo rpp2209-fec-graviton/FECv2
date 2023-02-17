@@ -2,8 +2,8 @@ import React from "react";
 import { useRPContext } from "./Context/RPProvider.jsx";
 import styles from './RP.module.css';
 
-function RPComparison ({ rp, toggleComparison, modalIsOpen }) {
-  const { currentProductData } = useRPContext();
+function RPComparison ({ rp }) {
+  const { currentProductData, toggleComparison } = useRPContext();
 
   function isSharedFeature(feature, arr) {
     return arr.some(x => (feature.value === x.value) && (feature.feature === x.feature))

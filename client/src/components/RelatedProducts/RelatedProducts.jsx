@@ -1,12 +1,12 @@
 const axios = require('axios');
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { useRPContext } from "./Context/RPProvider.jsx";
 import calculateRatings from "./RatingCalculator.jsx";
 import RPList from "./RPList.jsx";
 import YourOutfitList from "./YourOutfitList.jsx"
 
 function RelatedProducts () {
-  const { fetchData, useClickLogger, product_id, currentProductData, setCurrentProductData, setRpData, setRpStyles, setRpRatings, setOutfitRatings } = useRPContext();
+  const { fetchData, product_id, currentProductData, setCurrentProductData, setRpData, rpStyles, setRpStyles, setRpRatings, setOutfitRatings } = useRPContext();
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -25,7 +25,11 @@ function RelatedProducts () {
       }))
     })
     .then((styles) => {
-      setRpStyles(styles);
+      var styleState = {}
+      styles.forEach((product) => {
+        styleState[product.product_id] = product.results;
+      })
+      setRpStyles(styleState);
       return Promise.all(idList.map((id) => {
         return fetchData(`reviews/meta?product_id=${id}`)
       }))
@@ -42,10 +46,10 @@ function RelatedProducts () {
   },[product_id]);
 
   return (
-      <div data-testid='rp'>
-        {loaded ? <><RPList/><br/></> : null}
-        {loaded ? <><YourOutfitList/></>: null}
-      </div>
+    <div data-testid='rp'>
+      {loaded ? <><RPList/><br/></> : null}
+      {loaded ? <><YourOutfitList/></>: null}
+    </div>
   )
 }
 

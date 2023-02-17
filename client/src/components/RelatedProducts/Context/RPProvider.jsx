@@ -11,6 +11,10 @@ export default function RPProvider({ children }) {
     navigate(`/${id}`)
   };
 
+  function toggleComparison(id) {
+    setCompareId(id);
+  }
+
   function fetchData(ep) {
     return new Promise((resolve, reject) => {
       const callback = (err, data) => {
@@ -31,6 +35,7 @@ export default function RPProvider({ children }) {
   const [rpStyles, setRpStyles] = useState(null);
   const [rpRatings, setRpRatings] = useState(null);
   const [outfitRatings, setOutfitRatings] = useState(null);
+  const [compareId, setCompareId] = useState(null);
 
   const container = { fetchData, useClickLogger, product_id: currentProductId, changeProduct, currentProductData, setCurrentProductData, rpData, rpStyles, rpRatings, setRpData, setRpStyles, setRpRatings, outfitRatings, setOutfitRatings};
 

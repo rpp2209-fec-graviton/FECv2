@@ -4,13 +4,17 @@ import styles from './RP.module.css';
 import RPStars from './RPStars.jsx';
 import { useRPContext } from "./Context/RPProvider.jsx";
 
-function RPCard ({ rp, rpStyles, rpRating, toggleComparison }) {
-  const { changeProduct } = useRPContext();
+function RPCard ({ rp }) {
+  const { rpStyles, rpRatings, toggleComparison, changeProduct } = useRPContext();
+
+  var rpStyle = rpStyles[rp.id]; //might need ? at end
+  var rpRating = rpRatings[rp.id];
+
   var imgUrl = null;
   var defaultStyle = [];
-  if (rpStyles) {
-    imgUrl = rpStyles[0].photos[0].thumbnail_url;
-    defaultStyle = rpStyles.filter((style) => {
+  if (rpStyle) {
+    imgUrl = rpStyle[0].photos[0].thumbnail_url;
+    defaultStyle = rpStyle.filter((style) => {
       return style['default?'];
     });
   }
