@@ -15,6 +15,7 @@ function RelatedProducts () {
     let idList;
     fetchData(`products/${currentProductId}/related`)
     .then((ids) => {
+      console.log('idlistlength', ids.length)
       idList = [...new Set(ids)];
       return Promise.all(idList.map((id) => {
         return fetchData(`products/${id}`)

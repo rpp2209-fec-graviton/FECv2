@@ -14,7 +14,7 @@ function YourOutfitList () {
   }
 
   return (
-    <div>
+    <div data-testid='outfitlist'>
       <h2>
       Your Outfit
       </h2>
