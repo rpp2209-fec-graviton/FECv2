@@ -4,7 +4,7 @@ import { useProductContext } from "../../Context/ContextProvider.jsx";
 import useFetchProduct from '../../Hooks/useFetchProduct.jsx';
 import styles from '../overview.module.css';
 
-function ProductInfo() {
+function ProductFeatures() {
 	const { currentProductId } = useProductContext();
 	const { response } = useFetchProduct(currentProductId);
 
@@ -16,4 +16,4 @@ function ProductInfo() {
 	);
 };
 
-export default ProductInfo;
+export default ProductFeatures;

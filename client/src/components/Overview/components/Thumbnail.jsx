@@ -12,7 +12,7 @@ function Thumbnail({ carouselType, type, photos, style }) {
 	return (
 		<img
 			onClick={(e) => handleStyleChange(e, style, type)}
-			className={`${styles[type]} ${styles.thumbnail}`}
+			className={styles[type]}
 			id={urls.url} // figure out a better way to pass this along with thumbnail
 			src={urls && urls.thumbnail_url}
 			alt="thumbnail image"

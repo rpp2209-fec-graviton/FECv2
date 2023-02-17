@@ -66,16 +66,22 @@ img {
 h2.header {
   text-align: left;
   width: 100%;
-  margin-top: 32px;
+  margin-top: 64px;
 }
 
 /* =======================
       Grid & Flexbox
 ========================*/
-.grid-template {
+.overview-grid-template {
   grid-gap: 10px;
   grid-template-columns: repeat(autofill, 180px);
   grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+}
+
+.style-selector-grid-template {
+  height: fit-content;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 20% 20% 20% 20% 20%;
 }
 
 .grid {
@@ -99,51 +105,81 @@ h2.header {
   /* From Product Features Branch */
   /* max-width: 90%; */
   width: 100%;
-  margin: 0 auto;
-  padding: 60px 0;
+  margin-top: 0 auto;
+  padding: 12px 0;
   z-index: 3;
 }
 
 .overview__images {
   display: table;
   position: relative;
-  grid-column-start: 2;
+  grid-column: 1 / span 2;
+  width: auto;
 }
 
 .overview__image {
-  border: 2px solid var(--black);
-  object-fit: cover;
-  object-position: top;
+  position: relative;
+  object-fit: contain;
+  object-position: center;
+
+  width: 100%;
+  height: auto;
+  max-height: 536px;
+
+  grid-column-start: 1;
   grid-row: 2 / span 5;
-  width: auto;
-  height: 500px;
 }
 
-
-.overview__product-info {
-  height: max-content;
-  grid-column-start: 8;
-  margin-left: 80px;
+.overview__image-landscape,
+.overview__image-portrait {
+  border: 2px solid var(--black);
 }
 
-.product-info__detail {
-  grid-row-start: 1;
+.overview__image-landscape {
+  /* width: auto;
+  height: auto; */
+  min-height: 528px;
+  object-fit: cover;
 }
 
-.overview__style-selector {
-  grid-row-start: 3;
+.overview__image-portrait {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 .overview__product-features {
   /* width: 100%; */
   text-align: center;
-  grid-row-start: 8;
-  grid-column-start: 2;
+  grid-row-start: 7;
+  grid-column: 1 / span 2;
 }
 
 /* =======================
       Product Info
 ========================*/
+.overview__product-info {
+  height: max-content;
+  min-height: 800px;
+  grid-column-start: 4;
+  margin-left: 80px;
+}
+
+.product-info__detail {
+  grid-row-start: 1;
+  max-height: 112px;
+}
+
+.product-info__detail,
+.overview__style-selector {
+  grid-column: 1 / span 4;
+}
+
+h2.product-details__name {
+  margin: 16px 0;
+}
+
+
 .product-info__sale-price {
   color: var(--red);
 }
@@ -280,7 +316,6 @@ Convert scrollbar to ⏮ arrows ⏭
   margin-left: 8px;
   background-color: var(--white);
   top: 0;
-  height: 24px;
   min-width: 40px;
 }
 

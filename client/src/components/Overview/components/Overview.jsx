@@ -15,12 +15,12 @@ function Overview() {
 	return (
 		<>
 			<h2 className={styles.header}>Overview</h2>
-			<div className={`${styles.overview} ${styles['grid-template']} ${styles.flex}`}>
-			{/* <div className={`${styles.overview} ${styles['grid-template']} ${styles.grid}`}> */}
+			<div className={`${styles.overview} ${styles['overview-grid-template']} ${styles.grid}`}>
+			{/* <div className={`${styles.overview} ${styles['grid-template']} ${styles.flex}`}> */}
 				<Images />
 				<ProductFeatures />
 
-				<div className={`${styles.grid} ${styles['overview__product-info']}`}>
+				<div className={`${styles.grid}  ${styles['style-selector-grid-template']} ${styles['overview__product-info']}`}>
 					<StyleSelector />
 					<ProductInfo />
 				</div>

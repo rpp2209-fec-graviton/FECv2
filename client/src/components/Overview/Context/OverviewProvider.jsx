@@ -2,6 +2,7 @@ import React, { useState, createContext, useContext } from 'react';
 
 import { useProductContext } from '../../Context/ContextProvider.jsx';
 import useStyles from '../hooks/useStyles.jsx';
+import styles from '../overview.module.css';
 
 export const OverviewContext = createContext();
 
@@ -16,19 +17,28 @@ export default function OverviewProvider({ children }) {
 	const [ imgURL, setURL ] = useState('');
 	const [ price, setPrice ] = useState({ price: '', type: 'default'});
 
-	// Debug To-Do:
-	// Fullsize Image Doesn't Change on First Click to Thumbnail after a user zooms and returns to default view
+	// Debug TODO: Only Updates Aspect Ratio on second click when changing types (P > L or vice versa)
+	const handleSetImgAspectRatio = () => {
+		const img = document.getElementById('image-lg');
+		img.naturalWidth <= img.naturalHeight ? console.log("Portrait", img.naturalWidth, 'x', img.naturalHeight) : console.log('Landscape', img.naturalWidth, 'x', img.naturalHeight);
+
+		if (img.naturalWidth > img.naturalHeight) {
+			img.classList.add(styles['overview__image-landscape']);
+		} else if (img.naturalWidth <= img.naturalHeight) {
+			img.classList.add(styles['overview__image-portrait']);
+		}
+	};
 
 	// Update Large Image URL and Style Price when selectedStyle changes
 	const handleStyleChange = (e, style, type) => {
-		// console.log('Style', selectedStyle);
-
 		if (type === 'thumbnail-rounded') {
 			setSelectedStyle(style);
 			setURL(e.target.id && e.target.id);
+			handleSetImgAspectRatio();
 			setPrice(style.sale_price && style.sale_price !== null ? { price: style.sale_price, type: 'sale' } : { price: style.original_price, type: 'default' } );
 		} else {
 			setURL(e.target.id && e.target.id);
+			handleSetImgAspectRatio();
 		}
 	};
 
