@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import styles from './RP.module.css';
 import { useProductContext } from '../Context/ContextProvider.jsx';
-import OutfitStars from './OutfitStars.jsx';
 import { useRPContext } from "./Context/RPProvider.jsx";
+import RPStars from './RPStars.jsx';
+import styles from './RP.module.css';
 
 function YourOutfitItem ({ item }) {
   const { outfitItemRatings, outfitPhotoUrls, removeFromOutfit } = useProductContext();
@@ -19,7 +19,7 @@ function YourOutfitItem ({ item }) {
         <br/>
         <span>${item.default_price}</span>
         <br/>
-        <OutfitStars rating={outfitItemRatings[item.id]} id={item.id} />
+        <RPStars rating={outfitItemRatings[item.id]} id={item.id} prefix={'O'}/>
         <br/>
       </div>
     )

@@ -25,7 +25,7 @@ function RPCard ({ rp }) {
       {cardInfo[2] && <span className={styles.red}>${cardInfo[2]} <strike>${cardInfo[1]}</strike></span>}
       {cardInfo[1] && <span>${cardInfo[1]}</span>}
       <br/>
-      <RPStars id={rp.id} rating={rpRating}/>
+      <RPStars id={rp.id} rating={rpRating} prefix={'R'}/>
       <br/>
     </div>
   )
