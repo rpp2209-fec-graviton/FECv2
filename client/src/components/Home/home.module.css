@@ -8,6 +8,7 @@
   --red: #ff0000;
   --silver: rgba(192, 192, 192, 0.25);
   --white: #ffffff;
+  --yellow: #f8ce0b;
 }
 
 body, html {
@@ -66,4 +67,32 @@ h2, h3, .header {
 
 .btn:hover {
   background-color: gray;
+}
+
+/* =======================
+    Star Rating Styles
+========================*/
+.stars__outer {
+  display: inline-block;
+  position: relative;
+  z-index: 10;
+  /* font-family: 'FontAwesome', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+}
+
+.stars__outer::before {
+  content: "☆☆☆☆☆";
+}
+
+.stars__inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  color: var(--yellow);
+}
+
+.stars__inner::before {
+  content: "★★★★★";
 }
