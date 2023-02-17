@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import useProductContext from '../Context/ContextProvider.jsx'
 import styles from './RP.module.css';
 
 function OutfitStars({ id, rating }) {

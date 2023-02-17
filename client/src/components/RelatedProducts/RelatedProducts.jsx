@@ -6,7 +6,7 @@ import RPList from "./RPList.jsx";
 import YourOutfitList from "./YourOutfitList.jsx"
 
 function RelatedProducts () {
-  const { fetchData, product_id, currentProductData, setCurrentProductData, setRpData, rpStyles, setRpStyles, setRpRatings, setOutfitRatings } = useRPContext();
+  const { fetchData, product_id, setRpData, setRpStyles, setRpRatings, setCurrentProductData } = useRPContext();
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
