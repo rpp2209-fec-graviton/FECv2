@@ -26,17 +26,17 @@ export default function OverviewProvider({ children }) {
 			height = this.naturalHeight;
 
 			width <= height ? console.log("Portrait", width, 'x', height) : console.log('Landscape', width, 'x', height);
-		};
 
-		if (width !== 0 && height !== 0) {
-			if (width > height) {
-				img.classList.add(styles['overview__image-landscape']);
-				img.classList.remove(styles['overview__image-portrait']);
-			} else if (width <= height) {
-				img.classList.add(styles['overview__image-portrait']);
-				img.classList.remove(styles['overview__image-landscape']);
+			if (width !== 0 && height !== 0) {
+				if (width > height) {
+					img.classList.add(styles['overview__image-landscape']);
+					img.classList.remove(styles['overview__image-portrait']);
+				} else if (width <= height) {
+					img.classList.add(styles['overview__image-portrait']);
+					img.classList.remove(styles['overview__image-landscape']);
+				}
 			}
-		}
+		};
 
 	};
 
