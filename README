@@ -22,7 +22,12 @@ This is a web-based front-end for the [API Name], which allows users to [describ
 [INSERT FUNCTIONALITY]
 
 ### Related-Products Module
-[INSERT FUNCTIONALITY]
+The related products feature displays other products a customer might be interested in, based on the one currently selected.
+- Click the star icon to view a comparison of any related item to the one currently being viewed.
+
+Also included in this module is an "outfit" feature which allows a customer to build a look by adding and removing products of interest.
+- Click "Add to Outfit" to add the item currently being viewed to the outfit list.
+- Click the "x" button in the top-right corner of any outfit item to remove it from the list.
 
 ### Questions-And-Answers Module
 [INSERT FUNCTIONALITY]
