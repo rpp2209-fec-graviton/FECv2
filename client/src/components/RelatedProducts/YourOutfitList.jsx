@@ -9,6 +9,7 @@ import styles from './RPCard.module.css';
 function YourOutfitList () {
   const { outfitItems, addToOutfit, removeFromOutfit, outfitPhotoUrls } = useProductContext();
   const { fetchData, currentProductData, changeProduct } = useRPContext();
+  console.log(currentProductData.id, currentProductData.name)
 
   return (
     <div>
@@ -20,7 +21,7 @@ function YourOutfitList () {
           <p> Add to Outfit (+) </p>
         </div>
         {outfitItems && outfitItems.map((item) => {
-          return <YourOutfitItem className={RPstyles['flex-child']} key={item.id} photo={outfitPhotoUrls[item.id]}  item={item} changeProduct={changeProduct} removeFromOutfit={removeFromOutfit}/>
+          return <YourOutfitItem className={RPstyles['flex-child']} key={item.id} photo={outfitPhotoUrls[item.id]} item={item} removeFromOutfit={removeFromOutfit}/>
         })}
       </div>
     </div>

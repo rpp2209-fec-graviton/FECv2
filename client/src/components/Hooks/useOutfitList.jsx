@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import calculateRatings from "../RelatedProducts/RatingCalculator.jsx";
 
 const useOutfitList = () => {
   const [outfitItems, setOutfitItems] = useState([])
   const [outfitPhotoUrls, setOutfitPhotoUrls] = useState({});
+	const [outfitItemRatings, setOutfitItemRatings] = useState(null);
 
 		// =============================================
 		//                  Effects
@@ -28,7 +30,6 @@ const useOutfitList = () => {
 		// =============================================
 		// Add an item to the outfit list
 		const addToOutfit = (product, ...args) => {
-			console.log('product', product)
 			// Related Product Logic
 			if (typeof args[0] === 'function') {
 				const cp = product;
@@ -40,7 +41,7 @@ const useOutfitList = () => {
 						var itemPhotoUrl = styles.results[0].photos[0].thumbnail_url;
 						setOutfitPhotoUrls({...outfitPhotoUrls, [cp.id]: itemPhotoUrl});
 						setOutfitItems([...outfitItems, cp]);
-					});
+					})
 				}
 			} else { // Overview Logic
 				if (!outfitItems.some(item => item.id === product.id)) {
@@ -59,7 +60,7 @@ const useOutfitList = () => {
 			setOutfitItems(newState);
 		};
 
-  return { outfitItems, outfitPhotoUrls, addToOutfit, removeFromOutfit };
+  return { outfitItems, outfitPhotoUrls, outfitItemRatings, addToOutfit, removeFromOutfit };
 };
 
 export default useOutfitList;

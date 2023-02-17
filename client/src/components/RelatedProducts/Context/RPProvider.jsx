@@ -30,8 +30,9 @@ export default function RPProvider({ children }) {
   const [rpData, setRpData] = useState(null);
   const [rpStyles, setRpStyles] = useState(null);
   const [rpRatings, setRpRatings] = useState(null);
+  const [outfitRatings, setOutfitRatings] = useState(null);
 
-  const container = { fetchData, useClickLogger, product_id: currentProductId, changeProduct, currentProductData, setCurrentProductData, rpData, rpStyles, rpRatings, setRpData, setRpStyles, setRpRatings};
+  const container = { fetchData, useClickLogger, product_id: currentProductId, changeProduct, currentProductData, setCurrentProductData, rpData, rpStyles, rpRatings, setRpData, setRpStyles, setRpRatings, outfitRatings, setOutfitRatings};
 
   return (
     <RPContext.Provider value={container}>

@@ -3,6 +3,7 @@ const axios = require('axios');
 import { useParams } from "react-router-dom";
 import React, { useState, useEffect, useContext } from "react";
 import { useRPContext } from "./Context/RPProvider.jsx";
+import calculateRatings from "./RatingCalculator.jsx";
 import RPList from "./RPList.jsx";
 import YourOutfitList from "./YourOutfitList.jsx"
 
@@ -10,11 +11,10 @@ import styles from './RP.module.css';
 import globalStyles from '../Home/home.module.css';
 
 function RelatedProducts () {
-  const { fetchData, useClickLogger, product_id, currentProductData, setCurrentProductData, setRpData, setRpStyles, setRpRatings } = useRPContext();
+  const { fetchData, useClickLogger, product_id, currentProductData, setCurrentProductData, setRpData, setRpStyles, setRpRatings, setOutfitRatings } = useRPContext();
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    setLoaded(false);
     let idList;
     fetchData(`products/${product_id}/related`)
     .then((ids) => {
@@ -36,19 +36,7 @@ function RelatedProducts () {
       }))
     })
     .then((reviews) => {
-      var ratingList = {};
-      var average;
-      reviews.forEach((review) => {
-        var totalCount = 0;
-        var total = 0;
-        for (var rating in review.ratings) {
-          var ratingCount = parseInt(review.ratings[rating]);
-          totalCount += ratingCount;
-          total += rating * ratingCount;
-        }
-        average = total / totalCount;
-        ratingList[review.product_id] = average.toFixed(1);
-      })
+      var ratingList = calculateRatings(reviews);
       setRpRatings(ratingList);
       return fetchData(`products/${product_id}`)
     })

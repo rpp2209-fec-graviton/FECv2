@@ -54,3 +54,23 @@ table {
   display: flex;
   align-items: center;
 }
+.starsOuter {
+  display: inline-block;
+  position: relative;
+  font-family: FontAwesome;
+}
+.starsOuter::before {
+  content: "☆☆☆☆☆";
+}
+.starsInner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+}
+.starsInner::before {
+  content: "★★★★★";
+  color: #f8ce0b;
+}
