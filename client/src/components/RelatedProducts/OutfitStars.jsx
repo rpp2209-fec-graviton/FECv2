@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import useProductContext from '../Context/ContextProvider.jsx'
 import styles from './RP.module.css';
 
-function OutfitRating({ id, rating }) {
+function OutfitStars({ id, rating }) {
   useEffect(() => {
     if (rating) {
       const fillPercent = (rating / 5) * 100;
@@ -18,4 +18,4 @@ function OutfitRating({ id, rating }) {
   );
 }
 
-export default OutfitRating;
+export default OutfitStars;
