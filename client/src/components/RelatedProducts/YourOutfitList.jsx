@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import YourOutfitItem from "./YourOutfitItem.jsx";
+import YourOutfitCard from "./YourOutfitCard.jsx";
 import styles from './RP.module.css';
 import { useProductContext } from '../Context/ContextProvider.jsx';
 import { useRPContext } from "./Context/RPProvider.jsx";
@@ -23,7 +23,7 @@ function YourOutfitList () {
           <p> Add to Outfit (+) </p>
         </div>
         {outfitItems && outfitItems.map((item) => {
-          return <YourOutfitItem key={item.id} item={item}/>
+          return <YourOutfitCard key={item.id} item={item}/>
         })}
       </div>
     </div>

@@ -4,7 +4,7 @@ import { useRPContext } from "./Context/RPProvider.jsx";
 import RPStars from './RPStars.jsx';
 import styles from './RP.module.css';
 
-function YourOutfitItem ({ item }) {
+function YourOutfitCard ({ item }) {
   const { outfitItemRatings, outfitPhotoUrls, removeFromOutfit } = useProductContext();
   const { changeProduct } = useRPContext();
   if (item) {
@@ -26,4 +26,4 @@ function YourOutfitItem ({ item }) {
   }
 }
 
-export default YourOutfitItem;
+export default YourOutfitCard;
