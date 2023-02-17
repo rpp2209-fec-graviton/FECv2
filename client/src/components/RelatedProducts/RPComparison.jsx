@@ -15,7 +15,7 @@ function RPComparison ({ rp }) {
         <h4>COMPARING</h4>
         <table>
           <tbody>
-            <tr>
+            <tr key={'header'}>
               <th>{currentProductData.name}</th>
               <th></th>
               <th>{rp.name}</th>
@@ -23,7 +23,7 @@ function RPComparison ({ rp }) {
             {currentProductData.features.map((feature, index) => {
               if (isSharedFeature(feature, rp.features)) {
                 return (
-                  <tr>
+                  <tr key={index}>
                     <td>&#10003;</td>
                     <td>{feature.value} {feature.feature}</td>
                     <td>&#10003;</td>
@@ -31,7 +31,7 @@ function RPComparison ({ rp }) {
                 );
               } else {
                 return (
-                  <tr>
+                  <tr key={index}>
                     <td>&#10003;</td>
                     <td>{feature.value} {feature.feature}</td>
                     <td></td>
@@ -42,7 +42,7 @@ function RPComparison ({ rp }) {
             {rp.features.map((feature, index) => {
               if(!isSharedFeature(feature, currentProductData.features)) {
                 return (
-                  <tr>
+                  <tr key={index}>
                     <td></td>
                     <td>{feature.value} {feature.feature}</td>
                     <td>&#10003;</td>

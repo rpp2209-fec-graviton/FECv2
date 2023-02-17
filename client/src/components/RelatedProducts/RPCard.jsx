@@ -7,7 +7,7 @@ import { useRPContext } from "./Context/RPProvider.jsx";
 function RPCard ({ rp }) {
   const { rpStyles, rpRatings, toggleComparison, changeProduct } = useRPContext();
 
-  var rpStyle = rpStyles[rp.id]; //might need ? at end
+  var rpStyle = rpStyles[rp.id];
   var rpRating = rpRatings[rp.id];
 
   var imgUrl = null;

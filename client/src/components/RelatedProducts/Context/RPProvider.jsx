@@ -37,7 +37,7 @@ export default function RPProvider({ children }) {
   const [outfitRatings, setOutfitRatings] = useState(null);
   const [compareId, setCompareId] = useState(null);
 
-  const container = { fetchData, useClickLogger, product_id: currentProductId, changeProduct, currentProductData, setCurrentProductData, rpData, rpStyles, rpRatings, setRpData, setRpStyles, setRpRatings, outfitRatings, setOutfitRatings};
+  const container = { fetchData, useClickLogger, product_id: currentProductId, changeProduct, currentProductData, setCurrentProductData, rpData, rpStyles, rpRatings, setRpData, setRpStyles, setRpRatings, outfitRatings, setOutfitRatings, toggleComparison, compareId, setCompareId};
 
   return (
     <RPContext.Provider value={container}>
