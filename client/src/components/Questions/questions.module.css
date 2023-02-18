@@ -1,6 +1,6 @@
 /* OVERVIEW */
 .overview {
-  width: 75%;
+  width: 100%;
   max-width: 100vw;
   margin: 0 auto;
   position: relative
@@ -24,23 +24,7 @@
 }
 
 /* QUESTIONS LIST BUTTONS */
-.questionsView__btn {
-  height: 40px;
-  background-color: transparent;
-  border: 2px solid black;
-  border-radius: 0;
-  font-size: 15px;
-  font-weight: bold;
-  padding: 10px;
-  box-sizing: border-box;
-  margin-top: 10px;
-  margin-right: 10px;
-  float: left;
-}
-
-.questionsView__btn:hover {
-  background-color: gray;
-}
+/* Gabby Moved to Global Styles (client/src/components/Home/home.module.css) */
 
 /* QUESTION */
 
@@ -91,7 +75,7 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 3;
+  z-index: 4;
 }
 
 .modal__wrapper {
