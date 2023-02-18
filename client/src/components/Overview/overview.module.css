@@ -83,7 +83,9 @@ h2.header {
 }
 
 .flex {
+  width: 100%;
   display: flex;
+  align-items: center;
   justify-content: center;
 }
 
@@ -235,46 +237,6 @@ Convert scrollbar to ⏮ arrows ⏭
   width: 100%;
 }
 
-
-/* =======================
-    Star Rating Styles
-========================*/
-.stars__outer {
-  display: inline-block;
-  position: relative;
-}
-
-.stars__outer::before {
-  content: "☆☆☆☆☆"
-}
-
-.stars__inner {
-  position: absolute;
-  top: 0;
-  left: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 0;
-}
-
-.stars__inner::before {
-  content: "★★★★★"
-}
-
-.stars__a {
-  font-size: 12px;
-  padding-left: 4px;
-  vertical-align: text-top;
-}
-
-
-.stars__reviews {
-  visibility: hidden;
-  height: 0;
-  width: 0;
-}
-
-
 /* =======================
       Button Styles
 ========================*/
@@ -313,4 +275,20 @@ Convert scrollbar to ⏮ arrows ⏭
 
 .style-selector__buttons {
   width: max-content;
+}
+
+/* =======================
+ Star Reviews Link Styles
+========================*/
+.stars__a {
+  font-size: 12px;
+  padding-left: 4px;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+.stars__reviews {
+  visibility: hidden;
+  height: 0;
+  width: 0;
 }

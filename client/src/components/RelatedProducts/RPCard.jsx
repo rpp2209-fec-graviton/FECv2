@@ -27,7 +27,7 @@ function RPCard ({ rp, rpStyles, rpRating, toggleComparison }) {
   return (
     <div className={styles.card} data-testid='rpcard'>
       <img src={imgUrl} onClick={() => changeProduct(rp.id)}/>
-      <h3 className={styles.star} onClick={() => toggleComparison(rp.id)}>⭐</h3>
+      <span className={styles.star} onClick={() => toggleComparison(rp.id)}>⭐</span>
       <br/>
       {rp.category}
       <br/>
