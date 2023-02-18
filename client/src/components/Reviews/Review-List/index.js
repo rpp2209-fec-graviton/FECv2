@@ -37,7 +37,7 @@ export default function ReviewList({ children }) {
         {children}
       </ListContainer>
       <Form></Form>
-      <Button onClick={(e) => { handleShowMoreReviews(e, filteredReviews.length) }}>More Reviews </Button>
+      <Button handleClick={(e) => { handleShowMoreReviews(e, filteredReviews.length) }}>More Reviews </Button>
     </div>
   );
 }

@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import StarRatingBar from '../../../../../StarRatingBar/StarRatingBar.jsx';
+import RPStars from '../../../../../RelatedProducts/RPStars.jsx';
+import { useProductContext } from '../../../../../Context/ContextProvider.jsx';
 
 import styles from './TopBar.module.scss';
-import RPStars from '../../../../../RelatedProducts/RPStars.jsx';
+
 function TopBar() {
+  const { currentProductId } = useProductContext();
+
+
   return (
     <div className={styles.topBar__Container}>
       <h2>Rating and Reviews</h2>
@@ -11,7 +15,7 @@ function TopBar() {
         <div className={styles.topBar__Rating} >
           4.4
         </div>
-        <StarRatingBar type='default' />
+        <RPStars rating={4.4} id={currentProductId} prefix={''}/>
       </div>
       <div />
     </div>
