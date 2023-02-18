@@ -16,7 +16,7 @@ function YourOutfitList () {
   return (
     <div data-testid='outfitlist'>
       Your Outfit
-      </h2>
+
       <div className={outfitItems && outfitItems.length > 5 ? RPstyles['flex-with-scroll'] : RPstyles['flex-center']}>
         <div className={`${RPstyles.card} ${RPstyles.addToOutfit}`} onClick={handleAddToOutfit}>
           <p> Add to Outfit (+) </p>
