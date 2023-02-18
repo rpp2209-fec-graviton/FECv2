@@ -10,13 +10,15 @@ function Thumbnail({ carouselType, type, photos, style }) {
 	const urls = carouselType === 'styles__carousel' ? photos : photos[0];
 
 	return (
-		<img
-			onClick={(e) => handleStyleChange(e, style, type)}
-			className={styles[type]}
-			id={urls.url} // figure out a better way to pass this along with thumbnail
-			src={urls && urls.thumbnail_url}
-			alt="thumbnail image"
-		/>
+		<div className={carouselType === 'styles__carousel' ? styles.slides : styles.thumbnail}>
+			<img
+				onClick={(e) => handleStyleChange(e, style, type)}
+				className={styles[type]}
+				id={urls.url} // figure out a better way to pass this along with thumbnail
+				src={urls && urls.thumbnail_url}
+				alt="thumbnail image"
+			/>
+		</div>
 	)
 
 };

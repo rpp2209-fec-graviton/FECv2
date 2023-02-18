@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ThumbnailCarousel from './ThumbnailCarousel.jsx';
 import Modal from './Modal.jsx';
+import Dots from './Dots.jsx';
 import Button from './Button.jsx';
 
 import { toggleModal, zoomModal } from '../overview-utils/modal.js';
@@ -9,6 +10,7 @@ import styles from '../overview.module.css';
 import { useProductContext } from "../../Context/ContextProvider.jsx";
 import { useOverviewContext } from "../Context/OverviewProvider.jsx";
 import useStyles from '../hooks/useStyles.jsx';
+import useSlideshow from '../hooks/useSlideshow/useSlideshow.js';
 
 function Images () {
 	const [show, setShow] = useState(false);
@@ -22,7 +24,8 @@ function Images () {
 		currentProductStyles
 	} = useOverviewContext();
 
-	const allProductStyles = useStyles(currentProductId);
+	const { allProductStyles } = useStyles(currentProductId);
+	const { slideImgs, setSlideImgs, dots, setDots, handleIncrementSlides } = useSlideshow();
 
 	// Update the selected style when currentProductStyles changes
 	useEffect(() => {
@@ -54,14 +57,39 @@ function Images () {
 				<Button type="modal-button" handleClick={() => toggleModal(show, setShow)}>X</Button>
 			</Modal>
 
-			<img
-				id="image-lg"
-				className={styles.overview__image}
-				src={imgURL}
-				onClick={() => toggleModal(show, setShow)}
-				onMouseEnter={handleHover}
-			/>
-			<ThumbnailCarousel type="styles__carousel" />
+			<div className="slideshow">
+
+				{/* Full Width Image */}
+				<img
+					id="image-lg"
+					className={styles.overview__image}
+					src={imgURL}
+					onClick={() => toggleModal(show, setShow)}
+					onMouseEnter={handleHover}
+				/>
+
+				{/* Styles Image Carousel */}
+				<ThumbnailCarousel id="styles__carousel" type="styles__carousel" />
+
+				{/* Image Sliders/Arrows  */}
+				<a
+					href="#"
+					className={`fas fa-angle-left ${styles.prev} ${styles.border}`}
+					role="button"
+					onClick={() => handleIncrementSlides(-1)}
+				></a>
+				<a
+					href="#"
+					className={`'fas fa-angle-right' ${styles.next} ${styles.border}`}
+					role="button"
+					onClick={() => handleIncrementSlides(1)}
+				></a>
+
+				{/* Interactive Carousel Dots */}
+				<Dots></Dots>
+
+			</div>
+
 		</div>
 	)
 

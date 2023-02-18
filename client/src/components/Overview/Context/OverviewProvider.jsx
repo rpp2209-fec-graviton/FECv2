@@ -8,7 +8,7 @@ export const OverviewContext = createContext();
 
 export default function OverviewProvider({ children }) {
 	const { currentProductId } = useProductContext();
-	const allProductStyles = useStyles(currentProductId);
+	const { allProductStyles } = useStyles(currentProductId);
 	const currentProductStyles = allProductStyles[currentProductId];
 
 	const [selectedStyle, setSelectedStyle] = useState({});
@@ -42,10 +42,19 @@ export default function OverviewProvider({ children }) {
 
 	// Update Large Image URL and Style Price when selectedStyle changes
 	const handleStyleChange = (e, style, type) => {
-		setSelectedStyle(style);
-		setURL(e.target.id && e.target.id);
+		// setSelectedStyle(style);
+		// setURL(e.target.id && e.target.id);
+		// handleSetImgAspectRatio();
+		// setPrice(style.sale_price && style.sale_price !== null ? { price: style.sale_price, type: 'sale' } : { price: style.original_price, type: 'default' } );
+
+		if (type === 'thumbnail-rounded') {
+			setSelectedStyle(style);
+			setURL(e.target.id && e.target.id);
+			setPrice(style.sale_price && style.sale_price !== null ? { price: style.sale_price, type: 'sale' } : { price: style.original_price, type: 'default' } );
+		} else {
+			setURL(e.target.id && e.target.id);
+		}
 		handleSetImgAspectRatio();
-		setPrice(style.sale_price && style.sale_price !== null ? { price: style.sale_price, type: 'sale' } : { price: style.original_price, type: 'default' } );
 	};
 
 	// Overview Context Values
