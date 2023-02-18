@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
+import useRatingsAvg from "./useRatingsAvg/useRatingsAvg.jsx";
 import axios from 'axios';
-import calculateRatings from "../RelatedProducts/RatingCalculator.jsx";
 
 const useOutfitList = () => {
-  const [outfitItems, setOutfitItems] = useState([])
+  const [outfitItems, setOutfitItems] = useState([]);
   const [outfitPhotoUrls, setOutfitPhotoUrls] = useState({});
-	const [outfitItemRatings, setOutfitItemRatings] = useState(null);
+	const [outfitItemRatings, setOutfitItemRatings] = useState({});
 
 		// =============================================
 		//                  Effects
@@ -17,13 +17,17 @@ const useOutfitList = () => {
 
 			const storedPhotos = window.localStorage.getItem('OUTFIT_PHOTOS');
 			if ( storedPhotos !== null ) setOutfitPhotoUrls(JSON.parse(storedPhotos));
+
+			const storedRatings = window.localStorage.getItem('OUTFIT_RATINGS');
+			if ( storedRatings !== null ) setOutfitItemRatings(JSON.parse(storedRatings));
 		}, []);
 
 		// set the outfit items in local storage, whenever they change
 		useEffect(() => {
 			window.localStorage.setItem('OUTFIT_ITEMS', JSON.stringify(outfitItems));
 			window.localStorage.setItem('OUTFIT_PHOTOS', JSON.stringify(outfitPhotoUrls));
-		}, [outfitItems, outfitPhotoUrls]);
+			window.localStorage.setItem('OUTFIT_RATINGS', JSON.stringify(outfitItemRatings));
+		}, [outfitItems, outfitPhotoUrls, outfitItemRatings]);
 
 		// =============================================
 		//             Utility Functions
@@ -60,7 +64,7 @@ const useOutfitList = () => {
 			setOutfitItems(newState);
 		};
 
-  return { outfitItems, outfitPhotoUrls, outfitItemRatings, addToOutfit, removeFromOutfit };
+  return { outfitItems, outfitPhotoUrls, addToOutfit, removeFromOutfit, outfitItemRatings, setOutfitItemRatings };
 };
 
 export default useOutfitList;

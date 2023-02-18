@@ -1,9 +1,9 @@
 import React from "react";
 import { useRPContext } from "./Context/RPProvider.jsx";
-import styles from './RPCard.module.css';
+import styles from './RP.module.css';
 
-function RPComparison ({ rp, toggleComparison, modalIsOpen }) {
-  const { currentProductData } = useRPContext();
+function RPComparison ({ rp }) {
+  const { currentProductData, toggleComparison } = useRPContext();
 
   function isSharedFeature(feature, arr) {
     return arr.some(x => (feature.value === x.value) && (feature.feature === x.feature))
@@ -15,7 +15,7 @@ function RPComparison ({ rp, toggleComparison, modalIsOpen }) {
         <h4>COMPARING</h4>
         <table>
           <tbody>
-            <tr>
+            <tr key={'header'}>
               <th>{currentProductData.name}</th>
               <th></th>
               <th>{rp.name}</th>
@@ -23,7 +23,7 @@ function RPComparison ({ rp, toggleComparison, modalIsOpen }) {
             {currentProductData.features.map((feature, index) => {
               if (isSharedFeature(feature, rp.features)) {
                 return (
-                  <tr>
+                  <tr key={index}>
                     <td>&#10003;</td>
                     <td>{feature.value} {feature.feature}</td>
                     <td>&#10003;</td>
@@ -31,7 +31,7 @@ function RPComparison ({ rp, toggleComparison, modalIsOpen }) {
                 );
               } else {
                 return (
-                  <tr>
+                  <tr key={index}>
                     <td>&#10003;</td>
                     <td>{feature.value} {feature.feature}</td>
                     <td></td>
@@ -42,7 +42,7 @@ function RPComparison ({ rp, toggleComparison, modalIsOpen }) {
             {rp.features.map((feature, index) => {
               if(!isSharedFeature(feature, currentProductData.features)) {
                 return (
-                  <tr>
+                  <tr key={index}>
                     <td></td>
                     <td>{feature.value} {feature.feature}</td>
                     <td>&#10003;</td>
