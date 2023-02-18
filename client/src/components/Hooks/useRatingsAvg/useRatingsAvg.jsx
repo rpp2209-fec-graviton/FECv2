@@ -19,20 +19,16 @@ export default function useRatingsAvg(id) {
 	useEffect(() => {
 		try {
 			if (reviewResponse) {
-				// Get Selected Product Reviews
-				const reviews = reviewResponse.results;
 
-				// Get Total # of Reviews
-				setCount(reviewResponse.count);
+				const reviews = reviewResponse.results; // Get Selected Product Reviews
+				setCount(reviewResponse.count); // Get Total # of Reviews
+				const ratings = reviews.map(review => review.rating); // Convert Reviews to Just The Rating
 
-				// Get Ratings Sum
-				const ratings = reviews.map(review => review.rating);
-
-				const sum = ratings.reduce((ratingSum, currentRating) => {
+				const sum = ratings.reduce((ratingSum, currentRating) => {  // Get Sum of All Reviews
 					return ratingSum + currentRating;
 				}, 0);
 
-				setSum(sum);
+				setSum(sum); // Set the ratingSum
 			}
 
 		} catch (err) {

@@ -6,18 +6,18 @@ import { useProductContext } from "../Context/ContextProvider.jsx";
 
 import styles from '../Home/home.module.css';
 
-function StarRatingBar() {
+function StarRatingBar({ type }) {
 	const { currentProductId, ratingsAverage } = useProductContext();
 	const { reviewCount } = useRatingsAvg();
 
 	if (reviewCount && reviewCount !== 0) {
 		return (
 			<>
-			<div className={styles.stars__outer}>
-				<div id="stars" className={styles.stars__inner}></div>
-			</div>
+				<div className={styles.stars__outer}>
+					<div id="stars" className={styles.stars__inner}></div>
+				</div>
 
-				<ReviewsLink reviewCount={reviewCount} />
+				{type !== 'default' ? (<ReviewsLink reviewCount={reviewCount} />) : (<></>)}
 			</>
 		)
 	} else if (reviewCount === 0) {
