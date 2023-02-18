@@ -14,7 +14,7 @@ function Dots ({ children, type }) {
 	return (
 		slides &&
 		<div id={`dot-${type}`} className={`${styles[`dot-${type}`]} ${styles.carousel__dots}`}>
-			{slides.map((slide, index) => (<span id={index} key={index} className={styles.dot} onClick={handleClick}></span>))}
+			{slides.map((slide, index) => (<span id={index} key={index} className={`${styles[`${type}-dot`]} ${styles.dot}`} onClick={handleClick}></span>))}
 			{children}
 		</div>
 	)

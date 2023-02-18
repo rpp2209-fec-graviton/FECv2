@@ -2,17 +2,22 @@
       CSS Variables
 ========================*/
 :root {
+  --white: #ffffff;
+  --lt-white: rgba(255, 255, 255, .5);
   --black: #000000;
   --lt-black: rgba(0, 0, 0, .5);
   --mid-black: rgba(0, 0, 0, .75);
-  --lt-grey: rgba(128, 128, 128, .25);
-  --grey: rgba(128, 128, 128, .8);
-  --dk-grey: rgba(88, 88, 88, .8);
-  --blue: #1e90ff;
+
   --charcoal: #2e2e2ec4;
-  --red: #ff0000;
+  --dk-grey: rgba(88, 88, 88, .8);
+  --grey: rgba(128, 128, 128, .8);
+  --lt-grey: rgba(128, 128, 128, .25);
   --silver: rgba(192, 192, 192, 0.25);
-  --white: #ffffff;
+
+  --blue: #1e90ff;
+  --red: #ff0000;
+
+  --ck-green: rgb(5, 175, 14);
   --yellow: #f8ce0b;
 }
 
@@ -52,11 +57,14 @@ h2, h3, .header {
   margin: 32px 0;
 }
 
+.btn-width {
+  min-width: 176px;
+}
+
 .btn {
   box-sizing: border-box;
   float: left;
   height: 40px;
-  min-width: 176px;
 
   margin: 10px 10px 0 0;
   padding: 10px;

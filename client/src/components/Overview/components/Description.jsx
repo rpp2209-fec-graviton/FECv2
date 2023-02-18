@@ -10,7 +10,7 @@ function Description() {
 
 	return (
 		response &&
-		<div className={`${styles['overview__product-features']} ${styles.border}`}>
+		<div className={styles['overview__product-features']}>
 			<h2 className={styles['header-nomargin']}>Description</h2>
 			<p>{response.description}</p>
 		</div>

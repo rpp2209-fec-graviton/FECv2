@@ -98,7 +98,7 @@ h2.header {
   height: 80%;
   /* From Product Features Branch */
   /* max-width: 90%; */
-  width: 100%;
+  width: 90%;
   margin: 0 0 16px 0;
   padding: 12px 0;
   z-index: 3;
@@ -143,6 +143,7 @@ h2.header {
       Product Info
 ========================*/
 .overview__product-info {
+  position: relative;
   height: max-content;
   min-height: 800px;
   grid-column-start: 4;
@@ -182,12 +183,6 @@ h2.header-nomargin {
   font-weight: 400;
 }
 
-/* ===============================
-         Image Styles
-            TO-DO
-Convert scrollbar to ⏮ arrows ⏭
- that can be clicked to scroll
-================================*/
 .carousel {
   /* border: 1px solid var(--white); */
 }
@@ -195,7 +190,7 @@ Convert scrollbar to ⏮ arrows ⏭
 .styles__carousel {
   position: absolute;
 
-  left: 24px;
+  left: 32px;
   top: 0;
   width: 75px;
   height: 100%;
@@ -226,7 +221,7 @@ Convert scrollbar to ⏮ arrows ⏭
 
 .thumbnail-square-active {
   position: absolute;
-  border: 1.5px solid var(--white);
+  border: 1.5px solid var(--charcoal);
   margin-top: 8px;
   top: 73px;
 }
@@ -251,10 +246,10 @@ Convert scrollbar to ⏮ arrows ⏭
   position: absolute;
   top: 11px;
   left: 64px;
-  border: 1.5px solid var(--black);
+  border: 1.5px solid var(--lt-black);
   border-radius: 50%;
   color: var(--white);
-  background-color: var(--black);
+  background-color: var(--lt-black);
 }
 
 .thumbnail-square,
@@ -300,8 +295,8 @@ Convert scrollbar to ⏮ arrows ⏭
 
 .dot {
   cursor: pointer;
-  height: 12px;
-  width: 12px;
+  height: 10px;
+  width: 10px;
   margin: 0 4px;
   background-color: var(--lt-black);
   border-radius: 50%;
@@ -329,42 +324,16 @@ Convert scrollbar to ⏮ arrows ⏭
   z-index: 10;
 }
 
-/* =======================
-      Button Styles
-========================*/
-.button,
-.drop-down {
-  justify-content: center;
-  display: inline-flex;
-  align-items: center;
-  text-align: left;
+.dot-images {
+  max-width: 828px;
 }
 
-.style-selector__button,
-.drop-down {
-  margin: 16px 8px;
-  height: 40px;
-  width: 200px;
+.images-dot {
+  /* border: 3px solid magenta;  */
 }
 
-.add-to-bag {
-  text-align: left;
-  padding-left: 12px;
-}
-
-.modal-button {
-  position: absolute;
-  top: 16px;
-  left: 91%;
-  border-radius: 15%;
-  margin-left: 8px;
-  background-color: var(--white);
-  opacity: .7;
-  min-width: 40px; /* 56px? */
-}
-
-.style-selector__buttons {
-  width: max-content;
+.modal-dot {
+  background-color: var(--lt-white);
 }
 
 /* =======================
@@ -437,6 +406,10 @@ Convert scrollbar to ⏮ arrows ⏭
   object-fit: contain;
 }
 
+
+/* =======================
+      Features Styles
+========================*/
 .overview__product-features,
 .features  {
   display: flex;
@@ -451,4 +424,52 @@ Convert scrollbar to ⏮ arrows ⏭
   grid-column: 1 / span 5;
   width: 100%;
   border-radius: 15px;
+}
+
+.v-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  height: 112px;
+  color: transparent;
+  background-color: var(--lt-black);
+}
+
+/* =======================
+      Button Styles
+========================*/
+.button,
+.drop-down {
+  justify-content: center;
+  display: inline-flex;
+  align-items: center;
+  text-align: left;
+}
+
+.style-selector__button,
+.drop-down {
+  margin: 16px 8px;
+  height: 40px;
+  width: 200px;
+}
+
+.add-to-bag {
+  text-align: left;
+  padding-left: 12px;
+}
+
+.modal-button {
+  position: absolute;
+  top: 16px;
+  left: 91%;
+  border-radius: 15%;
+  margin-left: 8px;
+  background-color: var(--white);
+  opacity: .7;
+  max-width: 40px; /* 56px? */
+}
+
+.style-selector__buttons {
+  width: max-content;
 }

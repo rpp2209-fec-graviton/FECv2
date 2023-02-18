@@ -37,6 +37,7 @@ function Overview() {
 				<div className={`${styles.grid}  ${styles['style-selector-grid-template']} ${styles['overview__product-info']}`}>
 					<StyleSelector />
 					<ProductInfo />
+					<div className={styles['v-bar']}>|</div>
 					<Features f={response.features} />
 				</div>
 
