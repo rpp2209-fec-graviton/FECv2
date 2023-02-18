@@ -5,7 +5,7 @@ import styles from '../overview.module.css';
 function Button ({ value, type, handleClick, children }) {
 	return (
 		<div
-			className={`${value === 'add-to-bag' ? styles['add-to-bag'] : null} ${globalStyles.btn} ${styles[type] && styles[type]}`}
+			className={`${value === 'add-to-bag' ? styles['add-to-bag'] : ''} ${globalStyles.btn} ${styles[type] && styles[type]}`}
 			onClick={handleClick}
 		>
 			{ children }

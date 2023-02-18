@@ -50,6 +50,10 @@ img {
   border: 2px solid var(--silver);
 }
 
+.relative {
+  position: relative;
+}
+
 h2.header {
   text-align: left;
   width: 100%;
@@ -194,14 +198,33 @@ Convert scrollbar to ⏮ arrows ⏭
 }
 
 .images__carousel {
+  display: flex;
+  flex-wrap: wrap;
   min-width: 392px;
   max-width: 400px;
 }
 
+.thumbnail {
+  /* border: 3px solid magenta;  */
+}
+
 .thumbnail-square {
   border: 1px solid var(--silver);
-  width: 72px;
   height: 72px;
+  margin: 4px 0;
+}
+
+.thumbnail-square-active {
+  position: absolute;
+  border: 1.5px solid var(--white);
+  margin-top: 8px;
+  top: 73px;
+}
+
+.thumbnail-square,
+.thumbnail-square-active {
+  width: 72px;
+  max-width: 72px;
 }
 
 .thumbnail-rounded {
@@ -212,6 +235,16 @@ Convert scrollbar to ⏮ arrows ⏭
   width: 80px;
   height: 80px;
   margin: 10px 4px;
+}
+
+.thumbnail-round-active {
+  position: absolute;
+  top: 11px;
+  left: 64px;
+  border: 1.5px solid var(--black);
+  border-radius: 50%;
+  color: var(--white);
+  background-color: var(--black);
 }
 
 .thumbnail-square,
@@ -318,7 +351,8 @@ Convert scrollbar to ⏮ arrows ⏭
   margin-left: 8px;
   background-color: var(--white);
   opacity: .7;
-  min-width: 40px;
+  min-width: 40px; /* 56px? */
+  padding: 0; /* remove? */
 }
 
 .style-selector__buttons {
