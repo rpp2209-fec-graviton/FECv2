@@ -9,7 +9,9 @@ module.exports = {
     filename: 'bundle.js',
   },
 
-  mode: 'development',
+
+  mode: 'production',
+  devtool: "inline-source-map",
 
   module: {
     rules: [

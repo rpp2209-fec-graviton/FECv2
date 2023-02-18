@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import styles from './reviews.module.scss';
 import Form from './Review-Form/form-index.jsx'
 import ReviewList from './Review-List/index';
 import ReviewRatings from './Review-Ratings/index';
 import ReviewCard from './Review-Card/index.js'
 import { useReviewContext } from './Context/ReviewProvider.jsx';
 import ReviewWrapper from './Review-Wrapper';
+
+import styles from './reviews.module.scss';
+import globalStyles from '../Home/home.module.css';
 
 export default function Reviews({ reviewData }) {
 
@@ -29,6 +31,8 @@ export default function Reviews({ reviewData }) {
   return (
     <div id="reviews" className={styles.reviews}>
 
+    <div id="reviews" className={`${styles.reviews} ${globalStyles.container}`}>
+      <Form />
       <ReviewWrapper>
         <ReviewRatings />
         <ReviewList>

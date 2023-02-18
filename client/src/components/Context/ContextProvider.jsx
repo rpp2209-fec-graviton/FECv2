@@ -14,7 +14,7 @@ export default function ContextProvider({ children }) {
   const [ratingsAverage, setRatingsAverage] = useState(null)
 
   // Shared: Overview and Related Products
-  const { outfitItems, outfitPhotoUrls, addToOutfit, removeFromOutfit } = useOutfitList()
+  const { outfitItems, outfitPhotoUrls, addToOutfit, removeFromOutfit, outfitItemRatings, setOutfitItemRatings } = useOutfitList()
 
   // Shared: Overview and Reviews
   const { response, loading, error } = useFetchProduct(currentProductId)
@@ -43,6 +43,8 @@ export default function ContextProvider({ children }) {
     outfitPhotoUrls,
     addToOutfit,
     removeFromOutfit,
+    outfitItemRatings,
+    setOutfitItemRatings,
 
     useClickLogger
   };

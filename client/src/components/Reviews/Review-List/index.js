@@ -1,7 +1,11 @@
-import ListContainer from "./components/Review-List-Container/ListContainer.jsx";
 import React from "react";
-import useFetchProduct from "../../Hooks/useFetchProduct.jsx";
+
+import ListContainer from "./components/Review-List-Container/ListContainer.jsx";
+import Button from "../../Overview/components/Button.jsx";
+
 import { useReviewContext } from '../Context/ReviewProvider.jsx'
+
+import useFetchProduct from "../../Hooks/useFetchProduct.jsx";
 import styles from './review-list.module.scss'
 import Form from "../Review-Form/form-index.jsx";
 
@@ -33,7 +37,7 @@ export default function ReviewList({ children }) {
         {children}
       </ListContainer>
       <Form></Form>
-      <button onClick={(e) => { handleShowMoreReviews(e, filteredReviews.length) }}>More Reviews </button>
+      <Button onClick={(e) => { handleShowMoreReviews(e, filteredReviews.length) }}>More Reviews </Button>
     </div>
   );
 }

@@ -6,17 +6,22 @@ import Images from './Images.jsx';
 import StyleSelector from './StyleSelector.jsx';
 
 import { fetch } from '../../../../../server/utils/data-utils.js';
+
 import styles from '../overview.module.css';
+import globalStyles from '../../Home/home.module.css';
 
 function Overview() {
 	return (
-		<div className={`${styles.overview} ${styles['grid-template']} ${styles.flex}`}>
-			<Images />
-			<div className={`${styles.grid} ${styles['overview__product-info']}`}>
-				<StyleSelector />
-				<ProductInfo />
+		<>
+			<h2 className={styles.header}>Overview</h2>
+			<div className={`${styles.overview} ${styles['grid-template']} ${styles.flex}`}>
+				<Images />
+				<div className={`${styles.grid} ${styles['overview__product-info']}`}>
+					<StyleSelector />
+					<ProductInfo />
+				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 

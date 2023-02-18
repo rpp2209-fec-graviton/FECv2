@@ -13,7 +13,7 @@ export default function useQuestionsList() {
   var getQList = (product_id, page) => {
     axios({
       method: 'GET',
-      url: `${window.location.origin}/qa/questions?product_id=${product_id}&count=16&page=${page}`
+      url: `/qa/questions?product_id=${product_id}&count=16&page=${page}`
     })
       .then((res) => {
         setQuestionsList(res.data);

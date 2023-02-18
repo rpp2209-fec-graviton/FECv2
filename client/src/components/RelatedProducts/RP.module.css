@@ -2,21 +2,21 @@
   position: relative;
   display: inline-block;
   border:1px solid black;
-  padding: 3px;
+  padding: 8px;
   margin: 10px;
 }
 .red {
   color: red;
 }
-.star {
+.action {
   position: absolute;
-  top: 1px;
-  right: 20px;
+  top: 15px;
+  right: 15px;
 }
 .comparisonContainer {
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Overlay effect: translucent background: black w/ partial opacity */
-  z-index: 1; /* Overlay effect: positioned over other containers */
+  z-index: 500; /* Overlay effect: positioned over other containers */
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   position: fixed; /* Fix position on the top-left corner*/
@@ -24,6 +24,7 @@
   left: 0;
   overflow: auto; /* Enable scroll if needed */
   padding-top: 80px; /* Location of the content container */
+  z-index: 4;
 }
 .comparison {
   background-color: white;
@@ -49,23 +50,22 @@ table {
   height: 200px;
   margin: 0 auto;
 }
-.starsOuter {
-  display: inline-block;
-  position: relative;
-  font-family: FontAwesome;
+.addToOutfit {
+  display: flex;
+  align-items: center;
 }
-.starsOuter::before {
-  content: "☆☆☆☆☆";
+.flex-with-scroll {
+  display: flex;
+	overflow-x: scroll;
+  justify-content: flex-start;
 }
-.starsInner {
-  position: absolute;
-  top: 0;
-  left: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 0;
+
+.flex-center {
+  display: flex;
+  justify-content: center;
 }
-.starsInner::before {
-  content: "★★★★★";
-  color: #f8ce0b;
+
+.flex-child {
+  width: 100%;
+	margin: auto;
 }

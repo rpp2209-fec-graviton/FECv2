@@ -1,25 +1,30 @@
 import React, { useState, useEffect } from "react";
-import YourOutfitItem from "./YourOutfitItem.jsx";
-import styles from './RPCard.module.css';
+import YourOutfitCard from "./YourOutfitCard.jsx";
 import { useProductContext } from '../Context/ContextProvider.jsx';
 import { useRPContext } from "./Context/RPProvider.jsx";
 
+import RPstyles from './RP.module.css';
+
 function YourOutfitList () {
-  const { outfitItems, addToOutfit, removeFromOutfit, outfitPhotoUrls } = useProductContext();
-  const { fetchData, currentProductData, changeProduct } = useRPContext();
-  console.log(currentProductData.id, currentProductData.name)
+  const { outfitItems, addToOutfit, setOutfitItemRatings, outfitItemRatings, ratingsAverage } = useProductContext();
+  const { fetchData, currentProductData } = useRPContext();
+
+  function handleAddToOutfit() {
+    setOutfitItemRatings({...outfitItemRatings, [currentProductData.id]: ratingsAverage});
+    addToOutfit(currentProductData, fetchData);
+  }
 
   return (
-    <div>
+    <div data-testid='outfitlist'>
       <h2>
       Your Outfit
       </h2>
-      <div>
-        <div className={styles.card} onClick={() => addToOutfit(currentProductData, fetchData)}>
+      <div className={outfitItems && outfitItems.length > 5 ? RPstyles['flex-with-scroll'] : RPstyles['flex-center']}>
+        <div className={`${RPstyles.card} ${RPstyles.addToOutfit}`} onClick={handleAddToOutfit}>
           <p> Add to Outfit (+) </p>
         </div>
         {outfitItems && outfitItems.map((item) => {
-          return <YourOutfitItem key={item.id} photo={outfitPhotoUrls[item.id]} item={item} removeFromOutfit={removeFromOutfit}/>
+          return <YourOutfitCard className={RPstyles['flex-child']} key={item.id} item={item}/>
         })}
       </div>
     </div>

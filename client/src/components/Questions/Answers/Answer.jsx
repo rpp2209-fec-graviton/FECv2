@@ -32,7 +32,7 @@ function Answer({ ans }) {
         </sub>
       </p>
       {ans.photos.length > 0 && ans.photos.map((photo) => {
-        return <img src={photo.url} key={photo}/>
+        return <img src={photo.url} key={photo.id}/>
       })}
     </div>
   )
