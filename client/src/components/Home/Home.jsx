@@ -40,18 +40,18 @@ function Home () {
 					</ErrorBoundary>
 
 					{/* Related Products  */}
-					{/* <ErrorBoundary component="Related">
+					<ErrorBoundary component="Related">
             <RPProvider>
 						  <RelatedProducts />
 						</RPProvider>
-					</ErrorBoundary> */}
+					</ErrorBoundary>
 
 					{/* Product Questions  */}
-					{/* <ErrorBoundary component="Questions">
+					<ErrorBoundary component="Questions">
 						<QuestionsProvider>
 							<QuestionsView />
 						</QuestionsProvider>
-					</ErrorBoundary> */}
+					</ErrorBoundary>
 
 					{/* Product Reviews  */}
 					<ErrorBoundary component="Reviews">
