@@ -2,7 +2,7 @@ import React from "react";
 import RPCard from "./RPCard.jsx"
 import RPComparison from "./RPComparison.jsx";
 import { useRPContext } from "./Context/RPProvider.jsx";
-import styles from './RP.module.css';
+import RPstyles from './RP.module.css';
 
 function RPList () {
   const { rpData, compareId } = useRPContext();
@@ -12,11 +12,11 @@ function RPList () {
       <h2>
       Related Products
       </h2>
-      <div>
+      <div className={rpData && rpData.length > 5 ? RPstyles['flex-with-scroll'] : RPstyles['flex-center']}>
         {rpData ? rpData.map((rp, index) => {
           return (
           <React.Fragment key={index}>
-          <RPCard key={rp.id} rp={rp}/>
+          <RPCard className={RPstyles['flex-child']} key={rp.id} rp={rp}/>
           {compareId === rp.id ? <RPComparison key={rp.id + 'c'} rp={rp}/> : null}
           </React.Fragment>
           );

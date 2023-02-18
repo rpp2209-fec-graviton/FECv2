@@ -22,6 +22,7 @@ function AnswerModal({ isShowing, hide, q, question_id }) {
   const yourAnswer = useInput('');
   const nickname = useInput('');
   const yourEmail = useInput('');
+  const [photos, setPhotos] = useState();
 
 
   const submitForm = (event) => {
@@ -33,20 +34,19 @@ function AnswerModal({ isShowing, hide, q, question_id }) {
     } else if (yourAnswer.value.length <= 3) {
       alert('You must enter the following:\nValid Answer')
     } else {
-      axios({
-        method: 'Post',
-        url: `${window.location.origin}/qa/questions/${question_id}/answers`,
-        data: {
-          body: yourAnswer.value,
-          name: nickname.value,
-          email: yourEmail.value,
-          photos: []
-        }
-      }).then((res) => {
+      const formData = new FormData();
+      formData.append('photos', photos);
+      formData.append('body', yourAnswer.value);
+      formData.append('name', nickname.value);
+      formData.append('email', yourEmail.value);
+
+      axios.post(`/qa/questions/${question_id}/answers`, formData, {headers: {'Content-Type': 'multipart/form-data'}})
+      .then((res) => {
         console.log('Answer', res.data);
         yourEmail.reset.thevalue();
         nickname.reset.thevalue();
         yourAnswer.reset.thevalue();
+        setPhotos([]);
         hide();
       })
     }
@@ -55,13 +55,13 @@ function AnswerModal({ isShowing, hide, q, question_id }) {
   useEffect(() => {
     axios({
       method: 'POST',
-      url: `${window.location.origin}/products`,
+      url: `/products`,
       data: { product_id }
     })
       .then((res) => {
         setProductName(res.data.name)
       })
-  }, [])
+  }, [product_id])
 
   return (
     isShowing ? ReactDOM.createPortal(
@@ -85,7 +85,7 @@ function AnswerModal({ isShowing, hide, q, question_id }) {
                 <input placeholder="Example: jack@email.com" {...yourEmail} required={true} />
                 <sub>For authentication reasons, you will not be emailed</sub>
               </label>
-              <button type="button">Upload Photo</button>
+              <input type="file" accept="image/*" onChange={(e) => {setPhotos(e.target.files[0])}} name='photos'/>
               <button type="submit">Submit Answer</button>
             </form>
           </div>

@@ -18,7 +18,7 @@ export default function useReport(QAid, reportedCategory) {
     if (!isReported) {
       axios({
         method: 'PUT',
-        url: `${window.location.origin}/qa/${category}/${id}/report`
+        url: `/qa/${category}/${id}/report`
       })
         .then((res) => {
           setIsReported(true);

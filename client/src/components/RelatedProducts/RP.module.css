@@ -2,7 +2,7 @@
   position: relative;
   display: inline-block;
   border:1px solid black;
-  padding: 3px;
+  padding: 8px;
   margin: 10px;
 }
 .red {
@@ -10,8 +10,8 @@
 }
 .action {
   position: absolute;
-  top: 5px;
-  right: 10px;
+  top: 15px;
+  right: 15px;
 }
 .comparisonContainer {
   background-color: rgb(0,0,0); /* Fallback color */
@@ -24,6 +24,7 @@
   left: 0;
   overflow: auto; /* Enable scroll if needed */
   padding-top: 80px; /* Location of the content container */
+  z-index: 4;
 }
 .comparison {
   background-color: white;
@@ -49,23 +50,22 @@ table {
   height: 200px;
   margin: 0 auto;
 }
-.starsOuter {
-  display: inline-block;
-  position: relative;
-  font-family: FontAwesome;
+.addToOutfit {
+  display: flex;
+  align-items: center;
 }
-.starsOuter::before {
-  content: "☆☆☆☆☆";
+.flex-with-scroll {
+  display: flex;
+	overflow-x: scroll;
+  justify-content: flex-start;
 }
-.starsInner {
-  position: absolute;
-  top: 0;
-  left: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 0;
+
+.flex-center {
+  display: flex;
+  justify-content: center;
 }
-.starsInner::before {
-  content: "★★★★★";
-  color: #f8ce0b;
+
+.flex-child {
+  width: 100%;
+	margin: auto;
 }

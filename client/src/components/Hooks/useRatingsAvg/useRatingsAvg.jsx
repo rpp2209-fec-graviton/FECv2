@@ -9,8 +9,15 @@ export default function useRatingsAvg() {
 	const { currentProductId, sortOrder, ratingsAverage, setRatingsAverage } = useProductContext();
 	const [reviewCount, setCount] = useState(0);
 	const [ratingSum, setSum] = useState(0);
+	const [fill, setFill] = useState(0);
 
 	const { reviewResponse } = useFetchProductInfo(currentProductId, sortOrder);
+
+	useEffect(() => {
+		if (ratingsAverage) {
+			setFill((ratingsAverage / 5) * 100);
+		}
+	}, [ratingsAverage]);
 
 	// =============================================
 	// Effect: Get Reviews, set Review Count and Sum
@@ -19,20 +26,16 @@ export default function useRatingsAvg() {
 	useEffect(() => {
 		try {
 			if (reviewResponse) {
-				// Get Selected Product Reviews
-				const reviews = reviewResponse.results;
 
-				// Get Total # of Reviews
-				setCount(reviewResponse.count);
+				const reviews = reviewResponse.results; // Get Selected Product Reviews
+				setCount(reviewResponse.count); // Get Total # of Reviews
+				const ratings = reviews.map(review => review.rating); // Convert Reviews to Just The Rating
 
-				// Get Ratings Sum
-				const ratings = reviews.map(review => review.rating);
-
-				const sum = ratings.reduce((ratingSum, currentRating) => {
+				const sum = ratings.reduce((ratingSum, currentRating) => {  // Get Sum of All Reviews
 					return ratingSum + currentRating;
 				}, 0);
 
-				setSum(sum);
+				setSum(sum); // Set the ratingSum
 			}
 
 		} catch (err) {
@@ -40,14 +43,6 @@ export default function useRatingsAvg() {
 		}
 
 	}, [reviewResponse]);
-
-	useEffect(() => {
-		if (ratingsAverage && reviewCount) {
-			const fillPercent = (ratingsAverage / 5) * 100;
-			const elem = document.getElementById('stars');
-			elem.style.width = `${fillPercent}%`;
-		}
-	}, [ratingsAverage]);
 
 	// Update Average when ratingSum or reviewCount changes
 	useEffect(() => {
@@ -57,5 +52,5 @@ export default function useRatingsAvg() {
 	}, [ratingSum, reviewCount]);
 
 	// Return average rating and Review Count
-	return { ratingsAverage, reviewCount };
+	return { ratingsAverage, reviewCount, fill };
 };

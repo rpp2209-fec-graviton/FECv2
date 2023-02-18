@@ -34,13 +34,8 @@ time, mark, audio, video {
 	vertical-align: baseline;
 } */
 
-h1, h2, h3, h4, h5, h6, p, a {
+h1, h3, h4, h5, h6, p, a {
 	margin: 8px 0;
-	/* padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline; */
 }
 
 img {
@@ -68,6 +63,12 @@ img {
   border: 2px solid var(--silver);
 }
 
+h2.header {
+  text-align: left;
+  width: 100%;
+  margin-top: 32px;
+}
+
 /* =======================
       Grid & Flexbox
 ========================*/
@@ -82,7 +83,9 @@ img {
 }
 
 .flex {
+  width: 100%;
   display: flex;
+  align-items: center;
   justify-content: center;
 }
 
@@ -95,10 +98,11 @@ img {
 ========================*/
 .overview {
   height: 80%;
-  max-width: 60%;
+  /* max-width: 60%; */
+  width: 100%;
   margin: 0 auto;
   padding: 60px 0;
-  z-index: 10;
+  z-index: 3;
 }
 
 .overview__images {
@@ -203,54 +207,6 @@ Convert scrollbar to ⏮ arrows ⏭
 /* =======================
       Modal Styles
 ========================*/
-/* .images__modal { */
-  /* height: 100vh;
-  background-color: var(--white);
-
-  /* width: 100vw; */
-  /* height: 100%; */
-  /* min-height: 100%; */
-  /* box-sizing: border-box; */
-  /* overflow-x: hidden; */
-  /* overflow-y: hidden;*/
-
-  /* ===================== */
-  /* height: 100%;
-  width: 100vw;
-  box-shadow: -2rem 2rem 2rem rgba(black, 0.2);
-
-  filter: blur(0);
-  transition: 1.5s ease-in-out;
-  transform: scale(0.5);
-  opacity: 1;
-
-  visibility: visible;
-  position: fixed;
-  z-index: 3;
-
-  top: -50px;
-  left: 60px;
-}
-
-
-.modal-hidden {
-  height: 0;
-  opacity: 0;
-  filter: blur(8px);
-  box-shadow: 1rem 0 0 rgba(black, 0.2);
-  visibility: hidden;
-  transition: 1.5s ease-out;
-}
-
-.modal__content { */
-  /* position: relative; */
-  /* object-fit: cover;
-  object-position: center;
-  height: 100%;
-  width: 100%;
-} */
-
-
 .images__modal {
   height: 0;
   box-shadow: -2rem 2rem 2rem rgba(black, 0.2);
@@ -262,7 +218,7 @@ Convert scrollbar to ⏮ arrows ⏭
 
   visibility: visible;
   position: fixed;
-  z-index: 3;
+  z-index: 5;
   /* left: 60px; */
 }
 
@@ -279,59 +235,17 @@ Convert scrollbar to ⏮ arrows ⏭
   object-fit: cover;
   height: 1400px;
   width: 100%;
-  /* overflow-x: visible; */
 }
-
-
-/* =======================
-    Star Rating Styles
-========================*/
-.stars__outer {
-  display: inline-block;
-  position: relative;
-}
-
-.stars__outer::before {
-  content: "☆☆☆☆☆"
-}
-
-.stars__inner {
-  position: absolute;
-  top: 0;
-  left: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 0;
-}
-
-.stars__inner::before {
-  content: "★★★★★"
-}
-
-.stars__a {
-  font-size: 12px;
-  padding-left: 4px;
-  vertical-align: text-top;
-}
-
-
-.stars__reviews {
-  visibility: hidden;
-  height: 0;
-  width: 0;
-}
-
 
 /* =======================
       Button Styles
 ========================*/
 .button,
 .drop-down {
-  font-size: 14px;
   justify-content: center;
   display: inline-flex;
   align-items: center;
-  border: 1.5px solid var(--black);
+  text-align: left;
 }
 
 .style-selector__button,
@@ -339,6 +253,11 @@ Convert scrollbar to ⏮ arrows ⏭
   margin: 16px 8px;
   height: 40px;
   width: 200px;
+}
+
+.add-to-bag {
+  text-align: left;
+  padding-left: 12px;
 }
 
 .button:active {
@@ -353,6 +272,23 @@ Convert scrollbar to ⏮ arrows ⏭
   height: 40px;
   min-width: 56px;
 }
+
 .style-selector__buttons {
   width: max-content;
+}
+
+/* =======================
+ Star Reviews Link Styles
+========================*/
+.stars__a {
+  font-size: 12px;
+  padding-left: 4px;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+.stars__reviews {
+  visibility: hidden;
+  height: 0;
+  width: 0;
 }

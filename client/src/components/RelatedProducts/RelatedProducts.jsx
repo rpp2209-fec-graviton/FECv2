@@ -6,6 +6,9 @@ import calculateRatings from "./RatingCalculator.jsx";
 import RPList from "./RPList.jsx";
 import YourOutfitList from "./YourOutfitList.jsx"
 
+import styles from './RP.module.css';
+import globalStyles from '../Home/home.module.css';
+
 function RelatedProducts () {
   const { currentProductId } = useProductContext();
   const { fetchData, product_id, setRpData, setRpStyles, setRpRatings, setCurrentProductData } = useRPContext();
@@ -48,10 +51,10 @@ function RelatedProducts () {
   },[currentProductId]);
 
   return (
-    <div data-testid='rp'>
-      {loaded ? <><RPList/><br/></> : null}
-      {loaded ? <><YourOutfitList/></>: null}
-    </div>
+      <div className={globalStyles.container} data-testid='rp'>
+        {loaded ? <><RPList/><br/></> : null}
+        {loaded ? <><YourOutfitList/></>: null}
+      </div>
   )
 }
 

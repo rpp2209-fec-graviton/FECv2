@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import YourOutfitCard from "./YourOutfitCard.jsx";
-import styles from './RP.module.css';
 import { useProductContext } from '../Context/ContextProvider.jsx';
 import { useRPContext } from "./Context/RPProvider.jsx";
+
+import RPstyles from './RP.module.css';
 
 function YourOutfitList () {
   const { outfitItems, addToOutfit, setOutfitItemRatings, outfitItemRatings, ratingsAverage } = useProductContext();
@@ -18,12 +19,12 @@ function YourOutfitList () {
       <h2>
       Your Outfit
       </h2>
-      <div>
-        <div className={styles.card} onClick={handleAddToOutfit}>
+      <div className={outfitItems && outfitItems.length > 5 ? RPstyles['flex-with-scroll'] : RPstyles['flex-center']}>
+        <div className={`${RPstyles.card} ${RPstyles.addToOutfit}`} onClick={handleAddToOutfit}>
           <p> Add to Outfit (+) </p>
         </div>
         {outfitItems && outfitItems.map((item) => {
-          return <YourOutfitCard key={item.id} item={item}/>
+          return <YourOutfitCard className={RPstyles['flex-child']} key={item.id} item={item}/>
         })}
       </div>
     </div>

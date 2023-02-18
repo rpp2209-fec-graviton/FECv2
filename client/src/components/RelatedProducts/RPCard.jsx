@@ -16,7 +16,7 @@ function RPCard ({ rp }) {
   return (
     <div className={styles.card} data-testid='rpcard'>
       <img src={cardInfo[0]} onClick={() => changeProduct(rp.id)}/>
-      <h3 className={styles.action} onClick={() => toggleComparison(rp.id)}>⭐</h3>
+      <span className={styles.action} onClick={() => toggleComparison(rp.id)}>⭐</span>
       <br/>
       {rp.category}
       <br/>
