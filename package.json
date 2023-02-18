@@ -7,12 +7,10 @@
     "client-dev": "npx webpack --watch",
     "server-dev": "npx nodemon server/index.js",
     "test": "jest . --watchAll --coverage",
-
     "test-overview": "jest ./client/src/components/Overview/overview.test.js --watch --coverage --detectOpenHandles",
     "test-modal": "jest ./client/src/components/Overview/overview-utils/modal.test.js --watch --detectOpenHandles",
     "test-fetch": "jest ./server/utils/fetch.test.js --watch",
     "test-avg": "jest ./client/src/utils/star-ratings-avg.test.js --watch",
-
     "test-reviews": "jest ./client/src/components/Reviews --watch --coverage",
     "test-rp": "jest ./client/src/components/RelatedProducts --watch --coverage",
     "test-questions": "jest ./client/src/components/Questions --watch --coverage"
@@ -24,6 +22,9 @@
     "@babel/core": "^7.20.12",
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-react": "^7.18.6",
+    "@fortawesome/fontawesome-svg-core": "^6.3.0",
+    "@fortawesome/free-solid-svg-icons": "^6.3.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@material-ui/core": "^4.12.4",
     "@material-ui/icons": "^4.11.3",
     "@testing-library/jest-dom": "^5.16.5",

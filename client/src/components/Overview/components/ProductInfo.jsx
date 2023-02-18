@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+
 import Button from './Button.jsx';
 import StarRatingBar from '../../StarRatingBar/StarRatingBar.jsx';
 
@@ -12,16 +13,6 @@ function ProductInfo() {
 	const { response } = useFetchProduct(currentProductId);
 	const { price, setPrice, selectedStyle } = useOverviewContext();
 
-	// =============================================
-	//                  TO-DO:
-	//  Figure out if there's a better way to set
-	// price/URL on page load (currently using empty
-	// objs & setting in useEffect() calls across App)
-
-	// Wondering if these calls could be moved to a
-	//  Context provider and/or custom hook to clean
-	//     up individual Component JSX markup
-	// =============================================
 	useEffect(() => {
 		selectedStyle && setPrice(selectedStyle.sale_price ? {price: selectedStyle.sale_price, type: 'sale' } : { price: selectedStyle.original_price, type: 'default' });
 	}, [selectedStyle]);
