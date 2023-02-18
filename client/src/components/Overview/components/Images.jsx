@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ThumbnailCarousel from './ThumbnailCarousel.jsx';
 import Modal from './Modal.jsx';
+import Button from './Button.jsx';
 
 import { toggleModal, zoomModal } from '../overview-utils/modal.js';
 import styles from '../overview.module.css';
@@ -50,6 +51,7 @@ function Images () {
 		<div className={styles.overview__images}>
 			<Modal show={show} setShow={setShow}>
 				<img id="modal__content" className={`${styles.modal__content} ${styles['modal-hidden']}`} src={imgURL} alt="modal" />
+				<Button type="modal-button" handleClick={() => toggleModal(show, setShow)}>X</Button>
 			</Modal>
 
 			<img

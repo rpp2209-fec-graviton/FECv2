@@ -8,11 +8,11 @@ function Modal ({ show, setShow, children }) {
 	return (
 		<div
 			id="modal"
-			className={`${styles.test} ${styles['modal-hidden']} ${styles.flex}`}
+			className={`${styles.images__modal} ${styles['modal-hidden']} ${styles.flex}`}
 			onClick={zoomModal}
 		>
 			{children}
-			<Button type="modal-button" handleClick={() => toggleModal(show, setShow)}>X</Button>
+			{/* <Button type="modal-button" handleClick={() => toggleModal(show, setShow)}>X</Button> */}
 		</div>
 	)
 };

@@ -3,6 +3,9 @@
 ========================*/
 :root {
   --black: #000000;
+  --lt-black: rgba(0, 0, 0, .5);
+  --grey: rgba(128, 128, 128, .8);
+  --dk-grey: rgba(88, 88, 88, .8);
   --blue: #1e90ff;
   --charcoal: #2e2e2ec4;
   --red: #ff0000;
@@ -65,5 +68,9 @@ h2, h3, .header {
 }
 
 .btn:hover {
-  background-color: gray;
+  background-color: var(--grey);
+}
+
+.btn:active {
+  box-shadow: inset 3px 3px 5px 6px var(--dk-grey);
 }
