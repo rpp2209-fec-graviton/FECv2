@@ -11,9 +11,6 @@ function TopBar() {
         <div className={styles.topBar__Rating} >
           4.4
         </div>
-        <div className={styles.topBar__Stars} >
-          <RPStars rating={ 4.4 } />
-        </div>
         <StarRatingBar type='default' />
       </div>
       <div />
