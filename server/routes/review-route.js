@@ -34,24 +34,35 @@ router.post('/results', async (req, res) => {
 
 router.post('/', async (req, res) => {
   const payload = await req.body.payload;
-  const { productId, rating, recommend, summary, firstName, lastName, email, password, refundForm, body, requiredDocument, requiredFile } = payload;
+  console.log(process.env.API_KEY)
+  console.log(payload, 'payload');
+  const { productId, rating, recommend, summary, firstName, lastName, email, password, refundForm, body, photos } = payload;
   axios({
     method: 'post',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews`,
-    headers: { 'Authorization': process.env.API_KEY },
+    url: `${process.env.API_URL}/reviews`,
+    headers: {
+      'Authorization': process.env.API_KEY,
+      'Content-Type': 'application/json'
+    },
     data: {
-      product_id: parseInt(productId),
+      product_id: parseInt(71692),
       rating: parseInt(rating),
       summary,
       body,
-      recommend,
+      recommend: true,
       name: firstName,
       email,
-      requiredDocument,
+      photos: ['123.jpg'],
+      "characteristics": {
+        "Size": 2,
+        "Width": 3,
+        "Comfort": 3
+    }
     }
   })
     .then(() => {
-      res.redirect(`/${product_id}`);//get last url
+      res.status(200).send('successfull post')
+      res.redirect(`/${productId}`);//get last url
     })
     .catch(err => {
       console.log('Err Saving Review', err);
