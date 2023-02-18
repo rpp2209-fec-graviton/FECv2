@@ -18,11 +18,7 @@ import styles from "../questions.module.css";
 import { useQuestionsContext } from "../Context/QuestionsProvider.jsx";
 
 function AnswersList({ question_id, q }) {
-  /*Implementation Tasks
-  1. Sort Answers by helpfulness/Sellar
-  3. Implement "See More Answers"/"Collapse Answers"
-  4. Confined to half the screen
-  */
+
   const [answersList, getAList] = useAnswersList();
   const [count, makeCount] = useCount(2);
   const [page, makePage] = usePage(1);
