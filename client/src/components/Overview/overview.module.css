@@ -341,6 +341,7 @@ Convert scrollbar to ⏮ arrows ⏭
   font-size: 32px;
   height: 40px;
   min-width: 56px;
+  padding: 0;
 }
 
 .style-selector__buttons {
