@@ -1,7 +1,6 @@
 const axios = require('axios');
-
-import { useParams } from "react-router-dom";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
+import { useProductContext } from '../Context/ContextProvider.jsx'
 import { useRPContext } from "./Context/RPProvider.jsx";
 import calculateRatings from "./RatingCalculator.jsx";
 import RPList from "./RPList.jsx";
@@ -11,12 +10,13 @@ import styles from './RP.module.css';
 import globalStyles from '../Home/home.module.css';
 
 function RelatedProducts () {
-  const { fetchData, useClickLogger, product_id, currentProductData, setCurrentProductData, setRpData, setRpStyles, setRpRatings, setOutfitRatings } = useRPContext();
+  const { currentProductId } = useProductContext();
+  const { fetchData, product_id, setRpData, setRpStyles, setRpRatings, setCurrentProductData } = useRPContext();
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     let idList;
-    fetchData(`products/${product_id}/related`)
+    fetchData(`products/${currentProductId}/related`)
     .then((ids) => {
       idList = [...new Set(ids)];
       return Promise.all(idList.map((id) => {
@@ -30,7 +30,11 @@ function RelatedProducts () {
       }))
     })
     .then((styles) => {
-      setRpStyles(styles);
+      var styleState = {}
+      styles.forEach((product) => {
+        styleState[product.product_id] = product.results;
+      })
+      setRpStyles(styleState);
       return Promise.all(idList.map((id) => {
         return fetchData(`reviews/meta?product_id=${id}`)
       }))
@@ -38,13 +42,13 @@ function RelatedProducts () {
     .then((reviews) => {
       var ratingList = calculateRatings(reviews);
       setRpRatings(ratingList);
-      return fetchData(`products/${product_id}`)
+      return fetchData(`products/${currentProductId}`)
     })
     .then((currentProductData) => {
       setCurrentProductData(currentProductData);
       setLoaded(true);
     })
-  },[product_id]);
+  },[currentProductId]);
 
   return (
       <div className={globalStyles.container} data-testid='rp'>

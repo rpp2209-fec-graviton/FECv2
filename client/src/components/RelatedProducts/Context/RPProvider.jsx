@@ -11,6 +11,10 @@ export default function RPProvider({ children }) {
     navigate(`/${id}`)
   };
 
+  function toggleComparison(id) {
+    setCompareId(id);
+  }
+
   function fetchData(ep) {
     return new Promise((resolve, reject) => {
       const callback = (err, data) => {
@@ -24,15 +28,14 @@ export default function RPProvider({ children }) {
     })
   }
 
-  const { currentProductId, useClickLogger } = useProductContext();
-
   const [currentProductData, setCurrentProductData] = useState(null);
   const [rpData, setRpData] = useState(null);
   const [rpStyles, setRpStyles] = useState(null);
   const [rpRatings, setRpRatings] = useState(null);
   const [outfitRatings, setOutfitRatings] = useState(null);
+  const [compareId, setCompareId] = useState(null);
 
-  const container = { fetchData, useClickLogger, product_id: currentProductId, changeProduct, currentProductData, setCurrentProductData, rpData, rpStyles, rpRatings, setRpData, setRpStyles, setRpRatings, outfitRatings, setOutfitRatings};
+  const container = { fetchData, changeProduct, setCurrentProductData, setRpData, setRpStyles, setRpRatings, setOutfitRatings, toggleComparison, setCompareId, currentProductData, rpData, rpStyles, rpRatings, outfitRatings, compareId};
 
   return (
     <RPContext.Provider value={container}>
