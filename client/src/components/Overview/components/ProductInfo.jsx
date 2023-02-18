@@ -24,7 +24,7 @@ function ProductInfo() {
 
 			{/* Product Details */}
 			<p>{response.category}</p>
-			<h2 className={styles['product-details__name']}>{response.name}</h2>
+			<h2 className={styles['header-nomargin']}>{response.name}</h2>
 			{ (price && price.type === 'sale') ?
 				<>
 					<span className={`${styles['product-info__sale-price']}`}> ${price.price} </span><span className={`${styles['product-info__default-price']}`}> ${response.default_price} </span>

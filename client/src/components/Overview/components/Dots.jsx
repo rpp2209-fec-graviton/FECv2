@@ -7,7 +7,6 @@ function Dots ({ children, type }) {
 	const slides = slideImgs && Object.values(slideImgs);
 
 	const handleClick = (e) => {
-		console.log(e.target.id);
 		const id = e.target.id;
 		setURL(slides[id].children[0].id);
 	};
