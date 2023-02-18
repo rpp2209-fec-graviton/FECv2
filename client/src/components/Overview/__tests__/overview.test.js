@@ -4,14 +4,12 @@ import React from 'react';
 
 import { render, fireEvent, waitFor, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { logRoles } from '@testing-library/dom';
-import '@testing-library/jest-dom';
 
-// =============================================
-//             TO-DO: MSW Research
-// =============================================
-// import { rest } from 'msw';
-// import { setupServer } from 'msw/node';
+
+import { logRoles } from '@testing-library/dom';
+import { mswOverviewServer } from "./utils/server.js";
+
+import '@testing-library/jest-dom';
 
 // =============================================
 //          Component & State Imports
@@ -22,7 +20,7 @@ import Images from './components/Images.jsx';
 import Modal from './components/Modal.jsx';
 import Overview from './components/Overview.jsx';
 import ProductInfo from './components/ProductInfo.jsx';
-import StarRating from './components/StarRating.jsx';
+import StarRatingBar from '../StarRatingBar/StarRatingBar.jsx';
 import StyleSelector from './components/StyleSelector.jsx';
 import ThumbnailCarousel from './components/ThumbnailCarousel.jsx';
 import Thumbnail from './components/Thumbnail.jsx';
@@ -52,99 +50,55 @@ import OverviewProvider from "./Context/OverviewProvider.jsx";
 // });
 
 // Check Access To Env Vars
-// describe('ENV Variables', () => {
-//   test('Receives process.env variables', () => {
-//     expect(process.env.API_URL).toBe('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp');
-//   });
-// });
+describe('ENV Variables', () => {
+  test('Receives process.env variables', () => {
+    expect(process.env.API_URL).toBe('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp');
+  });
+});
 
 // ==================================
-//     ⬇ ⭐ TESTING SERVER ⭐ ⬇
+//     ⬇ ⭐ MSW / SERVER ⭐ ⬇
 // ==================================
-// https://testing-library.com/docs/react-testing-library/example-intro
-// describe('Server', () => {
-//   const server = setupServer(
-//     rest.get('/*', (req, res, ctx) => {
-//       return res(
-//         ctx.json({ message: 'Loaded' }),
-//         ctx.status(200)
-//       )
-//     }),
-//   )
-
-//   beforeAll(() => server.listen({ onUnhandledRequest: "bypass" })) // remove this to see unhandled requests
-//   afterEach(() => server.resetHandlers())
-//   afterAll(() => server.close())
-
-//   test('handles server error', async () => {
-//     server.use(
-//       // override the initial "GET /" request handler
-//       // to return a 500 Server Error
-//       rest.get('/*', (req, res, ctx) => {
-//         return res(ctx.status(500))
-//       }),
-//     )
-//     // Assert something TODO
-//   });
-// });
-
-// ==================================
-//  ⬇ ⭐ TESTING REACT CONTEXT ⭐ ⬇
-// ==================================
-// https://testing-library.com/docs/example-react-context/
-
-/**
- * Test default values by rendering a context consumer without a
- * matching provider
- */
-// describe('Context API', () => {
-//   it('Overview Consumer has access to Overview Context', async () => {
-//     render(
-//     <ContextProvider>
-//       <OverviewProvider>
-//         <Overview />
-//       </OverviewProvider>
-//     </ContextProvider>);
-
-//     // TO-DO: Test context variables are available instead of
-//     // checking for this text content ⬇ ⬇ ⬇
-//     const overview = await screen.findByText(/^Read all reviews/);
-//     expect(overview).toHaveTextContent('Read all reviews');
-//   });
-// });
-
+beforeEach(() => mswOverviewServer.listen())
+afterEach(() => mswOverviewServer.resetHandlers())
+afterAll(() => mswOverviewServer.close())
 
 // ==================================
 //      ⬇ ⭐ UNIT TESTS ⭐ ⬇
 //      Arrange, Assert, Act
 // ==================================
-describe('Overview', () => {
-  // ==================================
-  //          Testing Setup
-  // ==================================
+
+
+const renderOverview = () => {
+  // Set up Fake Context Values
+  const ctx = { currentProductId: 1 };
+  const context = { products: [] };
+
+  return render(
+    <ContextProvider value={ctx}>
+      <OverviewProvider value={context}>
+      <Overview />
+      </OverviewProvider>
+    </ContextProvider>
+  );
+};
+
+
+describe.only('Overview', () => {
+  // Testing Setup
   afterEach(jest.clearAllMocks);
 
-  it('should pass fake context values to Overview Mock', function() {
+  it('should pass fake context values to Overview Mock', async () => {
+
     // Mock Overview Component for testing
     jest.mock('./components/Overview', () => () => {
       return <mock-overview data-testid="overview" />
     });
 
-    // Set up Fake Context Values
-    const ctx = { currentProductId: 1 };
-    const context = { products: [] };
-
     // "Render" Component with Context Providers populated with fake context vals
-    render(
-      <ContextProvider value={ctx}>
-        <OverviewProvider value={context}>
-        <Overview />
-        </OverviewProvider>
-      </ContextProvider>
-    );
+    renderOverview();
 
-    // Assert
-    expect(screen.getByTestId('overview')).toBeInTheDocument();
+    await waitFor(() => expect(screen.getByTestId('overview')).toBeInTheDocument());
   });
 
   // it('Product Details should render', async () => {

@@ -90,7 +90,7 @@ function StyleSelector () {
 			<ThumbnailCarousel type="images__carousel"  />
 
 			<select
-				className={`${styles['drop-down']} ${globalStyles.btn}`}
+				className={`${styles['drop-down']} ${globalStyles['btn-width']} ${globalStyles.btn}`}
 				ref={sizeRef}
 				id="size" value={size}
 				onChange={handleDropdownChange}
@@ -100,7 +100,7 @@ function StyleSelector () {
 			</select>
 
 			<select
-				className={`${styles['drop-down']} ${globalStyles.btn}`}
+				className={`${styles['drop-down']} ${globalStyles['btn-width']} ${globalStyles.btn}`}
 				ref={qtyRef}
 				id="qty"
 				value={qty}

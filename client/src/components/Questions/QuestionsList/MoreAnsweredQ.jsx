@@ -6,7 +6,7 @@ export default function MoreAnsweredQ({ count, more, showMore, makeCount, makePa
 
   return (
     <div>
-      <button data-testid="load-more-questions" className={globalStyles.btn} onClick={() => { showMore(count, makeCount, makePage, updateQList, checkQList) }}>
+      <button data-testid="load-more-questions" className={`${globalStyles['btn-width']} ${globalStyles.btn}`} onClick={() => { showMore(count, makeCount, makePage, updateQList, checkQList) }}>
         {more ? 'More Answered Questions' : 'Collapse Answers'}
       </button>
     </div>

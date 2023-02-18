@@ -1,16 +1,4 @@
 /* =======================
-      CSS Variables
-========================*/
-:root {
-  --black: #000000;
-  --blue: #1e90ff;
-  --charcoal: #2e2e2ec4;
-  --red: #ff0000;
-  --silver: #c0c0c0;
-  --white: #ffffff;
-}
-
-/* =======================
         Clearfix
 ========================*/
 /* html, body, div, span, applet, object, iframe,
@@ -56,27 +44,37 @@ img {
 
 .hidden {
   visibility: hidden;
-  transform: scale(0.33);
 }
 
 .border {
   border: 2px solid var(--silver);
 }
 
+.relative {
+  position: relative;
+}
+
 h2.header {
   text-align: left;
   width: 100%;
-  margin-top: 32px;
+  margin-top: 64px;
 }
 
 /* =======================
       Grid & Flexbox
 ========================*/
-/* .grid-template {
+.overview-grid-template {
   grid-gap: 10px;
   grid-template-columns: repeat(autofill, 180px);
   grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
-} */
+  /* grid-template-rows: 20% 20% 20% 20% 20%; */
+}
+
+.style-selector-grid-template {
+  height: fit-content;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 20% 20% 20% 20% 20%;
+}
 
 .grid {
   display: grid;
@@ -98,46 +96,74 @@ h2.header {
 ========================*/
 .overview {
   height: 80%;
-  /* max-width: 60%; */
-  width: 100%;
-  margin: 0 auto;
-  padding: 60px 0;
+  /* From Product Features Branch */
+  /* max-width: 90%; */
+  width: 90%;
+  margin: 0 0 16px 0;
+  padding: 12px 0;
   z-index: 3;
+  max-height: 800px;
+  /* overflow: hidden; */
 }
 
 .overview__images {
   display: table;
   position: relative;
-  /* grid-column-start: 2; */
+  grid-column: 1 / span 2;
+  width: 100%;
 }
 
 .overview__image {
-  border: 2px solid var(--black);
-  object-fit: cover;
-  object-position: top;
-  grid-row: 2 / span 5;
-  width: auto;
-  height: 500px;
-}
-
-
-.overview__product-info {
+  position: relative;
+  object-fit: contain;
+  object-position: center;
+  border: 2px solid var(--lt-grey);
+  border-radius: 30px;
+  width: 100%;
+  max-width: 824px;
   height: max-content;
-  /* grid-column-start: 8; */
-  margin-left: 80px;
+  max-height: 536px;
+
+  grid-column-start: 1;
+  grid-row: 2 / span 5;
 }
 
-.product-info__detail {
-  grid-row-start: 1;
-}
-
-.overview__style-selector {
-  /* grid-row-start: 3; */
+.overview__product-features {
+  max-width: 824px;
+  text-align: center;
+  grid-row: 8 / span 2;
+  grid-column: 1 / span 2;
+  border-radius: 15px;
+  vertical-align: middle;
+  padding: 8px;
+  overflow: scroll;
 }
 
 /* =======================
       Product Info
 ========================*/
+.overview__product-info {
+  position: relative;
+  height: max-content;
+  min-height: 800px;
+  grid-column-start: 4;
+  margin-left: 80px;
+}
+
+.product-info__detail {
+  grid-row-start: 1;
+  max-height: 112px;
+}
+
+.product-info__detail,
+.overview__style-selector {
+  grid-column: 1 / span 4;
+}
+
+h2.header-nomargin {
+  margin: 16px 0;
+}
+
 .product-info__sale-price {
   color: var(--red);
 }
@@ -150,52 +176,80 @@ h2.header {
       Style Selector
 ========================*/
 .style-selector__header {
-  margin-left: 0;
+  margin: 0;
 }
 
 .header-undecorated {
   font-weight: 400;
 }
 
-/* ===============================
-         Image Styles
-            TO-DO
-Convert scrollbar to ⏮ arrows ⏭
- that can be clicked to scroll
-================================*/
 .carousel {
   /* border: 1px solid var(--white); */
 }
 
 .styles__carousel {
   position: absolute;
-  left: 16px;
-  top: 16px;
-  width: 90px;
-  height: 480px;
+
+  left: 32px;
+  top: 0;
+  width: 75px;
+  height: 100%;
+  max-height: 504px;
   overflow-x: hidden;
   overflow-y: scroll;
   z-index: 2;
+  transform: scale(.85);
 }
 
 .images__carousel {
+  display: flex;
+  flex-wrap: wrap;
   min-width: 392px;
   max-width: 400px;
 }
 
+.thumbnail {
+  /* border: 3px solid magenta;  */
+}
+
 .thumbnail-square {
   border: 1px solid var(--silver);
-  width: 72px;
+  border-radius: 10px;
   height: 72px;
+  margin: 4px 0 0 0;
+}
+
+.thumbnail-square-active {
+  position: absolute;
+  border: 1.5px solid var(--charcoal);
+  margin-top: 8px;
+  top: 73px;
+}
+
+.thumbnail-square,
+.thumbnail-square-active {
+  width: 72px;
+  max-width: 72px;
 }
 
 .thumbnail-rounded {
   object-fit: cover;
+  display: inline-block;
   border-radius: 50%;
   border: 2px solid var(--charcoal);
   width: 80px;
   height: 80px;
   margin: 10px 4px;
+}
+
+.thumbnail-round-active {
+  position: absolute;
+  top: 11px;
+  left: 64px;
+  border: 1.5px solid var(--lt-black);
+  border-radius: 50%;
+  color: var(--white);
+  background-color: var(--lt-black);
 }
 
 .thumbnail-square,
@@ -204,37 +258,182 @@ Convert scrollbar to ⏮ arrows ⏭
   object-position: top;
 }
 
+.thumbnail, .slides {
+  display: inline-block;
+}
+
+.prev, .nxt {
+  margin: 0 4px;
+  padding: 4px;
+  width: 16px;
+  height: 16px;
+
+  border: 1.5px solid var(--mid-black);
+  border-radius: 15%;
+
+  color: var(--mid-black);
+
+  text-align: center;
+  text-decoration: none;
+}
+
+.dot-arrow-parent {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+
+  position: absolute;
+  top: 40%;
+
+  width: 100%;
+  max-width: 824px;
+}
+
+.carousel__dots {
+  text-align: center;
+}
+
+.dot {
+  cursor: pointer;
+  height: 10px;
+  width: 10px;
+  margin: 0 4px;
+  background-color: var(--lt-black);
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+  vertical-align: middle;
+}
+
+.dot:hover {
+  transform: scale(1.5);
+}
+
+
+.dot-modal {
+  transform: scale(1);
+}
+
+.dot {
+  transition: 1s ease-out;
+}
+
+.dot-modal {
+  position: absolute;
+  bottom: 32px;
+  z-index: 10;
+}
+
+.dot-images {
+  max-width: 828px;
+}
+
+.images-dot {
+  /* border: 3px solid magenta;  */
+}
+
+.modal-dot {
+  background-color: var(--lt-white);
+}
+
+/* =======================
+ Star Reviews Link Styles
+========================*/
+.stars__a {
+  font-size: 12px;
+  padding-left: 4px;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+.stars__reviews {
+  visibility: hidden;
+  height: 0;
+  width: 0;
+}
+
 /* =======================
       Modal Styles
 ========================*/
-.images__modal {
-  height: 0;
-  box-shadow: -2rem 2rem 2rem rgba(black, 0.2);
-
-  filter: blur(0);
-  transition: 1.5s ease-in-out;
-  transform: scale(0.5);
-  opacity: 1;
-
-  visibility: visible;
-  position: fixed;
-  z-index: 5;
-  /* left: 60px; */
-}
-
 .modal-hidden {
-  /* height: 0; */
+  height: 0;
   opacity: 0;
   filter: blur(8px);
   box-shadow: 1rem 0 0 rgba(black, 0.2);
   visibility: hidden;
-  transition: 1.5s ease-out;
+}
+
+.images__modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--lt-black);
+
+  filter: blur(0);
+
+  opacity: 1;
+  z-index: 15;
 }
 
 .modal__content {
   object-fit: cover;
-  height: 1400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  height: 80%;
+  max-width: 1000px;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  margin: 0 auto;
+}
+
+.modal__content,
+.modal-hidden {
+  transition: 1.15s ease-out;
+}
+
+.overview__image-landscape {
+  min-height: 550px;
+  object-fit: cover;
+}
+
+.overview__image-portrait {
   width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+
+/* =======================
+      Features Styles
+========================*/
+.overview__product-features,
+.features  {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 175px;
+}
+
+.features {
+  margin-top: 8px;
+  grid-row-end: 6;
+  grid-column: 1 / span 5;
+  width: 100%;
+  border-radius: 15px;
+}
+
+.v-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  height: 112px;
+  color: transparent;
+  background-color: var(--lt-black);
 }
 
 /* =======================
@@ -260,35 +459,17 @@ Convert scrollbar to ⏮ arrows ⏭
   padding-left: 12px;
 }
 
-.button:active {
-  box-shadow: inset 3px 3px 5px 6px #ccc;;
-}
-
 .modal-button {
+  position: absolute;
+  top: 16px;
+  left: 91%;
+  border-radius: 15%;
   margin-left: 8px;
   background-color: var(--white);
-  top: 0;
-  font-size: 32px;
-  height: 40px;
-  min-width: 56px;
+  opacity: .7;
+  max-width: 40px; /* 56px? */
 }
 
 .style-selector__buttons {
   width: max-content;
-}
-
-/* =======================
- Star Reviews Link Styles
-========================*/
-.stars__a {
-  font-size: 12px;
-  padding-left: 4px;
-  margin-left: 4px;
-  vertical-align: middle;
-}
-
-.stars__reviews {
-  visibility: hidden;
-  height: 0;
-  width: 0;
 }
