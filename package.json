@@ -7,7 +7,7 @@
     "client-dev": "npx webpack --watch",
     "server-dev": "npx nodemon server/index.js",
     "test": "jest . --watchAll --coverage",
-    "test-overview": "jest ./client/src/components/Overview/overview.test.js --watch --coverage --detectOpenHandles",
+    "test-overview": "jest ./client/src/components/Overview/__tests__/overview.test.js --watch --coverage --detectOpenHandles",
     "test-modal": "jest ./client/src/components/Overview/overview-utils/modal.test.js --watch --detectOpenHandles",
     "test-fetch": "jest ./server/utils/fetch.test.js --watch",
     "test-avg": "jest ./client/src/utils/star-ratings-avg.test.js --watch",
@@ -57,6 +57,7 @@
     "identity-obj-proxy": "^3.0.0",
     "morgan": "^1.10.0",
     "morgan-body": "^2.6.8",
+    "msw": "^1.0.0",
     "style-loader": "^3.3.1"
   }
 }

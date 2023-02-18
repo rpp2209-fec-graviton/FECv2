@@ -29,8 +29,6 @@ export default function Reviews({ reviewData }) {
   }
 
   return (
-    <div id="reviews" className={styles.reviews}>
-
     <div id="reviews" className={`${styles.reviews} ${globalStyles.container}`}>
       <Form />
       <ReviewWrapper>
