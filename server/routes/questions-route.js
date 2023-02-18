@@ -41,15 +41,18 @@ const getPhotoUrl = async (photos=[]) => {
       continue;
     }
 
+    console.log('PHOTO URL', photo.url);
+
     const getObjectParams = {
       Bucket: process.env.BUCKET_NAME,
       Key: photo.url,
     }
     const command = new GetObjectCommand(getObjectParams);
-    const url = await getSignedUrl(s3, command, { expiresIn: 300 });
+    const url = await getSignedUrl(s3, command, { expiresIn: 900 });
     if (url) {
       photo.url = url;
       photoUrls.push(photo);
+      console.log('PICTURE', url)
     }
   }
 
@@ -124,7 +127,7 @@ router.get('/questions/:question_id/answers', (req, res) => {
 router.post('/questions/:question_id/answers', upload.single('photos'), async (req, res) => {
   console.log('reqbody', req.body, 'reqfile', req.file, req.params.question_id);
   if (!!req.file.originalname) {
-    var imageArray = [`${req.file.originalname}${req.params.question_id}s3`];
+    var imageArray = [`${req.file.originalname}${req.params.question_id}`];
     req.body.photos = imageArray;
     await addPhotosToS3(req);
   } else {
