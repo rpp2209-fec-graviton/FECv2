@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+
 import ThumbnailCarousel from './ThumbnailCarousel.jsx';
 import Modal from './Modal.jsx';
 import Dots from './Dots.jsx';
@@ -71,22 +72,27 @@ function Images () {
 				{/* Styles Image Carousel */}
 				<ThumbnailCarousel id="styles__carousel" type="styles__carousel" />
 
-				{/* Image Sliders/Arrows  */}
-				<a
-					href="#"
-					className={`fas fa-angle-left ${styles.prev} ${styles.border}`}
-					role="button"
-					onClick={() => handleIncrementSlides(-1)}
-				></a>
-				<a
-					href="#"
-					className={`'fas fa-angle-right' ${styles.next} ${styles.border}`}
-					role="button"
-					onClick={() => handleIncrementSlides(1)}
-				></a>
+				{/* Image Dots/Sliders/Arrows  */}
+				<div className={styles['dot-arrow-parent']}>
+					<a
+						href="#"
+						className={`fas fa-angle-left ${styles.prev} ${styles.border}`}
+						role="button"
+						onClick={() => handleIncrementSlides(-1)}
+					></a>
 
-				{/* Interactive Carousel Dots */}
-				<Dots></Dots>
+					{/* Interactive Carousel Dots */}
+					<Dots></Dots>
+
+					<a
+						href="#"
+						className={`fas fa-angle-right ${styles.nxt} ${styles.border}`}
+						role="button"
+						onClick={() => handleIncrementSlides(1)}
+					></a>
+				</div>
+
+
 
 			</div>
 

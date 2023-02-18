@@ -20,7 +20,7 @@ function ProductInfo() {
 	return (
 		response &&
 		<div className={styles['product-info__detail']}>
-			<StarRatingBar />
+			<StarRatingBar type='linked' />
 
 			{/* Product Details */}
 			<p>{response.category}</p>

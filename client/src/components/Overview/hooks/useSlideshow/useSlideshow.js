@@ -5,17 +5,12 @@ import { useOverviewContext } from "../../Context/OverviewProvider.jsx";
 
 import useStyles from '../useStyles.jsx';
 
-// =============================================
-//                  TO-DO:
-//  Can't asynchronously fetch and set Slides
-//             (Debug To-Do)
-// =============================================
 export default function useSlideshow() {
-	const [slideIndex, setSlideIndex] = useState(1);
+	const [slideIndex, setSlideIndex] = useState(0);
 	const [dots, setDots] = useState([]);
 
 	const { currentProductId } = useProductContext();
-	const { selectedStyle, setURL } = useOverviewContext();
+	const { selectedStyle, imgURL, setURL } = useOverviewContext();
 	const { slideImgs, setSlideImgs } = useStyles(currentProductId);
 
 	// Initialize Slideshow
@@ -26,27 +21,20 @@ export default function useSlideshow() {
 	// Set Dots
 	useEffect(() => {
 		selectedStyle && setDots(document.getElementsByClassName('dot__Wf2oJ'));
-		selectedStyle && console.log('Dots from useStyles', dots);
+		// selectedStyle && console.log('Dots from useStyles', dots);
 	}, [selectedStyle]);
-
-	// Slide Logger
-	// useEffect(() => {
-	// 	slideImgs && console.log('Image Slides', slideImgs);
-	// }, [slideImgs]);
 
 	// =============================================
 	//             Slideshow Utilities
 	// =============================================
 	// Change slide index
 	const handleIncrementSlides = (n) => {
-		console.log('in handleIncrementSlides');
-		showSlides(setSlideIndex(slideIndex + n));
+		showSlides(slideIndex + n);
 	};
 
 	// Display current slide
 	const currentSlide = (n) => {
-		console.log('in current slides', slideImgs);
-		showSlides(setSlideIndex(n));
+		showSlides(n);
 	};
 
 	// Toggle active full-width image
@@ -55,31 +43,23 @@ export default function useSlideshow() {
 		let length = slideImgs && Object.values(slideImgs).length;
 		// slides && console.log('Selected Style', slides);
 
+		// Modulo Example
+		// setSlideIndex((currentIndex + 1) % 3);
 		if (length) {
-			if (n > length) {
-				setSlideIndex(1);
+			if (n > length - 1 || n === 0) {
+				setSlideIndex(0);
+				slides[0].children[0] && setURL(slides[0].children[0].id)
 			}
-			if (n < 1) {
-				setSlideIndex(length);
+			if (n < 0) {
+				setSlideIndex(length - 1);
+				slides[length - 1].children[0] && setURL(slides[length - 1].children[0].id)
+			} else {
+				setSlideIndex(n);
+				slides[n].children[0] && setURL(slides[n].children[0].id)
 			}
-
-			// for (let i = 0; i < length; i++) {
-			// 	console.log('slide index', slides[i]);
-			// 	slides[i].style.display = "none";
-			// }
-
-			for (let i = 0; i < dots.length; i++) {
-				// console.log('dot index', slides[i].children[0].id);
-
-				setURL(slides[i].children[0].id);
-				dots[i].className = dots[i].className.replace(" active", "");
-			}
-
-			slides[slideIndex - 1].style.display = "block";
-			dots[slideIndex - 1].className += " active";
 		}
 
 	}
 
-	return { slideImgs, setSlideImgs, dots, setDots, currentSlide, handleIncrementSlides };
+	return { slideIndex, slideImgs, setSlideImgs, dots, setDots, currentSlide, handleIncrementSlides, setURL };
 };

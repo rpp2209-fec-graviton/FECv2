@@ -3,19 +3,19 @@ import useSlideshow from '../hooks/useSlideshow/useSlideshow.js';
 import styles from '../overview.module.css';
 
 function Dots () {
-	const { slideImgs, currentSlide } = useSlideshow();
+	const { dots, slideIndex, slideImgs, setURL } = useSlideshow();
 	const slides = slideImgs && Object.values(slideImgs);
 
-	console.log('Slide Count', slides);
-
 	const handleClick = (e) => {
-		console.log(e.target);
+		console.log(e.target.id);
+		const id = e.target.id;
+		setURL(slides[id].children[0].id);
 	};
 
 	return (
 		slides &&
 		<div className={styles.carousel__dots}>
-			{slides.map(slide => (<span className={styles.dot} onClick={handleClick}></span>))}
+			{slides.map((slide, index) => (<span id={index} key={index} className={styles.dot} onClick={handleClick}></span>))}
 		</div>
 	)
 

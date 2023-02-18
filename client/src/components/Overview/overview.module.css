@@ -81,7 +81,9 @@ h2.header {
 }
 
 .flex {
+  width: 100%;
   display: flex;
+  align-items: center;
   justify-content: center;
 }
 
@@ -113,8 +115,8 @@ h2.header {
   position: relative;
   object-fit: contain;
   object-position: center;
-  border: 2px solid var(--black);
-
+  border: 2px solid var(--lt-grey);
+  border-radius: 30px;
   width: 100%;
   max-width: 824px;
   height: max-content;
@@ -187,14 +189,15 @@ Convert scrollbar to ⏮ arrows ⏭
 .styles__carousel {
   position: absolute;
 
-  left: 16px;
-  top: 16px;
-  width: 90px;
-  height: 90%;
-  max-height: 480px;
+  left: 24px;
+  top: 0;
+  width: 75px;
+  height: 100%;
+  max-height: 504px;
   overflow-x: hidden;
   overflow-y: scroll;
   z-index: 2;
+  transform: scale(.85);
 }
 
 .images__carousel {
@@ -210,8 +213,9 @@ Convert scrollbar to ⏮ arrows ⏭
 
 .thumbnail-square {
   border: 1px solid var(--silver);
+  border-radius: 10px;
   height: 72px;
-  margin: 4px 0;
+  margin: 4px 0 0 0;
 }
 
 .thumbnail-square-active {
@@ -257,12 +261,23 @@ Convert scrollbar to ⏮ arrows ⏭
   display: inline-block;
 }
 
-.prev {
-  border: 3px solid magenta;
+.prev, .nxt {
+  width: 16px;
+  height: 16px;
+  text-align: center;
+  border: 1.5px solid var(--mid-black);
+  padding: 4px;
+  margin: 0 4px;
+  border-radius: 15%;
+  color: var(--mid-black);
 }
 
-.next {
-  border: 3px solid lime;
+.dot-arrow-parent {
+  margin-top: 8px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
 }
 
 .carousel__dots {
@@ -270,55 +285,24 @@ Convert scrollbar to ⏮ arrows ⏭
 }
 
 .dot {
-  border: 3px solid red;
-
   cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
+  height: 12px;
+  width: 12px;
+  margin: 0 4px;
+  background-color: var(--lt-black);
   border-radius: 50%;
   display: inline-block;
   transition: background-color 0.6s ease;
-}
-/* =======================
-    Star Rating Styles
-========================*/
-.stars__outer {
-  display: inline-block;
-  position: relative;
+  vertical-align: middle;
 }
 
-.stars__outer::before {
-  content: "☆☆☆☆☆"
+.dot:hover {
+  transform: scale(1.5);
 }
 
-.stars__inner {
-  position: absolute;
-  top: 0;
-  left: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 0;
+.dot {
+  transition: 1s ease-out;
 }
-
-.stars__inner::before {
-  content: "★★★★★"
-}
-
-.stars__a {
-  font-size: 12px;
-  padding-left: 4px;
-  vertical-align: text-top;
-}
-
-
-.stars__reviews {
-  visibility: hidden;
-  height: 0;
-  width: 0;
-}
-
 
 /* =======================
       Button Styles
@@ -352,11 +336,26 @@ Convert scrollbar to ⏮ arrows ⏭
   background-color: var(--white);
   opacity: .7;
   min-width: 40px; /* 56px? */
-  padding: 0; /* remove? */
 }
 
 .style-selector__buttons {
   width: max-content;
+}
+
+/* =======================
+ Star Reviews Link Styles
+========================*/
+.stars__a {
+  font-size: 12px;
+  padding-left: 4px;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+.stars__reviews {
+  visibility: hidden;
+  height: 0;
+  width: 0;
 }
 
 /* =======================
@@ -381,7 +380,7 @@ Convert scrollbar to ⏮ arrows ⏭
   filter: blur(0);
 
   opacity: 1;
-  z-index: 5;
+  z-index: 15;
 }
 
 .modal__content {

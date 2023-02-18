@@ -25,7 +25,8 @@ export default function OverviewProvider({ children }) {
 			width = this.naturalWidth;
 			height = this.naturalHeight;
 
-			width <= height ? console.log("Portrait", width, 'x', height) : console.log('Landscape', width, 'x', height);
+			// Image Style Logger
+			// width <= height ? console.log("Portrait", width, 'x', height) : console.log('Landscape', width, 'x', height);
 
 			if (width !== 0 && height !== 0) {
 				if (width > height) {

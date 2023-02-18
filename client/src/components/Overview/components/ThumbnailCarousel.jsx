@@ -31,7 +31,7 @@ function ThumbnailCarousel({ type }) {
 
 	return (
 		currentProductStyles &&
-		<div className={styles[type]}>
+		<div id={type} className={styles[type]}>
 			{type === 'images__carousel' ? productCarousel : styleCarousel }
 		</div>
 	)

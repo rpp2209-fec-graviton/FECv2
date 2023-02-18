@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import styles from './RPCard.module.css';
+import styles from '../Home/home.module.css';
 
 function RPStars ({ id, rating }) {
   useEffect(() => {
@@ -11,8 +11,8 @@ function RPStars ({ id, rating }) {
   }, [rating]);
 
   return (
-  <div className={styles.starsOuter}>
-    <div id={id + 'stars'} className={styles.starsInner}></div>
+  <div className={styles.stars__outer}>
+    <div id={id + 'stars'} className={styles.stars__inner}></div>
   </div>
   );
 }

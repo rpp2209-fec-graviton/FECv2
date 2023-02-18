@@ -10,7 +10,7 @@
 }
 .star {
   position: absolute;
-  top: 1px;
+  top: 16px;
   right: 20px;
 }
 .comparisonContainer {
@@ -49,26 +49,6 @@ table {
   width: 500px;
   height: 200px;
   margin: 0 auto;
-}
-.starsOuter {
-  display: inline-block;
-  position: relative;
-  font-family: FontAwesome;
-}
-.starsOuter::before {
-  content: "☆☆☆☆☆";
-}
-.starsInner {
-  position: absolute;
-  top: 0;
-  left: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 0;
-}
-.starsInner::before {
-  content: "★★★★★";
-  color: #f8ce0b;
 }
 .addToOutfit {
   display: flex;
