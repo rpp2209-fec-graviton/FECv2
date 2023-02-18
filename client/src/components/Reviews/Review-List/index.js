@@ -7,6 +7,7 @@ import { useReviewContext } from '../Context/ReviewProvider.jsx'
 
 import useFetchProduct from "../../Hooks/useFetchProduct.jsx";
 import styles from './review-list.module.scss'
+import Form from "../Review-Form/form-index.jsx";
 
 export default function ReviewList({ children }) {
 
@@ -20,8 +21,11 @@ export default function ReviewList({ children }) {
 
 
   return (
-    <div className={styles.listContainer}>
-      <h3>Sort by {sortOrder} </h3>
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+    }} className={styles.listContainer}>
+      <h3 style = {{}}>Sort by {sortOrder} </h3>
       <select onChange={handleChange}>
         {sortOptions.map(option => (
           <option key={option} value={option}>
@@ -32,6 +36,7 @@ export default function ReviewList({ children }) {
       <ListContainer>
         {children}
       </ListContainer>
+      <Form></Form>
       <Button onClick={(e) => { handleShowMoreReviews(e, filteredReviews.length) }}>More Reviews </Button>
     </div>
   );

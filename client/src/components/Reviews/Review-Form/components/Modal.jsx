@@ -28,25 +28,8 @@ import {
   Radio,
   RadioGroup
 } from "@material-ui/core";
-const companies = [
-  {
-    name: "Company A",
-    id: "001",
-    url:
-      "https://docs.google.com/document/d/1czOkRgNba9yqkDzUt5nRzHYIZFllhxz5xlWjwzLtLGg/edit?usp=sharing"
-  },
-  {
-    name: "Company B",
-    id: "002",
-    url:
-      "https://docs.google.com/document/d/1qEZAauyLDN1N9pY6Mn7MZiqlVfVYd3fVRjoG6jQEUOU/edit?usp=sharing"
-  },
-  {
-    name: "Company C",
-    id: "003",
-    url: "https://facebook.com"
-  }
-];
+
+
 const useStyles = makeStyles((theme) => ({
   formControl: { margin: "10px 0", display: "block" },
   closeButton: {
@@ -74,22 +57,18 @@ const validationSchema = yup.object({
 
 export default function Modal(props) {
   const { open, handleClose } = props;
-  const [link, setLink] = React.useState("http://www.google.com/");
+  // const [link, setLink] = React.useState("http://www.google.com/");
   const { handlePost } = useReviewPost()
   const { currentProductId } = useProductContext();
   const formik = useFormik({
     initialValues: {
       productId: currentProductId,
       firstName: "",
-      lastName: "",
       email: "",
-      password: "foobar",
-      refundForm: null,
       body: '',
       recommend: '',
       summary: '',
-      requiredDocument: "",
-      requiredFile: "",
+      photos: '',
       rating: ''
     },
     validationSchema: validationSchema,

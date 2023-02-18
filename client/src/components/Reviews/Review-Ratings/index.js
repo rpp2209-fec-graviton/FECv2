@@ -15,7 +15,7 @@ function ReviewRatings() {
       <div className={styles.ratings_wrapper}>
         <RatingTopBar />
         <RatingBars />
-        <RatingGauge />
+        <RatingGauge  />
       </div>
     </>
 
