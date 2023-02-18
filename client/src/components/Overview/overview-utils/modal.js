@@ -8,13 +8,14 @@ function toggleModal(show, setShow) {
 	var modal = document.getElementById('modal');
 	var content = document.getElementById('modal__content');
 	var carousel = document.getElementById('styles__carousel');
+	var dots = document.getElementById('dot-images')
 
 	// Toggle Image and Modal Visibility
 	modal.classList.toggle(styles['modal-hidden']);
 	content.classList.toggle(styles['modal-hidden']);
 	fullImage.classList.toggle(styles['modal-hidden']);
 	carousel.classList.toggle(styles['modal-hidden']);
-	// fullImage.style.visibility = 'hidden';
+	dots.classList.toggle(styles['modal-hidden']);
 	modal.style.cursor = "crosshair";
 };
 

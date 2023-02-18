@@ -2,7 +2,7 @@ import React from 'react';
 import useSlideshow from '../hooks/useSlideshow/useSlideshow.js';
 import styles from '../overview.module.css';
 
-function Dots () {
+function Dots ({ children, type }) {
 	const { dots, slideIndex, slideImgs, setURL } = useSlideshow();
 	const slides = slideImgs && Object.values(slideImgs);
 
@@ -14,8 +14,9 @@ function Dots () {
 
 	return (
 		slides &&
-		<div className={styles.carousel__dots}>
+		<div id={`dot-${type}`} className={`${styles[`dot-${type}`]} ${styles.carousel__dots}`}>
 			{slides.map((slide, index) => (<span id={index} key={index} className={styles.dot} onClick={handleClick}></span>))}
+			{children}
 		</div>
 	)
 

@@ -56,6 +56,8 @@ function Images () {
 			<Modal show={show} setShow={setShow}>
 				<img id="modal__content" className={`${styles.modal__content} ${styles['modal-hidden']}`} src={imgURL} alt="modal" />
 				<Button type="modal-button" handleClick={() => toggleModal(show, setShow)}>X</Button>
+				{/* Interactive Carousel Dots */}
+				<Dots type="modal"></Dots>
 			</Modal>
 
 			<div className="slideshow">
@@ -76,25 +78,22 @@ function Images () {
 				<div className={styles['dot-arrow-parent']}>
 					<a
 						href="#"
-						className={`fas fa-angle-left ${styles.prev} ${styles.border}`}
+						className={`fas fa-arrow-left ${styles.prev} ${styles.border}`}
 						role="button"
 						onClick={() => handleIncrementSlides(-1)}
 					></a>
 
-					{/* Interactive Carousel Dots */}
-					<Dots></Dots>
-
 					<a
 						href="#"
-						className={`fas fa-angle-right ${styles.nxt} ${styles.border}`}
+						className={`fas fa-arrow-right ${styles.nxt} ${styles.border}`}
 						role="button"
 						onClick={() => handleIncrementSlides(1)}
 					></a>
 				</div>
-
-
-
 			</div>
+
+			{/* Interactive Carousel Dots */}
+			<Dots type="images"></Dots>
 
 		</div>
 	)

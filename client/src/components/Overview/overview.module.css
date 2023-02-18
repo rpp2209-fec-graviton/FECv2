@@ -262,22 +262,30 @@ Convert scrollbar to ⏮ arrows ⏭
 }
 
 .prev, .nxt {
+  margin: 0 4px;
+  padding: 4px;
   width: 16px;
   height: 16px;
-  text-align: center;
+
   border: 1.5px solid var(--mid-black);
-  padding: 4px;
-  margin: 0 4px;
   border-radius: 15%;
+
   color: var(--mid-black);
+
+  text-align: center;
+  text-decoration: none;
 }
 
 .dot-arrow-parent {
-  margin-top: 8px;
-  width: 100%;
   display: flex;
   justify-content: space-between;
   flex-wrap: nowrap;
+
+  position: absolute;
+  top: 40%;
+
+  width: 100%;
+  max-width: 824px;
 }
 
 .carousel__dots {
@@ -300,8 +308,19 @@ Convert scrollbar to ⏮ arrows ⏭
   transform: scale(1.5);
 }
 
+
+.dot-modal {
+  transform: scale(1);
+}
+
 .dot {
   transition: 1s ease-out;
+}
+
+.dot-modal {
+  position: absolute;
+  bottom: 32px;
+  z-index: 10;
 }
 
 /* =======================
