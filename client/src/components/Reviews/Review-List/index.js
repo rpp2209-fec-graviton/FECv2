@@ -32,7 +32,7 @@ export default function ReviewList({ children }) {
       <ListContainer>
         {children}
       </ListContainer>
-      <Button onClick={(e) => { handleShowMoreReviews(e, filteredReviews.length) }}>More Reviews </Button>
+      <Button handleClick={(e) => { handleShowMoreReviews(e, filteredReviews.length) }}>More Reviews </Button>
     </div>
   );
 }
