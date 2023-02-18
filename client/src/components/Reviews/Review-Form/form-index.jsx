@@ -22,10 +22,11 @@ export default function Form() {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Button variant="outlined" color="primary" handleClick={handleClickOpen}>
         + Open Form Dialog
       </Button>
       <Modal open={open} handleClose={handleClose} />
+
       {/* <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
         <DialogContent>
