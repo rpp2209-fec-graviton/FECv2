@@ -4,6 +4,8 @@
 :root {
   --black: #000000;
   --lt-black: rgba(0, 0, 0, .5);
+  --mid-black: rgba(0, 0, 0, .75);
+  --lt-grey: rgba(128, 128, 128, .25);
   --grey: rgba(128, 128, 128, .8);
   --dk-grey: rgba(88, 88, 88, .8);
   --blue: #1e90ff;
@@ -74,34 +76,6 @@ h2, h3, .header {
 
 .btn:active {
   box-shadow: inset 3px 3px 5px 6px var(--dk-grey);
-}
-
-/* =======================
-    Star Rating Styles
-========================*/
-.stars__outer {
-  display: inline-block;
-  position: relative;
-  z-index: 10;
-  /* font-family: 'FontAwesome', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
-}
-
-.stars__outer::before {
-  content: "☆☆☆☆☆";
-}
-
-.stars__inner {
-  position: absolute;
-  top: 0;
-  left: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 0;
-  color: var(--yellow);
-}
-
-.stars__inner::before {
-  content: "★★★★★";
 }
 
 /* =======================
