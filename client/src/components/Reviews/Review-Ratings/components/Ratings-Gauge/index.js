@@ -8,11 +8,11 @@ function RatingGauge() {
 
   return (
     <>
-      <Gauge handleCurrentRating={handleCurrentReviewRating} rating={5}></Gauge>
-      <Gauge handleCurrentRating={handleCurrentReviewRating} rating={4}></Gauge>
-      <Gauge handleCurrentRating={handleCurrentReviewRating} rating={3}></Gauge>
-      <Gauge handleCurrentRating={handleCurrentReviewRating} rating={2}></Gauge>
-      <Gauge handleCurrentRating={handleCurrentReviewRating} rating={1}></Gauge>
+      <Gauge handleCurrentRating={handleCurrentReviewRating} width = {80} rating={5}></Gauge>
+      <Gauge handleCurrentRating={handleCurrentReviewRating} width = {30} rating={4}></Gauge>
+      <Gauge handleCurrentRating={handleCurrentReviewRating} width = {10} rating={3}></Gauge>
+      <Gauge handleCurrentRating={handleCurrentReviewRating} width = {5} rating={2}></Gauge>
+      <Gauge handleCurrentRating={handleCurrentReviewRating} width = {0} rating={1}></Gauge>
     </>
   );
 }

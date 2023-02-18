@@ -28,7 +28,7 @@ export default function Reviews({ reviewData }) {
 
   return (
     <div id="reviews" className={styles.reviews}>
-      <Form />
+
       <ReviewWrapper>
         <ReviewRatings />
         <ReviewList>
@@ -37,6 +37,7 @@ export default function Reviews({ reviewData }) {
           })}
         </ReviewList>
       </ReviewWrapper>
+
 
     </div>
   );
