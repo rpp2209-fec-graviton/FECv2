@@ -12,7 +12,7 @@ function Modal ({ show, setShow, children }) {
 			onClick={zoomModal}
 		>
 			{children}
-			<Button type="modal-button" handleClick={() => toggleModal(show, setShow)}>X</Button>
+			{/* <Button type="modal-button" handleClick={() => toggleModal(show, setShow)}>X</Button> */}
 		</div>
 	)
 };

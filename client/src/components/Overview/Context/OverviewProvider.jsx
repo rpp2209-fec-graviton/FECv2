@@ -2,12 +2,13 @@ import React, { useState, createContext, useContext } from 'react';
 
 import { useProductContext } from '../../Context/ContextProvider.jsx';
 import useStyles from '../hooks/useStyles.jsx';
+import styles from '../overview.module.css';
 
 export const OverviewContext = createContext();
 
 export default function OverviewProvider({ children }) {
 	const { currentProductId } = useProductContext();
-	const allProductStyles = useStyles(currentProductId);
+	const { allProductStyles } = useStyles(currentProductId);
 	const currentProductStyles = allProductStyles[currentProductId];
 
 	const [selectedStyle, setSelectedStyle] = useState({});
@@ -16,9 +17,36 @@ export default function OverviewProvider({ children }) {
 	const [ imgURL, setURL ] = useState('');
 	const [ price, setPrice ] = useState({ price: '', type: 'default'});
 
+	const handleSetImgAspectRatio = () => {
+		const img = document.getElementById('image-lg');
+		let width, height;
+
+		img.onload = function () {
+			width = this.naturalWidth;
+			height = this.naturalHeight;
+
+			// Image Style Logger
+			// width <= height ? console.log("Portrait", width, 'x', height) : console.log('Landscape', width, 'x', height);
+
+			if (width !== 0 && height !== 0) {
+				if (width > height) {
+					img.classList.add(styles['overview__image-landscape']);
+					img.classList.remove(styles['overview__image-portrait']);
+				} else if (width <= height) {
+					img.classList.add(styles['overview__image-portrait']);
+					img.classList.remove(styles['overview__image-landscape']);
+				}
+			}
+		};
+
+	};
+
 	// Update Large Image URL and Style Price when selectedStyle changes
 	const handleStyleChange = (e, style, type) => {
-		// console.log('Style', selectedStyle);
+		// setSelectedStyle(style);
+		// setURL(e.target.id && e.target.id);
+		// handleSetImgAspectRatio();
+		// setPrice(style.sale_price && style.sale_price !== null ? { price: style.sale_price, type: 'sale' } : { price: style.original_price, type: 'default' } );
 
 		if (type === 'thumbnail-rounded') {
 			setSelectedStyle(style);
@@ -27,6 +55,7 @@ export default function OverviewProvider({ children }) {
 		} else {
 			setURL(e.target.id && e.target.id);
 		}
+		handleSetImgAspectRatio();
 	};
 
 	// Overview Context Values
@@ -36,6 +65,7 @@ export default function OverviewProvider({ children }) {
 		selectedStyle,
 		setSelectedStyle,
 		handleStyleChange,
+		handleSetImgAspectRatio,
 		imgURL,
 		setURL,
 		price,

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import YourOutfitCard from "./YourOutfitCard.jsx";
 import { useProductContext } from '../Context/ContextProvider.jsx';
-import { useRPContext } from "./Context/RPProvider.jsx";
 
 import RPstyles from './RP.module.css';
 
@@ -16,7 +15,6 @@ function YourOutfitList () {
 
   return (
     <div data-testid='outfitlist'>
-      <h2>
       Your Outfit
       </h2>
       <div className={outfitItems && outfitItems.length > 5 ? RPstyles['flex-with-scroll'] : RPstyles['flex-center']}>
